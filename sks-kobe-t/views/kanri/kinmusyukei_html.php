@@ -478,7 +478,7 @@ li {
                 // 1日～月末までループ
                 for ($j=0;$j<=31;$j++) {
                     if ($j > intval($toLastday)) {
-                        break;
+                        continue;
                     }
 
                     // 日を2桁0埋めでフォーマット
@@ -551,7 +551,7 @@ li {
                     // 1日～月末までループ
                     for ($j=0;$j<=31;$j++) {
                         if ($j > intval($toLastday)) {
-                            break;
+                            continue;
                         }
                         if ($j == 0) {
                             $time = strtotime(substr($sengetu, 0, 4) . "-" . substr($sengetu, 4, 2) . "-" . $last);
@@ -590,7 +590,7 @@ li {
                     // 1日～月末までループ
                     for ($j=0;$j<=31;$j++) {
                         if ($j > intval($toLastday)) {
-                            break;
+                            continue;
                         }
                         if ($j == 0) {
                             $time = strtotime(substr($sengetu, 0, 4) . "-" . substr($sengetu, 4, 2) . "-" . $last);
@@ -706,7 +706,7 @@ li {
                 // 1日～月末までループ
                 for ($j=0;$j<=31;$j++) {
                     if ($j > intval($toLastday)) {
-                        break;
+                        continue;
                     }
 
                     // 日を2桁0埋めでフォーマット
@@ -823,7 +823,7 @@ li {
                 // 1日～月末までループ
                 for ($j=0;$j<=31;$j++) {
                     if ($j > intval($toLastday)) {
-                        break;
+                        continue;
                     }
 
                     // 日を2桁0埋めでフォーマット
@@ -1021,7 +1021,7 @@ li {
                 // 1日～月末までループ
                 for ($j=0;$j<=31;$j++) {
                     if ($j > intval($toLastday)) {
-                        break;
+                        continue;
                     }
 
                     // 日を2桁0埋めでフォーマット
@@ -1105,7 +1105,7 @@ li {
                         // 1日～月末までループ
                         for ($j=0;$j<=31;$j++) {
                             if ($j > intval($toLastday)) {
-                                break;
+                                continue;
                             }
 
                             // 日を2桁0埋めでフォーマット
@@ -1180,7 +1180,7 @@ li {
                             //前月最終日は集計しない
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1236,7 +1236,7 @@ li {
                             // 1日～月末までループ
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1282,7 +1282,7 @@ li {
                             // 1日～月末までループ
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1328,7 +1328,7 @@ li {
                             // 1日～月末までループ
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1373,7 +1373,7 @@ li {
                             // 1日～月末までループ
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1418,7 +1418,7 @@ li {
                             // 1日～月末までループ
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1465,7 +1465,7 @@ li {
                             // 1日～月末までループ
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1513,7 +1513,7 @@ li {
                             // 1日～月末までループ
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1561,7 +1561,7 @@ li {
                             // 1日～月末までループ
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1613,7 +1613,7 @@ li {
                             // 1日～月末までループ
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1657,7 +1657,7 @@ li {
                             // 1日～月末までループ
                             for ($j=0;$j<=31;$j++) {
                                 if ($j > intval($toLastday)) {
-                                    break;
+                                    continue;
                                 }
 ?>
                                 <?php
@@ -1740,7 +1740,7 @@ li {
                         //前月最終日は集計しない
                         for ($j=0;$j<=31;$j++) {
                             if ($j > intval($toLastday)) {
-                                break;
+                                continue;
                             }
                         //前月最終日色変更
                         if ($j != 0) {
@@ -1868,7 +1868,7 @@ li {
                         // 1日～月末までループ
                         for ($j=0;$j<=31;$j++) {
                             if ($j > intval($toLastday)) {
-                                break;
+                                continue;
                             }
                         //前月最終日色変更
                         if ($j != 0) {
