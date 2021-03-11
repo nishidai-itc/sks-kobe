@@ -235,14 +235,14 @@
 
         // 更新
         } else {
-            // $report2->inp_no                          = $report3->oup_no[0];
+            $report2->inp_no                          = $report3->oup_no[0];
             $report2->inp_modified                    = date("Y-m-d H:i:s");
             $report2->inp_modified_id                 = $_SESSION["staff_id"];
             $report2->updateReport($table);
 
             // 管理
             $report2                                  = new Report;
-            // $report2->inp_no                          = $report3->oup_no[0];
+            $report2->inp_no                          = $report3->oup_no[0];
             $report2->inp_kbn                         = $_POST["act"];
             $report2->inp_modified                    = date("Y-m-d H:i:s");
             $report2->inp_modified_id                 = $_SESSION["staff_id"];
@@ -255,7 +255,36 @@
             header("Location:report_menu.php");
         }
         exit;
-        
+
+    }
+
+    // 登録済データ取得
+    if ($no) {
+        $report3                    = new Report;
+        $report3->inp_no            = $no;
+        $report3->getReport($table);
+
+        if ($report3->oup_no) {
+            // ReportTableで定義したテーブル項目をループ
+            foreach (ReportTable::$report1 as $key => $value) {
+                if ($value == "table") {
+                    continue;
+                }
+                // 時刻（checkboxの項目以外）
+                if (strpos($value,"time") !== false && strpos($report3->{"oup_".$value}[0],":") !== false) {
+                    $array          = explode(":",$report3->{"oup_".$value}[0]);
+                    ${$value}       = array($array[0],$array[1]);
+                    continue;
+                }
+                if (strpos($value,"time") !== false && is_null($report3->{"oup_".$value}[0])) {
+                    ${$value}       = array(null,null);
+                    continue;
+                }
+
+                // 時刻以外
+                ${$value}           = $report3->{"oup_".$value}[0];
+            }
+        }
     }
 
     // 当日予定のある隊員取得
@@ -281,13 +310,19 @@
         
         $staff2->getStaff();
 
+        // 隊員が一人なら担当警備員にデフォルト表示
+        if (count($staff2->oup_m_staff_id) == 1) {
+            $staff_id = $staff_id ? $staff_id : $staff2->oup_m_staff_id[0];
+        }
+
         for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
             $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
 
             // 勤務員の項目の隊員デフォルト表示
             if ($cnt != 15) {
                 $cnt = $cnt + 1;
-                ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
+                // データがある場合は取得したデータを、新規は予定が入っている隊員を表示
+                ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
             }
         }
     }

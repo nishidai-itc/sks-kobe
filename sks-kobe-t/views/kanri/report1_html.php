@@ -445,7 +445,7 @@
     </div>
     <hr>
 
-    <input type="hidden" name="no" value="<?php $no; ?>">
+    <input type="hidden" name="no" value="<?php echo $no; ?>">
     <input type="hidden" name="act" value="">
     </form>
 
