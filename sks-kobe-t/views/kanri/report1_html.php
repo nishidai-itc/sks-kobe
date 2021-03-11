@@ -19,6 +19,9 @@
 </head>
 
 <style>
+.w-15{
+  width: 15% !important;
+}
 </style>
 
 <body>
@@ -214,7 +217,7 @@
       <div class="col-12">
         <table class="table table-borderless">
           <tr>
-            <td class="align-middle" rowspan="4">実<br>施</td>
+            <td class="align-middle" rowspan="3">実<br>施</td>
             <td><label>１．各ポスト立哨、車両等の誘導</label></td>
           </tr>
 
@@ -224,10 +227,6 @@
 
           <tr>
             <td><label>３．照明灯点消灯、水道メーター検針</label></td>
-          </tr>
-
-          <tr>
-            <td><label>４．船舶入出港時の立ち会い</label></td>
           </tr>
         </table>
       </div>
@@ -240,14 +239,14 @@
           <tr class="con">
             <td class="align-middle" rowspan="17">特<br>記</td>
             <td><label>１．甲陽運輸</label></td>
-            <td>
+            <td class="w-15">
               <div class="time">
                 <input type="number" class="text-center" name="koyo_joban_time[0]" value="<?php echo $koyo_joban_time[0]; ?>" min="0" max="23">
                 <span class="">:</span>
                 <input type="number" class="text-center" name="koyo_joban_time[1]" value="<?php echo $koyo_joban_time[1]; ?>" min="0" max="59">
               </div>
             </td>
-            <td>
+            <td class="w-15">
               <div class="time">
                 <input type="number" class="text-center" name="koyo_kaban_time[0]" value="<?php echo $koyo_kaban_time[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -294,12 +293,30 @@
           <tr class="con">
             <td><label>３．最終退出者</label></td>
             <td>
-              <!-- <input type="number" class="text-center" name="last_exit" value="<?php echo $last_exit; ?>" min="0" style="width: 50px; padding: 0; border: 1px solid #343a40;"> -->
-              <input type="text" class="text" name="last_exit" value="<?php echo $last_exit; ?>">
+              <input type="checkbox" class="check2" <?php echo !is_array($last_exit1) ? "checked" : "" ; ?>>
+              
+              <div class="time">
+                <input type="number" class="text-center" name="last_exit1[0]" value="<?php echo is_array($last_exit1) ? $last_exit1[0] : "" ; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="last_exit1[1]" value="<?php echo is_array($last_exit1) ? $last_exit1[1] : "" ; ?>" min="0" max="59">
+              </div>
+              <input type="text" class="text" name="last_exit1" value="<?php echo !is_array($last_exit1) ? $last_exit1 : "" ; ?>">
+              
             </td>
             <td>
-              <input type="text" class="text" name="last_exit" value="<?php echo $last_exit; ?>">
+              <input type="checkbox" class="check2" <?php echo !is_array($last_exit2) ? "checked" : "" ; ?>>
+              
+              <div class="time">
+                <input type="number" class="text-center" name="last_exit2[0]" value="<?php echo is_array($last_exit2) ? $last_exit2[0] : "" ; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="last_exit2[1]" value="<?php echo is_array($last_exit2) ? $last_exit2[1] : "" ; ?>" min="0" max="59">
+              </div>
+              <input type="text" class="text" name="last_exit2" value="<?php echo !is_array($last_exit2) ? $last_exit2 : "" ; ?>">
+              
             </td>
+            <!-- <td>
+              <input type="text" class="text" name="last_exit" value="<?php echo $last_exit; ?>">
+            </td> -->
             <td>
               <div class="time">
                 <input type="number" class="text-center" name="yard_on_time2[0]" value="<?php echo $yard_on_time2[0]; ?>" min="0" max="23">
@@ -326,9 +343,6 @@
               <label><?php echo $tokki[$i]["title"] ; ?></label>
             </td>
             <td colspan="3">
-              <?php if ($i == 0 || $i == 1) { ?>
-              <label>早朝</label>
-              <?php } ?>
               <div class="time">
                 <input type="number" class="text-center" name="<?php echo $tokki[$i]["name"][0] ; ?>[0]" value="<?php echo ${$tokki[$i]["name"][0]}[0] ; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -362,6 +376,7 @@
     </div>
     <hr>
 
+    <?php /* ?>
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
@@ -382,6 +397,7 @@
       </div>
     </div>
     <hr>
+    <?php */ ?>
 
     <div class="row">
       <div class="col-12">
@@ -520,14 +536,13 @@
   $('.time [type="number"], .time2 [type="number"]').addClass('p-0 border-0')
   $('.time [type="number"], .num').css('width','45px')
   $('.num, .text').addClass('pl-1')
-  $('.num').css('border','1px solid #343a40')
-  $('.text').css({
-    'border':'1px solid #343a40',
-    'width':'50px'
-  })
+  $('.num, .text').css('border','1px solid #343a40')
+  $('.text').addClass('w-50')
 
+  // 入港、出港checkbox
   var checkList = {}
   var no
+  // （初期表示）
   $('.check').each(function(){
     no = $(this).val()
     if ($(this).prop('checked')) {
@@ -536,15 +551,48 @@
       checkList['div'+no] = $(this).next().remove()
     }
   })
-
+  // （クリックで切り替え）
   $('.check').click(function(){
     no = $(this).val()
     $(this).parent().append(checkList['div'+no])
     checkList['div'+no] = $(this).next().remove()
   })
 
+  // 最終退出者checkbox（初期表示）
+  $('.check2').each(function(){
+    if ($(this).prop('checked')) {
+      $(this).next().removeClass('d-inline-block')
+      $(this).next().addClass('d-none')
+    } else {
+      $(this).next().next().addClass('d-none')
+    }
+  })
+  // 最終退出者checkbox（切り替え）
+  $('.check2').click(function(){
+    if ($(this).prop('checked')) {
+      $(this).next().removeClass('d-inline-block')
+      $(this).next().addClass('d-none')
+
+      $(this).next().next().removeClass('d-none')
+    } else {
+      $(this).next().addClass('d-inline-block')
+      $(this).next().removeClass('d-none')
+
+      $(this).next().next().addClass('d-none')
+    }
+  })
+
   $('.temp, .regist').click(function(){
     if (!confirm('この内容で登録します。よろしいですか？')) return false
+
+    // 最終退出者POST送信する値判定
+    $('.check2').each(function(){
+      if ($(this).prop('checked')) {
+        $(this).next().children('input[type="number"]').removeAttr('name')
+      } else {
+        $(this).next().next().removeAttr('name')
+      }
+    })
 
     if ($(this).hasClass('temp')) {
       $('[name="act"]').val('2')

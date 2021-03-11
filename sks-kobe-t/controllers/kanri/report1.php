@@ -43,6 +43,8 @@
     $sumii_joban_time                       = array(null,null);
     $sumii_kaban_time                       = array(null,null);
     $last_exit                              = null;
+    $last_exit1                             = array(null,null);
+    $last_exit2                             = array(null,null);
     $yard_on_time1                          = array(null,null);
     $yard_off_time1                         = array(null,null);
     $yard_on_time2                          = array(null,null);
@@ -65,21 +67,21 @@
     );
     $tokki = array(
         array(
-            "title"=>"・共同デポ",
+            "title"=>"・早出➀共同デポ",
             "name"=>array("depo_joban_time","depo_kaban_time","depo_num","depo_zan")
         ),
         array(
-            "title"=>"・PC15.16.17　並び",
+            "title"=>"・早出➁PC15.16.17　並び",
             "name"=>array("sort_joban_time","sort_kaban_time","sort_num","sort_zan")
         ),
         array(
             "title"=>"・PC15.16.17　CY",
             "name"=>array("cy_joban_time","cy_kaban_time","cy_num","cy_zan")
         ),
-        array(
-            "title"=>"・専用道白出口",
-            "name"=>array("exit_joban_time","exit_kaban_time","exit_num","exit_zan")
-        ),
+        // array(
+        //     "title"=>"・専用道白出口",
+        //     "name"=>array("exit_joban_time","exit_kaban_time","exit_num","exit_zan")
+        // ),
         array(
             "title"=>"・VP作業",
             "name"=>array("vp_joban_time","vp_kaban_time","vp_num","vp_zan")
@@ -121,11 +123,11 @@
     }
 
     $comment = "巡回点検異常ありません";
-    $title                            = array("1"=>"➀","2"=>"➁","3"=>"➂","4"=>"➃","5"=>"➄","6"=>"➅","7"=>"➆","8"=>"➇");
-    $times                            = array("1"=>array("19","00"),"2"=>array("21","00"),"3"=>array("23","00"),"4"=>array("01","00"),"5"=>array("03","00"),"6"=>array("05","00"),"7"=>array(null,null),"8"=>array(null,null));
-    for ($i=1;$i<=8;$i++) {
-        ${"patrol_time".$i}           = array($times[$i][0],$times[$i][1]);
-    }
+    // $title                            = array("1"=>"➀","2"=>"➁","3"=>"➂","4"=>"➃","5"=>"➄","6"=>"➅","7"=>"➆","8"=>"➇");
+    // $times                            = array("1"=>array("19","00"),"2"=>array("21","00"),"3"=>array("23","00"),"4"=>array("01","00"),"5"=>array("03","00"),"6"=>array("05","00"),"7"=>array(null,null),"8"=>array(null,null));
+    // for ($i=1;$i<=8;$i++) {
+    //     ${"patrol_time".$i}           = array($times[$i][0],$times[$i][1]);
+    // }
     $meterb1                          = null;
     $meterb2                          = null;
     $meterc1                          = null;
@@ -174,6 +176,9 @@
     $staff->getStaff();
 
     if ($act) {
+        // var_dump($_POST["last_exit1"]);
+        // exit;
+
         // チェックボックスにチェックされていたら停泊を登録
         for ($i=1;$i<=9;$i++) {
             if (!$_POST["wk_ship_in_port_time".$i]) {
@@ -195,6 +200,13 @@
             // 値が空じゃない場合
             // 登録フラグ以外の項目登録
             if ($key != "act") {
+                // 最終退出者
+                if (is_array($value) && strpos($key,"last_exit") !== false) {
+                    if ($value[0] && $value[1]) {
+                        $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":".sprintf("%02d",$value[1]);  // 時刻整形
+                    }
+                    continue;
+                }
                 // 時刻の場合（checkboxの項目以外）
                 if (is_array($value) && strpos($key,"time") !== false) {
                     if ($value[0] && $value[1]) {
@@ -268,6 +280,16 @@
             // ReportTableで定義したテーブル項目をループ
             foreach (ReportTable::$report1 as $key => $value) {
                 if ($value == "table") {
+                    continue;
+                }
+                // 最終退出者
+                if (strpos($value,"last_exit") !== false) {
+                    if (strpos($report3->{"oup_".$value}[0],":") !== false) {
+                        $array          = explode(":",$report3->{"oup_".$value}[0]);
+                        ${$value}       = array($array[0],$array[1]);
+                    } else {
+                        ${$value}       = array(null,null);
+                    }
                     continue;
                 }
                 // 時刻（checkboxの項目以外）
