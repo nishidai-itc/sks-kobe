@@ -169,19 +169,21 @@
     }
   }
 
-  // 子現場取得
-  $genba->inp_m_genba_oya_id = "4";
-  $genba->getGenba();
+  // // 子現場取得
+  // $genba->inp_m_genba_oya_id = "4";
+  // $genba->getGenba();
 
-  // 当日予定のあるデータ取得
-  $wkdetail->inp_t_wk_genba_id2 = "'4'";
-  // 子現場があれば子現場のデータも取得
-  if ($genba->oup_m_genba_id) {
-      for ($i=0;$i<count($genba->oup_m_genba_id);$i++) {
-          $wkdetail->inp_t_wk_genba_id2 = $wkdetail->inp_t_wk_genba_id2.",'".$genba->oup_m_genba_id[$i]."'";
-      }
-  }
-  $wkdetail->inp_t_wk_plan_kbn_in = "'1','2','3'";
+  // // 当日予定のあるデータ取得
+  // $wkdetail->inp_t_wk_genba_id2 = "'4'";
+  // // 子現場があれば子現場のデータも取得
+  // if ($genba->oup_m_genba_id) {
+  //     for ($i=0;$i<count($genba->oup_m_genba_id);$i++) {
+  //         $wkdetail->inp_t_wk_genba_id2 = $wkdetail->inp_t_wk_genba_id2.",'".$genba->oup_m_genba_id[$i]."'";
+  //     }
+  // }
+  $wkdetail->inp_t_wk_genba_id      = "4";
+  $wkdetail->inp_t_wk_plan_hosoku   = "S";
+  $wkdetail->inp_t_wk_plan_kbn      = "2";
   $wkdetail->inp_t_wk_plan_date = str_replace("-","",$start_date);
   $wkdetail->inp_order = "order by t_wk_plan_joban_time";
   $wkdetail->getWkdetail();
