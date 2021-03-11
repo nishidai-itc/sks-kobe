@@ -173,6 +173,91 @@
     // 社員マスタ 取得
     $staff->getStaff();
 
+    if ($act) {
+        // チェックボックスにチェックされていたら停泊を登録
+        for ($i=1;$i<=9;$i++) {
+            if (!$_POST["wk_ship_in_port_time".$i]) {
+                $_POST["wk_ship_in_port_time".$i]               = "停泊";
+            }
+            if (!$_POST["wk_ship_out_port_time".$i]) {
+                $_POST["wk_ship_out_port_time".$i]              = "停泊";
+            }
+        }
+
+        foreach ($_POST as $key => $value) {
+            // var_dump($key,$value);
+            // 値が空ならNULLで登録
+            if ((!is_array($value) && !$value) || (is_array($value) && !$value[0] && !$value[1])) {
+                $report2->{"inp_".$key}                 = null;
+                continue;
+            }
+
+            // 値が空じゃない場合
+            // 登録フラグ以外の項目登録
+            if ($key != "act") {
+                // 時刻の場合（checkboxの項目以外）
+                if (is_array($value) && strpos($key,"time") !== false) {
+                    if ($value[0] && $value[1]) {
+                        $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":".sprintf("%02d",$value[1]);  // 時刻整形
+                    }
+                    continue;
+                }
+
+                // 時刻以外
+                $report2->{"inp_".$key}              = $value;
+            }
+        }
+
+        // 登録
+        $report3                  = new Report;
+        $report3->inp_no          = str_replace("-","",$_POST["start_date"]).$table;
+        // 既に登録されたデータがあるかチェック
+        $report3->getReport($table);
+        // 新規
+        if (!$report3->oup_no) {
+            // 報告書
+            $report2->inp_no                            = str_replace("-","",$_POST["start_date"]).$table;
+            $report2->inp_table                         = $table;
+            $report2->inp_created                       = date("Y-m-d H:i:s");
+            $report2->inp_created_id                    = $_SESSION["staff_id"];
+            $report2->insertReport($table);
+
+            // 管理
+            $report3                                    = new Report;
+            $report3->inp_no                            = $report2->oup_last_id;
+            $report3->inp_plan_date                     = $_POST["start_date"];
+            $report3->inp_table                         = $table;
+            $report3->inp_name_no                       = $table;
+            $report3->inp_kbn                           = $_POST["act"];
+            $report3->inp_created                       = date("Y-m-d H:i:s");
+            $report3->inp_created_id                    = $_SESSION["staff_id"];
+            $report3->insertReport("kanri");
+
+        // 更新
+        } else {
+            // $report2->inp_no                          = $report3->oup_no[0];
+            $report2->inp_modified                    = date("Y-m-d H:i:s");
+            $report2->inp_modified_id                 = $_SESSION["staff_id"];
+            $report2->updateReport($table);
+
+            // 管理
+            $report2                                  = new Report;
+            // $report2->inp_no                          = $report3->oup_no[0];
+            $report2->inp_kbn                         = $_POST["act"];
+            $report2->inp_modified                    = date("Y-m-d H:i:s");
+            $report2->inp_modified_id                 = $_SESSION["staff_id"];
+            $report2->updateReport("kanri");
+        }
+
+        if ($_SESSION["menu_flg"] == "kanri") {
+            header("Location:keibihokoku.php");
+        } else {
+            header("Location:report_menu.php");
+        }
+        exit;
+        
+    }
+
     // 当日予定のある隊員取得
     $wkdetail->inp_t_wk_genba_id = "6";
     $wkdetail->inp_t_wk_plan_kbn_in = "'1','2','3'";
