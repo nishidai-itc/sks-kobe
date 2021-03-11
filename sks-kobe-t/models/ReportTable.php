@@ -11,7 +11,7 @@
             "wk_ship_out_port_time4","wk_ship5","wk_ship_in_port_time5","wk_ship_out_port_time5","wk_ship6","wk_ship_in_port_time6","wk_ship_out_port_time6","wk_ship7",
             "wk_ship_in_port_time7","wk_ship_out_port_time7","wk_ship8","wk_ship_in_port_time8","wk_ship_out_port_time8","wk_ship9","wk_ship_in_port_time9","wk_ship_out_port_time9",
             "wk_in_out_start_time","wk_in_out_end_time","wk_joban_time","wk_kaban_time","wk_vp_end_time","wk_vp_kaban_time","koyo_joban_time","koyo_kaban_time","sumii_joban_time",
-            "sumii_kaban_time","last_exit","yard_on_time1","yard_off_time1","yard_on_time2","yard_off_time2","depo_joban_time","depo_kaban_time","depo_num","depo_zan","sort_joban_time",
+            "sumii_kaban_time","last_exit","last_exit1","last_exit2","yard_on_time1","yard_off_time1","yard_on_time2","yard_off_time2","depo_joban_time","depo_kaban_time","depo_num","depo_zan","sort_joban_time",
             "sort_kaban_time","sort_num","sort_zan","cy_joban_time","cy_kaban_time","cy_num","cy_zan","exit_joban_time","exit_kaban_time","exit_num","exit_zan","vp_joban_time","vp_kaban_time","vp_num",
             "vp_zan","midday_joban_time","midday_kaban_time","midday_num","midday_zan","gate_joban_time","gate_kaban_time","gate_num","gate_zan","mbath_joban_time","mbath_kaban_time","mbath_num",
             "mbath_zan","picket_joban_time1","picket_kaban_time1","picket_num1","picket_zan1","picket_joban_time2","picket_kaban_time2","picket_num2","picket_zan2","picket_joban_time3",
