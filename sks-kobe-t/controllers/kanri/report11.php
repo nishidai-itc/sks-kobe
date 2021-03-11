@@ -318,21 +318,23 @@
         }
     }
     
-    // 子現場取得
-    $genba->inp_m_genba_oya_id = "4";
-    $genba->getGenba();
+    // // 子現場取得
+    // $genba->inp_m_genba_oya_id = "4";
+    // $genba->getGenba();
 
-    // 当日予定のあるデータ取得
-    $wkdetail->inp_t_wk_genba_id2 = "'4'";
-    // 子現場があれば子現場のデータも取得
-    if ($genba->oup_m_genba_id) {
-        for ($i=0;$i<count($genba->oup_m_genba_id);$i++) {
-            $wkdetail->inp_t_wk_genba_id2 = $wkdetail->inp_t_wk_genba_id2.",'".$genba->oup_m_genba_id[$i]."'";
-        }
-    }
-    $wkdetail->inp_t_wk_plan_kbn_in = "'1','2','3'";
-    $wkdetail->inp_t_wk_plan_date = str_replace("-","",$start_date);
-    $wkdetail->inp_order = "order by t_wk_plan_joban_time";
+    // // 当日予定のあるデータ取得
+    // $wkdetail->inp_t_wk_genba_id2 = "'4'";
+    // // 子現場があれば子現場のデータも取得
+    // if ($genba->oup_m_genba_id) {
+    //     for ($i=0;$i<count($genba->oup_m_genba_id);$i++) {
+    //         $wkdetail->inp_t_wk_genba_id2 = $wkdetail->inp_t_wk_genba_id2.",'".$genba->oup_m_genba_id[$i]."'";
+    //     }
+    // }
+    $wkdetail->inp_t_wk_genba_id        = "4";
+    $wkdetail->inp_t_wk_plan_hosoku     = 1;
+    $wkdetail->inp_t_wk_plan_kbn_in     = "'1','2','3'";
+    $wkdetail->inp_t_wk_plan_date       = str_replace("-","",$start_date);
+    $wkdetail->inp_order                = "order by t_wk_plan_joban_time";
     $wkdetail->getWkdetail();
 
     // 隊員取得
@@ -375,6 +377,11 @@
         }
         
         $staff2->getStaff();
+
+        // 隊員が一人なら担当警備員にデフォルト表示
+        if (count($staff2->oup_m_staff_id) == 1) {
+            $staff_id = $staff_id ? $staff_id : $staff2->oup_m_staff_id[0];
+        }
 
         for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
             $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
