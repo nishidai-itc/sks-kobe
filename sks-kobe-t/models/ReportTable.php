@@ -10,7 +10,7 @@
             "wk_ship2","wk_ship_in_port_time2","wk_ship_out_port_time2","wk_ship3","wk_ship_in_port_time3","wk_ship_out_port_time3","wk_ship4","wk_ship_in_port_time4",
             "wk_ship_out_port_time4","wk_ship5","wk_ship_in_port_time5","wk_ship_out_port_time5","wk_ship6","wk_ship_in_port_time6","wk_ship_out_port_time6","wk_ship7",
             "wk_ship_in_port_time7","wk_ship_out_port_time7","wk_ship8","wk_ship_in_port_time8","wk_ship_out_port_time8","wk_ship9","wk_ship_in_port_time9","wk_ship_out_port_time9",
-            "in_out_start_time","in_out_end_time","wk_joban_time","wk_kaban_time","wk_vp_end_time","wk_vp_kaban_time","koyo_joban_time","koyo_kaban_time","sumii_joban_time",
+            "wk_in_out_start_time","wk_in_out_end_time","wk_joban_time","wk_kaban_time","wk_vp_end_time","wk_vp_kaban_time","koyo_joban_time","koyo_kaban_time","sumii_joban_time",
             "sumii_kaban_time","last_exit","yard_on_time1","yard_off_time1","yard_on_time2","yard_off_time2","depo_joban_time","depo_kaban_time","depo_num","depo_zan","sort_joban_time",
             "sort_kaban_time","sort_num","sort_zan","cy_joban_time","cy_kaban_time","cy_num","cy_zan","exit_joban_time","exit_kaban_time","exit_num","exit_zan","vp_joban_time","vp_kaban_time","vp_num",
             "vp_zan","midday_joban_time","midday_kaban_time","midday_num","midday_zan","gate_joban_time","gate_kaban_time","gate_num","gate_zan","mbath_joban_time","mbath_kaban_time","mbath_num",
@@ -21,13 +21,17 @@
         );
 
         public static $report2 = array(
-            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_end_time","flag1_time","flag2_time","picket_end_time",
-            "comment",
+            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_end_time","flag1_time","flag2_time","comment",
         );
 
         public static $report7 = array(
             "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","staff_id2",
         );
+
+        public static $report8 = array(
+            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time","wk_end_time","result","wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8",
+        );
+
 
 
         // 日本郵船神戸コンテナターミナル
