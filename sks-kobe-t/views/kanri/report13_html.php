@@ -333,7 +333,11 @@
         <button type="button" class="btn btn-success btn-block regist" role="button">完了</button>
       </div>
       <div class="col-4">
+        <?php if ($_SESSION["menu_flg"] == "kanri") { ?>
+        <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='keibihokoku.php'">戻る</button>
+        <?php } else { ?>
         <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='report_menu.php'">戻る</button>
+        <?php } ?>
       </div>
     </div>
 

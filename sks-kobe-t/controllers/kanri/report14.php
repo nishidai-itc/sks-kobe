@@ -142,8 +142,13 @@
       }
     }
 
-    header("Location:report_menu.php");
+    if ($_SESSION["menu_flg"] == "kanri") {
+      header("Location:keibihokoku.php");
+    } else {
+      header("Location:report_menu.php");
+    }
     exit;
+
   }
 
   if ($no) {

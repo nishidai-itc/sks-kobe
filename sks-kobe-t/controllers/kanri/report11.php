@@ -259,7 +259,11 @@
             $report2->updateReport($kanri);
         }
 
-        header("Location:report_menu.php");
+        if ($_SESSION["menu_flg"] == "kanri") {
+            header("Location:keibihokoku.php");
+        } else {
+            header("Location:report_menu.php");
+        }
         exit;
     }
 
@@ -389,7 +393,7 @@
     }
     // $staff2->getStaff();
 
-    // var_dump($wkdetail->oup_t_wk_plan_kbn);
+    // var_dump($_SESSION);
 ?>
 <?php
     // キャリア判定（PC/スマートフォン/タブレット）
