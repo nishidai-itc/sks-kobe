@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" media="screen, projection" />
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>　
+    <title>勤怠管理システム</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="page-header">
+      </div>
+
+      <form name="frm" method="POST" action="login.php">
+      </form>
+
+        <div class="card" style="padding: 10px;">
+          <div class="card-body">
+            藤田さん<br />12/11(火) <b>10:45</b>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <a href="kinmusyokai.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">勤務予定照会</a>
+            <br />
+            <a href="joban1.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">上番報告（リーダー用）</a>
+            <br />
+            <a href="joban2.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">上番報告（個人用）</a>
+            <br />
+            <a href="joban3.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">上番報告（個人用2）</a>
+            <br />
+            <a href="kaban1.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">下番報告（リーダー用）</a>
+            <br />
+            <a href="kaban2.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">下番報告（個人用）</a>
+            <br />
+            <a href="kaban4.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">下番報告（個人用2）</a>
+            <br />
+<!--
+            <a href="kinmuhokoku.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">勤務報告（残業、交通費）</a>
+            <br />
+-->
+            <button class="btn btn-primary btn-block" role="button" onclick="location.href='tisou.html'">遅刻・早退申請</button>
+            <button class="btn btn-primary btn-block" role="button" onclick="location.href='holiday.html'">休暇申請</button>
+            <button class="btn btn-primary btn-block" role="button" onclick="location.href='kotuhi1.html'">交通費登録</button>
+            <button class="btn btn-info btn-lg btn-block" role="button" onclick="location.href='kanrimenu.html'">管理者メニュー</button>
+            <br />
+            <a href="login.html" class="btn btn-secondary btn-lg btn-block" role="button" aria-pressed="true">ログアウト</a>
+            <br />
+          </div>
+        </div>
+
+
+    </div>
+
+      <div class="modal-footer">
+          <p><span>Copyright &copy; ITC Co., Ltd. </span><span>All Rights Reserved. </span></p>
+      </div><!-- /footer -->
+
+  </body>
+
+</html>

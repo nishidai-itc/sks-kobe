@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" media="screen, projection" />
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>　
+    <title>勤怠管理システム</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h4>勤務内容</h4>
+      </div>
+
+      <form name="frm" method="POST" action="login.php">
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr>
+                <td width="130" bgcolor="FFDCA5">現場名</td>
+                <td width="300">ＸＸＸ</td>
+              </tr>
+              <tr>
+                <td width="130" bgcolor="FFDCA5">勤務者</td>
+                <td width="300">
+                  <select id="selection" class="form-control">
+                    <option>山田太郎
+                    <option>井上真司
+                    <option>青木勲
+                    <option>尾崎雅士
+                  </select>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr align="center" bgcolor="FFDCA5">
+                <td colspan="2">2018年11月</td>
+                <td colspan="2">勤務</td>
+                <td>研</td>
+                <td>開始</td>
+                <td>終了</td>
+                <td>勤務時間</td>
+                <td>残業予定</td>
+              </tr>
+              <tr align="center">
+                <td width="28">1</td>
+                <td width="70">木</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td width="28">日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="1"></td>
+                <td width="70">8:00</td>
+                <td width="70">18:00</td>
+                <td width="70">9</td>
+                <td width="70"><input type="checkbox" checked> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">2</td>
+                <td>金</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">3</td>
+                <td><font color="red">土</font></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">4</td>
+                <td><font color="red">日</font></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">5</td>
+                <td>月</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">6</td>
+                <td>火</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">7</td>
+                <td>水</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">8</td>
+                <td>木</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">9</td>
+                <td>金</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">10</td>
+                <td><font color="red">土</font></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">11</td>
+                <td><font color="red">日</font></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">12</td>
+                <td>月</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">13</td>
+                <td>火</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">14</td>
+                <td>水</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">15</td>
+                <td>木</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">16</td>
+                <td>金</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="3"></td>
+                <td>日</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td>8:00</td>
+                <td>18:00</td>
+                <td>9</td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">17</td>
+                <td><font color="red">土</font></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">18</td>
+                <td><font color="red">日</font></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">19</td>
+                <td>月</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">20</td>
+                <td>火</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">21</td>
+                <td>水</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">22</td>
+                <td>木</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">23</td>
+                <td>金</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">24</td>
+                <td><font color="red">土</font></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">25</td>
+                <td><font color="red">日</font></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">26</td>
+                <td>月</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">27</td>
+                <td>火</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">28</td>
+                <td>水</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">29</td>
+                <td>木</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+              <tr align="center">
+                <td width="28">30</td>
+                <td>金</td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td width="40" bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"> 有り</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <a href="kinmuyotei.html" class="btn btn-success btn-block" role="button" aria-pressed="true">登録</a>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <a href="kinmuyotei.html" class="btn btn-default btn-block" role="button" aria-pressed="true">戻る</a>
+          </div>
+        </div>
+        <br />
+
+      </form>
+
+    </div>
+
+      <div class="modal-footer">
+          <p><span>Copyright &copy; SHINKOBE SECURITY Co., Ltd. </span><span>All Rights Reserved. </span></p>
+      </div><!-- /footer -->
+
+  </body>
+
+</html>

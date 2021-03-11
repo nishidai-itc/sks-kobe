@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" media="screen, projection" />
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>　
+    <title>勤怠管理システム</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h4>隊員登録</h4>
+      </div>
+
+      <form name="frm" method="POST" action="login.php">
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">隊員ID</td>
+                <td><input type="text"></td>
+              </tr>
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">パスワード</td>
+                <td><input type="password"></td>
+              </tr>
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">隊員名</td>
+                <td><input type="text"></td>
+              </tr>
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">隊員名カナ</td>
+                <td><input type="text"></td>
+              </tr>
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">区分</td>
+                <td><input type="radio" name="rd7"> 社員　<input type="radio" name="rd7"> 登録　<input type="radio" name="rd7"> 協力会社</td>
+              </tr>
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">月給</td>
+                <td><input type="text"></td>
+              </tr>
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">職務手当て</td>
+                <td><input type="text"></td>
+              </tr>
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">削除</td>
+                <td><input type="checkbox"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-6">
+            <a href="taiin1.html" class="btn btn-success btn-block" role="button" aria-pressed="true">登録</a>
+          </div>
+          <div class="col-6">
+            <a href="taiin1.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">戻る</a>
+          </div>
+        </div>
+        <br />
+
+      </form>
+
+    </div>
+
+      <div class="modal-footer">
+          <p><span>Copyright &copy; ITC Co., Ltd. </span><span>All Rights Reserved. </span></p>
+      </div><!-- /footer -->
+
+  </body>
+
+</html>

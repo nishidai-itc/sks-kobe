@@ -1,0 +1,9 @@
+[20-Apr-2020 19:08:46 Asia/Tokyo] PHP Warning:  Creating default object from empty value in C:\xampp5.6\htdocs\sks-kobe\controllers\joban1.php on line 205
+[20-Apr-2020 19:08:58 Asia/Tokyo] PHP Warning:  Creating default object from empty value in C:\xampp5.6\htdocs\sks-kobe\controllers\joban1.php on line 205
+[20-Apr-2020 19:09:56 Asia/Tokyo] PHP Warning:  Creating default object from empty value in C:\xampp5.6\htdocs\sks-kobe\controllers\joban1.php on line 205
+[21-Apr-2020 09:16:42 Asia/Tokyo] PHP Warning:  Creating default object from empty value in C:\xampp5.6\htdocs\sks-kobe\controllers\kaban1.php on line 163
+[21-Apr-2020 09:57:05 Asia/Tokyo] PHP Warning:  Creating default object from empty value in C:\xampp5.6\htdocs\sks-kobe\controllers\kaban1.php on line 181
+[21-Apr-2020 09:59:46 Asia/Tokyo] PHP Warning:  Creating default object from empty value in C:\xampp5.6\htdocs\sks-kobe\controllers\kaban1.php on line 181
+[21-Apr-2020 10:23:59 Asia/Tokyo] PHP Warning:  Creating default object from empty value in C:\xampp5.6\htdocs\sks-kobe\controllers\kaban1.php on line 181
+[21-Apr-2020 12:00:12 Asia/Tokyo] PHP Warning:  mysqli_real_escape_string() expects parameter 2 to be string, array given in C:\xampp5.6\htdocs\sks-kobe\models\common\db.php on line 21
+[21-Apr-2020 12:55:14 Asia/Tokyo] PHP Warning:  mysqli_real_escape_string() expects parameter 2 to be string, array given in C:\xampp5.6\htdocs\sks-kobe\models\common\db.php on line 21

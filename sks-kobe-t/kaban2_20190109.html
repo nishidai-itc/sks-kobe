@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" media="screen, projection" />
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>　
+    <title>勤怠管理システム</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h4>下番報告（個人用）</h4>
+      </div>
+
+      <form name="frm" method="POST" action="login.php">
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr>
+                <td width="130" bgcolor="FFDCA5" align="center">報告者</td>
+                <td width="300">藤田</td>
+              </tr>
+              <tr>
+                <td width="130" bgcolor="FFDCA5" align="center">日付</td>
+                <td width="300">2018年10月15日(月)</td>
+              </tr>
+              <tr>
+                <td width="130" bgcolor="FFDCA5" align="center">現場名</td>
+                <td width="300">ＫＩＣＴ</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr align="center">
+                <td width="70">&nbsp;</td>
+                <td width="85" bgcolor="FFDCA5">通常</td>
+                <td><input type="radio" name="rd7"></td>
+              </tr>
+              <tr align="center">
+                <td width="70" rowspan="2" bgcolor="FFDCA5">所定</td>
+                <td width="70" bgcolor="FFDCA5">開始</td>
+                <td>8:00</td>
+              </tr>
+              <tr align="center">
+                <td width="70" bgcolor="FFDCA5">終了</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="70" rowspan="2">&nbsp;</td>
+                <td width="85" bgcolor="FFDCA5">早退</td>
+                <td><input type="radio" name="rd7"></td>
+              </tr>
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">残業有</td>
+                <td><input type="radio" name="rd7"></td>
+              </tr>
+              <tr align="center">
+                <td width="70" rowspan="3" bgcolor="d5d5d5">時間外</td>
+                <td width="70" height="50" bgcolor="d5d5d5">開始</td>
+                <td bgcolor="d5d5d5"><input type="time" step="60" id="name" class="form-control" value=""></td>
+              </tr>
+              <tr align="center">
+                <td width="70" height="50" bgcolor="d5d5d5">終了</td>
+                <td bgcolor="d5d5d5"><input type="time" step="60" id="name" class="form-control" value=""></td>
+              </tr>
+              <tr align="center">
+                <td width="70" bgcolor="d5d5d5">理由</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+              </tr>
+              <tr align="center">
+                <td width="70" rowspan="2">&nbsp;</td>
+                <td width="70" bgcolor="d5d5d5">交通費</td>
+                <td bgcolor="d5d5d5"><input type="tel" id="name" class="form-control" value=""></td>
+              </tr>
+              <tr align="center">
+                <td width="70" bgcolor="d5d5d5">ﾎﾟｽﾄ手当</td>
+                <td bgcolor="d5d5d5"><input type="tel" id="name" class="form-control" value=""></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-6">
+            <a href="menu.html" class="btn btn-success btn-block" role="button" aria-pressed="true">下番報告</a>
+          </div>
+          <div class="col-6">
+            <a href="menu.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">戻る</a>
+          </div>
+        </div>
+        <br />
+
+      </form>
+
+    </div>
+
+      <div class="modal-footer">
+          <p><span>Copyright &copy; ITC Co., Ltd. </span><span>All Rights Reserved. </span></p>
+      </div><!-- /footer -->
+
+  </body>
+
+</html>

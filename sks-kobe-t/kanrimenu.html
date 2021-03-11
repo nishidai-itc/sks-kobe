@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" media="screen, projection" />
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>　
+    <title>勤怠管理システム</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h4>管理者メニュー</h4>
+      </div>
+
+      <form name="frm" method="POST" action="login.php">
+      </form>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <button class="btn btn-primary btn-lg btn-block" role="button" onclick="location.href='shift1.php'">シフト登録</button>
+            <a href="kinmuyotei.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">勤務予定表</a>
+            <a href="kinmujokyo.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">勤務状況一覧</a>
+            <a href="haitihyo.html" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">配置照会</a>
+            <a href="post1.html" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">ﾎﾟｽﾄ手当て登録</a>
+            <button class="btn btn-primary btn-lg btn-block" role="button" onclick="location.href='#'">車手当て登録</button>
+            <a href="taiin1.html" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">隊員登録</a>
+            <a href="genba1.html" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">現場登録</a>
+            <button class="btn btn-info btn-lg btn-block" role="button" onclick="location.href='menu.html'">隊員メニュー</button>
+          </div>
+        </div>
+        <br />
+
+      <div class="row">
+        <div class="col-12">
+          <form name="frm3" method="POST" action="login.html">
+              <button name="logout" class="btn btn-secondary btn-lg btn-block" role="button">ログアウト</button>
+          </form>
+        </div>
+      </div>
+      <br />
+
+    </div>
+
+      <div class="modal-footer">
+          <p><span>Copyright &copy; ITC Co., Ltd. </span><span>All Rights Reserved. </span></p>
+      </div><!-- /footer -->
+
+  </body>
+
+</html>

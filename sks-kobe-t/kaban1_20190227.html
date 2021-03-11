@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" media="screen, projection" />
+    <script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/jquery.balloon.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>　
+    <title>勤怠管理システム</title>
+  </head>
+
+<script>
+$(function() {
+    $("a,h1").balloon();
+    $("#header_a").balloon({ position: "bottom" });
+    $("a").balloon();
+});
+</script>
+
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h4>下番報告（リーダー用）</h4>
+      </div>
+
+      <form name="frm" method="POST" action="login.php">
+<!--
+<a href='#' title='Ttt'>Ttt...</a>
+-->
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr>
+                <td width="130" bgcolor="FFDCA5" align="center">勤務者</td>
+                <td width="300">藤田</td>
+              </tr>
+              <tr>
+                <td width="130" bgcolor="FFDCA5" align="center">日付</td>
+                <td width="300">2018年10月15日(月)</td>
+              </tr>
+              <tr>
+                <td width="130" bgcolor="FFDCA5" align="center">現場名</td>
+                <td width="300">ＫＩＣＴ</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5" rowspan="3">氏名</td>
+                <td width="60" bgcolor="FFDCA5" rowspan="3">勤務</td>
+                <td width="60" bgcolor="FFDCA5" rowspan="3">開始<br />終了</td>
+                <td width="60" bgcolor="FFDCA5" rowspan="3">上番<br />時刻</td>
+                <td width="80" bgcolor="92D050" rowspan="2" colspan="2"><label class="btn btn-info btn-block" role="button" aria-pressed="true" style="width:60px">通</label></td>
+<!--
+                <td width="70" bgcolor="d5d5d5">交通費</td>
+-->
+                <td width="15" rowspan="33"></td>
+                <td width="50" bgcolor="FFC000" rowspan="3">早退<br />残有</td>
+                <td width="320" bgcolor="FFC000" colspan="4">詳細</td>
+<!--
+                <td width="70" bgcolor="d5d5d5">開始</td>
+                <td width="70" bgcolor="d5d5d5">終了</td>
+                <td width="50" bgcolor="d5d5d5">時間</td>
+                <td width="210" bgcolor="d5d5d5">理由</td>
+-->
+              </tr>
+              <tr align="center">
+                <td width="80" bgcolor="FFC000" rowspan="2">休憩<br />残業計</td>
+                <td width="80" bgcolor="FFC000" rowspan="2">交通費</td>
+                <td width="80" bgcolor="FFC000">ポスト</td>
+                <td width="80" bgcolor="FFC000">車</td>
+              </tr>
+              <tr align="center">
+                <td bgcolor="92D050" colspan="2">下番</td>
+                <td bgcolor="FFC000">危険物</td>
+                <td bgcolor="FFC000">他の手当</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">福島</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2">8:00<br />18:00</td>
+                <td rowspan="2">7:30</td>
+                <td rowspan="2"><input type="checkbox" name="rd1" checked></td>
+                <td rowspan="2">19:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2">1.5</td>
+                <td rowspan="2">500</td>
+                <td>500</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="1800"></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value="1830"></td>
+                <td bgcolor="d5d5d5">30</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">井上</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">7:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd2"></td>
+                <td rowspan="2">17:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">山田</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">7:30</td>
+                <td rowspan="2"><input type="checkbox" name="rd3"></td>
+                <td rowspan="2">17:30</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">徳田</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">7:30</td>
+                <td rowspan="2"><input type="checkbox" name="rd4"></td>
+                <td rowspan="2">17:30</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">福島</td>
+                <td rowspan="2">泊</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">8:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd5"></td>
+                <td rowspan="2">18:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">山田</td>
+                <td rowspan="2">泊</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">8:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd6"></td>
+                <td rowspan="2">18:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">谷</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">8:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd7"></td>
+                <td rowspan="2">18:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">井上</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">8:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd8"></td>
+                <td rowspan="2">18:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">谷</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">8:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd9"></td>
+                <td rowspan="2">18:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">丹波</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">8:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd10"></td>
+                <td rowspan="2">18:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">寺尾</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">8:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd11"></td>
+                <td rowspan="2">18:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">徳田</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">8:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd12"></td>
+                <td rowspan="2">18:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">宮坂</td>
+                <td rowspan="2">日勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">8:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd13"></td>
+                <td rowspan="2">18:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">中村</td>
+                <td rowspan="2">夜勤</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">17:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd14"></td>
+                <td rowspan="2">31:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+              <tr align="center">
+                <td rowspan="2">岡本</td>
+                <td rowspan="2">ＫＦＣ</td>
+                <td rowspan="2"></td>
+                <td rowspan="2">8:00</td>
+                <td rowspan="2"><input type="checkbox" name="rd15"></td>
+                <td rowspan="2">18:00</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+                <td rowspan="2"><a href="kaban3.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">詳細</a></td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+                <td>　</td>
+                <td>　</td>
+<!--
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+                <td bgcolor="d5d5d5">&nbsp;</td>
+                <td bgcolor="d5d5d5"><input type="text" id="name" class="form-control" value=""></td>
+-->
+              </tr>
+              <tr align="center">
+                <td>　</td>
+                <td>　</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-6">
+            <a href="menu.html" class="btn btn-success btn-block" role="button" aria-pressed="true">下番報告</a>
+          </div>
+          <div class="col-6">
+            <a href="menu.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">戻る</a>
+          </div>
+        </div>
+        <br />
+
+      </form>
+
+    </div>
+
+      <div class="modal-footer">
+          <p><span>Copyright &copy; ITC Co., Ltd. </span><span>All Rights Reserved. </span></p>
+      </div><!-- /footer -->
+
+  </body>
+
+</html>

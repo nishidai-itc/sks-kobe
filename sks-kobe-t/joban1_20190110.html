@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" media="screen, projection" />
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>　
+    <title>勤怠管理システム</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h4>上番報告（リーダー用）</h4>
+      </div>
+
+      <form name="frm" method="POST" action="login.php">
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr>
+                <td width="130" bgcolor="FFDCA5" align="center">報告者</td>
+                <td width="300">藤田</td>
+              </tr>
+              <tr>
+                <td width="130" bgcolor="FFDCA5" align="center">日付</td>
+                <td width="300">2018年10月15日(月)</td>
+              </tr>
+              <tr>
+                <td width="130" bgcolor="FFDCA5" align="center">現場名</td>
+                <td width="300">ＫＩＣＴ</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr align="center" bgcolor="FFDCA5">
+                <td width="50">通</td>
+                <td width="85">氏名</td>
+                <td width="85">勤務</td>
+                <td width="60">上番<br />時刻</td>
+                <td width="50">遅</td>
+                <td width="50">休</td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd1"></td>
+                <td>福島</td>
+                <td>日勤</td>
+                <td>7:00</td>
+                <td><input type="radio" name="rd1"></td>
+                <td><input type="radio" name="rd1"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd2"></td>
+                <td>井上</td>
+                <td>日勤</td>
+                <td>7:00</td>
+                <td><input type="radio" name="rd2"></td>
+                <td><input type="radio" name="rd2"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd3"></td>
+                <td>山田</td>
+                <td>日勤</td>
+                <td>7:30</td>
+                <td><input type="radio" name="rd3"></td>
+                <td><input type="radio" name="rd3"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd4"></td>
+                <td>徳田</td>
+                <td>日勤</td>
+                <td>7:30</td>
+                <td><input type="radio" name="rd4"></td>
+                <td><input type="radio" name="rd4"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd5"></td>
+                <td>福島</td>
+                <td>泊</td>
+                <td>8:00</td>
+                <td><input type="radio" name="rd5"></td>
+                <td><input type="radio" name="rd5"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd6"></td>
+                <td>山田</td>
+                <td>泊</td>
+                <td>8:00</td>
+                <td><input type="radio" name="rd6"></td>
+                <td><input type="radio" name="rd6"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd7"></td>
+                <td>谷</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td><input type="radio" name="rd7"></td>
+                <td><input type="radio" name="rd7"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd8"></td>
+                <td>井上</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td><input type="radio" name="rd8"></td>
+                <td><input type="radio" name="rd8"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd9"></td>
+                <td>谷</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td><input type="radio" name="rd9"></td>
+                <td><input type="radio" name="rd9"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd10"></td>
+                <td>丹波</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td><input type="radio" name="rd10"></td>
+                <td><input type="radio" name="rd10"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd11"></td>
+                <td>寺尾</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td><input type="radio" name="rd11"></td>
+                <td><input type="radio" name="rd11"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd12"></td>
+                <td>徳田</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td><input type="radio" name="rd12"></td>
+                <td><input type="radio" name="rd12"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd13"></td>
+                <td>宮坂</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td><input type="radio" name="rd13"></td>
+                <td><input type="radio" name="rd13"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd14"></td>
+                <td>中村</td>
+                <td>夜勤</td>
+                <td>17:00</td>
+                <td><input type="radio" name="rd14"></td>
+                <td><input type="radio" name="rd14"></td>
+              </tr>
+              <tr align="center">
+                <td><input type="radio" name="rd15"></td>
+                <td>岡本</td>
+                <td>ＫＦＣ</td>
+                <td>8:00</td>
+                <td><input type="radio" name="rd15"></td>
+                <td><input type="radio" name="rd15"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-6">
+            <a href="menu.html" class="btn btn-success btn-block" role="button" aria-pressed="true">上番報告</a>
+          </div>
+          <div class="col-6">
+            <a href="menu.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">戻る</a>
+          </div>
+        </div>
+        <br />
+
+      </form>
+
+    </div>
+
+      <div class="modal-footer">
+          <p><span>Copyright &copy; ITC Co., Ltd. </span><span>All Rights Reserved. </span></p>
+      </div><!-- /footer -->
+
+  </body>
+
+</html>

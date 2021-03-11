@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" media="screen, projection" />
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>　
+    <title>勤怠管理システム</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h4>勤務予定照会</h4>
+      </div>
+
+      <form name="frm" method="POST" action="login.php">
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr>
+                <td width="130" bgcolor="FFDCA5">氏名</td>
+                <td width="300">
+                  <select id="selection" class="form-control">
+                    <option>山田太郎
+                    <option>井上真司
+                    <option>青木勲
+                    <option>尾崎雅士
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td width="130" bgcolor="FFDCA5">年月</td>
+                <td width="300">
+                  <input type="tel" class="form-control" value="201810">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-6">
+            <a href="#" class="btn btn-success btn-block" role="button" aria-pressed="true">検索</a>
+          </div>
+          <div class="col-6">
+            <a href="menu.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">戻る</a>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr align="center" bgcolor="FFDCA5">
+                <td>日付</td>
+                <td>曜</td>
+                <td>現場</td>
+                <td>勤務</td>
+                <td>出勤<br />時間</td>
+                <td>退勤<br />時間</td>
+              </tr>
+              <tr align="center">
+                <td width="50">1日</td>
+                <td width="28">木</td>
+                <td width="100">ＫＩＣＦ</td>
+                <td width="70">日勤</td>
+                <td width="60">8:00</td>
+                <td width="60">18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">2日</td>
+                <td>金</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">3日</td>
+                <td><font color="red">土</font></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">4日</td>
+                <td><font color="red">日</font></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">5日</td>
+                <td>月</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">6日</td>
+                <td>火</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">7日</td>
+                <td>水</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">8日</td>
+                <td>木</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">9日</td>
+                <td>金</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">10日</td>
+                <td><font color="red">土</font></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">11日</td>
+                <td><font color="red">日</font></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">12日</td>
+                <td>月</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">13日</td>
+                <td>火</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">14日</td>
+                <td>水</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">15日</td>
+                <td>木</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">16日</td>
+                <td>金</td>
+                <td>ＫＩＣＦ</td>
+                <td>日勤</td>
+                <td>8:00</td>
+                <td>18:00</td>
+              </tr>
+              <tr align="center">
+                <td width="50">17日</td>
+                <td><font color="red">土</font></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">18日</td>
+                <td><font color="red">日</font></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">19日</td>
+                <td>月</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">20日</td>
+                <td>火</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">21日</td>
+                <td>水</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">22日</td>
+                <td>木</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">23日</td>
+                <td>金</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">24日</td>
+                <td><font color="red">土</font></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">25日</td>
+                <td><font color="red">日</font></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">26日</td>
+                <td>月</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">27日</td>
+                <td>火</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">28日</td>
+                <td>水</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">29日</td>
+                <td>木</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr align="center">
+                <td width="50">30日</td>
+                <td>金</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <a href="menu.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">戻る</a>
+          </div>
+        </div>
+        <br />
+
+      </form>
+
+    </div>
+
+      <div class="modal-footer">
+          <p><span>Copyright &copy; ITC Co., Ltd. </span><span>All Rights Reserved. </span></p>
+      </div><!-- /footer -->
+
+  </body>
+
+</html>

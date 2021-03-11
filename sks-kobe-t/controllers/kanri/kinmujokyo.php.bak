@@ -1,0 +1,233 @@
+<?php
+session_start();
+
+// ログインチェック
+if (!isset($_SESSION["staff_id"])) {
+    // HTML表示
+    header('Location:login.php');
+}
+?>
+<?php
+    require_once('../../models/common/common.php');          // 共通クラス
+    require_once('../../models/common/db.php');              // DBクラス
+    require_once('../../models/Genba.php');                  // 現場クラス
+    require_once('../../models/Staff.php');                  // 社員クラス
+    require_once('../../models/Wkdetail.php');               // シフト予定クラス
+    require_once('../../models/Shift.php');                  // シフトクラス
+    require_once('../../models/Teate.php');                  // 手当てクラス
+
+    $week = array("日", "月", "火", "水", "木", "金", "土");
+    $genba_id = null;
+    $staff_id = null;
+    $sp = "";
+
+    if (isset($_REQUEST["startday"])) {
+        $_SESSION["sday"] = $_REQUEST["startday"];
+    } else {
+        if (!isset($_SESSION["sday"])) {
+        $_SESSION["sday"] = date('Ymd');
+        }
+    }
+    if (isset($_REQUEST["endday"])) {
+        $_SESSION["eday"] = $_REQUEST["endday"];
+    } else {
+        if (!isset($_SESSION["eday"])) {
+        $_SESSION["eday"] = date('Ymd');
+        }
+    }
+    if (isset($_REQUEST['startday'])) {
+        $startday = $_REQUEST['startday'];
+    } else {
+        $startday = date('Ymd');
+    }
+    if (isset($_REQUEST['endday'])) {
+        $endday = $_REQUEST['endday'];
+    } else {
+        $endday = date('Ymd');
+    }
+    $startday   = str_replace("-",$sp,$_SESSION["sday"]);
+    $endday     = str_replace("-",$sp,$_SESSION["eday"]);
+
+    /*********************************************************
+     *	クラスの作成
+     ********************************************************/
+    $common     = new Common;       // 共通クラス
+    $genba      = new Genba;        // 現場マスタクラス
+    $staff      = new Staff;        // 社員マスタクラス
+    $staff2     = new Staff;        // 社員マスタクラス
+    $wkdetail   = new Wkdetail;     // シフト予定マスタクラス
+    $shift      = new Shift;        // シフトクラス
+    $work       = new Wkdetail;     // 作業クラス
+    $teate      = new Teate;        // 手当てマスタクラス
+    $genba2     = new Genba;        // 現場マスタクラス
+
+    // 手当てマスタ 取得
+    $teate->getTeate();
+
+    // 手当て一括登録
+    if (isset($_POST["select_teate"]) || $_POST["select_teate"] = "") {
+        if (isset($_POST["check_teate"]) && isset($_POST["input_teate"])) {
+            $check_teate = $_POST["check_teate"];
+            $select_teate = $_POST["select_teate"];
+            $input_teate = $_POST["input_teate"];
+
+            // 登録
+            foreach ($check_teate as $wkdetail_no) {
+                // 初期化
+                $wkdetail_teate   = new Wkdetail;
+
+                // 勤務詳細情報を更新
+                $wkdetail_teate->inp_t_wk_detail_no = $wkdetail_no;
+                if ($select_teate ===  'post_teate') {
+                    $wkdetail_teate->inp_t_wk_post_teate = $input_teate; // 手当て ﾎﾟｽﾄ
+                } elseif ($select_teate ===  'kotu_teate') {
+                    $wkdetail_teate->inp_t_wk_kotuhi = $input_teate; // 交通費
+                } elseif ($select_teate ===  'shogatu_teate') {
+                    $wkdetail_teate->inp_t_wk_shogatu_teate = $input_teate; // 手当て 正月
+                } elseif ($select_teate ===  'kaki_teate') {
+                    $wkdetail_teate->inp_t_wk_kaki_teate = $input_teate; // 手当て 夏季
+                } elseif ($select_teate ===  'etc_teate1') {
+                    $wkdetail_teate->inp_t_wk_etc_teate1 = $input_teate; // 手当て 1
+                } elseif ($select_teate ===  'etc_teate2') {
+                    $wkdetail_teate->inp_t_wk_etc_teate2 = $input_teate; // 手当て 2
+                } elseif ($select_teate ===  'etc_teate3') {
+                    $wkdetail_teate->inp_t_wk_etc_teate3 = $input_teate; // 手当て 3
+                }
+                $wkdetail_teate->updateWkdetail();
+            }
+        }
+    }
+
+    // 現場マスタ 取得 に必要な情報をセット
+    $genba->inp_m_genba_del_flg = "0";
+
+    // 現場マスタ 取得
+    $genba->getGenba();
+
+    for ($i=0;$i<count($genba->oup_m_genba_id);$i++) {
+        $genbas[$genba->oup_m_genba_id[$i]] = $genba->oup_m_genba_name[$i];
+    }
+
+    // 社員マスタ 取得 に必要な情報をセット
+    $staff2->inp_m_staff_id = $_SESSION["staff_id"];
+
+    // 社員マスタ 取得
+    $staff2->getStaff();
+
+    if (!(($staff2->oup_m_staff_auth[0]=="1") || ($staff2->oup_m_staff_auth[0]=="3"))) {
+
+        // 作業テーブル 取得 に必要な情報をセット
+//        $work->inp_t_wk_taiin_id    = $_SESSION["staff_id"];
+//        $work->inp_t_wk_plan_date   = date('Ymd');
+//        $work->inp_t_wk_del_flg     = "0";
+
+        // リーダーの作業テーブル 取得
+//        $work->getWkdetail();
+
+        // 現場マスタ 取得 に必要な情報をセット
+//        $genba_id = $work->oup_t_wk_genba_id[0];
+        $genba_id = $staff2->oup_m_staff_genba_id[0];
+
+    }
+
+    $jk_kbn = array(
+        '0' => '',
+        '1' => '下番',
+        '2' => '上番中',
+        '3' => '未'
+    );
+    if (isset($_REQUEST['kbn'])) {
+        if ($_REQUEST['kbn'] == 1) {
+            $wkdetail->inp_t_wk_kaban_kbn = "1";
+        }
+        if ($_REQUEST['kbn'] == 2) {
+            $wkdetail->inp_t_wk_kaban_time = "null";
+            $wkdetail->inp_t_wk_joban_kbn = "1";
+        }
+        if ($_REQUEST['kbn'] == 3) {
+            $wkdetail->inp_t_wk_kaban_time = "null";
+            $wkdetail->inp_t_wk_joban_time = "null";
+        }
+        $kbns = $_REQUEST['kbn'];
+        $_SESSION['kkbn'] = $_REQUEST['kbn'];
+    } else {
+        $kbns = $_SESSION["kkbn"];
+        if ($kbns == 1) {
+            $wkdetail->inp_t_wk_kaban_kbn = "1";
+        }
+        if ($kbns == 2) {
+            $wkdetail->inp_t_wk_kaban_time = "null";
+            $wkdetail->inp_t_wk_joban_kbn = "1";
+        }
+        if ($kbns == 3) {
+            $wkdetail->inp_t_wk_kaban_time = "null";
+            $wkdetail->inp_t_wk_joban_dakoku_time = "null";
+        }
+    }
+
+    if (isset($_REQUEST['genba_id'])) {
+        $genba_id = $_REQUEST['genba_id'];
+        $_SESSION["gid"] = $_REQUEST['genba_id'];
+    } else {
+        $genba_id = $_SESSION["gid"];
+    }
+
+    if (isset($_REQUEST['staff_id'])) {
+        $staff_id = $_REQUEST['staff_id'];
+        $_SESSION["sid"] = $_REQUEST['staff_id'];
+    } else {
+        $staff_id = $_SESSION["sid"];
+    }
+
+    // 隊員権限は自分のみ
+    if ($staff2->oup_m_staff_auth[0]=="4") {
+        $staff_id = $_SESSION['staff_id'];
+        $staff->inp_m_staff_id = $_SESSION["staff_id"];
+    }
+
+    // 社員マスタ 取得
+    $staff->getStaff();
+
+    for ($i=0;$i<count($staff->oup_m_staff_id);$i++) {
+        $staffs[$staff->oup_m_staff_id[$i]] = $staff->oup_m_staff_name[$i];
+    }
+
+    // 作業実施の曜日　取得
+    $time = strtotime(date('Y-m-d'));
+    $w = date("w", $time);
+
+    // 現場マスタ 取得 に必要な情報をセット
+    $genba2->inp_m_genba_oya_id = $genba_id;
+
+    // 現場マスタ 取得
+    $genba2->getGenba();
+
+    // 作業テーブル 取得 に必要な情報をセット
+    if ($staff2->oup_m_staff_genba_id[0] != "") {
+        $wkdetail->inp_t_wk_genba_id2    = "'".$genba_id."'";
+
+        for ($i=0;$i<count($genba2->oup_m_genba_id);$i++) {
+            $wkdetail->inp_t_wk_genba_id2 = $wkdetail->inp_t_wk_genba_id2 . ",'" . $genba2->oup_m_genba_id[$i] . "'";
+        }
+    }
+
+    // 予定の検索条件セット
+    $wkdetail->inp_t_wk_plan_start_date = $startday;
+    $wkdetail->inp_t_wk_plan_end_date = $endday;
+    //$wkdetail->inp_t_wk_genba_id = $genba_id;
+    $wkdetail->inp_t_wk_taiin_id = $staff_id;
+    $wkdetail->inp_order = "ORDER BY t_wk_plan_date, t_wk_genba_id, t_wk_plan_kbn, t_wk_plan_joban_time, t_wk_taiin_id  ";
+
+    // 予定の取得
+    $wkdetail->getWkdetail();
+
+    // キャリア判定（PC/スマートフォン/タブレット）
+    if ($common->judgephone) {
+        // HTML表示
+        require_once('../../views/kanri/kinmujokyo_html.php');
+    // キャリア判定（フィーチャーフォン）
+    } else {
+        // HTML表示
+        require_once('../../views/m/kanri/kinmujokyo_html.php');
+    }
+?>

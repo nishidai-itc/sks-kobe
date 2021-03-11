@@ -1,0 +1,255 @@
+<?php
+    session_start();
+
+    // ログインチェック
+    if (!isset($_SESSION["staff_id"])) {
+        // HTML表示
+        header('Location:../controllers/login.php');
+    }
+?>
+<?php
+    require_once('../models/common/common.php');          // 共通クラス
+    require_once('../models/common/db.php');              // DBクラス
+    require_once('../models/Wkdetail.php');               // 作業クラス
+    require_once('../models/Staff.php');                  // 社員クラス
+    require_once('../models/Genba.php');                  // 現場クラス
+    require_once('../models/Shift.php');                  // シフトクラス
+
+    $act        = null;
+    $errmsg     = "";
+    $week = array("日", "月", "火", "水", "木", "金", "土");
+
+    if (isset($_POST["act"])) {
+        $act            = $_POST["act"];
+//        $inp_joban_kbn  = $_POST["joban_kbn"];
+//        $inp_joban_time = $_POST["joban_time"];
+//        $new_pw2 = $_POST["new_pw2"];
+    }
+
+    /*********************************************************
+     *	クラスの作成
+     ********************************************************/
+    $common     = new Common;       // 共通クラス
+    $work       = new Wkdetail;     // 作業クラス
+    $work_mem   = new Wkdetail;     // 作業クラス
+    $staff      = new Staff;        // 社員マスタクラス
+    $genba      = new Genba;        // 現場マスタクラス
+    $shift      = new Shift;        // シフトマスタクラス
+
+    // // 打刻する隊員IDの宣言
+    // $dakoku_staff_id = '';
+    // $dakoku_staff_name = '';
+
+
+    // if (isset($_POST["staff_id"])) {
+    //     // postされた隊員IDから隊員を検索
+    //     $staff->inp_m_staff_id = $_POST["staff_id"];
+
+    //     // 社員マスタ 取得
+    //     $staff->getStaff();
+    //     $dakoku_staff_id = $staff->oup_m_staff_id[0];
+    //     $dakoku_staff_name = $staff->oup_m_staff_name[0];
+
+    //     //(日:0〜土:6)を設定
+    //     $week = [
+    //         '日', // 0
+    //         '月', // 1
+    //         '火', // 2
+    //         '水', // 3
+    //         '木', // 4
+    //         '金', // 5
+    //         '土', // 6
+    //     ];
+
+    //     // 検索結果があれば、打刻画面に移動
+    //     if ($dakoku_staff_id !== null) {
+    //         require_once('../views/dakoku2_html.php');
+    //         exit;
+    //     }
+    // }
+
+    // 上番打刻
+    if (isset($_POST["joban_dakoku"])) {
+        // 社員マスタ 取得 に必要な情報をセット
+        $staff->inp_m_staff_id = $_SESSION["staff_id"];
+
+        // 社員マスタ 取得
+        $staff->getStaff();
+
+        // 作業テーブル 取得 に必要な情報をセット
+        $work->inp_t_wk_taiin_id    = $_SESSION["staff_id"];
+        $work->inp_t_wk_plan_date   = date('Ymd');
+        $work->inp_t_wk_del_flg     = "0";
+
+        // リーダーの作業テーブル 取得
+        $work->getWkdetail();
+
+        if ($work->oup_t_wk_detail_no[0] == null) {
+            // 新規登録
+            $work_mem->inp_t_wk_joban_kbn = "1";
+            $work_mem->inp_t_wk_office_id = 0;
+            $work_mem->inp_t_wk_taiin_id = $_SESSION["staff_id"];
+            $work_mem->inp_t_wk_plan_date   = date('Ymd');
+            $work_mem->inp_t_wk_joban_dakoku_time = date("H:i:s");
+            $work_mem->inp_t_wk_joban_time = date("H:i:s");
+            $work_mem->insertWkdetail();
+        }
+
+        for ($i=0;$i<count($work->oup_t_wk_detail_no);$i++) {
+
+            if ($work->oup_t_wk_joban_kbn[$i]=="") {
+                // 更新
+                $work_mem->inp_t_wk_joban_kbn = "1";
+                $work_mem->inp_t_wk_detail_no = $work->oup_t_wk_detail_no[$i];
+                $work_mem->inp_t_wk_joban_dakoku_time = date("H:i:s");
+//                $work_mem->inp_t_wk_joban_time = date("H:i:s");
+                $work_mem->inp_t_wk_joban_time = $work->oup_t_wk_plan_joban_time[$i];
+                $work_mem->updateWkdetail();
+
+                break;
+            }
+        }
+
+        // アラート
+        $alert = "<script type='text/javascript'>alert('上番打刻しました。');</script>";
+        echo $alert;
+
+        $dakoku_staff_id = '';
+        $dakoku_staff_name = '';
+
+        $url = $_SERVER['PHP_SELF'];
+        $reload = "<script type='text/javascript'>location.href = '$url';</script>";
+        echo $reload;
+    }
+
+    // 下番打刻
+    if (isset($_POST["kaban_dakoku"])) {
+        // 社員マスタ 取得 に必要な情報をセット
+        $staff->inp_m_staff_id = $_SESSION["staff_id"];
+
+        // 社員マスタ 取得
+        $staff->getStaff();
+
+        // 作業テーブル 取得 に必要な情報をセット
+        $work->inp_t_wk_taiin_id    = $_SESSION["staff_id"];
+        $work->inp_t_wk_plan_date   = date('Ymd');
+        $work->inp_t_wk_del_flg     = "0";
+
+        // リーダーの作業テーブル 取得
+        $work->getWkdetail();
+
+        // 前日の作業者で下番登録していない人
+        $work2 = new Wkdetail;
+        $work2->inp_t_wk_taiin_id    = $_SESSION["staff_id"];
+        $work2->inp_t_wk_plan_date   = date('Ymd', strtotime('-1 day'));
+        $work2->inp_t_wk_kaban_time  = "null";
+        $work2->inp_t_wk_del_flg     = "0";
+        $work2->getWkdetail();
+
+        // 昨日の実績か今日の実績か判定
+        if (count($work2->oup_t_wk_detail_no) != 0 && is_null($work2->oup_t_wk_kaban_time[0])) {
+            // 昨日
+            // 更新
+            $work_mem->inp_t_wk_kaban_kbn = "1";
+            $work_mem->inp_t_wk_detail_no = $work2->oup_t_wk_detail_no[0];
+            $work_mem->inp_t_wk_kaban_dakoku_time = date('H:i:s', strtotime('-1 day'));
+            $work_mem->inp_t_wk_kaban_time = date("H:i:s");
+            $work_mem->updateWkdetail();
+        } else {
+            // 今日
+            if ($work->oup_t_wk_detail_no[0] == null) {
+
+                // 下番されていなければエラー
+                $errmsg = "先に上番をおこなってください";
+
+                // 新規登録
+//                $work_mem->inp_t_wk_kaban_kbn = "1";
+//                $work_mem->inp_t_wk_office_id = 0;
+//                $work_mem->inp_t_wk_taiin_id = $_SESSION["staff_id"];
+//                $work_mem->inp_t_wk_plan_date   = date('Ymd');
+//                $work_mem->inp_t_wk_kaban_dakoku_time = date("H:i:s");
+//                $work_mem->inp_t_wk_kaban_time = date("H:i:s");
+//                $work_mem->insertWkdetail();
+            } else {
+
+                for ($i=0;$i<count($work->oup_t_wk_detail_no);$i++) {
+
+                    if ($work->oup_t_wk_joban_kbn[$i]=="") {
+
+                        // 下番されていなければエラー
+                        $errmsg = "先に上番をおこなってください";
+
+                    } else if ($work->oup_t_wk_kaban_kbn[$i]=="") {
+
+                        // 更新
+                        $work_mem->inp_t_wk_kaban_kbn = "1";
+                        $work_mem->inp_t_wk_detail_no = $work->oup_t_wk_detail_no[$i];
+                        $work_mem->inp_t_wk_kaban_dakoku_time = date("H:i:s");
+//                        $work_mem->inp_t_wk_kaban_time = date("H:i:s");
+                        $work_mem->inp_t_wk_kaban_time = $work->oup_t_wk_plan_kaban_time[$i];
+                        $work_mem->updateWkdetail();
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        if ($errmsg == "") {
+
+        // アラート
+        $alert = "<script type='text/javascript'>alert('下番打刻しました。');</script>";
+        echo $alert;
+
+        } else {
+            $alert = "<script type='text/javascript'>alert('".$errmsg."');</script>";
+            echo $alert;
+        }
+
+        $dakoku_staff_id = '';
+        $dakoku_staff_name = '';
+    }
+
+    // sessionから社員を検索
+    $staff->inp_m_staff_id = $_SESSION["staff_id"];
+
+    // 社員マスタ 取得
+    $staff->getStaff();
+    $dakoku_staff_id = $staff->oup_m_staff_id[0];
+    $dakoku_staff_name = $staff->oup_m_staff_name[0];
+
+    // 作業テーブル 取得 に必要な情報をセット
+    $work->inp_t_wk_taiin_id    = $_SESSION["staff_id"];
+    $work->inp_t_wk_plan_date   = date('Ymd');
+    $work->inp_t_wk_del_flg     = "0";
+    // 作業テーブル 取得
+    $work->getWkdetail();
+
+    //(日:0〜土:6)を設定
+    $week = [
+        '日', // 0
+        '月', // 1
+        '火', // 2
+        '水', // 3
+        '木', // 4
+        '金', // 5
+        '土', // 6
+    ];
+
+    // 検索結果があれば、打刻画面に移動
+    if ($dakoku_staff_id !== null) {
+        require_once('../views/dakoku2_html.php');
+        exit;
+    }
+
+
+    // キャリア判定（PC/スマートフォン/タブレット）
+    if ($common->judgephone) {
+        // HTML表示
+        // require_once('../views/dakoku2_html.php');
+    // キャリア判定（フィーチャーフォン）
+    } else {
+        // HTML表示
+        require_once('../views/m/dakoku2_html.php');
+    }
+?>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+ <html lang="ja">
+ <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" media="screen, projection" />
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>　
+  <title>休暇申請</title>
+
+ </head>
+ <body>
+     <div class="container">
+      <div class="page-header">
+      <div align="center">
+          <h4>休　暇　願</h4><br/>
+      </div>
+      <div align="right">
+		<label>申請日　YYYY年MM月DD日</label>
+	  </div>
+	        <br/>
+   <div align="right">
+   <label>(申請者)　　XXX　YYYX　</label>
+   <label>従業員No　　XXX-XXX　</label>
+   <label>氏　名　　　XXX　YYY　</label>
+   </div>
+    
+      <form name="frm" action="#">
+            <div align="center">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+		    <table border="1">
+        <tr align="center">
+   		<td bgcolor="FFDCA5">期間<td/>
+		<input type="date" name="start" value="2018-12-01"></input>
+		<br/>
+   		<label>～</label>
+   		<br/>
+		<input type="date" name="end" value="2018-12-02"></input>
+
+   <tr/>
+   <tr align="center">
+   		<td bgcolor="FFDCA5">勤務<br/>種別<td/>
+   		<input type="radio" name="syubetu" value="1">泊
+   		<label>　　</label>
+   		<input type="radio" name="syubetu" value="2">夜
+   		<label>　　</label>
+   		<input type="radio" name="syubetu" value="3">日
+   <tr/>
+   <tr align="center">
+   		<td bgcolor="FFDCA5">休暇<br/>区分<td/>
+   		<div align="right">
+   		<input type="radio" name="kubun" value="1">年休・使用回数(
+   		<label><input type="text" name="yukyu" size="3">日)</label>
+   		<br/>
+   		<label>残日数(</label>
+   		<label><input type="text" name="yukyu" size="3">日)</label>
+   		   		</div>
+   		<div align="left">
+   		<input type="radio" name="kubun" value="2">　欠勤
+   		</div>
+   <tr/>
+   <tr align="center">
+   		<td bgcolor="B4E5D5">事由<td/>
+   		<div align="right">
+		<label>慶弔(</label>
+   		<label><input type="text" name="keicyo" size="12">)　</label><br/>
+   		<label>病気(</label>
+   		<label><input type="text" name="byouki" size="12">)　</label><br/>
+   		<label>その他(</label>
+   		<label><input type="text" name="sonota" size="12">)　</label><br/>
+   		</div>
+   <tr/>
+
+</table>
+	<br/>
+	        <div class="row">
+          <div class="col-6">
+            <a href="menu.html" class="btn btn-success btn-block" role="button" aria-pressed="true">申請</a>
+          </div>
+          <div class="col-6">
+            <a href="menu.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">戻る</a>
+          </div>
+        </div>
+        <br />
+        </div>
+   </div>
+</form>
+</div>
+</div>
+ </body>
+ </html>

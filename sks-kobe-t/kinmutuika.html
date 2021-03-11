@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" media="screen, projection" />
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>　
+    <title>勤怠管理システム</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h4>隊員追加</h4>
+      </div>
+
+      <form name="frm" method="POST" action="login.php">
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <table border="1">
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">現場</td>
+                <td>ＫＩＣＴ</td>
+              </tr>
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">年月</td>
+                <td>201810</td>
+              </tr>
+              <tr align="center">
+                <td width="85" bgcolor="FFDCA5">隊員</td>
+                <td width="120">
+                  <select id="selection" class="form-control">
+                    <option>
+                    <option>山田太郎
+                    <option>井上真司
+                    <option>青木勲
+                    <option>尾崎雅士
+                  </select>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-6">
+            <a href="kinmuyotei.html" class="btn btn-success btn-block" role="button" aria-pressed="true">登録</a>
+          </div>
+          <div class="col-6">
+            <a href="kinmuyotei.html" class="btn btn-secondary btn-block" role="button" aria-pressed="true">戻る</a>
+          </div>
+        </div>
+        <br />
+
+      </form>
+
+    </div>
+
+      <div class="modal-footer">
+          <p><span>Copyright &copy; ITC Co., Ltd. </span><span>All Rights Reserved. </span></p>
+      </div><!-- /footer -->
+
+  </body>
+
+</html>
