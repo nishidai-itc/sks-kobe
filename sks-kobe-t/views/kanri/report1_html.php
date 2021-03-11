@@ -415,12 +415,15 @@
             <?php } ?>
             <?php for ($j=1;$j<=3;$j++) { ?>
             <td>
-              <label>〇</label>
+              <label></label>
               <select name="wk_staff_id<?php echo $j+($i-1)*3; ?>" id="wk_staff_id<?php echo $j+($i-1)*3; ?>" class="w-75">
                 <option value=""></option>
                 <?php if ($staff2->oup_m_staff_id) { ?>
                 <?php for ($k=0;$k<count($staff2->oup_m_staff_id);$k++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$k]; ?>"<?php echo $staff2->oup_m_staff_id[$k] == ${"wk_staff_id".($j+($i-1)*3)} ? "selected" : "" ; ?>><?php echo $staff_name[$staff2->oup_m_staff_id[$k]]; ?></option>
+                <option value="<?php echo $staff2->oup_m_staff_id[$k]; ?>"<?php echo $staff2->oup_m_staff_id[$k] == ${"wk_staff_id".($j+($i-1)*3)} ? "selected" : "" ; ?>>
+                  <?php echo $kbnMark[$staff_kbn[$staff2->oup_m_staff_id[$k]]]; ?>
+                  <?php echo $staff_name[$staff2->oup_m_staff_id[$k]]; ?>
+                </option>
                 <?php } ?>
                 <?php } ?>
               </select>

@@ -135,6 +135,8 @@
     }
     $wk_comment                       = null;
 
+    $kbnMark                          = array("1"=>"◎","2"=>"〇","3"=>"－");
+
     // $week = array("日", "月", "火", "水", "木", "金", "土");
     // $time = strtotime(date($date));
     // $w = date("w", $time);
@@ -187,6 +189,9 @@
             } else {
                 $staff2->inp_m_staff_id_in = $staff2->inp_m_staff_id_in.",'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
             }
+
+            // 勤務区分
+            $staff_kbn[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_kbn[$i];
         }
         
         $staff2->getStaff();
@@ -194,11 +199,11 @@
         for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
             $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
 
-            // // 勤務員の項目の隊員デフォルト表示
-            // if ($cnt != 4) {
-            //     $cnt = $cnt + 1;
-            //     ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
-            // }
+            // 勤務員の項目の隊員デフォルト表示
+            if ($cnt != 15) {
+                $cnt = $cnt + 1;
+                ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
+            }
         }
     }
 
