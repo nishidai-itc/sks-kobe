@@ -61,33 +61,6 @@
     for ($i=0;$i<count($report2->oup_no);$i++) {
         $report_kbn[$report2->oup_table[$i]]           = $kbn[$report2->oup_kbn[$i]];
     }
-    
-    // $data = array();
-    // for ($i=0;$i<14;$i++) {
-    //     $data[$i]["no"]             = null;
-    //     $data[$i]["table"]          = $i+1;
-    //     $data[$i]["kbn"]            = null;
-    //     $data[$i]["place"]          = $report_place[$i+1];
-    //     $data[$i]["contract"]       = $report_contract[$i+1];
-    //     if ($i == 3) {
-    //         continue;
-    //     }
-
-    //     if ($i != 2 && $i != 4 && $i != 5 && $i != 8 && $i != 9) {
-    //         $report2                = new Report;
-    //         // $report->inp_table      = $i+1;
-    //         // $report->inp_plan_date  = $plan_date;
-    //         $report2->inp_no        = str_replace("-","",$plan_date).($i+1);
-    //         $report2->getReport("kanri");
-    //         if ($report2->oup_no) {
-    //             // $data[$i]["no"]          = $report->oup_table_no[0];
-    //             $data[$i]["no"]     = $report2->oup_no[0];
-    //             $data[$i]["kbn"]    = $report2->oup_kbn[0];
-    //         }
-    //     }
-    // }
-
-    // var_dump($data);
 
 ?>
 <?php
