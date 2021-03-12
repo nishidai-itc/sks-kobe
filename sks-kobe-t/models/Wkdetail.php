@@ -337,15 +337,20 @@ set_time_limit(300);
                 $whereflg = true;
             }
             if ($this->inp_t_wk_plan_hosoku != "") {
-            if ($this->inp_t_wk_plan_hosoku == 1) {
-                if ($whereflg == true) { $sql .= "AND "; }
-                $sql .= "t_wk_plan_hosoku = '' ";
-                $whereflg = true;
-            } else {
-                if ($whereflg == true) { $sql .= "AND "; }
-                $sql .= "t_wk_plan_hosoku = '" . $db->escape_string($this->inp_t_wk_plan_hosoku) . "' ";
-                $whereflg = true;
+                if ($this->inp_t_wk_plan_hosoku == 1) {
+                    if ($whereflg == true) { $sql .= "AND "; }
+                    $sql .= "t_wk_plan_hosoku = '' ";
+                    $whereflg = true;
+                } else {
+                    if ($whereflg == true) { $sql .= "AND "; }
+                    $sql .= "t_wk_plan_hosoku = '" . $db->escape_string($this->inp_t_wk_plan_hosoku) . "' ";
+                    $whereflg = true;
+                }
             }
+            if ($this->inp_t_wk_plan_hosoku_in != "") {
+                if ($whereflg == true) { $sql .= "AND "; }
+                $sql .= "t_wk_plan_hosoku in (".$this->inp_t_wk_plan_hosoku_in.") ";
+                $whereflg = true;
             }
             if ($this->inp_t_wk_plan_joban_time != "") {
                 if ($whereflg == true) { $sql .= "AND "; }
