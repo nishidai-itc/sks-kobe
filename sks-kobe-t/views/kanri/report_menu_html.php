@@ -58,6 +58,8 @@ header("Pragma:no-cache");
     </div>
     <br> -->
 
+    <form action="report_menu.php" method="post">
+
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
@@ -70,6 +72,7 @@ header("Pragma:no-cache");
               <th class="text-center" style="width:100px;">削除</th>
             </tr>
           </thead>
+          <?php /* ?>
           <?php for ($i=0;$i<count($data);$i++) { ?>
           <?php if ($i == 3) {continue;} ?>
           <tr>
@@ -95,10 +98,35 @@ header("Pragma:no-cache");
             </td>
           </tr>
           <?php } ?>
+          <?php */ ?>
+          <?php for ($i=0;$i<count($report->oup_no);$i++) { ?>
+          <?php if ($i == 3) {continue;} ?>
+          <tr>
+            <td><?php echo $report_kbn[$report->oup_table[$i]] ? $report_kbn[$report->oup_table[$i]] : "未入力" ; ?></td>
+            <td class="text-center">
+              <a href="./report<?php echo $report->oup_table[$i]; ?>.php<?php echo $report_kbn[$report->oup_table[$i]] ? "?no=".str_replace("-","",$plan_date).$report->oup_table[$i] : "" ; ?>">
+                <i class="fas fa-pen"></i>
+              </a>
+            </td>
+            <td><?php echo $report->oup_place[$i]; ?></td>
+            <td><?php echo $report->oup_contract[$i]; ?></td>
+            <td class="text-center">
+              <?php if ($report_kbn[$report->oup_table[$i]]) { ?>
+              <a href="#" onclick="conf(<?php echo str_replace('-','',$plan_date).$report->oup_table[$i].','.$report->oup_table[$i] ; ?>);">
+                <i class="fa fa-times" style="color: red;"></i>
+              </a>
+              <?php } ?>
+            </td>
+          </tr>
+          <?php } ?>
         </table>
       </div>
     </div>
     <br>
+
+    <input type="hidden" name="no" value="">
+    <input type="hidden" name="act" value="2">
+    </form>
 
     <div class="row">
       <!-- メニューに戻る -->
@@ -118,6 +146,13 @@ $('button, a').css('height','50px')
 
 function menuBack() {
   location.href = '../menu.php'
+}
+
+function conf(no,table) {
+  if (!confirm('警備報告書を削除します。よろしいですか？')) return false
+
+  $('[name="no"]').val(no+','+table)
+  $('form').submit()
 }
 
 // $('.report1').click(function(){
