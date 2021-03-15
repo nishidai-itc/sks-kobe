@@ -40,10 +40,22 @@
                     $sql .= ",t_report_".$tableColumn[$i]." ";
                 }
             }
-            $sql .= "from t_report".$number." where 0 = 0 ";
-
+            $sql .= "from t_report".$number." ";
+            // if ($this->inp_join) {
+            //     if ($this->inp_join == "kanri") {
+            //         $this->inp_join = "_kanri";
+            //     } elseif ($this->inp_join == "name") {
+            //         $this->inp_join = "_name";
+            //     }
+            //     $sql .= "left join t_report".$this->inp_join." on t_report".$number.".t_report_table = t_report".$this->inp_join.".t_report_table ";
+            // }
+            $sql .= "where 0 = 0 ";
 
             foreach ($this as $key => $value) {
+                // if ($key == "inp_join") {
+                //     continue;
+                // }
+
                 // orderby
                 if ($key != "inp_order") {
                     // 日付範囲検索
@@ -63,7 +75,15 @@
                             $sql .= "and t_report_start_date <= '".$db->escape_string($value)."' ";
                         }
                     } else {
-                        $sql .= "and t_report_".str_replace("inp_","",$key)." = '".$db->escape_string($value)."' ";
+                        // 文字列削除
+                        $str = str_replace("inp_","",$key);
+                        // where in句
+                        if (strpos($str,"_in") !== false) {
+                            $sql .= "and t_report_".str_replace("_in","",$str)." in (".$value.") ";
+                        } else {
+                            $sql .= "and t_report_".$str." = '".$db->escape_string($value)."' ";
+                        }
+                        // $sql .= "and t_report_".str_replace("inp_","",$key)." = '".$db->escape_string($value)."' ";
                     }
                 }
                 // var_dump($key,$value);
