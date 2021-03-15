@@ -35,6 +35,21 @@
             "wk_detail_staff_id18","wk_detail_time19","wk_detail_staff_id19","wk_detail_comment19","wk_detail_time20","wk_detail_staff_id20","wk_detail_time21","wk_detail_staff_id21","night_company","night_taiin_id","night_exit_time","night_staff_id",
         );
 
+        public static $report5 = array(
+            "no","table","start_date","end_date","weather1","weather2","staff_id","ship1","ship_in_port_time1","ship_out_port_time1","ship2","ship_in_port_time2","ship_out_port_time2","ship3","ship_in_port_time3","ship_out_port_time3",
+            "ship4","ship_in_port_time4","ship_out_port_time4","picket_joban_time1","picket_kaban_time1","picket_joban_time2","picket_kaban_time2","picket_joban_time3","picket_kaban_time3","comment","c-2_joban_time1","c-2_kaban_time1",
+            "c-2_joban_time2","c-2_kaban_time2","c-3_joban_time1","c-3_kaban_time1","c-3_joban_time2","c-3_kaban_time2","c-4_joban_time1","c-4_kaban_time1","c-4_joban_time2","c-4_kaban_time2","c-5_joban_time1","c-5_kaban_time1","c-5_joban_time2",
+            "c-5_kaban_time2","tonbo_light_joban_time1","tonbo_light_kaban_time1","tonbo_light_joban_time2","tonbo_light_kaban_time2","c-5_light_joban_time1","c-5_light_kaban_time1","c-5_light_joban_time2","c-5_light_kaban_time2","patrol_time1",
+            "patrol_time2","patrol_time3","patrol_time4","patrol_time5","patrol_time6","patrol_time7","patrol_time8","patrol_time9","patrol_time10","patrol_time11","patrol_time12","patrol_time13","patrol_time14","patrol_time15","patrol_time16",
+            "wk_comment","wk_admin_end","wk_outsider","wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9"
+        );
+
+        public static $report6 = array(
+            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time1","wk_end_time1","wk_start_time2","wk_end_time2","wk_start_time3","wk_end_time3","patrol_time1","patrol_time2",
+            "patrol_time3","patrol_time4","patrol_time5","patrol_time6","patrol_time7","patrol_time8","patrol_time9","patrol_time10","patrol_time11","patrol_time12","patrol_time13","patrol_time14","patrol_time15","patrol_time16","offwk_count","offwk_staff_id1","offwk_staff_id2","off_time","outsider","wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9","comment",
+        );
+
+
         public static $report7 = array(
             "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","staff_id2",
         );
@@ -46,6 +61,8 @@
         public static $report9 = array(
             "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time1","wk_end_time1","wk_start_time2","wk_end_time2","result","wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9","wk_staff_id10","wk_staff_id11","wk_staff_id12","comment",
         );
+
+        
 
 
 
