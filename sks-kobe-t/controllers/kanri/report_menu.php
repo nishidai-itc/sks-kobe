@@ -58,8 +58,10 @@
     // 当日の警備報告書を管理から取得
     $report2->inp_plan_date                            = $plan_date;
     $report2->getReport("kanri");
-    for ($i=0;$i<count($report2->oup_no);$i++) {
-        $report_kbn[$report2->oup_table[$i]]           = $kbn[$report2->oup_kbn[$i]];
+    if ($report2->oup_no) {
+        for ($i=0;$i<count($report2->oup_no);$i++) {
+            $report_kbn[$report2->oup_table[$i]]           = $kbn[$report2->oup_kbn[$i]];
+        }
     }
 
 ?>
