@@ -22,6 +22,12 @@
 .w-90{
   width: 90% !important;
 }
+.w-45{
+  width: 45% !important;
+}
+.w-10{
+  width: 10% !important;
+}
 </style>
 
 <body>
@@ -44,283 +50,6 @@
     <br> -->
 
     <br>
-    <?php /* ?>
-    <div class="row">
-      <div class="col-6">
-        <div>♦警備場所</div>
-      </div>
-      <div class="col-6">
-        <div>♦契約先</div>
-      </div>
-      <div class="col-6">
-        <div style="font-size: 2em;">RIC-4・C-5</div>
-      </div>
-      <div class="col-6">
-        <div style="font-size: 2em;">三菱倉庫株式会社　殿</div>
-      </div>
-    </div>
-    <hr>
-
-    <div class="row">
-      <div class="col-lg-7">
-        <div class="row">
-          <div class="col-md-12">♦勤務時間</div>
-
-          <div class="col-1"><?php echo "自）"; ?></div>
-          <!-- <input type="date" class="form-control w-auto" value="<?php echo $date; ?>" readonly> -->
-          <div class="col-7"><?php echo $dates[0]."年".$dates[1]."月".$dates[2]."日　(".$week[$w].")"; ?></div>
-          <div class="col-4 input-group">
-            <input type="number" class="form-control text-center border-right-0" value="<?php echo $joban_time[0]; ?>" min="0" max="23">
-            <span class="border-top border-bottom pt-1">:</span>
-            <input type="number" class="form-control text-center border-left-0" value="<?php echo $joban_time[1]; ?>" min="0" max="59">
-          </div>
-
-          <div class="col-1 mt-1"><?php echo "至）"; ?></div>
-          <!-- <input type="date" class="form-control w-auto" value="<?php echo $date; ?>" readonly> -->
-          <div class="col-7"><?php echo $dates2[0]."年".$dates2[1]."月".$dates2[2]."日　(".$week[$w2].")"; ?></div>
-          <div class="col-4 input-group mt-1">
-            <input type="number" class="form-control text-center border-right-0" value="<?php echo $kaban_time[0]; ?>" min="0" max="23">
-            <span class="border-top border-bottom pt-1">:</span>
-            <input type="number" class="form-control text-center border-left-0" value="<?php echo $kaban_time[1]; ?>" min="0" max="59">
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-7">
-        <div class="row">
-          <div class="col-12">天候</div>
-
-          <div class="col-12 d-flex">
-            <select name="" id="" class="form-control w-auto">
-              <option value=""></option>
-              <?php for ($i=1;$i<count($weathers)+1;$i++) { ?>
-              <option value="<?php echo $i; ?>"<?php echo $i == $weather ? "selected" : "" ; ?>><?php echo $weathers[$i]; ?></option>
-              <?php } ?>
-            </select>
-            　
-            <select name="" id="" class="form-control w-auto">
-              <option value=""></option>
-              <?php for ($i=1;$i<count($weathers)+1;$i++) { ?>
-              <option value="<?php echo $i; ?>"<?php echo $i == $weather ? "selected" : "" ; ?>><?php echo $weathers[$i]; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-5">
-        <div class="row">
-          <div class="col-12">担当警備士</div>
-          
-          <div class="col-12">
-            <select name="" id="" class="form-control w-auto">
-              <option value=""></option>
-              <?php if ($staff2->oup_m_staff_id) { ?>
-              <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
-              <option value="<?php echo $staff2->oup_m_staff_id[$i]; ?>"<?php echo $staff2->oup_m_staff_id[$i] == $staff_id ? "selected" : "" ; ?>><?php echo $staff2->oup_m_staff_name[$i]; ?></option>
-              <?php } ?>
-              <?php } ?>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr>
-
-    <div class="row">
-      <!-- 左側 -->
-      <div class="col-md-8">
-        <div class="row">
-          <div class="col-12">１．状況</div>
-
-          <div class="col-1"></div>
-          <div class="col-11">i．入出港</div>
-
-          <?php for ($i=0;$i<4;$i++) { ?>
-          <div class="col-1"></div>
-          <div class="col-4 d-flex">
-            <div>RC-</div>
-            <input type="text" class="form-control">
-          </div>
-          <div class="col-7 d-flex">
-            <!-- <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="check1a" checked>
-              <label class="form-check-label" for="check1a">Check A</label>
-            </div> -->
-            <div class="input-group">
-              <input type="number" class="form-control text-center border-right-0" value="" min="0" max="23">
-              <span class="border-top border-bottom pt-1">:</span>
-              <input type="number" class="form-control text-center border-left-0" value="" min="0" max="59">
-              <div class="input-group-prepend">
-                <div class="input-group-text">～</div>
-              </div>
-              <input type="number" class="form-control text-center border-right-0" value="" min="0" max="23">
-              <span class="border-top border-bottom pt-1">:</span>
-              <input type="number" class="form-control text-center border-left-0" value="" min="0" max="59">
-            </div>
-          </div>
-          <?php } ?>
-
-          <div class="col-12">&nbsp;</div>
-
-          <div class="col-1"></div>
-          <div class="col-11">ii．C-4ゲート立哨</div>
-
-          <?php for ($i=0;$i<4;$i++) { ?>
-          <div class="col-1"></div>
-          <div class="col-<?php if ($i == 3) {echo "11";} else {echo "4";} ?>"><?php if ($i == 1) {echo "東サブゲート立哨";} elseif ($i == 2) {echo "iii．搬入出車両";} elseif ($i == 3) {echo "iv．各ゲート及び管理棟、CFS事務所の開錠及び施錠実施";} else {echo "";} ?></div>
-          <?php if ($i != 3) { ?>
-          <div class="col-7 d-flex">
-            <div class="input-group">
-              <input type="number" class="form-control text-center border-right-0" value="" min="0" max="23">
-              <span class="border-top border-bottom pt-1">:</span>
-              <input type="number" class="form-control text-center border-left-0" value="" min="0" max="59">
-              <div class="input-group-prepend">
-                <div class="input-group-text">～</div>
-              </div>
-              <input type="number" class="form-control text-center border-right-0" value="" min="0" max="23">
-              <span class="border-top border-bottom pt-1">:</span>
-              <input type="number" class="form-control text-center border-left-0" value="" min="0" max="59">
-            </div>
-          </div>
-          <?php } ?>
-          <?php if ($i == 2) { ?><div class="col-12">&nbsp;</div><?php } ?>
-          <?php } ?>
-
-          <div class="col-12">２．重点</div>
-
-          <div class="col-1"></div>
-          <div class="col-11">i．管理棟及び各建屋の火災、盗難等の警戒警備並びに<br>不法侵入者の警戒監視</div>
-
-          <div class="col-1"></div>
-          <div class="col-11">ii．搬入出車両及び外来者の適正誘導</div>
-
-          <div class="col-12">３．実施</div>
-
-          <div class="col-1"></div>
-          <div class="col-11">i．昼夜間巡回、警戒警備及び外周赤外線システムの監視</div>
-
-          <div class="col-1"></div>
-          <div class="col-11">ii．管理棟及び各建屋の鍵の保管管理</div>
-
-          <div class="col-12">発砲</div>
-
-          <div class="col-12">
-            <textarea name="" id="" rows="5" class="form-control" value=""></textarea>
-          </div>
-        </div>
-      </div>
-      <!-- 右側 -->
-      <div class="col-md-4">
-        <div class="row">
-          <div class="col-12"></div>
-
-          <div class="col-12">ヤード照明</div>
-
-          <?php for ($i=0;$i<6;$i++) { ?>
-          <div class="col-12"><?php if ($i == 4) {echo "トンボ照明";} elseif ($i == 5) {echo "C5倉庫屋外照明　西・南";} else {echo "C-".($i+2);} ?></div>
-          
-          <?php for ($j=0;$j<2;$j++) { ?>
-          <div class="col-12 d-flex">
-            <div class="input-group">
-              <input type="number" class="form-control text-center border-right-0" value="" min="0" max="23">
-              <span class="border-top border-bottom pt-1">:</span>
-              <input type="number" class="form-control text-center border-left-0" value="" min="0" max="59">
-              <div class="input-group-prepend">
-                <div class="input-group-text">～</div>
-              </div>
-              <input type="number" class="form-control text-center border-right-0" value="" min="0" max="23">
-              <span class="border-top border-bottom pt-1">:</span>
-              <input type="number" class="form-control text-center border-left-0" value="" min="0" max="59">
-            </div>
-          </div>
-          <?php } ?>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <!-- <div class="row">
-    <div class=""></div>
-    </div> -->
-
-    <div class="row">
-      <div class="col-1 align-self-center">巡<br>回</div>
-      <div class="col-11">
-        <div class="row">
-          <?php for ($i=0;$i<16;$i++) { ?>
-          <div class="col-md-4 col-lg-3 d-flex">
-            <div class="w-15 text-center"><?php echo $i; ?></div>
-            <div class="input-group">
-              <input type="number" class="form-control text-center border-right-0" value="" min="0" max="23">
-              <span class="border-top border-bottom pt-1">:</span>
-              <input type="number" class="form-control text-center border-left-0" value="" min="0" max="59">
-            </div>
-          </div>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-    <hr>
-
-    <div class="row">
-      <!-- 左側 -->
-      <div class="col-md-6">
-        <div class="row">
-          <div class="col-1 align-self-center">備<br>考</div>
-          <div class="col-11">
-            <div class="row">
-              <div class="col-12">
-                <textarea name="" id="" rows="" class="form-control" value="">巡回　点検　警備その他服務中異常ありません</textarea>
-              </div>
-
-              <div class="col-lg-7 input-group mt-1">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">管理棟終了</div>
-                </div>
-                <!-- <input type="text" class="form-control"> -->
-                <input type="number" class="form-control text-center border-right-0" value="" min="0" max="23">
-                <span class="border-top border-bottom pt-1">:</span>
-                <input type="number" class="form-control text-center border-left-0" value="" min="0" max="59">
-              </div>
-              <div class="col-lg-5 input-group mt-1">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">部外者</div>
-                </div>
-                <input type="number" class="form-control text-center">
-                <div class="input-group-append">
-                  <div class="input-group-text">名</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 右側 -->
-      <div class="col-md-6">
-        <div class="row">
-          <?php for ($i=0;$i<count($abc);$i++) { ?>
-          <!-- <div class="col-md-6 col-lg-4 input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text"><?php echo $abc[$i]; ?></div>
-            </div>
-            <input type="number" class="form-control text-center border-right-0" value="" min="0" max="23">
-            <span class="border-top border-bottom pt-1">:</span>
-            <input type="number" class="form-control text-center border-left-0" value="" min="0" max="59">
-          </div> -->
-          <div class="col-md-6 col-lg-4 d-flex">
-            <div class="w-15 text-center"><?php echo $abc[$i]; ?></div>
-            <div class="input-group">
-              <input type="number" class="form-control text-center border-right-0" value="" min="0" max="23">
-              <span class="border-top border-bottom pt-1">:</span>
-              <input type="number" class="form-control text-center border-left-0" value="" min="0" max="59">
-            </div>
-          </div>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <?php */ ?>
-
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
@@ -337,6 +66,8 @@
     </div>
     <hr>
 
+    <form action="report5.php" method="post">
+
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
@@ -345,37 +76,46 @@
             <td>天候</td>
             <td>報告者</td>
           </tr>
+
           <tr>
             <td>
-              <?php echo "自）".$dates[0]."年".$dates[1]."月".$dates[2]."日　(".$week[$w].")"; ?>
-              <input type="number" class="text-center" value="<?php echo $joban_time[0]; ?>" min="0" max="23">
-              <span class="">:</span>
-              <input type="number" class="text-center" value="<?php echo $joban_time[1]; ?>" min="0" max="59">
+              <label><?php echo "自）".substr($start_date,0,4)."年".substr($start_date,5,2)."月".substr($start_date,8,2)."日　(".getWeek($start_date).")"; ?></label>
+              <input type="hidden" name="start_date" value="<?php echo $start_date; ?>">
+              <div class="time">
+                <input type="number" class="text-center" name="joban_time[0]" value="<?php echo $joban_time[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="joban_time[1]" value="<?php echo $joban_time[1]; ?>" min="0" max="59">
+              </div>
             </td>
           </tr>
+
           <tr>
             <td>
-              <?php echo "至）".$dates2[0]."年".$dates2[1]."月".$dates2[2]."日　(".$week[$w2].")"; ?>
-              <input type="number" class="text-center" value="<?php echo $kaban_time[0]; ?>" min="0" max="23">
-              <span class="">:</span>
-              <input type="number" class="text-center" value="<?php echo $kaban_time[1]; ?>" min="0" max="59">
+              <label><?php echo "至）".substr($end_date,0,4)."年".substr($end_date,5,2)."月".substr($end_date,8,2)."日　(".getWeek($end_date).")"; ?></label>
+              <input type="hidden" name="end_date" value="<?php echo $end_date; ?>">
+              <div class="time">
+                <input type="number" class="text-center" name="kaban_time[0]" value="<?php echo $kaban_time[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="kaban_time[1]" value="<?php echo $kaban_time[1]; ?>" min="0" max="59">
+              </div>
             </td>
+
             <td rowspan="2">
-              <select name="" id="" class="">
+              <select name="weather1" id="weather1" class="">
                 <option value=""></option>
-                <?php for ($i=1;$i<count($weathers)+1;$i++) { ?>
-                <option value="<?php echo $i; ?>"<?php echo $i == $weather ? "selected" : "" ; ?>><?php echo $weathers[$i]; ?></option>
+                <?php for ($i=0;$i<count($weathers);$i++) { ?>
+                <option value="<?php echo $weathers[$i]; ?>"<?php echo $weathers[$i] == $weather1 ? "selected" : "" ; ?>><?php echo $weathers[$i]; ?></option>
                 <?php } ?>
               </select>
-              <select name="" id="" class="">
+              <select name="weather2" id="weather2" class="">
                 <option value=""></option>
-                <?php for ($i=1;$i<count($weathers)+1;$i++) { ?>
-                <option value="<?php echo $i; ?>"<?php echo $i == $weather ? "selected" : "" ; ?>><?php echo $weathers[$i]; ?></option>
+                <?php for ($i=0;$i<count($weathers);$i++) { ?>
+                <option value="<?php echo $weathers[$i]; ?>"<?php echo $weathers[$i] == $weather2 ? "selected" : "" ; ?>><?php echo $weathers[$i]; ?></option>
                 <?php } ?>
               </select>
             </td>
             <td rowspan="2">
-              <select name="" id="" class="">
+              <select name="staff_id" id="staff_id" class="w-50">
                 <option value=""></option>
                 <?php if ($staff2->oup_m_staff_id) { ?>
                 <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
@@ -390,27 +130,208 @@
     </div>
     <hr>
 
-    <?php /* ?>
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
-          <?php for ($i=0;$i<count($table_content);$i++) { ?>
           <tr>
-            <?php for ($j=0;$j<$table_content[$i]["td_cnt"];$j++) { ?>
-            <td colspan="<?php echo $table_content[$i]["td_array"][$j]["td_colspan"]; ?>" <?php if ($i == 18 && $j == 0) {echo "rowspan=\"5\"";} ?>>
-            <?php echo $table_content[$i]["td_array"][$j]["td_con"] ; ?>
+            <td colspan="2"><label>１．状況</label></td>
+            <td><label>ヤード照明</label></td>
+          </tr>
+
+          <tr>
+            <td colspan="2"><label>i．入出港</label></td>
+            <td>C-2</td>
+          </tr>
+
+          <?php for ($i=1;$i<=4;$i++) { ?>
+          <tr>
+            <!-- <td class="w-<?php echo $common->device == "pc" ? 50 : 25 ; ?>"> -->
+            <td class="rc">
+              <label>RC-</label>
+              <input type="text" class="text w-75" name="ship<?php echo $i; ?>" value="<?php echo ${"ship".$i}; ?>">
             </td>
+            <td>
+
+              <div class="w-45 d-inline-block">
+                <input type="checkbox" class="check" value="in<?php echo $i; ?>" <?php echo !is_array(${"ship_in_port_time".$i}) ? "checked" : ""; ?>>
+                <label class="m-0">停泊</label>
+                <div class="time">
+                  <input type="number" class="text-center" name="ship_in_port_time<?php echo $i; ?>[0]" value="<?php echo ${"ship_in_port_time".$i}[0]; ?>" min="0" max="23">
+                  <span class="">:</span>
+                  <input type="number" class="text-center" name="ship_in_port_time<?php echo $i; ?>[1]" value="<?php echo ${"ship_in_port_time".$i}[1]; ?>" min="0" max="59">
+                </div>
+              </div>
+
+              <label>～</label>
+
+              <div class="w-45 d-inline-block">
+                <input type="checkbox" class="check" value="out<?php echo $i; ?>" <?php echo !is_array(${"ship_out_port_time".$i}) ? "checked" : ""; ?>>
+                <label class="m-0">停泊</label>
+                <div class="time">
+                  <input type="number" class="text-center" name="ship_out_port_time<?php echo $i; ?>[0]" value="<?php echo ${"ship_out_port_time".$i}[0]; ?>" min="0" max="23">
+                  <span class="">:</span>
+                  <input type="number" class="text-center" name="ship_out_port_time<?php echo $i; ?>[1]" value="<?php echo ${"ship_out_port_time".$i}[1]; ?>" min="0" max="59">
+                </div>
+              </div>
+
+            </td>
+            <td>
+            <?php if ($i < 3) { ?>
+              <div class="time">
+                <input type="number" class="text-center" name="c2_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c2_joban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c2_joban_time<?php echo $i; ?>[1]" value="<?php echo ${"c2_joban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+              <label>～</label>
+              <div class="time">
+                <input type="number" class="text-center" name="c2_kaban_time<?php echo $i; ?>[0]" value="<?php echo ${"c2_kaban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c2_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"c2_kaban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
             <?php } ?>
+            </td>
+          </tr>
+          <?php } ?>
+
+          <tr>
+            <td colspan="2"><label>ii．C-4ゲート立哨</label></td>
+            <td><label>C-3</label></td>
+          </tr>
+
+          <?php for ($i=1;$i<=3;$i++) { ?>
+          <tr>
+            <td><label><?php if ($i == 2) {echo "東サブゲート立哨";} elseif ($i == 3) {echo "iii．搬入出車両";} ?></label></td>
+            <td>
+              <div class="time">
+                <input type="number" class="text-center" name="picket_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"picket_joban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="picket_joban_time<?php echo $i; ?>[1]" value="<?php echo ${"picket_joban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+              <label>～</label>
+              <div class="time">
+                <input type="number" class="text-center" name="picket_kaban_time<?php echo $i; ?>[0]" value="<?php echo ${"picket_kaban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="picket_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"picket_kaban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+            </td>
+            <td>
+              <?php if ($i != 3) { ?>
+              <div class="time">
+                <input type="number" class="text-center" name="c3_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c3_joban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c3_joban_time<?php echo $i; ?>[1]" value="<?php echo ${"c3_joban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+              <label>～</label>
+              <div class="time">
+                <input type="number" class="text-center" name="c3_kaban_time<?php echo $i; ?>[0]" value="<?php echo ${"c3_kaban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c3_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"c3_kaban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+              <?php } ?>
+            </td>
+          </tr>
+          <?php } ?>
+
+          <tr>
+            <td colspan="2"><label>iv．各ゲート及び管理棟、CFS事務所の開錠及び施錠実施</label></td>
+            <td><label>C-4</label></td>
+          </tr>
+
+          <?php for ($i=1;$i<=2;$i++) { ?>
+          <tr>
+            <td colspan="2"><label><?php if ($i == 1) {echo "２．重点";} else {echo "i．管理棟及び各建屋の火災、盗難等の警戒警備並びに<br>不法侵入者の警戒監視";} ?></label></td>
+            <td>
+              <div class="time">
+                <input type="number" class="text-center" name="c4_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c4_joban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c4_joban_time<?php echo $i; ?>[1]" value="<?php echo ${"c4_joban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+              <label>～</label>
+              <div class="time">
+                <input type="number" class="text-center" name="c4_kaban_time<?php echo $i; ?>[0]" value="<?php echo ${"c4_kaban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c4_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"c4_kaban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+            </td>
+          </tr>
+          <?php } ?>
+
+          <tr>
+            <td colspan="2"><label>ii．搬入出車両及び外来者の適正誘導</label></td>
+            <td><label>C-5</label></td>
+          </tr>
+
+          <?php for ($i=1;$i<=3;$i++) { ?>
+          <tr>
+            <td colspan="2"><label><?php if ($i == 1) {echo "３．実施";} elseif ($i == 2) {echo "i．昼夜間巡回、警戒警備及び外周赤外線システムの監視";} else {echo "ii．管理棟及び各建屋の鍵の保管管理";} ?></label></td>
+            <td>
+              <?php if ($i != 3) { ?>
+              <div class="time">
+                <input type="number" class="text-center" name="c5_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c5_joban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c5_joban_time<?php echo $i; ?>[1]" value="<?php echo ${"c5_joban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+              <label>～</label>
+              <div class="time">
+                <input type="number" class="text-center" name="c5_kaban_time<?php echo $i; ?>[0]" value="<?php echo ${"c5_kaban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c5_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"c5_kaban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+              <?php } ?>
+            </td>
+          </tr>
+          <?php } ?>
+
+          <tr>
+            <td colspan="2"><label>発砲</label></td>
+            <td><label>トンボ照明</label></td>
+          </tr>
+          
+          <?php for ($i=1;$i<=2;$i++) { ?>
+          <tr>
+            <?php if ($i == 1) { ?>
+            <td rowspan="5" colspan="2" class="pr-5"><textarea name="comment" id="" class="w-100" cols="" rows="5" value="<?php echo $comment; ?>"><?php echo $comment; ?></textarea></td>
+            <?php } ?>
+            <td>
+              <div class="time">
+                <input type="number" class="text-center" name="tonbo_light_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"tonbo_light_joban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="tonbo_light_joban_time<?php echo $i; ?>[1]" value="<?php echo ${"tonbo_light_joban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+              <label>～</label>
+              <div class="time">
+                <input type="number" class="text-center" name="tonbo_light_kaban_time<?php echo $i; ?>[0]" value="<?php echo ${"tonbo_light_kaban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="tonbo_light_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"tonbo_light_kaban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+            </td>
+          </tr>
+          <?php } ?>
+
+          <tr>
+            <td><label>C5倉庫屋外照明　西・南</label></td>
+          </tr>
+
+          <?php for ($i=1;$i<=2;$i++) { ?>
+          <tr>
+            <td>
+              <div class="time">
+                <input type="number" class="text-center" name="c5_light_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c5_light_joban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c5_light_joban_time<?php echo $i; ?>[1]" value="<?php echo ${"c5_light_joban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+              <label>～</label>
+              <div class="time">
+                <input type="number" class="text-center" name="c5_light_kaban_time<?php echo $i; ?>[0]" value="<?php echo ${"c5_light_kaban_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c5_light_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"c5_light_kaban_time".$i}[1]; ?>" min="0" max="59">
+              </div>
+            </td>
           </tr>
           <?php } ?>
         </table>
-      </div>
-    </div>
-    <hr>
-    <?php */ ?>
 
-    <div class="row">
-      <div class="col-12">
+        <?php /* ?>
         <table class="table table-borderless">
           <?php for ($i=0;$i<count($table_con["tr"]);$i++) { ?>
           <tr>
@@ -455,6 +376,7 @@
           </tr>
           <?php } ?>
         </table>
+        <?php */ ?>
       </div>
     </div>
     <hr>
@@ -462,17 +384,19 @@
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
-          <?php for ($i=0;$i<3;$i++) { ?>
+          <?php for ($i=0;$i<2;$i++) { ?>
           <tr>
-            <?php for ($j=0;$j<6;$j++) { ?>
-            <?php if ($i == 0 && $j == 0) { ?>
-            <td class="align-middle" rowspan="3">巡<br>回</td>
+            <?php if ($i == 0) { ?>
+            <td rowspan="2" class="align-middle"><label>巡<br>回</label></td>
             <?php } ?>
-            <td><?php echo $i == 0 ? $j+1 : $i*6+($j+1) ; ?></td>
-            <td class="">
-              <input type="number" class="text-center number-left" value="<?php echo $i == 0 ? $zyunkai_default[$j][0] : $zyunkai_default[$i*6+($j)][0] ; ?>" min="0" max="23">
-              <span class="number-colon">:</span>
-              <input type="number" class="text-center number-right" value="<?php echo $i == 0 ? $zyunkai_default[$j][1] : $zyunkai_default[$i*6+($j)][1] ; ?>" min="0" max="59">
+            <?php for ($j=1;$j<=8;$j++) { ?>
+            <td>
+              <label class="text-right" style="width: 20px;"><?php echo $j+$i*8 ; ?></label>
+              <div class="time2">
+                <input type="number" class="text-center" name="patrol_time<?php echo $j+$i*8; ?>[0]" value="<?php echo ${"patrol_time".($j+($i*8))}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="patrol_time<?php echo $j+$i*8; ?>[1]" value="<?php echo ${"patrol_time".($j+($i*8))}[1]; ?>" min="0" max="59">
+              </div>
             </td>
             <?php } ?>
           </tr>
@@ -487,34 +411,30 @@
         <table class="table table-borderless">
           <?php for ($i=0;$i<3;$i++) { ?>
           <tr>
-            <?php for ($j=0;$j<3;$j++) { ?>
-            <?php if ($i == 0 && $j == 0) { ?>
+            <?php if ($i == 0) { ?>
             <td class="align-middle" rowspan="3">備<br>考</td>
-            <td rowspan="2" colspan="4">
-              <textarea name="" id="" rows="" class="w-100" value="">巡回　点検　警備その他服務中異常ありません</textarea>
+            <td rowspan="2" colspan="2">
+              <textarea name="wk_comment" id="" rows="" class="w-100" value="<?php echo $wk_comment; ?>"><?php echo $wk_comment; ?></textarea>
+            </td>
+            <?php } elseif ($i == 2) { ?>
+            <td>
+              <label>管理棟終了</label>
+              <input type="text" class="text" name="wk_admin_end" value="<?php echo $wk_admin_end; ?>">
+            </td>
+            <td>
+              <label>部外者</label>
+              <input type="number" class="text-center num" name="wk_outsider" value="<?php echo $wk_outsider; ?>" min="0" max="99">
+              <label>名</label>
             </td>
             <?php } ?>
-            <?php if ($i == 2 && $j == 0) { ?>
-            <td>管理棟終了</td>
+            <?php for ($j=1;$j<=3;$j++) { ?>
             <td>
-              <!-- <input type="number" class="text-center number-left" value="" min="0" max="23">
-              <span class="number-colon">:</span>
-              <input type="number" class="text-center number-right" value="" min="0" max="59"> -->
-              <input type="text" class="" value="泊り">
-            </td>
-            <td>部外者</td>
-            <td>
-              <input type="number" class="text-center number-left" value="" min="0" max="99">
-              <span>名</span>
-            </td>
-            <?php } ?>
-            <td><?php echo $i == 0 ? $abc[$j] : $abc[$i*3+$j] ; ?></td>
-            <td>
-              <select name="" id="" class="">
+              <label><?php echo $abc[$j+$i*3] ; ?></label>
+              <select name="wk_staff_id<?php echo $j+$i*3 ; ?>" id="wk_staff_id<?php echo $j+$i*3 ; ?>" class="wk_staff_id">
                 <option value=""></option>
                 <?php if ($staff2->oup_m_staff_id) { ?>
                 <?php for ($k=0;$k<count($staff2->oup_m_staff_id);$k++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$k]; ?>"<?php echo $staff2->oup_m_staff_id[$k] == $staff_id ? "selected" : "" ; ?>><?php echo $staff2->oup_m_staff_name[$k]; ?></option>
+                <option value="<?php echo $staff2->oup_m_staff_id[$k]; ?>"<?php echo $staff2->oup_m_staff_id[$k] == ${"wk_staff_id".($j+($i*3))} ? "selected" : "" ; ?>><?php echo $staff2->oup_m_staff_name[$k]; ?></option>
                 <?php } ?>
                 <?php } ?>
               </select>
@@ -527,6 +447,10 @@
     </div>
     <hr>
 
+    <input type="hidden" name="no" value="<?php echo $no; ?>">
+    <input type="hidden" name="act" value="">
+    </form>
+
     <div class="row">
       <div class="col-12 text-right">（株）新神戸セキュリティ</div>
     </div>
@@ -534,13 +458,17 @@
 
     <div class="row">
       <div class="col-4">
-        <button type="button" class="btn btn-warning btn-block regist" role="button">一時保存</button>
+        <button type="button" class="btn btn-warning btn-block temp" role="button">一時保存</button>
       </div>
       <div class="col-4">
         <button type="button" class="btn btn-success btn-block regist" role="button">完了</button>
       </div>
       <div class="col-4">
+        <?php if ($_SESSION["menu_flg"] == "kanri") { ?>
+        <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='keibihokoku.php'">戻る</button>
+        <?php } else { ?>
         <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='report_menu.php'">戻る</button>
+        <?php } ?>
       </div>
     </div>
 
@@ -562,9 +490,36 @@
 </html>
 
 <script type="text/javascript">
-  $('hr').css('border-top','1px solid #000')
+  window.onload = function() {
+    width = $(window).width()
+    if (width <= 800) {
+    // if ('<?php echo $common->device; ?>' != 'pc') {
+      $('.time2 [type="number"]').css('width','20px')
+      $('.rc').css('width','25%')
+    } else if (width <= 1100) {
+      $('.time2 [type="number"]').css('width','35px')
+      $('.rc').css('width','40%')
+    } else {
+      $('.time2 [type="number"]').css('width','45px')
+      $('.rc').css('width','50%')
+    }
+  }
+  $(window).resize(function(){
+    width = $(window).width()
+    if (width <= 800) {
+    // if ('<?php echo $common->device; ?>' != 'pc') {
+      $('.time2 [type="number"]').css('width','20px')
+      $('.rc').css('width','25%')
+    } else if (width <= 1100) {
+      $('.time2 [type="number"]').css('width','35px')
+      $('.rc').css('width','40%')
+    } else {
+      $('.time2 [type="number"]').css('width','45px')
+      $('.rc').css('width','50%')
+    }
+  })
 
-  $('[type="number"]').addClass('p-0')
+  $('hr').css('border-top','1px solid #000')
 
   // $('.input-group-text').css('background-color','white')
 
@@ -574,7 +529,34 @@
 
   $('table td').addClass('p-0')
 
-  $('[type="number"]').css('width','40px')
+  $('.time, .time2').addClass('d-inline-block border border-dark')
+  $('.time [type="number"], .time2 [type="number"]').addClass('p-0 border-0')
+  $('.time [type="number"], .num').css('width','45px')
+  $('.num, .text').addClass('p-0')
+  $('.num, .text').css('border','1px solid #343a40')
+
+  var checkList = {}
+  var no
+  // 入出港checkbox（初期表示）
+  $('.check').each(function(){
+    no = $(this).val()
+    if ($(this).prop('checked')) {
+      checkList[no] = $(this).next().next().remove()
+    } else {
+      checkList[no] = $(this).next().remove()
+    }
+  })
+  // 入出港checkbox（クリックで切り替え）
+  $('.check').click(function(){
+    no = $(this).val()
+    if ($(this).prop('checked')) {
+      $(this).next().after(checkList[no])
+      checkList[no] = $(this).next().remove()
+    } else {
+      $(this).next().after(checkList[no])
+      checkList[no] = $(this).next().remove()
+    }
+  })
 
   // $('.check').change(function(){
   //   if ($(this).prop('checked')) {
@@ -591,4 +573,16 @@
   //     // $(this).parent().children('div').children().eq(3).removeClass('d-none')
   //   }
   // })
+
+  $('.temp, .regist').click(function(){
+    if (!confirm('この内容で登録します。よろしいですか？')) return false
+
+    if ($(this).hasClass('temp')) {
+      $('[name="act"]').val('2')
+    } else {
+      $('[name="act"]').val('1')
+    }
+    
+    $('form').submit()
+  })
 </script>
