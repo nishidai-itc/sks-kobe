@@ -80,6 +80,11 @@
                         // where in句
                         if (strpos($str,"_in") !== false) {
                             $sql .= "and t_report_".str_replace("_in","",$str)." in (".$value.") ";
+                        // where like句
+                        } elseif (strpos($str,"_like") !== false) {
+                            $sql .= "and t_report_".str_replace("_like","",$str)." like '%".$db->escape_string($value)."%' ";
+                        } elseif (strpos($str,"_findInSet") !== false) {
+                            $sql .= "and find_in_set ('".$db->escape_string($value)."',t_report_".str_replace("_findInSet","",$str).") ";
                         } else {
                             $sql .= "and t_report_".$str." = '".$db->escape_string($value)."' ";
                         }
