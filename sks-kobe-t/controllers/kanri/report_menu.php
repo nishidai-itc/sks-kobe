@@ -52,14 +52,10 @@
         }
     }
 
-    // if ($staff->oup_m_staff_kbn[0] != "1") {
-    //     $wkdetail->inp_t_wk_taiin_id                        = $staff->oup_m_staff_id[0];
-    // }
-
-    // $wkdetail->inp_t_wk_plan_date                           = str_replace("-","",$plan_date);
-    // $wkdetail->inp_group                                    = "t_wk_genba_id";
-    // $wkdetail->getWkdetail();
-
+    // リーダー、上下番チェック者は自分の現場のみ取得
+    if ($staff->oup_m_staff_kbn[0] != "1") {
+        $report->inp_genba_id_findInSet                      = $staff->oup_m_staff_genba_id[0];
+    }
     // 名称取得
     $report->getReport("name");
     for ($i=0;$i<count($report->oup_no);$i++) {
@@ -109,6 +105,7 @@
         $wkdetail2->inp_order = "order by t_wk_detail_no limit 1";
         $wkdetail2->getWkdetail();
         $flg[$report->oup_no[$i]] = false;
+        // 当日予定のある警備報告書のみ表示
         if ($wkdetail2->oup_t_wk_detail_no) {
             $flg[$report->oup_no[$i]] = true;
         }
