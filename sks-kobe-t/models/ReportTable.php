@@ -94,7 +94,7 @@
 
         public static $reportkanri = array("no","plan_date","table"/*,"table_no"*/,"gchk","name_no","kbn");
 
-        public static $reportname = array("no","table","place","contract","genba_id");
+        public static $reportname = array("no","table","place","contract","genba_id","plan_kbn","plan_hosoku");
 
         // public function __construct() {
         // }
