@@ -204,19 +204,8 @@
             // 値が空じゃない場合
             // 登録フラグ以外の項目登録
             if ($key != "act") {
-                // 最終退出者
-                if (is_array($value) && strpos($key,"last_exit") !== false) {
-                    if ($value[0] !== "" && $value[1] !== "") {
-                        $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":".sprintf("%02d",$value[1]);  // 時刻整形
-                    } elseif ($value[0] !== "" && $value[1] === "") {
-                        $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":00";
-                    } elseif ($value[0] === "" && $value[1] !== "") {
-                        $report2->{"inp_".$key}          = "00:".sprintf("%02d",$value[1]);
-                    }
-                    continue;
-                }
-                // 時刻の場合（checkboxの項目以外）
-                if (is_array($value) && strpos($key,"time") !== false) {
+                // 時刻の場合
+                if (is_array($value) && (strpos($key,"time") !== false || strpos($key,"last_exit") !== false)) {
                     if ($value[0] !== "" && $value[1] !== "") {
                         $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":".sprintf("%02d",$value[1]);  // 時刻整形
                     } elseif ($value[0] !== "" && $value[1] === "") {
