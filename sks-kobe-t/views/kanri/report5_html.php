@@ -140,12 +140,11 @@
 
           <tr>
             <td colspan="2"><label>i．入出港</label></td>
-            <td>C-2</td>
+            <td><label>C-2</label></td>
           </tr>
 
           <?php for ($i=1;$i<=4;$i++) { ?>
           <tr>
-            <!-- <td class="w-<?php echo $common->device == "pc" ? 50 : 25 ; ?>"> -->
             <td class="rc">
               <label>RC-</label>
               <input type="text" class="text w-75" name="ship<?php echo $i; ?>" value="<?php echo ${"ship".$i}; ?>">
@@ -194,13 +193,13 @@
           <?php } ?>
 
           <tr>
-            <td colspan="2"><label>ii．C-4ゲート立哨</label></td>
+            <td colspan="2"></td>
             <td><label>C-3</label></td>
           </tr>
 
           <?php for ($i=1;$i<=3;$i++) { ?>
           <tr>
-            <td><label><?php if ($i == 2) {echo "東サブゲート立哨";} elseif ($i == 3) {echo "iii．搬入出車両";} ?></label></td>
+            <td><label><?php if ($i == 1) {echo "ii．C-4ゲート立哨";} elseif ($i == 2) {echo "東サブゲート立哨";} else {echo "iii．搬入出車両";} ?></label></td>
             <td>
               <div class="time">
                 <input type="number" class="text-center" name="picket_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"picket_joban_time".$i}[0]; ?>" min="0" max="23">

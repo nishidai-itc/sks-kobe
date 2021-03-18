@@ -80,6 +80,31 @@
             return null;
         }
     }
+    // 値の整形
+    function valChange($val) {
+        // 配列の場合（時刻等）
+        if (is_array($val)) {
+            // 値が空ならNULLで登録
+            if ($val[0] === "" && $val[1] === "") {
+                $val = null;
+            // 値が空じゃない場合
+            } elseif ($val[0] !== "" && $val[1] !== "") {
+                $val = sprintf("%02d",$val[0]).":".sprintf("%02d",$val[1]);
+            } elseif ($val[0] !== "" && $val[1] === "") {
+                $val = sprintf("%02d",$val[0]).":00";
+            } elseif ($val[0] === "" && $val[1] !== "") {
+                $val = "00:".sprintf("%02d",$val[1]);
+            }
+        // 配列じゃない場合（時刻以外）
+        } else {
+            if ($val === "" || $val === "0") {
+                $val = null;
+            } else {
+                $val = $val;
+            }
+        }
+        return $val;
+    }
 
     if (isset($_POST["act"])) {
         $act        = $_POST["act"];
@@ -120,26 +145,9 @@
         }
 
         foreach ($_POST as $key => $value) {
-            // var_dump($key,$value);
-            // 値が空ならNULLで登録
-            if ((!is_array($value) && !$value) || (is_array($value) && !$value[0] && !$value[1])) {
-                $report2->{"inp_".$key}                 = null;
-                continue;
-            }
-
-            // 値が空じゃない場合
             // 登録フラグ以外の項目登録
             if ($key != "act") {
-                // 時刻の場合（checkboxの項目以外）
-                if (is_array($value) && strpos($key,"time") !== false) {
-                    if ($value[0] && $value[1]) {
-                        $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":".sprintf("%02d",$value[1]);  // 時刻整形
-                    }
-                    continue;
-                }
-
-                // 時刻以外
-                $report2->{"inp_".$key}              = $value;
+                $report2->{"inp_".$key}              = valChange($value);           // 値整形
             }
         }
 
