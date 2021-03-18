@@ -81,19 +81,23 @@
     // exit;
     foreach ($_POST as $key => $value) {
       if ($key != "act") {
+        // 時刻
         if (is_array($value)) {
-          if ($value[0] && $value[1]) {
-            // var_dump($key,$value);
+          if ($value[0] !== "" && $value[1] !== "" ) {
             $report2->{"inp_".$key}               = $value[0].":".$value[1];
-          } elseif (!$value[0] && !$value[1]) {
+          } elseif ($value[0] !== "" && $value[1] === "" ) {
+            $report2->{"inp_".$key}               = $value[0].":00";
+          } elseif ($value[0] === "" && $value[1] !== "" ) {
+            $report2->{"inp_".$key}               = "00:".$value[1];
+          } else {
             $report2->{"inp_".$key}               = null;
           }
+        // 時刻以外
         } else {
-          if (!$value) {
-            // var_dump($key,$value);
+          if ($value === "") {
             $report2->{"inp_".$key}               = null;
           } else {
-            $report2->{"inp_".$key}               = $value;
+            $report2->{"inp_".$key}               = $value === "0" ? null : $value ;
           }
         }
       }
