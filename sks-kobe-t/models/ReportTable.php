@@ -21,7 +21,7 @@
             "wk_staff_id3","wk_staff3_zan1","wk_staff3_zan2","wk_staff_id4","wk_staff4_zan1","wk_staff4_zan2","wk_staff_id5","wk_staff5_zan1","wk_staff5_zan2","wk_staff_id6","wk_staff6_zan1","wk_staff6_zan2",
             "wk_staff_id7","wk_staff7_zan1","wk_staff7_zan2","wk_staff_id8","wk_staff8_zan1","wk_staff8_zan2","wk_staff_id9","wk_staff9_zan1","wk_staff9_zan2","wk_staff_id10","wk_staff10_zan1","wk_staff10_zan2",
             "wk_staff_id11","wk_staff11_zan1","wk_staff11_zan2","wk_staff_id12","wk_staff12_zan1","wk_staff12_zan2","wk_staff_id13","wk_staff13_zan1","wk_staff13_zan2","wk_staff_id14","wk_staff14_zan1","wk_staff14_zan2",
-            "wk_staff_id15","wk_staff15_zan1","wk_staff15_zan2","wk_comment"
+            "wk_staff_id15","wk_staff15_zan1","wk_staff15_zan2","wk_staff_id16","wk_staff16_zan1","wk_staff16_zan2","wk_staff_id17","wk_staff17_zan1","wk_staff17_zan2","wk_staff_id18","wk_staff18_zan1","wk_staff18_zan2","wk_comment"
         );
 
         public static $report2 = array(
