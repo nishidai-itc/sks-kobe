@@ -69,61 +69,6 @@
         ${"wk_staff_id".$i}                 = null;
     }
 
-    /*
-    // $input_check = "<span><input type=\"checkbox\" class=\"check\" value=\"\"></span>";
-    $input_text = "<input type=\"text\" class=\"w-100\" value=\"\">";
-    $input_time ="<input type=\"number\" class=\"text-center\" value=\"\" min=\"0\" max=\"23\"><span class=\"\">:</span><input type=\"number\" class=\"text-center\" value=\"\" min=\"0\" max=\"59\">
-    <span class=\"\">～</span><input type=\"number\" class=\"text-center\" value=\"\" min=\"0\" max=\"23\"><span class=\"\">:</span><input type=\"number\" class=\"text-center\" value=\"\" min=\"0\" max=\"59\">";
-    $input_check_time ="<span><input type=\"checkbox\" class=\"check\" value=\"\"></span><input type=\"number\" class=\"text-center\" value=\"\" min=\"0\" max=\"23\"><span class=\"\">:</span><input type=\"number\" class=\"text-center\" value=\"\" min=\"0\" max=\"59\">
-    <span class=\"\">～</span><span> <input type=\"checkbox\" class=\"check\" value=\"\"></span><input type=\"number\" class=\"text-center\" value=\"\" min=\"0\" max=\"23\"><span class=\"\">:</span><input type=\"number\" class=\"text-center\" value=\"\" min=\"0\" max=\"59\">";
-    $table_con = array(
-        "tr"=>array(
-            array(
-                "class"=>"",
-                "td"=>array(
-                    array(
-                        "colspan"=>"3",
-                        // "content"=>"１．状況"
-                        "content"=>array(
-                            array(
-                                "１．状況"
-                            )
-                        )
-                    )
-                )
-            ),
-            array(
-                "class"=>"",
-                "td"=>array(
-                    array("colspan"=>"2","class"=>"","content"=>array(array("i．入出港"))),
-                    array("colspan"=>"","class"=>"","content"=>array(array("ヤード照明")))
-                )
-            ),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"d-flex","content"=>array(array("<span>RC-</span>"),array("input_text"))),array("colspan"=>"","class"=>"text-center","content"=>array(array("input_check_time","","","",""))),array("colspan"=>"","class"=>"","content"=>array(array("C-2"))))),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"d-flex","content"=>array(array("<span>RC-</span>"),array("input_text"))),array("colspan"=>"","class"=>"text-center","content"=>array(array("input_check_time","","","",""))),array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"d-flex","content"=>array(array("<span>RC-</span>"),array("input_text"))),array("colspan"=>"","class"=>"text-center","content"=>array(array("input_check_time","","","",""))),array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"d-flex","content"=>array(array("<span>RC-</span>"),array("input_text"))),array("colspan"=>"","class"=>"text-center","content"=>array(array("input_check_time","","","",""))),array("colspan"=>"","class"=>"","content"=>""))),
-            array("class"=>"","td"=>array(array("colspan"=>"2","class"=>"","content"=>array(array("<span>RC-</span>"),array("C-4ゲート立哨"))),array("colspan"=>"","class"=>"","content"=>array(array("C-3"))))),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"","content"=>""),array("colspan"=>"","class"=>"text-center","content"=>array(array("input_time","08","30","17","00"))),array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"","content"=>array(array("東サブゲート立哨"))),array("colspan"=>"","class"=>"text-center","content"=>array(array("input_time","08","30","16","30"))),array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"","content"=>array(array("iii．搬入出車両"))),array("colspan"=>"","class"=>"text-center","content"=>array(array("input_time","08","30","17","00"))),array("colspan"=>"","class"=>"","content"=>""))),
-            array("class"=>"","td"=>array(array("colspan"=>"2","class"=>"","content"=>array(array("<span>RC-</span>"),array("iv．各ゲート及び管理棟、CFS事務所の開錠及び施錠実施"))),array("colspan"=>"","class"=>"","content"=>array(array("c-4"))))),
-            array("class"=>"","td"=>array(array("colspan"=>"2","class"=>"","content"=>array(array(array(array("input_time","","","",""))))),array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"2","class"=>"","content"=>array(array("i．管理棟及び各建屋の火災、盗難等の警戒警備並びに<br>不法侵入者の警戒監視"))),array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"2","class"=>"","content"=>array(array("ii．搬入出車両及び外来者の適正誘導"))),array("colspan"=>"","class"=>"","content"=>array(array("C-5"))))),
-            array("class"=>"","td"=>array(array("colspan"=>"2","class"=>"","content"=>array(array("３．実施"))),array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"2","class"=>"","content"=>array(array("i．昼夜間巡回、警戒警備及び外周赤外線システムの監視"))),array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"2","class"=>"","content"=>array(array("ii．管理棟及び各建屋の鍵の保管管理"))),array("colspan"=>"","class"=>"","content"=>""))),
-            array("class"=>"","td"=>array(array("colspan"=>"2","class"=>"","content"=>array(array("発砲"))),array("colspan"=>"","class"=>"","content"=>array(array("トンボ照明"))))),
-            array("class"=>"","td"=>array(array("colspan"=>"2","class"=>"","content"=>array(array("textarea"))),array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"","content"=>array(array("C5倉庫屋外照明　西・南"))))),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-            array("class"=>"","td"=>array(array("colspan"=>"","class"=>"","content"=>array(array("input_time","","","",""))))),
-        )
-    );
-    */
-
     // $week = array("日", "月", "火", "水", "木", "金", "土");
     // $time = strtotime(date($date));
     // $w = date("w", $time);

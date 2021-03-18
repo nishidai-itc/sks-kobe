@@ -330,53 +330,6 @@
           </tr>
           <?php } ?>
         </table>
-
-        <?php /* ?>
-        <table class="table table-borderless">
-          <?php for ($i=0;$i<count($table_con["tr"]);$i++) { ?>
-          <tr>
-            <?php for ($j=0;$j<count($table_con["tr"][$i]["td"]);$j++) { ?>
-            <td class="<?php echo $table_con["tr"][$i]["td"][$j]["class"]; ?>" colspan="<?php echo $table_con["tr"][$i]["td"][$j]["colspan"]; ?>" <?php if ($i == 18 && $j == 0) {echo "rowspan=\"5\"";} ?>>
-              <?php //echo $table_con["tr"][$i]["td"][$j]["content"] ; ?>
-              <?php if ($table_con["tr"][$i]["td"][$j]["content"]) { ?>
-              <?php for ($k=0;$k<count($table_con["tr"][$i]["td"][$j]["content"]);$k++) { ?>
-                <?php if ($table_con["tr"][$i]["td"][$j]["content"][$k][0] == "input_text") { ?>
-                  <input type="text" class="w-100" value="">
-                <?php } elseif ($table_con["tr"][$i]["td"][$j]["content"][$k][0] == "input_time") { ?>
-                  <input type="number" class="text-center" value="<?php echo $table_con["tr"][$i]["td"][$j]["content"][$k][1]; ?>" min="0" max="23">
-                  <span class="">:</span>
-                  <input type="number" class="text-center" value="<?php echo $table_con["tr"][$i]["td"][$j]["content"][$k][2]; ?>" min="0" max="59">
-                  <span class="">～</span>
-                  <input type="number" class="text-center" value="<?php echo $table_con["tr"][$i]["td"][$j]["content"][$k][3]; ?>" min="0" max="23">
-                  <span class="">:</span>
-                  <input type="number" class="text-center" value="<?php echo $table_con["tr"][$i]["td"][$j]["content"][$k][4]; ?>" min="0" max="59">
-                <?php } elseif ($table_con["tr"][$i]["td"][$j]["content"][$k][0] == "input_check_time") { ?>
-                  <span><input type="checkbox" class="check"></span>
-                  <div class="d-inline-block">
-                    <input type="number" class="text-center" value="<?php echo $table_con["tr"][$i]["td"][$j]["content"][$k][1]; ?>" min="0" max="23">
-                    <span class="">:</span>
-                    <input type="number" class="text-center" value="<?php echo $table_con["tr"][$i]["td"][$j]["content"][$k][2]; ?>" min="0" max="59">
-                  </div>
-                  <span class="">～</span>
-                  <div class="d-inline-block">
-                    <span><input type="checkbox" class="check"></span>
-                    <input type="number" class="text-center" value="<?php echo $table_con["tr"][$i]["td"][$j]["content"][$k][3]; ?>" min="0" max="23">
-                    <span class="">:</span>
-                    <input type="number" class="text-center" value="<?php echo $table_con["tr"][$i]["td"][$j]["content"][$k][4]; ?>" min="0" max="59">
-                  </div>
-                <?php } elseif ($table_con["tr"][$i]["td"][$j]["content"][$k][0] == "textarea") { ?>
-                  <textarea name="" id="" rows="5" class="w-100" value=""></textarea>
-                <?php } else  { ?>
-                  <?php echo $table_con["tr"][$i]["td"][$j]["content"][$k][0] ; ?>
-                <?php } ?>
-              <?php } ?>
-              <?php } ?>
-            </td>
-            <?php } ?>
-          </tr>
-          <?php } ?>
-        </table>
-        <?php */ ?>
       </div>
     </div>
     <hr>
@@ -521,12 +474,6 @@
 
   $('hr').css('border-top','1px solid #000')
 
-  // $('.input-group-text').css('background-color','white')
-
-  // $('.input-group-text').addClass('border-0')
-
-  // $('.w-15').css('width','15%')
-
   $('table td').addClass('p-0')
 
   $('.time, .time2').addClass('d-inline-block border border-dark')
@@ -557,22 +504,6 @@
       checkList[no] = $(this).next().remove()
     }
   })
-
-  // $('.check').change(function(){
-  //   if ($(this).prop('checked')) {
-  //     // $(this).parent().parent().children('div').eq(0).remove()
-
-  //     // $(this).parent().children('div').children().eq(1).addClass('d-none')
-  //     // $(this).parent().children('div').children().eq(2).addClass('d-none')
-  //     // $(this).parent().children('div').children().eq(3).addClass('d-none')
-  //     // $(this).parent().children('div').children().eq(0).removeClass('d-none')
-  //   } else {
-  //     // $(this).parent().children('div').children().eq(0).addClass('d-none')
-  //     // $(this).parent().children('div').children().eq(1).removeClass('d-none')
-  //     // $(this).parent().children('div').children().eq(2).removeClass('d-none')
-  //     // $(this).parent().children('div').children().eq(3).removeClass('d-none')
-  //   }
-  // })
 
   $('.temp, .regist').click(function(){
     if (!confirm('この内容で登録します。よろしいですか？')) return false
