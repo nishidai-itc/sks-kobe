@@ -42,13 +42,13 @@
       <div class="col-12">
         <table class="table table-borderless">
           <tr>
-            <td>警備場所</td>
-            <td>契約先</td>
+            <td><label>警備場所</label></td>
+            <td><label>契約先</label></td>
           </tr>
 
           <tr>
-            <td>住友倉庫ポートアイランド　L-6</td>
-            <td>株式会社住友倉庫　神戸支店</td>
+            <td><label>住友倉庫ポートアイランド　L-6</label></td>
+            <td><label>株式会社住友倉庫　神戸支店</label></td>
           </tr>
         </table>
       </div>
@@ -61,14 +61,16 @@
       <div class="col-12">
         <table class="table table-borderless">
           <tr>
-            <td class="align-middle" rowspan="2" colspan="3">
-              <?php echo substr($start_date,0,4)."年".substr($start_date,5,2)."月".substr($start_date,8,2)."日　(".getWeek($start_date).")"; ?>
-              <input type="hidden" name="start_date" value="<?php echo $start_date; ?>">
+            <td class="align-bottom" rowspan="2" colspan="3">
+              <label><?php echo substr($start_date,0,4)."年".substr($start_date,5,2)."月".substr($start_date,8,2)."日　(".getWeek($start_date).")"; ?></label>
             </td>
-            <td>天候</td>
-            <td>所長</td>
-            <td>記録者</td>
+            <input type="hidden" name="start_date" value="<?php echo $start_date; ?>">
+
+            <td><label>天候</label></td>
+            <td><label>所長</label></td>
+            <td><label>記録者</label></td>
           </tr>
+
           <tr>
             <td>
               <select name="weather1" id="weather1" class="">
@@ -106,13 +108,15 @@
       <div class="col-12">
         <table class="table table-borderless">
           <tr>
-            <td colspan="3">（１）守衛者</td>
+            <td colspan="3"><label>（１）守衛者</label></td>
           </tr>
+
           <tr>
-            <td>配置</td>
-            <td>氏名</td>
-            <td>勤務時間</td>
+            <td><label>配置</label></td>
+            <td><label>氏名</label></td>
+            <td><label>勤務時間</label></td>
           </tr>
+          
           <?php for ($i=1;$i<=10;$i++) { ?>
           <tr>
             <td>
@@ -158,49 +162,15 @@
       <div class="col-12">
         <table class="table table-borderless">
           <tr>
-            <td colspan="5">（１）日常記録</td>
+            <td colspan="5"><label>（１）日常記録</label></td>
           </tr>
+
           <tr>
             <td colspan="2"></td>
-            <td>時間</td>
-            <td>氏名</td>
-            <td>特記事項</td>
+            <td><label>時間</label></td>
+            <td><label>氏名</label></td>
+            <td><label>特記事項</label></td>
           </tr>
-
-          <?php /* ?>
-          <?php for ($i=0;$i<5;$i++) { ?>
-          <?php for ($j=0;$j<$detail[$i];$j++) { ?>
-          <tr>
-            <?php if ($j == 0) { ?>
-            <td class="align-middle" rowspan="<?php echo $detail[$i]; ?>"></td>
-            <?php } ?>
-
-            <td></td>
-            <td>
-              <div class="time">
-                <input type="number" class="text-center" name="" value="" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="" value="" min="0" max="59">
-              </div>
-            </td>
-            <td>
-              <select name="staff_id" id="staff_id" class="">
-                <option value=""></option>
-                <?php if ($staff2->oup_m_staff_id) { ?>
-                <?php for ($k=0;$k<count($staff2->oup_m_staff_id);$k++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$k]; ?>"<?php echo $staff2->oup_m_staff_id[$k] == $staff_id ? "selected" : "" ; ?>><?php echo $staff2->oup_m_staff_id[$k]; ?></option>
-                <?php } ?>
-                <?php } ?>
-              </select>
-            </td>
-
-            <?php if ($j == 0) { ?>
-            <td rowspan="<?php echo $detail[$i]; ?>"><textarea name="" id="" rows="<?php echo $detail[$i]; ?>" class="w-100" value=""></textarea></td>
-            <?php } ?>
-          </tr>
-          <?php } ?>
-          <?php } ?>
-          <?php */ ?>
           
           <?php $c = 0; ?>
           <?php for ($i=0;$i<count($title);$i++) { ?>
