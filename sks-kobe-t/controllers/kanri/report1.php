@@ -27,7 +27,7 @@
     $end_date                               = date("Y-m-d",strtotime($date." +1 day"));
     $joban_time                             = array("08","00");
     $kaban_time                             = array("08","00");
-    for ($i=1;$i<=9;$i++) {
+    for ($i=1;$i<=10;$i++) {
         ${"wk_ship".$i}                     = null;
         ${"wk_ship_in_port_time".$i}        = array(null,null);
         ${"wk_ship_out_port_time".$i}       = array(null,null);
@@ -51,27 +51,28 @@
     $yard_off_time2                         = array(null,null);
 
     $array                                  = array(
-        array(array("07","00"),array("08","00"),"2","1"),
-        array(array("07","30"),array("08","00"),"2","0.5"),
-        array(array("17","00"),array(null,null),null,null),
-        array(array("17","00"),array("18","00"),"1","1.25"),
-        array(array("17","00"),array("17","30"),"2","0.75"),
-        array(array("12","00"),array("13","00"),"8","1"),
-        array(array("17","00"),array("18","00"),"1","1.25"),
-        array(array("17","00"),array(null,null),null,null),
-        // 予備
-        array(array(null,null),array(null,null),null,null),
-        array(array(null,null),array(null,null),null,null),
-        array(array(null,null),array(null,null),null,null),
-        array(array(null,null),array(null,null),null,null)
+        array(array("07","00"),array("08","00"),null,null),                 // 共同デポ
+        array(array("07","30"),array("08","00"),null,null),                 // PC15.16.17　並び
+        array(array("17","00"),array(null,null),null,null),                 // PC15.16.17　CY
+        // array(array("17","00"),array("18","00"),"1","1.25"),             // 専用道白出口
+        array(array("17","00"),array("17","30"),null,null),                 // VP作業
+        array(array("12","00"),array("13","00"),null,null),                 // 昼作業
+        array(array("17","00"),array("18","00"),null,null),                 // ゲート延長
+        array(array("17","00"),array(null,null),null,null),                 // Mバース
+        array(array("17","00"),array(null,null),null,null),                 // T字立哨
+        array(array("17","00"),array(null,null),null,null),                 // 空前立哨
+        array(array("17","00"),array(null,null),null,null),                 // 岸壁立哨
+        array(array("17","00"),array(null,null),null,null)                  // 分別立哨
     );
     $tokki = array(
         array(
-            "title"=>"・早出➀共同デポ",
+            // "title"=>"・早出➀共同デポ",
+            "title"=>"・早出➀",
             "name"=>array("depo_joban_time","depo_kaban_time","depo_num","depo_zan")
         ),
         array(
-            "title"=>"・早出➁PC15.16.17　並び",
+            // "title"=>"・早出➁PC15.16.17　並び",
+            "title"=>"・早出➁",
             "name"=>array("sort_joban_time","sort_kaban_time","sort_num","sort_zan")
         ),
         array(
@@ -98,7 +99,6 @@
             "title"=>"・Mバース",
             "name"=>array("mbath_joban_time","mbath_kaban_time","mbath_num","mbath_zan")
         ),
-        // 予備
         array(
             "title"=>"・T字立哨",
             "name"=>array("picket_joban_time1","picket_kaban_time1","picket_num1","picket_zan1")
@@ -132,7 +132,10 @@
     $meterb2                          = null;
     $meterc1                          = null;
     $meterc2                          = null;
+    $wk_kbn                           = array("➀","➁","C","白","V","昼","ゲ","M","T","岸","分");
     for ($i=1;$i<=15;$i++) {
+        ${"wk_staff".$i."_zan1"}      = null;
+        ${"wk_staff".$i."_zan2"}      = null;
         ${"wk_staff_id".$i}           = null;
     }
     $wk_comment                       = null;
@@ -176,7 +179,7 @@
     $staff->getStaff();
 
     if ($act) {
-        // var_dump($_POST["last_exit1"]);
+        // var_dump($_POST);
         // exit;
 
         // チェックボックスにチェックされていたら停泊を登録
@@ -191,8 +194,9 @@
 
         foreach ($_POST as $key => $value) {
             // var_dump($key,$value);
+            
             // 値が空ならNULLで登録
-            if ((!is_array($value) && !$value) || (is_array($value) && !$value[0] && !$value[1])) {
+            if ((!is_array($value) && $value === "") || (is_array($value) && $value[0] === "" && $value[1] === "")) {
                 $report2->{"inp_".$key}                 = null;
                 continue;
             }
@@ -202,21 +206,29 @@
             if ($key != "act") {
                 // 最終退出者
                 if (is_array($value) && strpos($key,"last_exit") !== false) {
-                    if ($value[0] && $value[1]) {
+                    if ($value[0] !== "" && $value[1] !== "") {
                         $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":".sprintf("%02d",$value[1]);  // 時刻整形
+                    } elseif ($value[0] !== "" && $value[1] === "") {
+                        $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":00";
+                    } elseif ($value[0] === "" && $value[1] !== "") {
+                        $report2->{"inp_".$key}          = "00:".sprintf("%02d",$value[1]);
                     }
                     continue;
                 }
                 // 時刻の場合（checkboxの項目以外）
                 if (is_array($value) && strpos($key,"time") !== false) {
-                    if ($value[0] && $value[1]) {
+                    if ($value[0] !== "" && $value[1] !== "") {
                         $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":".sprintf("%02d",$value[1]);  // 時刻整形
+                    } elseif ($value[0] !== "" && $value[1] === "") {
+                        $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":00";
+                    } elseif ($value[0] === "" && $value[1] !== "") {
+                        $report2->{"inp_".$key}          = "00:".sprintf("%02d",$value[1]);
                     }
                     continue;
                 }
 
                 // 時刻以外
-                $report2->{"inp_".$key}              = $value;
+                $report2->{"inp_".$key}              = $value === "0" ? null : $value ;
             }
         }
 
@@ -330,6 +342,10 @@
             $staff_kbn[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_kbn[$i];
         }
         
+        $staff2->inp_left_join = true;
+        $staff2->inp_plan_date = $start_date;
+        // $staff2->inp_group = "m_staff_id";
+        $staff2->inp_order = "order by t_wk_detail.t_wk_plan_kbn";
         $staff2->getStaff();
 
         // 隊員が一人なら担当警備員にデフォルト表示

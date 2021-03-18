@@ -113,13 +113,13 @@
       <div class="col-12">
         <table class="table table-borderless">
           <tr>
-            <td class="align-middle" rowspan="12">状<br>況</td>
+            <td class="align-middle" rowspan="13">状<br>況</td>
             <td><label>１．入出港船舶</label></td>
             <td><label>入港</label></td>
             <td><label>出港</label></td>
           </tr>
 
-          <?php for ($i=1;$i<=9;$i++) { ?>
+          <?php for ($i=1;$i<=10;$i++) { ?>
           <tr>
             <td>
               <input type="text" class="text w-75" name="wk_ship<?php echo $i; ?>" value="<?php echo ${"wk_ship".$i}; ?>">
@@ -359,7 +359,7 @@
               <input type="number" class="text-center num" name="<?php echo $tokki[$i]["name"][2] ; ?>" value="<?php echo ${$tokki[$i]["name"][2]} ; ?>" min="0">
               <label>名</label>
               <label>X</label>
-              <input type="number" class="text-center num" name="<?php echo $tokki[$i]["name"][3] ; ?>" value="<?php echo ${$tokki[$i]["name"][3]} ; ?>">
+              <input type="number" class="text-center hour" name="<?php echo $tokki[$i]["name"][3] ; ?>" value="<?php echo ${$tokki[$i]["name"][3]} ; ?>">
               <label>H</label>
             </td>
           </tr>
@@ -400,6 +400,7 @@
     <?php */ ?>
 
     <div class="row">
+      <?php /* ?>
       <div class="col-12">
         <table class="table table-borderless">
           <?php for ($i=1;$i<=5;$i++) { ?>
@@ -417,34 +418,56 @@
             <td><label>水道メーター</label></td>
             <?php } elseif ($i == 4) { ?>
             <td>
-              <input type="number" class="text-center p-0 w-75" name="metertb1" value="<?php echo $meterb1 ; ?>" min="0">
+              <input type="number" class="text-center" name="metertb1" value="<?php echo $meterb1 ; ?>" min="0">
             </td>
             <td>
-              <input type="number" class="text-center p-0 w-75" name="metertc1" value="<?php echo $meterc1 ; ?>" min="0">
+              <input type="number" class="text-center" name="metertc1" value="<?php echo $meterc1 ; ?>" min="0">
             </td>
             <?php } ?>
             <?php if ($i == 5) { ?>
             <td>
-              <input type="number" class="text-center p-0 w-75" name="metertb2" value="<?php echo $meterb2 ; ?>" min="0">
+              <input type="number" class="text-center" name="metertb2" value="<?php echo $meterb2 ; ?>" min="0">
             </td>
             <td>
-              <input type="number" class="text-center p-0 w-75" name="metertc2" value="<?php echo $meterc2 ; ?>" min="0">
+              <input type="number" class="text-center" name="metertc2" value="<?php echo $meterc2 ; ?>" min="0">
             </td>
             <?php } ?>
             <?php for ($j=1;$j<=3;$j++) { ?>
-            <td>
-              <label></label>
-              <select name="wk_staff_id<?php echo $j+($i-1)*3; ?>" id="wk_staff_id<?php echo $j+($i-1)*3; ?>" class="w-75">
-                <option value=""></option>
-                <?php if ($staff2->oup_m_staff_id) { ?>
-                <?php for ($k=0;$k<count($staff2->oup_m_staff_id);$k++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$k]; ?>"<?php echo $staff2->oup_m_staff_id[$k] == ${"wk_staff_id".($j+($i-1)*3)} ? "selected" : "" ; ?>>
-                  <?php echo $kbnMark[$staff_kbn[$staff2->oup_m_staff_id[$k]]]; ?>
-                  <?php echo $staff_name[$staff2->oup_m_staff_id[$k]]; ?>
-                </option>
-                <?php } ?>
-                <?php } ?>
-              </select>
+            <td class="">
+              <div class="d-flex">
+                <div class="">
+                  <select name="" id="" class="d-block">
+                    <option value=""></option>
+                    <?php for ($k=0;$k<count($wk_kbn);$k++) { ?>
+                    <option value="<?php echo $wk_kbn[$k]; ?>"<?php echo $wk_kbn[$k] == ${"wk_staff".($j+($i-1)*3)."_zan1"} ? "selected" : "" ; ?>>
+                      <?php echo $wk_kbn[$k]; ?>
+                    </option>
+                    <?php } ?>
+                  </select>
+                  <select name="" id="" class="d-block">
+                    <option value=""></option>
+                    <?php for ($k=0;$k<count($wk_kbn);$k++) { ?>
+                    <option value="<?php echo $wk_kbn[$k]; ?>"<?php echo $wk_kbn[$k] == ${"wk_staff".($j+($i-1)*3)."_zan1"} ? "selected" : "" ; ?>>
+                      <?php echo $wk_kbn[$k]; ?>
+                    </option>
+                    <?php } ?>
+                  </select>
+                </div>
+  
+                <div class="">
+                  <select name="wk_staff_id<?php echo $j+($i-1)*3; ?>" id="wk_staff_id<?php echo $j+($i-1)*3; ?>" class="w-75" style="height: 100%;">
+                    <option value=""></option>
+                    <?php if ($staff2->oup_m_staff_id) { ?>
+                    <?php for ($k=0;$k<count($staff2->oup_m_staff_id);$k++) { ?>
+                    <option value="<?php echo $staff2->oup_m_staff_id[$k]; ?>"<?php echo $staff2->oup_m_staff_id[$k] == ${"wk_staff_id".($j+($i-1)*3)} ? "selected" : "" ; ?>>
+                      <?php echo $kbnMark[$staff_kbn[$staff2->oup_m_staff_id[$k]]]; ?>
+                      <?php echo $staff_name[$staff2->oup_m_staff_id[$k]]; ?>
+                    </option>
+                    <?php } ?>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
             </td>
             <?php } ?>
           </tr>
@@ -457,6 +480,81 @@
             </td>
           </tr>
         </table>
+      </div>
+      <?php */ ?>
+
+      <div class="col-1 align-self-center"><label>備<br>考</label></div>
+      <div class="col-md-2 col-lg-3 align-self-center">
+        <div class="row">
+          <div class="col-lg-6 pl-md-0">
+            <div class="row">
+              <div class="col-12"><label>B</label></div>
+
+              <div class="col-12"><label>水道メーター</label></div>
+
+              <div class="col-12"><input type="number" class="num text-center w-100" name="meterb1" value="<?php echo $meterb1 ; ?>" min="0"></div>
+
+              <div class="col-12"><input type="number" class="num text-center w-100" name="meterb2" value="<?php echo $meterb2 ; ?>" min="0"></div>
+            </div>
+          </div>
+          <div class="col-lg-6 pl-md-0">
+            <div class="row">
+              <div class="col-12"><label>C</label></div>
+
+              <div class="col-12"><label>水道メーター</label></div>
+
+              <div class="col-12"><input type="number" class="num text-center w-100" name="meterc1" value="<?php echo $meterc1 ; ?>" min="0"></div>
+
+              <div class="col-12"><input type="number" class="num text-center w-100" name="meterc2" value="<?php echo $meterc2 ; ?>" min="0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1 align-self-center"><label>勤<br>務<br>員</label></div>
+      <div class="col-md-8 col-lg-7">
+        <div class="row">
+          <?php for ($i=1;$i<=15;$i++) { ?>
+          <div class="col-4">
+            <div class="row">
+              <div class="col-4 pr-0">
+                <select name="wk_staff<?php echo $i; ?>_zan1" id="wk_staff<?php echo $i; ?>_zan1" class="w-100">
+                  <option value=""></option>
+                  <?php for ($j=0;$j<count($wk_kbn);$j++) { ?>
+                  <option value="<?php echo $wk_kbn[$j]; ?>" <?php echo $wk_kbn[$j] == ${"wk_staff".$i."_zan1"} ? "selected" : "" ; ?>>
+                    <?php echo $wk_kbn[$j]; ?>
+                  </option>
+                  <?php } ?>
+                </select>
+                <select name="wk_staff<?php echo $i; ?>_zan2" id="wk_staff<?php echo $i; ?>_zan2" class="w-100">
+                  <option value=""></option>
+                  <?php for ($j=0;$j<count($wk_kbn);$j++) { ?>
+                  <option value="<?php echo $wk_kbn[$j]; ?>" <?php echo $wk_kbn[$j] == ${"wk_staff".$i."_zan2"} ? "selected" : "" ; ?>>
+                    <?php echo $wk_kbn[$j]; ?>
+                  </option>
+                  <?php } ?>
+                </select>
+              </div>
+              <div class="col-8 pl-0">
+                <select name="wk_staff_id<?php echo $i; ?>" id="wk_staff_id<?php echo $i; ?>" class="w-100 h-100">
+                  <option value=""></option>
+                  <?php if ($staff2->oup_m_staff_id) { ?>
+                  <?php for ($j=0;$j<count($staff2->oup_m_staff_id);$j++) { ?>
+                  <option value="<?php echo $staff2->oup_m_staff_id[$j]; ?>" <?php echo $staff2->oup_m_staff_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
+                    <?php echo $kbnMark[$staff_kbn[$staff2->oup_m_staff_id[$j]]]; ?>
+                    <?php echo $staff_name[$staff2->oup_m_staff_id[$j]]; ?>
+                  </option>
+                  <?php } ?>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+          </div>
+          <?php } ?>
+
+          <div class="col-12 mt-3">
+            <textarea name="wk_comment" id="" class="w-100" cols="" rows="2" value="<?php echo $wk_comment; ?>"><?php echo $wk_comment; ?></textarea>
+          </div>
+        </div>
       </div>
     </div>
     <hr>
@@ -535,8 +633,9 @@
   $('.time, .time2').addClass('d-inline-block border border-dark')
   $('.time [type="number"], .time2 [type="number"]').addClass('p-0 border-0')
   $('.time [type="number"], .num').css('width','45px')
-  $('.num, .text').addClass('pl-1')
-  $('.num, .text').css('border','1px solid #343a40')
+  $('.hour').css('width','55px')
+  $('.num, .text, .hour').addClass('pl-1')
+  $('.num, .text, .hour').css('border','1px solid #343a40')
   $('.text').addClass('w-50')
 
   // 入港、出港checkbox
