@@ -81,20 +81,29 @@
     // var_dump($_POST);
     // exit;
     foreach ($_POST as $key => $value) {
+      // 登録フラグ以外の項目登録
       if ($key != "act") {
-        if (is_array($value)) {
-          if ($value[0] && $value[1]) {
-            $report2->{"inp_".$key}               = $value[0].":".$value[1];
-          } elseif (!$value[0] && !$value[1]) {
-            $report2->{"inp_".$key}               = null;
-          }
-        } else {
-          if (!$value) {
-            $report2->{"inp_".$key}               = null;
-          } else {
-            $report2->{"inp_".$key}               = $value;
-          }
+        // 値が空ならNULLで登録
+        if ((!is_array($value) && $value === "") || (is_array($value) && $value[0] === "" && $value[1] === "")) {
+          $report2->{"inp_".$key}                 = null;
+          continue;
         }
+
+        // 値が空じゃない場合
+        // 時刻の場合（時：分が空ならNULL、片方が空なら00を登録）
+        if (is_array($value) && strpos($key,"time") !== false) {
+          if ($value[0] !== "" && $value[1] !== "") {
+            $report2->{"inp_".$key}          = $value[0].":".$value[1];  // 時刻整形
+          } elseif ($value[0] !== "" && $value[1] === "") {
+            $report2->{"inp_".$key}          = $value[0].":00";
+          } elseif ($value[0] === "" && $value[1] !== "") {
+            $report2->{"inp_".$key}          = "00:".$value[1];
+          }
+          continue;
+        }
+
+        // 時刻以外
+        $report2->{"inp_".$key}              = $value === "0" ? null : $value ;
       }
     }
 
