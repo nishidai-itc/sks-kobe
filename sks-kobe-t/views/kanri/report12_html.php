@@ -119,18 +119,18 @@
             <!-- <td>（正面ゲート：全て・一定の割合　/　サブINゲート：全て・一定の割合）</td> -->
             <td>
               （正面ゲート：
-              <select name="" id="" class="">
+              <select name="gate1" id="" class="">
                 <option value=""></option>
                 <?php for ($i=1;$i<=count($gate);$i++) { ?>
-                <option value="<?php echo $i; ?>"<?php echo $i == $gate_flg ? "selected" : "" ; ?>><?php echo $gate[$i]; ?></option>
+                <option value="<?php echo $i; ?>"<?php echo $i == $gate1 ? "selected" : "" ; ?>><?php echo $gate[$i]; ?></option>
                 <?php } ?>
               </select>
               　/　
               サブINゲート：
-              <select name="" id="" class="">
+              <select name="gate2" id="" class="">
                 <option value=""></option>
                 <?php for ($i=1;$i<=count($gate);$i++) { ?>
-                <option value="<?php echo $i; ?>"<?php echo $i == $gate_flg2 ? "selected" : "" ; ?>><?php echo $gate[$i]; ?></option>
+                <option value="<?php echo $i; ?>"<?php echo $i == $gate2 ? "selected" : "" ; ?>><?php echo $gate[$i]; ?></option>
                 <?php } ?>
               </select>
             </td>
@@ -140,7 +140,7 @@
           </tr>
           <tr>
             <td>
-              <textarea name="comment" id="" rows="10" class="w-100" value="">なし</textarea>
+              <textarea name="comment" id="" rows="10" class="w-100" value="<?php echo $comment; ?>"><?php echo $comment; ?></textarea>
             </td>
           </tr>
         </table>
@@ -160,13 +160,17 @@
 
     <div class="row">
       <div class="col-4">
-        <button type="button" class="btn btn-warning btn-block regist" role="button">一時保存</button>
+        <button type="button" class="btn btn-warning btn-block temp" role="button">一時保存</button>
       </div>
       <div class="col-4">
         <button type="button" class="btn btn-success btn-block regist" role="button">完了</button>
       </div>
       <div class="col-4">
+        <?php if ($_SESSION["menu_flg"] == "kanri") { ?>
+        <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='keibihokoku.php'">戻る</button>
+        <?php } else { ?>
         <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='report_menu.php'">戻る</button>
+        <?php } ?>
       </div>
     </div>
 

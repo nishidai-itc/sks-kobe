@@ -31,8 +31,8 @@
     "1"=>"全て",
     "2"=>"一定の割合"
   );
-  $gate_flg  = "2";
-  $gate_flg2 = "1";
+  $gate1  = "2";
+  $gate2 = "1";
   $comment                        = "なし";
   
   function getWeek($day) {
@@ -73,19 +73,23 @@
     // exit;
     foreach ($_POST as $key => $value) {
       if ($key != "act") {
+        // 時刻
         if (is_array($value)) {
-          if ($value[0] && $value[1]) {
-            // var_dump($key,$value);
+          if ($value[0] !== "" && $value[1] !== "" ) {
             $report2->{"inp_".$key}               = $value[0].":".$value[1];
-          } elseif (!$value[0] && !$value[1]) {
+          } elseif ($value[0] !== "" && $value[1] === "" ) {
+            $report2->{"inp_".$key}               = $value[0].":00";
+          } elseif ($value[0] === "" && $value[1] !== "" ) {
+            $report2->{"inp_".$key}               = "00:".$value[1];
+          } else {
             $report2->{"inp_".$key}               = null;
           }
+        // 時刻以外
         } else {
-          if (!$value) {
-            // var_dump($key,$value);
+          if ($value === "") {
             $report2->{"inp_".$key}               = null;
           } else {
-            $report2->{"inp_".$key}               = $value;
+            $report2->{"inp_".$key}               = $value === "0" ? null : $value ;
           }
         }
       }
@@ -135,8 +139,13 @@
       }
     }
 
-    header("Location:report_menu.php");
+    if ($_SESSION["menu_flg"] == "kanri") {
+      header("Location:keibihokoku.php");
+    } else {
+      header("Location:report_menu.php");
+    }
     exit;
+
   }
 
   if ($no) {
@@ -145,7 +154,7 @@
     $report3->getReport($table);
 
     if ($report3->oup_no) {
-      foreach (ReportTable::$report13 as $k => $key) {
+      foreach (ReportTable::$report12 as $k => $key) {
         if (strpos($key,"time") !== false) {
           // 時刻
           if (strpos($report3->{"oup_".$key}[0],":") !== false) {
@@ -188,25 +197,23 @@
       } else {
         $staff2->inp_m_staff_id_in = $staff2->inp_m_staff_id_in.",'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
       }
-
-      // // 勤務員の項目の隊員デフォルト表示
-      // if ($cnt != 4) {
-      //   $cnt = $cnt + 1;
-      //   // ${"wk_staff_id".$cnt}         = $wkdetail->oup_t_wk_taiin_id[$i];
-      //   ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
-      // }
     }
     
     $staff2->getStaff();
 
+    // 隊員が一人なら担当警備員にデフォルト表示
+    if (count($staff2->oup_m_staff_id) == 1) {
+      $staff_id = $no ? $staff_id : $staff2->oup_m_staff_id[0];
+    }
+
     for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
       $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
 
-      // 勤務員の項目の隊員デフォルト表示
-      if ($cnt != 4) {
-        $cnt = $cnt + 1;
-        ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
-      }
+      // // 勤務員の項目の隊員デフォルト表示
+      // if ($cnt != 4) {
+      //   $cnt = $cnt + 1;
+      //   ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
+      // }
     }
   }
 ?>
