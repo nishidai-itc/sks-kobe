@@ -485,9 +485,9 @@
               </div>
               <label class="">～</label>
               <div class="time">
-                <input type="number" class="text-center" name="yard2_end_time[0]" value="<?php echo $yard1_end_time[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="yard1_end_time[0]" value="<?php echo $yard1_end_time[0]; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="yard2_end_time[1]" value="<?php echo $yard1_end_time[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="yard1_end_time[1]" value="<?php echo $yard1_end_time[1]; ?>" min="0" max="59">
               </div>
               <label class="">/</label>
               <div class="time">

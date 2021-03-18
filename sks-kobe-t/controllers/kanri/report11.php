@@ -173,7 +173,7 @@
 
         foreach ($_POST as $key => $value) {
             // 値がなければnullを登録
-            if (!$value) {
+            if ($value === "") {
                 // continue;
                 $report->{"inp_".$key}                 = null;
             // 値が空ではない場合
@@ -190,14 +190,20 @@
                     }
                     $report->{"inp_".$key}              = $val;
                 } elseif (is_array($value) && strpos($key,"time") !== false) {
-                    if ($value[0] && $value[1]) {
+                    if ($value[0] !== "" && $value[1] !== "") {
                         $report->{"inp_".$key}          = sprintf("%02d",$value[0]).":".sprintf("%02d",$value[1]);
                     } else {
-                        // continue;
-                        $report->{"inp_".$key}          = null;
+                        if ($value[0] !== "" && $value[1] === "") {
+                            $report->{"inp_".$key}          = sprintf("%02d",$value[0]).":00";
+                        } elseif ($value[0] === "" && $value[1] !== "") {
+                            $report->{"inp_".$key}          = "00:".sprintf("%02d",$value[1]);
+                        } else {
+                            // continue;
+                            $report->{"inp_".$key}          = null;
+                        }
                     }
                 } else {
-                    $report->{"inp_".$key}              = $value;
+                    $report->{"inp_".$key}              = $value === "0" ? null : $value ;
                 }
             }
         }
