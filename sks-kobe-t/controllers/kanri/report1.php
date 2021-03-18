@@ -27,6 +27,7 @@
     $end_date                               = date("Y-m-d",strtotime($date." +1 day"));
     $joban_time                             = array("08","00");
     $kaban_time                             = array("08","00");
+    $port                                   = array("停泊","順延");
     for ($i=1;$i<=10;$i++) {
         ${"wk_ship".$i}                     = null;
         ${"wk_ship_in_port_time".$i}        = array(null,null);
@@ -133,7 +134,7 @@
     $meterc1                          = null;
     $meterc2                          = null;
     $wk_kbn                           = array("➀","➁","C","白","V","昼","ゲ","M","T","岸","分");
-    for ($i=1;$i<=15;$i++) {
+    for ($i=1;$i<=18;$i++) {
         ${"wk_staff".$i."_zan1"}      = null;
         ${"wk_staff".$i."_zan2"}      = null;
         ${"wk_staff_id".$i}           = null;
@@ -182,15 +183,15 @@
         // var_dump($_POST);
         // exit;
 
-        // チェックボックスにチェックされていたら停泊を登録
-        for ($i=1;$i<=9;$i++) {
-            if (!$_POST["wk_ship_in_port_time".$i]) {
-                $_POST["wk_ship_in_port_time".$i]               = "停泊";
-            }
-            if (!$_POST["wk_ship_out_port_time".$i]) {
-                $_POST["wk_ship_out_port_time".$i]              = "停泊";
-            }
-        }
+        // // チェックボックスにチェックされていたら停泊を登録
+        // for ($i=1;$i<=9;$i++) {
+        //     if (!$_POST["wk_ship_in_port_time".$i]) {
+        //         $_POST["wk_ship_in_port_time".$i]               = "停泊";
+        //     }
+        //     if (!$_POST["wk_ship_out_port_time".$i]) {
+        //         $_POST["wk_ship_out_port_time".$i]              = "停泊";
+        //     }
+        // }
 
         foreach ($_POST as $key => $value) {
             // var_dump($key,$value);
@@ -339,14 +340,14 @@
 
         // 隊員が一人なら担当警備員にデフォルト表示
         if (count($staff2->oup_m_staff_id) == 1) {
-            $staff_id = $staff_id ? $staff_id : $staff2->oup_m_staff_id[0];
+            $staff_id = $no ? $staff_id : $staff2->oup_m_staff_id[0];
         }
 
         for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
             $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
 
             // 勤務員の項目の隊員デフォルト表示
-            if ($cnt != 15) {
+            if ($cnt != 18) {
                 $cnt = $cnt + 1;
                 // データがある場合は取得したデータを、新規は予定が入っている隊員を表示
                 ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];

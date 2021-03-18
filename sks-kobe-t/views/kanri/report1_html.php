@@ -126,7 +126,12 @@
             </td>
             <td>
               <input type="checkbox" class="check" value="in<?php echo $i; ?>" <?php echo !is_array(${"wk_ship_in_port_time".$i}) ? "checked" : ""; ?>>
-              <label class="m-0">停泊</label>
+              <!-- <label class="m-0">停泊</label> -->
+              <select name="wk_ship_in_port_time<?php echo $i; ?>" id="">
+                <?php for ($j=0;$j<count($port);$j++) { ?>
+                <option value="<?php echo $port[$j]; ?>"<?php echo $port[$j] == ${"wk_ship_in_port_time".$i} ? "selected" : "" ; ?>><?php echo $port[$j]; ?></option>
+                <?php } ?>
+              </select>
               <div class="time">
                 <input type="number" class="text-center" name="wk_ship_in_port_time<?php echo $i; ?>[0]" value="<?php echo ${"wk_ship_in_port_time".$i}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -135,7 +140,12 @@
             </td>
             <td>
               <input type="checkbox" class="check" value="out<?php echo $i; ?>" <?php echo !is_array(${"wk_ship_out_port_time".$i}) ? "checked" : ""; ?>>
-              <label class="m-0">停泊</label>
+              <!-- <label class="m-0">停泊</label> -->
+              <select name="wk_ship_out_port_time<?php echo $i; ?>" id="">
+                <?php for ($j=0;$j<count($port);$j++) { ?>
+                <option value="<?php echo $port[$j]; ?>"<?php echo $port[$j] == ${"wk_ship_out_port_time".$i} ? "selected" : "" ; ?>><?php echo $port[$j]; ?></option>
+                <?php } ?>
+              </select>
               <div class="time">
                 <input type="number" class="text-center" name="wk_ship_out_port_time<?php echo $i; ?>[0]" value="<?php echo ${"wk_ship_out_port_time".$i}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -513,7 +523,7 @@
       <div class="col-1 align-self-center"><label>勤<br>務<br>員</label></div>
       <div class="col-md-8 col-lg-7">
         <div class="row">
-          <?php for ($i=1;$i<=15;$i++) { ?>
+          <?php for ($i=1;$i<=18;$i++) { ?>
           <div class="col-4">
             <div class="row">
               <div class="col-4 pr-0">
