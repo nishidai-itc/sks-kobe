@@ -204,7 +204,7 @@
             // 値が空じゃない場合
             // 登録フラグ以外の項目登録
             if ($key != "act") {
-                // 時刻の場合
+                // 時刻の場合（時：分が空ならNULL、片方が空なら00を登録）
                 if (is_array($value) && (strpos($key,"time") !== false || strpos($key,"last_exit") !== false)) {
                     if ($value[0] !== "" && $value[1] !== "") {
                         $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":".sprintf("%02d",$value[1]);  // 時刻整形
