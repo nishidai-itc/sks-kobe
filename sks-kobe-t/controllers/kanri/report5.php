@@ -25,7 +25,10 @@
     $chief                                  = null;
     $staff_id                               = null;
     $start_date                             = date("Y-m-d");
-    $end_date                               = date("Y-m-d",strtotime($date." +1 day"));
+    if ($_GET["plan_date"] != "") {
+        $start_date                         = $_GET["plan_date"];
+    }
+    $end_date                               = date("Y-m-d",strtotime($start_date." +1 day"));
     $joban_time                             = array("08","00");
     $kaban_time                             = array("08","00");
     $picketTimes1                           = array(array("08","30"),array("08","30"),array("08","30"));
@@ -253,6 +256,11 @@
             // 勤務員デフォルト表示
             $cnt = $cnt + 1;
             ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
+        }
+
+        // 隊員が一人なら担当警備員にデフォルト表示
+        if (count($wkdetail->oup_t_wk_detail_no) == 1) {
+            $staff_id = $no ? $staff_id : $wkdetail->oup_t_wk_taiin_id[0];
         }
     }
 
