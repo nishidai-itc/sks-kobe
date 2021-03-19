@@ -64,7 +64,7 @@
     $wk_comment                             = "巡回　点検　警備その他服務中異常ありません";
     $wk_admin_end                           = null;
     $wk_outsider                            = null;
-    $abc                                    = array("1"=>"A","2"=>"B","3"=>"C","4"=>"D","5"=>"E","6"=>"F","7"=>"G","8"=>"H","9"=>"I");
+    // $abc                                    = array("1"=>"A","2"=>"B","3"=>"C","4"=>"D","5"=>"E","6"=>"F","7"=>"G","8"=>"H","9"=>"I");
     for ($i=1;$i<=9;$i++) {
         ${"wk_staff_id".$i}                 = null;
     }
@@ -129,6 +129,11 @@
 
     // 社員マスタ 取得
     $staff->getStaff();
+
+    $staff2->getStaff();
+    for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
+        $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
+    }
 
     if ($act) {
         // var_dump($_POST);
@@ -227,41 +232,27 @@
         }
     }
 
+    // 勤務区分
+    $kinmu_kbn = array("1"=>"泊","2"=>"日","3"=>"夜");
+
     // 当日予定のある隊員取得
     $wkdetail->inp_t_wk_genba_id = "1";
     $wkdetail->inp_t_wk_plan_kbn_in = "'1','2','3'";
     $wkdetail->inp_t_wk_plan_date = str_replace("-","",$start_date);
-    $wkdetail->inp_order = "order by t_wk_plan_joban_time";
+    $wkdetail->inp_order = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
     $wkdetail->getWkdetail();
 
-    // 隊員取得
+    // 予定から隊員取得
     if ($wkdetail->oup_t_wk_detail_no) {
         $cnt = 0;
         for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
-            if ($i == 0) {
-                $staff2->inp_m_staff_id_in = "'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-            } else {
-                $staff2->inp_m_staff_id_in = $staff2->inp_m_staff_id_in.",'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-            }
+            // 勤務区分、補足文字
+            $wk_kbn[$wkdetail->oup_t_wk_taiin_id[$i]] = $kinmu_kbn[$wkdetail->oup_t_wk_plan_kbn[$i]];
+            $wk_hosoku[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_hosoku[$i];
 
-            // // 勤務区分
-            // $staff_kbn[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_kbn[$i];
-        }
-        
-        $staff2->getStaff();
-
-        // // 隊員が一人なら担当警備員にデフォルト表示
-        // if (count($staff2->oup_m_staff_id) == 1) {
-        //     $staff_id = $staff_id ? $staff_id : $staff2->oup_m_staff_id[0];
-        // }
-
-        for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
-            $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
-
-            // 勤務員の項目の隊員デフォルト表示
+            // 勤務員デフォルト表示
             $cnt = $cnt + 1;
-            // データがある場合は取得したデータを、新規は予定が入っている隊員を表示
-            ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
+            ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
         }
     }
 

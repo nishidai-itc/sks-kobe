@@ -117,9 +117,9 @@
             <td rowspan="2">
               <select name="staff_id" id="staff_id" class="w-50">
                 <option value=""></option>
-                <?php if ($staff2->oup_m_staff_id) { ?>
-                <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$i]; ?>"<?php echo $staff2->oup_m_staff_id[$i] == $staff_id ? "selected" : "" ; ?>><?php echo $staff2->oup_m_staff_name[$i]; ?></option>
+                <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+                <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+                <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $staff_id ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
                 <?php } ?>
                 <?php } ?>
               </select>
@@ -381,12 +381,13 @@
             <?php } ?>
             <?php for ($j=1;$j<=3;$j++) { ?>
             <td>
-              <label><?php echo $abc[$j+$i*3] ; ?></label>
+              <!-- <label><?php echo $abc[$j+$i*3] ; ?></label> -->
+              <label><?php echo $wk_kbn[${"wk_staff_id".($j+$i*3)}].$wk_hosoku[${"wk_staff_id".($j+$i*3)}] ; ?></label>
               <select name="wk_staff_id<?php echo $j+$i*3 ; ?>" id="wk_staff_id<?php echo $j+$i*3 ; ?>" class="wk_staff_id">
                 <option value=""></option>
-                <?php if ($staff2->oup_m_staff_id) { ?>
-                <?php for ($k=0;$k<count($staff2->oup_m_staff_id);$k++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$k]; ?>"<?php echo $staff2->oup_m_staff_id[$k] == ${"wk_staff_id".($j+($i*3))} ? "selected" : "" ; ?>><?php echo $staff2->oup_m_staff_name[$k]; ?></option>
+                <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+                <?php for ($k=0;$k<count($wkdetail->oup_t_wk_detail_no);$k++) { ?>
+                <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$k]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$k] == ${"wk_staff_id".($j+($i*3))} ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$k]]; ?></option>
                 <?php } ?>
                 <?php } ?>
               </select>
