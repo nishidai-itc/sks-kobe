@@ -82,8 +82,6 @@ $(function(){
   <body>
 
 <?php 
-    $startday = date('Ymd');
-    $endday = date('Ymd');
     $week = array("日", "月", "火", "水", "木", "金", "土");
 ?>
 
@@ -113,7 +111,17 @@ $(function(){
                     <td bgcolor="#d5d5d5">
                       <select style="width: 170px"  id="genba_id" name="genba_id[]" class="form-control" multiple="multiple" size="1">
                         <?php for ($i=0;$i<count($reportname->oup_t_report_no);$i++) { ?>
-                        <option value="<?php print($reportname->oup_t_report_no[$i]); ?>"><?php print($reportname->oup_t_report_place[$i]." ".$reportname->oup_t_report_contract[$i]); ?></option>
+                        <option value="<?php print($reportname->oup_t_report_no[$i]); ?>" 
+<?php 
+                        if ($genba_id) {
+                            for ($j=0;$j<count($genba_id);$j++) {
+                                if ($genba_id[$j]===$reportname->oup_t_report_no[$i]) {
+                                    print("selected");
+                                }
+                            }
+                        }
+?>
+                            ><?php print($reportname->oup_t_report_place[$i]." ".$reportname->oup_t_report_contract[$i]); ?></option>
                         <?php } ?>
                       </select>
                     </td>
@@ -136,7 +144,7 @@ $(function(){
         <div class="col-12">
           <table>
             <tr>
-              <td>チェックしたものを　<a href="#" class="btn btn-primary" role="button" aria-pressed="true">PDF出力</a>　</td>
+              <td>チェックしたものを　<!-- <a href="#" class="btn btn-primary" role="button" aria-pressed="true">PDF出力</a> -->　</td>
               <td>Gチェック&nbsp;&#10004;&nbsp;　</td>
               <td>
                 <select name="gchk1" class="form-control">
@@ -161,49 +169,53 @@ $(function(){
                 <td width="30" bgcolor="FFDCA5">詳細</td>
                 <td width="40" bgcolor="FFDCA5"><input type="checkbox" id="all-checked"></td>
                 <td width="30" bgcolor="FFDCA5">G<br>&#10004;</td>
-                <td width="60" bgcolor="FFDCA5">日付</td>
-                <td width="40" bgcolor="FFDCA5">曜<br />日</td>
+                <td width="80" bgcolor="FFDCA5">入力状態</td>
+                <td width="50" bgcolor="FFDCA5">日付</td>
+                <td width="30" bgcolor="FFDCA5">曜<br />日</td>
                 <td width="155" bgcolor="FFDCA5">警備報告書</td>
                 <td width="155" bgcolor="FFDCA5">勤務場所</td>
                 <td width="155" bgcolor="FFDCA5">契約先</td>
                 <td width="60" bgcolor="FFDCA5">PDF</td>
               </tr>
-              <?php for ($i=0;$i<count($report->oup_no);$i++) { ?>
+              <?php if (isset($report->oup_no)) { ?>
+                  <?php for ($i=0;$i<count($report->oup_no);$i++) { ?>
 
-                <?php 
-                    if ($i%2==0) {
-                        $color = "bgcolor=\"e1f6fc\"";
-                    } else {
-                        $color = "";
-                    }
+                    <?php 
+                        if ($i%2==0) {
+                            $color = "bgcolor=\"e1f6fc\"";
+                        } else {
+                            $color = "";
+                        }
 
-                    $time = strtotime(date($report->oup_plan_date[$i]));
-                    $w = date("w", $time);
-                    $weekday = $week[$w];
+                        $time = strtotime(date($report->oup_plan_date[$i]));
+                        $w = date("w", $time);
+                        $weekday = $week[$w];
 
-                    if ($report->oup_gchk[$i]=="1") {
-                        $gchk = "&#10004;";
-                    } else {
-                        $gchk = "";
-                    }
-                ?>
+                        if ($report->oup_gchk[$i]=="1") {
+                            $gchk = "&#10004;";
+                        } else {
+                            $gchk = "";
+                        }
+                    ?>
 
-                  <tr class="text-center">
-                    <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>.php?no=<?php echo $report->oup_no[$i]; ?>">
-                        <i class="fas fa-pen"></i></a></td>
-                    <td <?php print($color); ?>>
-                      <input name="check_teate[<?php echo $i; ?>]" type="checkbox" class="teate-checked"
-                        value="<?php echo $report->oup_no[$i]; ?>">
-                    </td>
-                    <td <?php print($color); ?>><?php print($gchk); ?></td>
-                    <td <?php print($color); ?>><?php print(substr($report->oup_plan_date[$i],5,2)."/".substr($report->oup_plan_date[$i],8,2)); ?></td>
-                    <td <?php print($color); ?>><?php print($weekday); ?></td>
-                    <td <?php print($color); ?>></td>
-                    <td <?php print($color); ?> align="left"><?php print($report_place[$report->oup_name_no[$i]]); ?></td>
-                    <td <?php print($color); ?> align="left"><?php print($report_contract[$report->oup_name_no[$i]]); ?></td>
-                    <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>_pdf.php?no=<?php echo $report->oup_no[$i]; ?>" target="_blank"><i class="fas fa-file-pdf fa-2x"></i></a></td>
-                  </tr>
+                      <tr class="text-center">
+                        <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>.php?no=<?php echo $report->oup_no[$i]; ?>">
+                            <i class="fas fa-pen"></i></a></td>
+                        <td <?php print($color); ?>>
+                          <input name="check_teate[<?php echo $i; ?>]" type="checkbox" class="teate-checked"
+                            value="<?php echo $report->oup_no[$i]; ?>">
+                        </td>
+                        <td <?php print($color); ?>><?php print($gchk); ?></td>
+                        <td <?php print($color); ?> align="left"><?php print($kbn[$report->oup_kbn[$i]]); ?></td>
+                        <td <?php print($color); ?>><?php print(substr($report->oup_plan_date[$i],5,2)."/".substr($report->oup_plan_date[$i],8,2)); ?></td>
+                        <td <?php print($color); ?>><?php print($weekday); ?></td>
+                        <td <?php print($color); ?>></td>
+                        <td <?php print($color); ?> align="left"><?php print($report_place[$report->oup_name_no[$i]]); ?></td>
+                        <td <?php print($color); ?> align="left"><?php print($report_contract[$report->oup_name_no[$i]]); ?></td>
+                        <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>_pdf.php?no=<?php echo $report->oup_no[$i]; ?>" target="_blank"><i class="fas fa-file-pdf fa-2x"></i></a></td>
+                      </tr>
 
+                  <?php } ?>
               <?php } ?>
 <!--
               <tr class="text-center">
@@ -264,7 +276,7 @@ $(function(){
         <div class="col-12">
           <table>
             <tr>
-              <td>チェックしたものを　<a href="#" class="btn btn-primary" role="button" aria-pressed="true">PDF出力</a>　</td>
+              <td>チェックしたものを　<!-- <a href="#" class="btn btn-primary" role="button" aria-pressed="true">PDF出力</a> -->　</td>
               <td>Gチェック&nbsp;&#10004;&nbsp;　</td>
               <td>
                 <select name="gchk2" class="form-control">

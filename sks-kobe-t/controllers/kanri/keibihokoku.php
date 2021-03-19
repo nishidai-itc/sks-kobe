@@ -15,7 +15,68 @@
     require_once('../../models/Report.php');                 // 警備報告書クラス
     require_once('../../models/Staff.php');                  // 社員クラス
 
-    $act            = NULL;
+    $act       = NULL;
+    $hokokusyo = "";
+    $kbn['1'] = "完了";
+    $kbn['2'] = "一時保存";
+
+    if (isset($_REQUEST['startday'])) {
+        $_SESSION["sday"] = $_REQUEST["startday"];
+    } else {
+        if (!isset($_SESSION["sday"])) {
+            $_SESSION["sday"] = date('Ymd');
+        }
+    }
+    if (isset($_REQUEST['endday'])) {
+        $_SESSION["eday"] = $_REQUEST["endday"];
+    } else {
+        if (!isset($_SESSION["eday"])) {
+            $_SESSION["eday"] = date('Ymd');
+        }
+    }
+
+    $startday   = str_replace("-",$sp,$_SESSION["sday"]);
+    $endday     = str_replace("-",$sp,$_SESSION["eday"]);
+
+    // 日付前日ボタン
+    if (isset($_REQUEST["prev"])) {
+        $startday_ts = strtotime($startday);
+        $startday_ts2 = strtotime('-1 day',$startday_ts);
+        $startday = date("Ymd",$startday_ts2);
+        $endday_ts = strtotime($endday);
+        $endday_ts2 = strtotime('-1 day',$endday_ts);
+        $endday = date("Ymd",$endday_ts2);
+    }
+    // 日付翌日ボタン
+    if (isset($_REQUEST["next"])) {
+        $startday_ts = strtotime($startday);
+        $startday_ts2 = strtotime('+1 day',$startday_ts);
+        $startday = date("Ymd",$startday_ts2);
+        $endday_ts = strtotime($endday);
+        $endday_ts2 = strtotime('+1 day',$endday_ts);
+        $endday = date("Ymd",$endday_ts2);
+    }
+
+    if (isset($_REQUEST["genba_id"])) {
+        for ($i=0;$i<count($_REQUEST["genba_id"]);$i++) {
+            $genba_id[$i] = $_REQUEST["genba_id"][$i];
+            $_SESSION["gid"][$i] = $genba_id[$i];
+        }
+    } else {
+        if ($_SESSION["gid"] != "") {
+            for ($i=0;$i<count($_SESSION["gid"]);$i++) {
+                $genba_id[$i] = $_SESSION["gid"][$i];
+            }
+        }
+    }
+    if (isset($genba_id)) {
+        for ($i=0;$i<count($genba_id);$i++) {
+            if ($i != 0) {
+                $hokokusyo .= ",";
+            }
+            $hokokusyo .= "'".$genba_id[$i]."'";
+        }
+    }
 
     /*********************************************************
      *	クラスの作成
@@ -60,6 +121,14 @@
     }
 
     // 警備報告書取得
+    $report->inp_plan_start_date = $startday;
+    $report->inp_plan_end_date = $endday;
+    if ($hokokusyo != "") {
+        $report->inp_table_in = $hokokusyo;
+    }
+//print($hokokusyo);
+//    $report->inp_table_in = "'10','11','12'";
+    $report->inp_order = "order by t_report_plan_date";
     // 検索部分はまだ出来ていないため全件取得
     $report->getReport("kanri");
 //var_dump($report);
