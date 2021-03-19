@@ -33,21 +33,8 @@
     $kaban_time                             = array("08","00");
     $picketTimes1                           = array(array("08","30"),array("08","30"),array("08","30"));
     $picketTimes2                           = array(array("17","00"),array("16","30"),array("17","00"));
+    $yard_kbn                               = array("三井","日東","三菱");
     for ($i=1;$i<=4;$i++) {
-        if ($i < 3) {
-            ${"c2_joban_time".$i}          = array(null,null);
-            ${"c2_kaban_time".$i}          = array(null,null);
-            ${"c3_joban_time".$i}          = array(null,null);
-            ${"c3_kaban_time".$i}          = array(null,null);
-            ${"c4_joban_time".$i}          = array(null,null);
-            ${"c4_kaban_time".$i}          = array(null,null);
-            ${"c5_joban_time".$i}          = array(null,null);
-            ${"c5_kaban_time".$i}          = array(null,null);
-            ${"tonbo_light_joban_time".$i}  = array(null,null);
-            ${"tonbo_light_kaban_time".$i}  = array(null,null);
-            ${"c5_light_joban_time".$i}    = array(null,null);
-            ${"c5_light_kaban_time".$i}    = array(null,null);
-        }
         if ($i < 4) {
             ${"picket_joban_time".$i}       = array($picketTimes1[$i-1][0],$picketTimes1[$i-1][1]);
             ${"picket_kaban_time".$i}       = array($picketTimes2[$i-1][0],$picketTimes2[$i-1][1]);
@@ -55,6 +42,25 @@
         ${"ship".$i}                        = null;
         ${"ship_in_port_time".$i}           = array(null,null);
         ${"ship_out_port_time".$i}          = array(null,null);
+
+        ${"c2_kbn".$i}                 = null;
+        ${"c2_joban_time".$i}          = array(null,null);
+        ${"c2_kaban_time".$i}          = array(null,null);
+        ${"c3_kbn".$i}                 = null;
+        ${"c3_joban_time".$i}          = array(null,null);
+        ${"c3_kaban_time".$i}          = array(null,null);
+        ${"c4_kbn".$i}                 = null;
+        ${"c4_joban_time".$i}          = array(null,null);
+        ${"c4_kaban_time".$i}          = array(null,null);
+        ${"c5_kbn".$i}                 = null;
+        ${"c5_joban_time".$i}          = array(null,null);
+        ${"c5_kaban_time".$i}          = array(null,null);
+        ${"tonbo_light_kbn".$i}        = null;
+        ${"tonbo_light_joban_time".$i} = array(null,null);
+        ${"tonbo_light_kaban_time".$i} = array(null,null);
+        ${"c5_light_kbn".$i}           = null;
+        ${"c5_light_joban_time".$i}    = array(null,null);
+        ${"c5_light_kaban_time".$i}    = array(null,null);
     }
     $comment                                = null;
     $times = array(

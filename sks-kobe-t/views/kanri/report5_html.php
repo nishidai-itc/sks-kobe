@@ -151,31 +151,32 @@
             </td>
             <td>
 
-              <div class="w-45 d-inline-block">
-                <input type="checkbox" class="check" value="in<?php echo $i; ?>" <?php echo !is_array(${"ship_in_port_time".$i}) ? "checked" : ""; ?>>
-                <label class="m-0">停泊</label>
-                <div class="time">
-                  <input type="number" class="text-center" name="ship_in_port_time<?php echo $i; ?>[0]" value="<?php echo ${"ship_in_port_time".$i}[0]; ?>" min="0" max="23">
-                  <span class="">:</span>
-                  <input type="number" class="text-center" name="ship_in_port_time<?php echo $i; ?>[1]" value="<?php echo ${"ship_in_port_time".$i}[1]; ?>" min="0" max="59">
-                </div>
+              <input type="checkbox" class="check" value="in<?php echo $i; ?>" <?php echo !is_array(${"ship_in_port_time".$i}) ? "checked" : ""; ?>>
+              <label class="m-0">停泊</label>
+              <div class="time">
+                <input type="number" class="text-center" name="ship_in_port_time<?php echo $i; ?>[0]" value="<?php echo ${"ship_in_port_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="ship_in_port_time<?php echo $i; ?>[1]" value="<?php echo ${"ship_in_port_time".$i}[1]; ?>" min="0" max="59">
               </div>
 
               <label>～</label>
 
-              <div class="w-45 d-inline-block">
-                <input type="checkbox" class="check" value="out<?php echo $i; ?>" <?php echo !is_array(${"ship_out_port_time".$i}) ? "checked" : ""; ?>>
-                <label class="m-0">停泊</label>
-                <div class="time">
-                  <input type="number" class="text-center" name="ship_out_port_time<?php echo $i; ?>[0]" value="<?php echo ${"ship_out_port_time".$i}[0]; ?>" min="0" max="23">
-                  <span class="">:</span>
-                  <input type="number" class="text-center" name="ship_out_port_time<?php echo $i; ?>[1]" value="<?php echo ${"ship_out_port_time".$i}[1]; ?>" min="0" max="59">
-                </div>
+              <input type="checkbox" class="check" value="out<?php echo $i; ?>" <?php echo !is_array(${"ship_out_port_time".$i}) ? "checked" : ""; ?>>
+              <label class="m-0">停泊</label>
+              <div class="time">
+                <input type="number" class="text-center" name="ship_out_port_time<?php echo $i; ?>[0]" value="<?php echo ${"ship_out_port_time".$i}[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="ship_out_port_time<?php echo $i; ?>[1]" value="<?php echo ${"ship_out_port_time".$i}[1]; ?>" min="0" max="59">
               </div>
 
             </td>
             <td>
-            <?php if ($i < 3) { ?>
+              <select name="" id="" class="">
+                <option value=""></option>
+                <?php for ($j=0;$j<count($yard_kbn);$j++) { ?>
+                <option value="<?php echo $yard_kbn[$j]; ?>"<?php echo $yard_kbn[$j] == ${"c2_kbn".$i} ? "selected" : "" ; ?>><?php echo $yard_kbn[$j]; ?></option>
+                <?php } ?>
+              </select>
               <div class="time">
                 <input type="number" class="text-center" name="c2_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c2_joban_time".$i}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -187,7 +188,6 @@
                 <span class="">:</span>
                 <input type="number" class="text-center" name="c2_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"c2_kaban_time".$i}[1]; ?>" min="0" max="59">
               </div>
-            <?php } ?>
             </td>
           </tr>
           <?php } ?>
@@ -214,7 +214,6 @@
               </div>
             </td>
             <td>
-              <?php if ($i != 3) { ?>
               <div class="time">
                 <input type="number" class="text-center" name="c3_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c3_joban_time".$i}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -226,19 +225,38 @@
                 <span class="">:</span>
                 <input type="number" class="text-center" name="c3_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"c3_kaban_time".$i}[1]; ?>" min="0" max="59">
               </div>
-              <?php } ?>
             </td>
           </tr>
           <?php } ?>
+          <tr>
+            <td colspan="2"></td>
+            <td>
+              <div class="time">
+                <input type="number" class="text-center" name="c3_joban_time4[0]" value="<?php echo $c3_joban_time4[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c3_joban_time4[1]" value="<?php echo $c3_joban_time4[1]; ?>" min="0" max="59">
+              </div>
+              <label>～</label>
+              <div class="time">
+                <input type="number" class="text-center" name="c3_kaban_time4[0]" value="<?php echo $c3_kaban_time4[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="c3_kaban_time4[1]" value="<?php echo $c3_kaban_time4[1]; ?>" min="0" max="59">
+              </div>
+            </td>
+          </tr>
 
           <tr>
             <td colspan="2"><label>iv．各ゲート及び管理棟、CFS事務所の開錠及び施錠実施</label></td>
             <td><label>C-4</label></td>
           </tr>
 
-          <?php for ($i=1;$i<=2;$i++) { ?>
+          <?php for ($i=1;$i<=4;$i++) { ?>
           <tr>
-            <td colspan="2"><label><?php if ($i == 1) {echo "２．重点";} else {echo "i．管理棟及び各建屋の火災、盗難等の警戒警備並びに<br>不法侵入者の警戒監視";} ?></label></td>
+            <td colspan="2">
+              <?php if ($i < 4) {?>
+              <label><?php if ($i == 1) {echo "２．重点";} elseif ($i == 2) {echo "i．管理棟及び各建屋の火災、盗難等の警戒警備並びに";} else {echo "不法侵入者の警戒監視";} ?></label>
+              <?php } ?>
+            </td>
             <td>
               <div class="time">
                 <input type="number" class="text-center" name="c4_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c4_joban_time".$i}[0]; ?>" min="0" max="23">
@@ -260,11 +278,14 @@
             <td><label>C-5</label></td>
           </tr>
 
-          <?php for ($i=1;$i<=3;$i++) { ?>
+          <?php for ($i=1;$i<=4;$i++) { ?>
           <tr>
-            <td colspan="2"><label><?php if ($i == 1) {echo "３．実施";} elseif ($i == 2) {echo "i．昼夜間巡回、警戒警備及び外周赤外線システムの監視";} else {echo "ii．管理棟及び各建屋の鍵の保管管理";} ?></label></td>
+            <td colspan="2">
+            <?php if ($i < 4) {?>
+              <label><?php if ($i == 1) {echo "３．実施";} elseif ($i == 2) {echo "i．昼夜間巡回、警戒警備及び外周赤外線システムの監視";} else {echo "ii．管理棟及び各建屋の鍵の保管管理";} ?></label>
+            <?php } ?>
+            </td>
             <td>
-              <?php if ($i != 3) { ?>
               <div class="time">
                 <input type="number" class="text-center" name="c5_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c5_joban_time".$i}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -276,7 +297,6 @@
                 <span class="">:</span>
                 <input type="number" class="text-center" name="c5_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"c5_kaban_time".$i}[1]; ?>" min="0" max="59">
               </div>
-              <?php } ?>
             </td>
           </tr>
           <?php } ?>
@@ -286,10 +306,10 @@
             <td><label>トンボ照明</label></td>
           </tr>
           
-          <?php for ($i=1;$i<=2;$i++) { ?>
+          <?php for ($i=1;$i<=4;$i++) { ?>
           <tr>
             <?php if ($i == 1) { ?>
-            <td rowspan="5" colspan="2" class="pr-5"><textarea name="comment" id="" class="w-100" cols="" rows="5" value="<?php echo $comment; ?>"><?php echo $comment; ?></textarea></td>
+            <td rowspan="9" colspan="2" class="pr-5"><textarea name="comment" id="" class="w-100" cols="" rows="12" value="<?php echo $comment; ?>"><?php echo $comment; ?></textarea></td>
             <?php } ?>
             <td>
               <div class="time">
@@ -311,7 +331,7 @@
             <td><label>C5倉庫屋外照明　西・南</label></td>
           </tr>
 
-          <?php for ($i=1;$i<=2;$i++) { ?>
+          <?php for ($i=1;$i<=4;$i++) { ?>
           <tr>
             <td>
               <div class="time">
@@ -447,28 +467,32 @@
     width = $(window).width()
     if (width <= 800) {
     // if ('<?php echo $common->device; ?>' != 'pc') {
+      $('.time [type="number"]').css('width','30px')
       $('.time2 [type="number"]').css('width','20px')
       $('.rc').css('width','25%')
     } else if (width <= 1100) {
+      $('.time [type="number"]').css('width','45px')
       $('.time2 [type="number"]').css('width','35px')
-      $('.rc').css('width','40%')
+      $('.rc').css('width','30%')
     } else {
-      $('.time2 [type="number"]').css('width','45px')
-      $('.rc').css('width','50%')
+      $('.time [type="number"], .time2 [type="number"]').css('width','45px')
+      $('.rc').css('width','40%')
     }
   }
   $(window).resize(function(){
     width = $(window).width()
     if (width <= 800) {
     // if ('<?php echo $common->device; ?>' != 'pc') {
+      $('.time [type="number"]').css('width','30px')
       $('.time2 [type="number"]').css('width','20px')
       $('.rc').css('width','25%')
     } else if (width <= 1100) {
+      $('.time [type="number"]').css('width','45px')
       $('.time2 [type="number"]').css('width','35px')
-      $('.rc').css('width','40%')
+      $('.rc').css('width','30%')
     } else {
       $('.time2 [type="number"]').css('width','45px')
-      $('.rc').css('width','50%')
+      $('.rc').css('width','40%')
     }
   })
 
@@ -478,7 +502,8 @@
 
   $('.time, .time2').addClass('d-inline-block border border-dark')
   $('.time [type="number"], .time2 [type="number"]').addClass('p-0 border-0')
-  $('.time [type="number"], .num').css('width','45px')
+  // $('.time [type="number"], .num').css('width','45px')
+  $('.num').css('width','45px')
   $('.num, .text').addClass('p-0')
   $('.num, .text').css('border','1px solid #343a40')
 
