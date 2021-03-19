@@ -107,9 +107,9 @@
             <td rowspan="2">
               <select name="staff_id" id="staff_id" class="w-50">
                 <option value=""></option>
-                <?php if ($staff2->oup_m_staff_id) { ?>
-                <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$i]; ?>"<?php echo $staff2->oup_m_staff_id[$i] == $staff_id ? "selected" : "" ; ?>><?php echo $staff_name[$staff2->oup_m_staff_id[$i]]; ?></option>
+                <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+                <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+                <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $staff_id ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
                 <?php } ?>
                 <?php } ?>
               </select>
@@ -120,10 +120,6 @@
     </div>
     <hr>
     <div class="row">
-      <!-- <div class="col-12">(1)構内作業　　日本港運　　<input type="time" class="" value="08:30">～<input type="time" class="" value="16:30"></div>
-      <div class="col-12">(2)搬出入車(者)の安全誘導、火災、盗難の防止、不法侵入者の排除、その他事故防止に留意</div>
-      <div class="col-12">(3)正門立哨　　　　　　　　<input type="time" class="" value="08:30">～<input type="time" class="" value="16:30"></div>
-      <div class="col-12">(4)特記事項　　　　　　　　  <textarea name="" id="" rows="5" class="form-control">搬入作業延長の為17:58に終了</textarea></div> -->
       <div class="col-12">
       <table class="table table-borderless">
         <tr>
@@ -194,9 +190,9 @@
             <label>Ａ</label>
             <select name="wk_staff_id1" id="wk_staff_id1" class="w-50">
               <option value=""></option>
-              <?php if ($staff2->oup_m_staff_id) { ?>
-              <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
-              <option value="<?php echo $staff2->oup_m_staff_id[$i]; ?>"<?php echo $staff2->oup_m_staff_id[$i] == $wk_staff_id1 ? "selected" : "" ; ?>><?php echo $staff_name[$staff2->oup_m_staff_id[$i]]; ?></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id1 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
               <?php } ?>
               <?php } ?>
             </select>
@@ -220,9 +216,9 @@
             <label>Ｂ</label>
             <select name="wk_staff_id2" id="wk_staff_id2" class="w-50">
               <option value=""></option>
-              <?php if ($staff2->oup_m_staff_id) { ?>
-              <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
-              <option value="<?php echo $staff2->oup_m_staff_id[$i]; ?>"<?php echo $staff2->oup_m_staff_id[$i] == $wk_staff_id2 ? "selected" : "" ; ?>><?php echo $staff_name[$staff2->oup_m_staff_id[$i]]; ?></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id2 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
               <?php } ?>
               <?php } ?>
             </select>
@@ -242,9 +238,9 @@
             <label>Ｃ</label>
             <select name="wk_staff_id3" id="wk_staff_id3" class="w-50">
               <option value=""></option>
-              <?php if ($staff2->oup_m_staff_id) { ?>
-              <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
-              <option value="<?php echo $staff2->oup_m_staff_id[$i]; ?>"<?php echo $staff2->oup_m_staff_id[$i] == $wk_staff_id3 ? "selected" : "" ; ?>><?php echo $staff_name[$staff2->oup_m_staff_id[$i]]; ?></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id3 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
               <?php } ?>
               <?php } ?>
             </select>
@@ -264,9 +260,9 @@
             <label>Ｄ</label>
             <select name="wk_staff_id4" id="wk_staff_id4" class="w-50">
               <option value=""></option>
-              <?php if ($staff2->oup_m_staff_id) { ?>
-              <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
-              <option value="<?php echo $staff2->oup_m_staff_id[$i]; ?>"<?php echo $staff2->oup_m_staff_id[$i] == $wk_staff_id4 ? "selected" : "" ; ?>><?php echo $staff_name[$staff2->oup_m_staff_id[$i]]; ?></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id4 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
               <?php } ?>
               <?php } ?>
             </select>
@@ -285,40 +281,6 @@
     <input type="hidden" name="no" value="<?php echo $no; ?>">
     <input type="hidden" name="act" value="">
     </form>
-  
-    <!-- <div class="row">
-      <div class="col-1 m-auto">巡<br>回</div>
-      <div class="col-5">
-      1　 <input type="time" value="08:00"><br>
-      2　 <input type="time" value="12:00"><br>
-      3　 <input type="time" value="13:00"><br>
-      4　 <input type="time" value="16:30"><br>
-      </div>
-      <div class="col-1 m-auto">勤<br>務<br>員</div>
-      <div class="col-5">
-      A   <input type="text" value="西田泰博"><br>
-      B   <input type="text" value=""><br>
-      C    <input type="text" value=""><br>
-      D    <input type="text" value=""><br>
-      </div>
-    </div>
-    <hr>
-    
-    <div class="row">
-      <div class="col-1 m-auto">備<br>考</div>
-      <div class="col-11">
-        <textarea name="" id="" rows="5" class="form-control"></textarea>
-      </div>
-    </div>
-    <hr>
-
-    <div class="row">
-      <div class="col-1 m-auto">備<br>考</div>
-      <div class="col-11">
-        <textarea name="" id="" rows="5" class="form-control"></textarea>
-      </div>
-    </div>
-    <hr> -->
 
     <div class="row">
       <div class="col-12 text-right">（株）新神戸セキュリティ</div>

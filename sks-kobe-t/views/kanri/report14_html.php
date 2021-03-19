@@ -104,9 +104,9 @@
             <td>
               <select name="wk_staff_id<?php echo $i; ?>" id="wk_staff_id<?php echo $i; ?>" class="w-50">
                 <option value=""></option>
-                <?php if ($staff2->oup_m_staff_id) { ?>
-                <?php for ($j=0;$j<count($staff2->oup_m_staff_id);$j++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$j]; ?>"<?php echo $staff2->oup_m_staff_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>><?php echo $staff_name[$staff2->oup_m_staff_id[$j]]; ?></option>
+                <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+                <?php for ($j=0;$j<count($wkdetail->oup_t_wk_detail_no);$j++) { ?>
+                <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$j]]; ?></option>
                 <?php } ?>
                 <?php } ?>
               </select>
@@ -189,100 +189,6 @@
     <input type="hidden" name="no" value="<?php echo $no; ?>">
     <input type="hidden" name="act" value="">
     </form>
-
-    <?php /* ?>
-    <div class="row">
-    <table class="table table-bordered" id="">
-    <thead class="thead-light">
-
-    <colgroup>
-                  <col>
-                  <col>
-                  <col>
-                  <col width="">
-                  <col width="">
-    </colgroup>
-
-
-                  <tr>
-                    <th>警備員氏名</th>
-                    <th>上番</th>
-                    <th>下番</th> 
-                    <th>早出・残業</th>
-                    <!-- <th></th> -->
-                  </tr>
-    </thead>
-    <tbody>
-                  <tr>
-                    <td><input type="text" name="" class="" value="難波"></td>
-                    <td><input type="time" name="" class="" value=""></td>
-                    <td><input type="time" name="" class="" value=""></td>
-                    <td><input type="text" name="" class="" value=""></td>
-                    <!-- <td></td> -->
-                  </tr>
-                  <tr>
-                    <td><input type="text" name="" class="" value=""></td>
-                    <td><input type="time" name="" class="" value=""></td>
-                    <td><input type="time" name="" class="" value=""></td>
-                    <td><input type="text" name="" class="" value=""></td>
-                    <!-- <td></td> -->
-                  </tr>
-
-                  <tr>
-                    <td><input type="text" name="" class="" value=""></td>
-                    <td><input type="time" name="" class="" value=""></td>
-                    <td><input type="time" name="" class="" value=""></td>
-                    <td><input type="text" name="" class="" value=""></td>
-                    <!-- <td></td> -->
-                  </tr>
-
-                  <tr>
-                    <td><input type="text" name="" class="" value=""></td>
-                    <td><input type="time" name="" class="" value=""></td>
-                    <td><input type="time" name="" class="" value=""></td>
-                    <td><input type="text" name="" class="" value=""></td>
-                    <!-- <td></td> -->
-                  </tr>
-
-                </tbody>
-              </table>
-
-
-
-
-    </div>
-    <hr>
-    <div class="row">
-     <div class="col-12">立哨時間　<input type="time" class="" value="08:00">　～　<input type="time" class="" value="16:40"></div>
-    </div>
-    <hr>
-    
-    <div class="row">
-      <div class="col-1 m-auto">特記事項</div>
-      <div class="col-11">
-        <textarea name="" id="" rows="5" class="form-control"></textarea>
-      </div>
-    </div>
-    <hr>
-
-    <div class="row">
-      <div class="col-12">警備重点事項</div>
-      <div class="col-12">1.無関係者のヤード内立ち入りの防止警戒</div>
-      <div class="col-12">2.船員の安全誘導</div>
-      <div class="col-12">3.その他、事故防止に留意</div>
-      <div class="col-12">　　　　　　　　　　　　　　　　　　　　　　　　以上のとおり警備結果を報告致します。</div>
-
-    </div>
-    <hr>
-
-    <div class="row">
-      <div class="col-1 m-auto">備<br>考</div>
-      <div class="col-11">
-        <textarea name="" id="" rows="5" class="form-control"></textarea>
-      </div>
-    </div>
-    <hr>
-    <?php */ ?>
 
     <div class="row">
       <div class="col-12 text-right">（株）新神戸セキュリティ</div>

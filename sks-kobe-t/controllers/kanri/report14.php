@@ -24,15 +24,11 @@
   $weathers                       = array("晴","曇","雨","雪");
   $staff_id                       = null;
   $start_date                     = date("Y-m-d");
-  // $end_date                       = date("Y-m-d");
-  // $joban_time                     = array("08","00");
-  // $kaban_time                     = array("18","00");
-  // $joban_times                    = array("1"=>array("08","00"),"2"=>array("12","00"),"3"=>array("13","00"),"4"=>array("16","30"));
-  // $kaban_times                    = array("1"=>array("08","00"),"2"=>array("12","00"),"3"=>array("13","00"),"4"=>array("16","30"));
+  if ($_GET["plan_date"] != "") {
+    $start_date                         = $_GET["plan_date"];
+  }
   for ($i=1;$i<=4;$i++) {
     ${"wk_staff_id".$i}           = null;
-    // ${"wk_joban_time".$i}         = array($joban_times[$i][0],$joban_times[$i][1]);
-    // ${"wk_kaban_time".$i}         = array($kaban_times[$i][0],$kaban_times[$i][1]);
     ${"wk_joban_time".$i}         = array(null,null);
     ${"wk_kaban_time".$i}         = array(null,null);
     ${"wk_zan".$i}                = null;
@@ -76,6 +72,11 @@
 
   // 社員マスタ 取得
   $staff->getStaff();
+
+  $staff2->getStaff();
+  for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
+    $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
+  }
 
   if ($act) {
     // var_dump($_POST);
@@ -199,49 +200,42 @@
   $wkdetail->inp_t_wk_plan_hosoku   = "S";
   $wkdetail->inp_t_wk_plan_kbn      = "2";
   $wkdetail->inp_t_wk_plan_date = str_replace("-","",$start_date);
-  $wkdetail->inp_order = "order by t_wk_plan_joban_time";
+  $wkdetail->inp_order = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
   $wkdetail->getWkdetail();
 
   // 隊員取得
   if ($wkdetail->oup_t_wk_detail_no) {
     $cnt = 0;
     for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
-      if ($i == 0) {
-          $staff2->inp_m_staff_id_in = "'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-      } else {
-          $staff2->inp_m_staff_id_in = $staff2->inp_m_staff_id_in.",'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-      }
 
       $joban_time[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_joban_time[$i];
       $kaban_time[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_kaban_time[$i];
 
-      // // 勤務員の項目の隊員デフォルト表示
-      // if ($cnt != 4) {
-      //   $cnt = $cnt + 1;
-      //   ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
-      // }
-    }
-    
-    $staff2->getStaff();
-
-    for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
-      $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
-      
       // 勤務員の項目の隊員デフォルト表示
       if ($cnt != 4) {
         $cnt = $cnt + 1;
-        ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
+        ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
 
         // 上下番時刻デフォルト表示
-        if ($joban_time[$staff2->oup_m_staff_id[$i]]) {
-          $array                      = explode(":",$joban_time[$staff2->oup_m_staff_id[$i]]);
-          ${"wk_joban_time".$cnt}     = ${"wk_joban_time".$cnt}[0] && ${"wk_joban_time".$cnt}[1] ? ${"wk_joban_time".$cnt} : array($array[0],$array[1]);
-        }
-        if ($kaban_time[$staff2->oup_m_staff_id[$i]]) {
-          $array                      = explode(":",$kaban_time[$staff2->oup_m_staff_id[$i]]);
-          ${"wk_kaban_time".$cnt}     = ${"wk_kaban_time".$cnt}[0] && ${"wk_kaban_time".$cnt}[1] ? ${"wk_kaban_time".$cnt} : array($array[0],$array[1]);
-        }
+        $array                      = explode(":",$joban_time[$wkdetail->oup_t_wk_taiin_id[$i]]);
+        ${"wk_joban_time".$cnt}     = $no ? ${"wk_joban_time".$cnt} : array($array[0],$array[1]);
+        $array                      = explode(":",$kaban_time[$wkdetail->oup_t_wk_taiin_id[$i]]);
+        ${"wk_kaban_time".$cnt}     = $no ? ${"wk_kaban_time".$cnt} : array($array[0],$array[1]);
+
+        // if ($joban_time[$staff2->oup_m_staff_id[$i]]) {
+        //   $array                      = explode(":",$joban_time[$staff2->oup_m_staff_id[$i]]);
+        //   ${"wk_joban_time".$cnt}     = $no ? ${"wk_joban_time".$cnt} : array($array[0],$array[1]);
+        // }
+        // if ($kaban_time[$staff2->oup_m_staff_id[$i]]) {
+        //   $array                      = explode(":",$kaban_time[$staff2->oup_m_staff_id[$i]]);
+        //   ${"wk_kaban_time".$cnt}     = $no ? ${"wk_kaban_time".$cnt} : array($array[0],$array[1]);
+        // }
       }
+    }
+
+    // 隊員が一人なら担当警備員にデフォルト表示
+    if (count($wkdetail->oup_t_wk_detail_no) == 1) {
+      $staff_id = $no ? $staff_id : $wkdetail->oup_t_wk_taiin_id[0];
     }
   }
 

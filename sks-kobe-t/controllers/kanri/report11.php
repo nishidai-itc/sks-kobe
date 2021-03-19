@@ -75,8 +75,10 @@
     $kanri                                  = "kanri";
     $act                                    = NULL;
     $no                                     = NULL;
-    // $plan_date                              = date("Y-m-d");
     $start_date                             = date("Y-m-d");
+    if ($_GET["plan_date"] != "") {
+        $start_date                         = $_GET["plan_date"];
+    }
     $end_date                               = date("Y-m-d",strtotime($start_date." +1 day"));
     $joban_time                             = array("08","00");
     $kaban_time                             = array("08","00");
@@ -85,9 +87,6 @@
     $weathers                               = array("晴","曇","雨","雪");
     $staff_id                               = null;
     for ($i=1;$i<=5;$i++) {
-        // ${"patrol_time".($i+1)}      = null;
-        // ${"patrol_time".$i}[0]      = null;
-        // ${"patrol_time".$i}[1]      = null;
         ${"patrol_time".$i}                 = array(null,null);
         ${"bath".$i}                        = null;
         ${"sip".$i}                         = null;
@@ -95,8 +94,6 @@
         ${"out_port_time".$i}               = array(null,null);
     }
     $baths                                  = array("C-6","C-7");
-    // $yard  = null;
-    // $yards = array("作業","常夜","街路");
     $yard                                   = array("","常夜","街路");
     $yard1_start_time                       = array(null,null);
     $yard1_end_time                         = array(null,null);
@@ -122,16 +119,6 @@
     for ($i=1;$i<=18;$i++) {
         ${"wk_staff_id".$i}                 = null;
     }
-    // $wk_taiin = array(
-    //     array("泊","t"),
-    //     array("日","n"),
-    //     array("夜","y")
-    // );
-    // for ($i=0;$i<3;$i++) {
-    //     for ($j=0;$j<6;$j++) {
-    //         ${"wk_".$kbn[$i][0]."_staff_id".($j+1)} = null;
-    //     }
-    // }
 
     if (isset($_POST["act"])) {
         $act        = $_POST["act"];
@@ -139,13 +126,6 @@
     if (isset($_GET["no"])) {
         $no        = $_GET["no"];
     }
-
-    // var_dump($report);
-
-    // $report->inp_no = "1";
-    // $report->inp_plan_date = $date;
-    // $report->getReport($table);
-    // var_dump($report->oup_no);
     
     // 社員マスタ 取得 に必要な情報をセット
     $staff->inp_m_staff_id = $_SESSION["staff_id"];
@@ -153,18 +133,19 @@
     // 社員マスタ 取得
     $staff->getStaff();
 
+    $staff2->getStaff();
+    for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
+        $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
+    }
+
     if ($act) {
         // var_dump($_POST["out_port_time1"]);
         // exit;
         for ($i=1;$i<=5;$i++) {
             if (!$_POST["in_port_time".$i]) {
-                // $_POST["in_port_time".$i][0]                     = "99";
-                // $_POST["in_port_time".$i][1]                     = "99";
                 $_POST["in_port_time".$i]                        = "停泊";
             }
             if (!$_POST["out_port_time".$i]) {
-                // $_POST["out_port_time".$i][0]                    = "99";
-                // $_POST["out_port_time".$i][1]                    = "99";
                 $_POST["out_port_time".$i]                       = "停泊";
             }
         }
@@ -282,8 +263,6 @@
 
         if ($report3->oup_no) {
             foreach (ReportTable::$report11 as $k => $v) {
-                // var_dump($v);
-                // var_dump($report3->{"oup_".$v}[0]);
                 if (strpos($v,"wk_staff") !== false) {
                     continue;
                 }
@@ -304,7 +283,6 @@
                         } else {
                             ${$v}      = array(null,null);
                         }
-                        // ${$v}      = array(null,null);
                     }
                     continue;
                 }
@@ -353,11 +331,6 @@
         $n_cnt = 6;
         $y_cnt = 12;
         for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
-            if ($i == 0) {
-                $staff2->inp_m_staff_id_in = "'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-            } else {
-                $staff2->inp_m_staff_id_in = $staff2->inp_m_staff_id_in.",'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-            }
 
             // 勤務員の項目の隊員デフォルト表示
             if ($wkdetail->oup_t_wk_plan_kbn[$i] == "1" && $t_cnt != 6) {
@@ -385,19 +358,13 @@
                 }
             }
         }
-        
-        $staff2->getStaff();
 
         // 隊員が一人なら担当警備員にデフォルト表示
-        if (count($staff2->oup_m_staff_id) == 1) {
-            $staff_id = $staff_id ? $staff_id : $staff2->oup_m_staff_id[0];
+        if (count($wkdetail->oup_t_wk_detail_no) == 1) {
+            $staff_id = $no ? $staff_id : $wkdetail->oup_t_wk_taiin_id[0];
         }
 
-        for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
-            $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
-        }
     }
-    // $staff2->getStaff();
 
     // var_dump($_SESSION);
 ?>
