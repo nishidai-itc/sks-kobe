@@ -180,6 +180,8 @@
             // var_dump($sql);
             // exit;
 
+            require dirname(__FILE__).'/common/log.php';
+
             // 文字化け防止
             $db->set_charset();
 
@@ -245,6 +247,8 @@
 
             // var_dump($sql);
             // exit;
+
+            require dirname(__FILE__).'/common/log.php';
 
             // 文字化け防止
             $db->set_charset();

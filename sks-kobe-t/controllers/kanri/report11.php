@@ -199,17 +199,26 @@
                 $report->inp_no                            = $report3->oup_no[0];
                 $report->inp_modified                      = date("Y-m-d H:i:s");
                 $report->inp_modified_id                   = $_SESSION["staff_id"];
+
+                require_once('../../models/common/reportLog.php');
+
                 $report->updateReport($table);
             } else {
                 $report->inp_no                            = str_replace("-","",$_POST["start_date"]).$table;
                 $report->inp_table                         = $table;
                 $report->inp_created                       = date("Y-m-d H:i:s");
                 $report->inp_created_id                    = $_SESSION["staff_id"];
+
+                require_once('../../models/common/reportLog.php');
+
                 $report->insertReport($table);
             }
         } else {
             $report->inp_modified                      = date("Y-m-d H:i:s");
             $report->inp_modified_id                   = $_SESSION["staff_id"];
+
+            require_once('../../models/common/reportLog.php');
+
             $report->updateReport($table);
         }
 
@@ -230,12 +239,18 @@
                 // $report2->inp_table_no                       = $report3->oup_table_no[0];
                 $report2->inp_modified                       = date("Y-m-d H:i:s");
                 $report2->inp_modified_id                    = $_SESSION["staff_id"];
+
+                require_once('../../models/common/reportLog.php');
+                
                 $report2->updateReport($kanri);
             } else {
                 $report2->inp_no                             = $report->oup_last_id;
                 // $report2->inp_table_no                       = $report->oup_last_id;
                 $report2->inp_created                        = date("Y-m-d H:i:s");
                 $report2->inp_created_id                     = $_SESSION["staff_id"];
+
+                require_once('../../models/common/reportLog.php');
+
                 $report2->insertReport($kanri);
             }
         } else {
@@ -243,6 +258,9 @@
             // $report2->inp_table_no                       = $_POST["no"];
             $report2->inp_modified                       = date("Y-m-d H:i:s");
             $report2->inp_modified_id                    = $_SESSION["staff_id"];
+
+            require_once('../../models/common/reportLog.php');
+
             $report2->updateReport($kanri);
         }
 

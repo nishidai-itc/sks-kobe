@@ -113,6 +113,9 @@
       $report2->inp_no                            = str_replace("-","",$_POST["start_date"]).$table;
       $report2->inp_table                         = $table;
       $report2->inp_created                       = date("Y-m-d H:i:s");
+
+      require_once('../../models/common/reportLog.php');
+
       $report2->inp_created_id                    = $_SESSION["staff_id"];
       $report2->insertReport($table);
 
@@ -125,12 +128,18 @@
       $report3->inp_kbn                           = $_POST["act"];
       $report3->inp_created                       = date("Y-m-d H:i:s");
       $report3->inp_created_id                    = $_SESSION["staff_id"];
+
+      require_once('../../models/common/reportLog.php');
+
       $report3->insertReport("kanri");
     } else {
       if ($no) {
         $report2->inp_no                          = $no;
         $report2->inp_modified                    = date("Y-m-d H:i:s");
         $report2->inp_modified_id                 = $_SESSION["staff_id"];
+
+        require_once('../../models/common/reportLog.php');
+
         $report2->updateReport($table);
 
         // 管理
@@ -142,6 +151,9 @@
         $report3->inp_kbn                         = $_POST["act"];
         $report3->inp_modified                    = date("Y-m-d H:i:s");
         $report3->inp_modified_id                 = $_SESSION["staff_id"];
+
+        require_once('../../models/common/reportLog.php');
+        
         $report3->updateReport("kanri");
       } else {
       }
