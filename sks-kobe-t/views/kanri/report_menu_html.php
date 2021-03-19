@@ -35,7 +35,7 @@ header("Pragma:no-cache");
       <div class="col-12">
         <div class="card" style="padding: 10px;">
           <div class="card-body">
-            <?php print($common->html_display($staff->oup_m_staff_name[0])." さん　　　".date('m/d')."(".$week[$w].")".date('H:i')); ?>
+            <?php print($common->html_display($staff->oup_m_staff_name[0])." さん　　　".date("m/d")."(".getWeek($today).")".$totime); ?>
           </div>
         </div>
       </div>
@@ -44,12 +44,18 @@ header("Pragma:no-cache");
 
     <form action="report_menu.php" method="post">
 
+    <div class="row">
+      <div class="col-12"><?php echo substr($plan_date,5,2)."月".substr($plan_date,8,2)."日分　(".getWeek($plan_date).")"; ?></div>
+    </div>
+    <br>
+
     <!-- メニュー -->
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
           <thead>
             <tr class="table-secondary">
+              <!-- <th class="text-center" style="width:100px;">日付</th> -->
               <th class="" style="width:100px;">入力状態</th>
               <th class="text-center" style="width:100px;">詳細</th>
               <th>勤務場所</th>
@@ -60,9 +66,10 @@ header("Pragma:no-cache");
           <?php for ($i=0;$i<count($report->oup_no);$i++) { ?>
           <?php //if (!$flg[$report->oup_no[$i]]) {continue;} ?>
           <tr>
+            <!-- <td class="text-center"><?php echo substr($plan_date,5,2)."/".substr($plan_date,8,2)."(".getWeek($plan_date).")"; ?></td> -->
             <td><?php echo $report_kbn[$report->oup_table[$i]] ? $report_kbn[$report->oup_table[$i]] : "未入力" ; ?></td>
             <td class="text-center">
-              <a href="./report<?php echo $report->oup_table[$i]; ?>.php<?php echo $report_no[$report->oup_table[$i]] ? "?no=".$report_no[$report->oup_table[$i]] : "" ; ?>">
+              <a href="./report<?php echo $report->oup_table[$i]; ?>.php?plan_date=<?php echo $report_no[$report->oup_table[$i]] ? $plan_date."&no=".$report_no[$report->oup_table[$i]] : $plan_date ; ?>">
                 <i class="fas fa-pen"></i>
               </a>
             </td>

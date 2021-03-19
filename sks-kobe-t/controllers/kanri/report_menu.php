@@ -16,12 +16,26 @@
     require_once('../../models/Report.php');
 
     $act            = NULL;
-    $plan_date      = date("Y-m-d");
+    $today          = date("Y-m-d");
+    $totime         = date("H:i");
+    if ($totime >= "00:00" && $totime < "12:00") {
+        $plan_date      = date("Y-m-d",strtotime("-1 day"));
+    } else {
+        $plan_date      = $today;
+    }
     $kbn            = array("1"=>"完了","2"=>"一時保存");
 
-    $week           = array("日", "月", "火", "水", "木", "金", "土");
-    $time           = strtotime(date('Y-m-d'));
-    $w              = date("w", $time);
+    // $week           = array("日", "月", "火", "水", "木", "金", "土");
+    // $time           = strtotime(date('Y-m-d'));
+    // $w              = date("w", $time);
+    function getWeek($day) {
+        $week = array("日", "月", "火", "水", "木", "金", "土");
+        if ($day) {
+            return $week[date("w", strtotime(date($day)))];
+        } else {
+            return null;
+        }
+    }
 
     if (isset($_POST["act"])) {
         $act        = $_POST["act"];
