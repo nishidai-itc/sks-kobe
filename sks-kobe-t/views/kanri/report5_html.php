@@ -171,10 +171,10 @@
 
             </td>
             <td>
-              <select name="" id="" class="">
+              <select name="c2_kbn<?php echo $i;?>" id="" class="">
                 <option value=""></option>
-                <?php for ($j=0;$j<count($yard_kbn);$j++) { ?>
-                <option value="<?php echo $yard_kbn[$j]; ?>"<?php echo $yard_kbn[$j] == ${"c2_kbn".$i} ? "selected" : "" ; ?>><?php echo $yard_kbn[$j]; ?></option>
+                <?php for ($j=0;$j<count($light_kbn1);$j++) { ?>
+                <option value="<?php echo $light_kbn1[$j]; ?>"<?php echo $light_kbn1[$j] == ${"c2_kbn".$i} ? "selected" : "" ; ?>><?php echo $light_kbn1[$j]; ?></option>
                 <?php } ?>
               </select>
               <div class="time">
@@ -214,6 +214,12 @@
               </div>
             </td>
             <td>
+              <select name="c3_kbn<?php echo $i;?>" id="" class="">
+                <option value=""></option>
+                <?php for ($j=0;$j<count($light_kbn1);$j++) { ?>
+                <option value="<?php echo $light_kbn1[$j]; ?>"<?php echo $light_kbn1[$j] == ${"c3_kbn".$i} ? "selected" : "" ; ?>><?php echo $light_kbn1[$j]; ?></option>
+                <?php } ?>
+              </select>
               <div class="time">
                 <input type="number" class="text-center" name="c3_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c3_joban_time".$i}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -231,6 +237,12 @@
           <tr>
             <td colspan="2"></td>
             <td>
+              <select name="c3_kbn4" id="" class="">
+                <option value=""></option>
+                <?php for ($j=0;$j<count($light_kbn1);$j++) { ?>
+                <option value="<?php echo $light_kbn1[$j]; ?>"<?php echo $light_kbn1[$j] == $c3_kbn4 ? "selected" : "" ; ?>><?php echo $light_kbn1[$j]; ?></option>
+                <?php } ?>
+              </select>
               <div class="time">
                 <input type="number" class="text-center" name="c3_joban_time4[0]" value="<?php echo $c3_joban_time4[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -258,6 +270,12 @@
               <?php } ?>
             </td>
             <td>
+              <select name="c4_kbn<?php echo $i;?>" id="" class="">
+                <option value=""></option>
+                <?php for ($j=0;$j<count($light_kbn1);$j++) { ?>
+                <option value="<?php echo $light_kbn1[$j]; ?>"<?php echo $light_kbn1[$j] == ${"c4_kbn".$i} ? "selected" : "" ; ?>><?php echo $light_kbn1[$j]; ?></option>
+                <?php } ?>
+              </select>
               <div class="time">
                 <input type="number" class="text-center" name="c4_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c4_joban_time".$i}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -286,6 +304,12 @@
             <?php } ?>
             </td>
             <td>
+              <select name="c5_kbn<?php echo $i;?>" id="" class="">
+                <option value=""></option>
+                <?php for ($j=0;$j<count($light_kbn1);$j++) { ?>
+                <option value="<?php echo $light_kbn1[$j]; ?>"<?php echo $light_kbn1[$j] == ${"c5_kbn".$i} ? "selected" : "" ; ?>><?php echo $light_kbn1[$j]; ?></option>
+                <?php } ?>
+              </select>
               <div class="time">
                 <input type="number" class="text-center" name="c5_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c5_joban_time".$i}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -312,6 +336,12 @@
             <td rowspan="9" colspan="2" class="pr-5"><textarea name="comment" id="" class="w-100" cols="" rows="12" value="<?php echo $comment; ?>"><?php echo $comment; ?></textarea></td>
             <?php } ?>
             <td>
+              <select name="tonbo_light_kbn<?php echo $i;?>" id="" class="">
+                <option value=""></option>
+                <?php for ($j=0;$j<count($light_kbn2);$j++) { ?>
+                <option value="<?php echo $light_kbn2[$j]; ?>"<?php echo $light_kbn2[$j] == ${"tonbo_light_kbn".$i} ? "selected" : "" ; ?>><?php echo $light_kbn2[$j]; ?></option>
+                <?php } ?>
+              </select>
               <div class="time">
                 <input type="number" class="text-center" name="tonbo_light_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"tonbo_light_joban_time".$i}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -334,6 +364,12 @@
           <?php for ($i=1;$i<=4;$i++) { ?>
           <tr>
             <td>
+              <select name="c5_light_kbn<?php echo $i;?>" id="" class="">
+                <option value=""></option>
+                <?php for ($j=0;$j<count($light_kbn2);$j++) { ?>
+                <option value="<?php echo $light_kbn2[$j]; ?>"<?php echo $light_kbn2[$j] == ${"c5_light_kbn".$i} ? "selected" : "" ; ?>><?php echo $light_kbn2[$j]; ?></option>
+                <?php } ?>
+              </select>
               <div class="time">
                 <input type="number" class="text-center" name="c5_light_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"c5_light_joban_time".$i}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -471,9 +507,9 @@
       $('.time2 [type="number"]').css('width','20px')
       $('.rc').css('width','25%')
     } else if (width <= 1100) {
-      $('.time [type="number"]').css('width','45px')
+      $('.time [type="number"]').css('width','40px')
       $('.time2 [type="number"]').css('width','35px')
-      $('.rc').css('width','30%')
+      $('.rc').css('width','40%')
     } else {
       $('.time [type="number"], .time2 [type="number"]').css('width','45px')
       $('.rc').css('width','40%')
