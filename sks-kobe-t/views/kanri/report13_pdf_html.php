@@ -1,143 +1,79 @@
 <?php 
     ob_end_clean();
 
-include "../../tcpdf/tcpdf.php"; //ライブラリの読み込み
-$tcpdf = new TCPDF("Portrait");
-$tcpdf->setPrintHeader(false); // 追加する
-$tcpdf->AddPage();
-$tcpdf->SetFont("kozminproregular", "", 10);
-$html = <<< EOF
+    $week = array("日", "月", "火", "水", "木", "金", "土");
+    $time = strtotime(date($report->oup_start_date[0]));
+    $w = date("w", $time);
+    $weekday1 = $week[$w];
 
-<html lang="ja">
+    $time = strtotime(date($report->oup_end_date[0]));
+    $w = date("w", $time);
+    $weekday2 = $week[$w];
 
-    <table border="0">
-      <tr>
-        <td><font size="15">警　備　報　告　書</font></td>
-      </tr>
-    </table>
-    <table border="1" cellpadding="7" cellspacing="0">
-        <tr>
-            <td colspan="10">
-              <table>
-                <tr>
-                  <td><font size="15">(警備場所)</font></td>
-                  <td><font size="15">(契約先)</font></td>
-                </tr>
-                <tr>
-                  <td><font size="15">日本郵船神戸バンブール</font></td>
-                  <td><font size="15">日本郵船株式会社殿</font></td>
-                </tr>
-              </table>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="5">
-              <table>
-                <tr>
-                  <td><font size="15">(勤務時間)</font></td>
-                </tr>
-                <tr>
-                  <td><font size="12">自）３年２月３日水曜　０８時００分</font></td>
-                </tr>
-                <tr>
-                  <td><font size="12">至）３年２月４日木曜　０８時００分</font></td>
-                </tr>
-              </table>
-            </td>
-            <td align="center">
-              <table>
-                <tr>
-                  <td><font size="15">天候</font></td>
-                </tr>
-                <tr>
-                  <td><font size="15">晴</font></td>
-                </tr>
-              </table>
-            </td>
-            <td colspan="4">
-              <table>
-                <tr>
-                  <td><font size="15">担当警備士</font></td>
-                  <td align="right"><font size="15"></font></td>
-                </tr>
-                <tr>
-                  <td><font size="15">松田　健</font></td>
-                  <td><font size="15">印</font></td>
-                </tr>
-              </table>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="10">
-              <table>
-                <tr>
-                  <td>（１）構内作業</td>
-                  <td>日本港運</td>
-                  <td>08:30 ～ 16:30</td>
-                </tr>
-                <tr>
-                  <td colspan="3">（２）搬出入車（者）の安全誘導、火災、盗難の防止、不法侵入者の排除、その他事故防止に留意</td>
-                </tr>
-                <tr>
-                  <td>（３）正門立哨</td>
-                  <td></td>
-                  <td>08:30 ～ 16:30</td>
-                </tr>
-                <tr>
-                  <td>特記事項</td>
-                  <td colspan="2">なし</td>
-                </tr>
-              </table>
-            </td>
-        </tr>
+require_once('../../tcpdf/tcpdf.php');
+require_once('../../fpdf/src/autoload.php');
 
-        <tr>
-          <td rowspan="5">巡<br>回</td>
-          <td>1</td>
-          <td>08:00</td>
-          <td rowspan="5">勤<br>務<br>員</td>
-          <td>A</td>
-          <td colspan="5" rowspan="5">
-            <table>
-              <tr>
-                <td>備考</td>
-              </tr>
-              <tr>
-                <td>なし</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>12:00</td>
-          <td>B</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>13:00</td>
-          <td>C</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>16:30</td>
-          <td>D</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-    </table>
+use setasign\Fpdi\TcpdfFpdi;
 
-<div align="right">株式会社新神戸セキュリティ</div>
+$pdf = new TcpdfFpdi();
+$pdf->SetMargins(0, 0, 0);
+$pdf->SetCellPadding(0);
+$pdf->SetAutoPageBreak(false);
+$pdf->setPrintHeader(false);    
+$pdf->setPrintFooter(false);
+$pdf->SetFont('kozminproregular', '', 12);// 日本語フォント
+
+// テンプレート読み込み
+$pdf->setSourceFile($common->rootpath.'/pdf/report13.pdf');
+
+// 用紙サイズ
+$pdf->AddPage('P', 'A4');
+$pdf->useTemplate($pdf->importPage(1));
+// フォント設定 - IPA明朝
+//$tcpdf_fonts = new TCPDF_FONTS();
+//$font = $tcpdf_fonts->addTTFfont('tcpdf/fonts/ipam.ttf');
 
 
-</html>
+// 和暦
+$wnen = substr($report->oup_start_date[0],0,4);
+$wnen = intval($wnen) - 2018;
+$pdf->Text(40, 62, $wnen);     // 年
+$pdf->Text(54, 62, substr($report->oup_start_date[0],5,2));     // 月
+$pdf->Text(68, 62, substr($report->oup_start_date[0],8,2));     // 日
+$pdf->Text(85, 62, $weekday1);     // 曜日
+$pdf->Text(104, 62, substr($report->oup_joban_time[0],0,2));     // 開始時間
+$pdf->Text(122, 62, substr($report->oup_joban_time[0],3,2));     // 開始時間
 
-EOF;
+$wnen = substr($report->oup_end_date[0],0,4);
+$wnen = intval($wnen) - 2018;
+$pdf->Text(40, 71, $wnen);     // 年
+$pdf->Text(54, 71, substr($report->oup_end_date[0],5,2));     // 月
+$pdf->Text(68, 71, substr($report->oup_end_date[0],8,2));     // 日
+$pdf->Text(85, 71, $weekday2);     // 曜日
+$pdf->Text(104, 71, substr($report->oup_kaban_time[0],0,2));     // 終了時間
+$pdf->Text(122, 71, substr($report->oup_kaban_time[0],3,2));     // 終了時間
 
-$tcpdf->writeHTML($html);
-$tcpdf->Output("test.pdf");
+$pdf->Text(136, 65, $report->oup_weather1[0]);     // 天候
+$pdf->Text(142, 65, $report->oup_weather2[0]);     // 天候
 
+$pdf->Text(152, 65, $staffs[$report->oup_staff_id[0]]);     // 担当警備士
+
+$pdf->Text(100, 88, $report->oup_wk_start_time[0]." ～ ".$report->oup_wk_end_time[0]);     // 日本港運
+$pdf->Text(100, 130, $report->oup_picket_start_time[0]." ～ ".$report->oup_picket_start_time[0]);     // 日本港運
+
+$pdf->Text(47, 217, $report->oup_patrol_time1[0]);     // 巡回1
+$pdf->Text(47, 226, $report->oup_patrol_time2[0]);     // 巡回2
+$pdf->Text(47, 235, $report->oup_patrol_time3[0]);     // 巡回3
+$pdf->Text(47, 244, $report->oup_patrol_time4[0]);     // 巡回4
+
+$pdf->Text(85, 217, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員1
+$pdf->Text(85, 226, $staffs[$report->oup_wk_staff_id2[0]]);     // 警備員2
+$pdf->Text(85, 235, $staffs[$report->oup_wk_staff_id3[0]]);     // 警備員3
+$pdf->Text(85, 244, $staffs[$report->oup_wk_staff_id4[0]]);     // 警備員4
+
+$pdf->MultiCell(100,30,$report->oup_comment[0],0,'',0,1,80,158);        // 特記事項
+$pdf->MultiCell(60,30,$report->oup_etc_comment[0],0,'',0,1,120,224);    // 備考
+
+
+$pdf->Output(sprintf("report2.pdf", time()), 'I');
 ?>
