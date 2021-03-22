@@ -24,7 +24,10 @@
     $weathers                               = array("晴","曇","雨","雪");
     $staff_id                               = null;
     $start_date                             = date("Y-m-d");
-    $end_date                               = date("Y-m-d",strtotime($date." +1 day"));
+    if ($_GET["plan_date"] != "") {
+        $start_date                         = $_GET["plan_date"];
+    }
+    $end_date                               = date("Y-m-d",strtotime($start_date." +1 day"));
     $joban_time                             = array("08","00");
     $kaban_time                             = array("08","00");
     $port                                   = array("停泊","順延");

@@ -25,6 +25,9 @@
     $chief                                  = null;
     $staff_id                               = null;
     $start_date                             = date("Y-m-d");
+    if ($_GET["plan_date"] != "") {
+        $start_date                         = $_GET["plan_date"];
+    }
     $haiti                                  = array("背後地","前面");
     for ($i=1;$i<=10;$i++) {
         ${"wk_haiti".$i}                    = null;
