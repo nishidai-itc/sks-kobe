@@ -7,6 +7,7 @@
         public $career;         // ドコモ:docomo / au:au / softbank:softbank
         public $uae;
         public $device;
+        public $rootpath = '/var/www/html/sks-kobe-t';
 
         function __construct() {
 

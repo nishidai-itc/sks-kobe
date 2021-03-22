@@ -66,10 +66,10 @@
         }
     }
 
-    // リーダー、上下番チェック者は自分の現場のみ取得
-    if ($staff->oup_m_staff_kbn[0] != "1") {
-        $report->inp_genba_id_findInSet                      = $staff->oup_m_staff_genba_id[0];
-    }
+    // // リーダー、上下番チェック者は自分の現場のみ取得
+    // if ($staff->oup_m_staff_kbn[0] != "1") {
+    //     $report->inp_genba_id_findInSet                      = $staff->oup_m_staff_genba_id[0];
+    // }
     // 名称取得
     $report->getReport("name");
     for ($i=0;$i<count($report->oup_no);$i++) {
