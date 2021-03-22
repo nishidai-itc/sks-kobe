@@ -132,6 +132,11 @@
     // 社員マスタ 取得
     $staff->getStaff();
 
+    $staff2->getStaff();
+    for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
+        $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
+    }
+
     if ($act) {
         // var_dump($_POST);
         // exit;
@@ -229,45 +234,34 @@
     $wkdetail->inp_t_wk_plan_kbn        = "2";
     $wkdetail->inp_t_wk_plan_hosoku_in  = "'A','B','C','D','土'";
     $wkdetail->inp_t_wk_plan_date       = str_replace("-","",$start_date);
-    $wkdetail->inp_order                = "order by t_wk_plan_joban_time";
+    $wkdetail->inp_order                = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
     $wkdetail->getWkdetail();
 
     // 隊員取得
     if ($wkdetail->oup_t_wk_detail_no) {
         $cnt = 0;
         for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
-            if ($i == 0) {
-                $staff2->inp_m_staff_id_in = "'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-            } else {
-                $staff2->inp_m_staff_id_in = $staff2->inp_m_staff_id_in.",'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-            }
-        }
-        
-        $staff2->getStaff();
-
-        // 隊員が一人なら担当警備員にデフォルト表示
-        if (count($staff2->oup_m_staff_id) == 1) {
-            $staff_id = $no ? $staff_id : $staff2->oup_m_staff_id[0];
-        }
-
-        for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
-            $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
-
-            // 勤務員の項目の隊員デフォルト表示
-            if ($i == 0) {
-                // 夜間退出記録氏名　SKS対応者
-                $night_taiin_id                          = $no ? $night_taiin_id : null;
-            }
             if ($cnt != 21) {
                 $cnt = $cnt + 1;
                 // データがある場合は取得したデータを、新規は予定が入っている隊員を表示
                 if ($cnt <= 10) {
                     // 守衛者
-                    ${"wk_staff_id".$cnt}                = $no ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
+                    ${"wk_staff_id".$cnt}                = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
                 }
-                // 日常記録
-                ${"wk_detail_staff_id".$cnt}             = $no ? ${"wk_detail_staff_id".$cnt} : null;
+                // // 日常記録
+                // ${"wk_detail_staff_id".$cnt}             = $no ? ${"wk_detail_staff_id".$cnt} : null;
             }
+        }
+
+        // // 勤務員の項目の隊員デフォルト表示
+        // if ($no) {
+        //     // 夜間退出記録氏名　SKS対応者
+        //     $night_taiin_id                          = $night_taiin_id;
+        // }
+
+        // 隊員が一人なら担当警備員にデフォルト表示
+        if (count($wkdetail->oup_t_wk_detail_no) == 1) {
+            $staff_id = $no ? $staff_id : $wkdetail->oup_t_wk_taiin_id[0];
         }
     }
 
