@@ -24,6 +24,9 @@
   $weathers                       = array("晴","曇","雨","雪");
   $staff_id                       = null;
   $start_date                     = date("Y-m-d");
+  if ($_GET["plan_date"] != "") {
+    $start_date                   = $_GET["plan_date"];
+  }
   $end_date                       = date("Y-m-d");
   $joban_time                     = array("08","00");
   $kaban_time                     = array("17","00");
@@ -32,12 +35,12 @@
   $flag1_time                     = array("07","30");
   $flag2_time                     = array("16","30");
   $comment                        = "異常ありません";
-  $times                          = array("1"=>array("08","00"),"2"=>array("12","00"),"3"=>array("13","00"),"4"=>array("16","30"));
-  for ($i=1;$i<=4;$i++) {
+  // $times                          = array("1"=>array("08","00"),"2"=>array("12","00"),"3"=>array("13","00"),"4"=>array("16","30"));
+  // for ($i=1;$i<=4;$i++) {
     // ${"patrol_time".$i}                 = array(null,null);
-    ${"patrol_time".$i}           = array($times[$i][0],$times[$i][1]);
-    ${"wk_staff_id".$i}           = null;
-  }
+  //   ${"patrol_time".$i}           = array($times[$i][0],$times[$i][1]);
+  //   ${"wk_staff_id".$i}           = null;
+  // }
 
   function getWeek($day) {
     $week = array("日", "月", "火", "水", "木", "金", "土");
@@ -71,6 +74,11 @@
 
   // 社員マスタ 取得
   $staff->getStaff();
+
+  $staff2->getStaff();
+  for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
+    $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
+  }
 
   if ($act) {
     // var_dump($_POST);
@@ -106,6 +114,7 @@
       $report2->inp_table                         = $table;
       $report2->inp_created                       = date("Y-m-d H:i:s");
       $report2->inp_created_id                    = $_SESSION["staff_id"];
+      require_once('../../models/common/reportLog.php');
       $report2->insertReport($table);
 
       // 管理
@@ -117,12 +126,14 @@
       $report3->inp_kbn                           = $_POST["act"];
       $report3->inp_created                       = date("Y-m-d H:i:s");
       $report3->inp_created_id                    = $_SESSION["staff_id"];
+      require_once('../../models/common/reportLog.php');
       $report3->insertReport("kanri");
     } else {
       if ($no) {
         $report2->inp_no                          = $no;
         $report2->inp_modified                    = date("Y-m-d H:i:s");
         $report2->inp_modified_id                 = $_SESSION["staff_id"];
+        require_once('../../models/common/reportLog.php');
         $report2->updateReport($table);
 
         // 管理
@@ -134,13 +145,19 @@
         $report3->inp_kbn                         = $_POST["act"];
         $report3->inp_modified                    = date("Y-m-d H:i:s");
         $report3->inp_modified_id                 = $_SESSION["staff_id"];
+        require_once('../../models/common/reportLog.php');        
         $report3->updateReport("kanri");
       } else {
       }
     }
 
-    header("Location:report_menu.php");
+    if ($_SESSION["menu_flg"] == "kanri") {
+      header("Location:keibihokoku.php");
+    } else {
+      header("Location:report_menu.php");
+    }
     exit;
+
   }
 
   if ($no) {
@@ -149,7 +166,7 @@
     $report3->getReport($table);
 
     if ($report3->oup_no) {
-      foreach (ReportTable::$report13 as $k => $key) {
+      foreach (ReportTable::$report2 as $k => $key) {
         if (strpos($key,"time") !== false) {
           // 時刻
           if (strpos($report3->{"oup_".$key}[0],":") !== false) {
@@ -166,51 +183,28 @@
     }
   }
 
-  // 子現場取得
-  $genba->inp_m_genba_oya_id = "6";
-  $genba->getGenba();
-
-  // 当日予定のあるデータ取得
-  $wkdetail->inp_t_wk_genba_id2 = "'6'";
-  // 子現場があれば子現場のデータも取得
-  if ($genba->oup_m_genba_id) {
-      for ($i=0;$i<count($genba->oup_m_genba_id);$i++) {
-          $wkdetail->inp_t_wk_genba_id2 = $wkdetail->inp_t_wk_genba_id2.",'".$genba->oup_m_genba_id[$i]."'";
-      }
-  }
-  $wkdetail->inp_t_wk_plan_kbn_in = "'1','2','3'";
-  $wkdetail->inp_t_wk_plan_date = str_replace("-","",$start_date);
-  $wkdetail->inp_order = "order by t_wk_plan_joban_time";
+  $wkdetail->inp_t_wk_genba_id      = "6";
+  $wkdetail->inp_t_wk_plan_hosoku   = "F";
+  $wkdetail->inp_t_wk_plan_kbn      = "2";
+  $wkdetail->inp_t_wk_plan_date     = str_replace("-","",$start_date);
+  $wkdetail->inp_order              = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
   $wkdetail->getWkdetail();
 
   // 隊員取得
   if ($wkdetail->oup_t_wk_detail_no) {
     $cnt = 0;
     for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
-      if ($i == 0) {
-        $staff2->inp_m_staff_id_in = "'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-      } else {
-        $staff2->inp_m_staff_id_in = $staff2->inp_m_staff_id_in.",'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-      }
-
-      // // 勤務員の項目の隊員デフォルト表示
-      // if ($cnt != 4) {
-      //   $cnt = $cnt + 1;
-      //   // ${"wk_staff_id".$cnt}         = $wkdetail->oup_t_wk_taiin_id[$i];
-      //   ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
-      // }
-    }
-    
-    $staff2->getStaff();
-
-    for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
-      $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
 
       // 勤務員の項目の隊員デフォルト表示
       if ($cnt != 4) {
         $cnt = $cnt + 1;
-        ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
+        ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
       }
+    }
+
+    // 隊員が一人なら担当警備員にデフォルト表示
+    if (count($wkdetail->oup_t_wk_detail_no) == 1) {
+      $staff_id = $no ? $staff_id : $wkdetail->oup_t_wk_taiin_id[0];
     }
   }
 ?>
