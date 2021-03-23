@@ -71,6 +71,7 @@
     //     $report->inp_genba_id_findInSet                      = $staff->oup_m_staff_genba_id[0];
     // }
     // 名称取得
+    $report->inp_order = "order by t_report_disp";
     $report->getReport("name");
     for ($i=0;$i<count($report->oup_no);$i++) {
         $wkdetail2                                      = new Wkdetail;
