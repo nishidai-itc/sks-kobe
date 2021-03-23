@@ -53,9 +53,9 @@ $pdf->Text(121, 48, $report->oup_weather2[0]);     // 天候
 
 $pdf->Text(132, 48, $staffs[$report->oup_staff_id[0]]);     // 担当警備員
 
-if ($report->oup_result[0]=="1") {
+if ($report->oup_result1[0]=="1") {
     $pdf->Circle( 154, 90, 5, 0, 360, "D");     // 作業結果(有)
-} else if ($report->oup_result[0]=="2") {
+} else if ($report->oup_result1[0]=="2") {
     $pdf->Circle( 132, 90, 5, 0, 360, "D");     // 作業結果(無)
 }
 
