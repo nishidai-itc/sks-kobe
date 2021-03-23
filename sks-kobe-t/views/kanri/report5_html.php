@@ -143,7 +143,7 @@
             <td><label>C-2</label></td>
           </tr>
 
-          <?php for ($i=1;$i<=4;$i++) { ?>
+          <?php for ($i=1;$i<=6;$i++) { ?>
           <tr>
             <td class="rc">
               <label>RC-</label>
@@ -171,6 +171,7 @@
 
             </td>
             <td>
+              <?php if ($i < 5) { ?>
               <select name="c2_kbn<?php echo $i;?>" id="" class="">
                 <option value=""></option>
                 <?php for ($j=0;$j<count($light_kbn1);$j++) { ?>
@@ -188,6 +189,7 @@
                 <span class="">:</span>
                 <input type="number" class="text-center" name="c2_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"c2_kaban_time".$i}[1]; ?>" min="0" max="59">
               </div>
+              <?php } ?>
             </td>
           </tr>
           <?php } ?>
@@ -326,7 +328,7 @@
           <?php } ?>
 
           <tr>
-            <td colspan="2"><label>発砲</label></td>
+            <td colspan="2"><label>発報</label></td>
             <td><label>トンボ照明</label></td>
           </tr>
           
@@ -427,7 +429,14 @@
             <?php } elseif ($i == 2) { ?>
             <td>
               <label>管理棟終了</label>
-              <input type="text" class="text" name="wk_admin_end" value="<?php echo $wk_admin_end; ?>">
+              <!-- <input type="text" class="text" name="wk_admin_end" value="<?php echo $wk_admin_end; ?>"> -->
+              <span class="inp badge badge-secondary" style="cursor:pointer;"><?php echo is_array($wk_admin_end) ? "時刻" : "入力" ; ?></span>
+              <input type="text" class="text" name="wk_admin_end" value="<?php echo !is_array($wk_admin_end) && $wk_admin_end ? $wk_admin_end : "泊り"; ?>">
+              <div class="time">
+                <input type="number" class="text-center" name="wk_admin_end[0]" value="<?php echo is_array($wk_admin_end) ? $wk_admin_end[0] : ""; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="wk_admin_end[1]" value="<?php echo is_array($wk_admin_end) ? $wk_admin_end[1] : ""; ?>" min="0" max="59">
+              </div>
             </td>
             <td>
               <label>部外者</label>
@@ -437,8 +446,13 @@
             <?php } ?>
             <?php for ($j=1;$j<=3;$j++) { ?>
             <td>
-              <!-- <label><?php echo $abc[$j+$i*3] ; ?></label> -->
-              <label><?php echo $wk_kbn[${"wk_staff_id".($j+$i*3)}].$wk_hosoku[${"wk_staff_id".($j+$i*3)}] ; ?></label>
+              <select name="wk_staff_id<?php echo $j+$i*3 ; ?>_kbn" id="" class="">
+                <option value=""></option>
+                <?php for ($k=1;$k<=count($kinmu_kbn);$k++) { ?>
+                <option value="<?php echo $k; ?>" <?php echo $k == ${"wk_staff_id".($j+($i*3))."_kbn"} ? "selected" : ""; ?>><?php echo $kinmu_kbn[$k]; ?></option>
+                <?php } ?>
+              </select>
+              <!-- <label><?php echo $wk_kbn[${"wk_staff_id".($j+$i*3)}].$wk_ken[${"wk_staff_id".($j+$i*3)}] ; ?></label> -->
               <select name="wk_staff_id<?php echo $j+$i*3 ; ?>" id="wk_staff_id<?php echo $j+$i*3 ; ?>" class="wk_staff_id">
                 <option value=""></option>
                 <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
@@ -499,7 +513,9 @@
 </html>
 
 <script type="text/javascript">
-  window.onload = function() {
+  var inp
+
+  function winload() {
     width = $(window).width()
     if (width <= 800) {
     // if ('<?php echo $common->device; ?>' != 'pc') {
@@ -514,7 +530,15 @@
       $('.time [type="number"], .time2 [type="number"]').css('width','45px')
       $('.rc').css('width','40%')
     }
+
+    if ($('.inp').text() == '入力') {
+      inp = $('.inp').next().next().remove()
+    } else {
+      inp = $('.inp').next().remove()
+    }
   }
+  winload()
+  
   $(window).resize(function(){
     width = $(window).width()
     if (width <= 800) {
@@ -564,6 +588,16 @@
       $(this).next().after(checkList[no])
       checkList[no] = $(this).next().remove()
     }
+  })
+
+  $('.inp').click(function(){
+    if ($(this).text() == '入力') {
+      $(this).text('時刻')
+    } else {
+      $(this).text('入力')
+    }
+    $(this).parent().append(inp)
+    inp = $(this).next().remove()
   })
 
   $('.temp, .regist').click(function(){

@@ -185,8 +185,12 @@
         $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
     }
 
+    // $shipName        = new Report;
+    // $shipName->inp_wk_ship1_NOTNULL = true;
+    // $shipName->getReport($table);
+
     if ($act) {
-        // var_dump($_POST);
+        // var_dump($_POST["last_exit1"]);
         // exit;
 
         // // チェックボックスにチェックされていたら停泊を登録
@@ -295,8 +299,10 @@
                     if (strpos($report3->{"oup_".$value}[0],":") !== false) {
                         $array          = explode(":",$report3->{"oup_".$value}[0]);
                         ${$value}       = array($array[0],$array[1]);
-                    } else {
+                    } elseif (is_null($report3->{"oup_".$value}[0])) {
                         ${$value}       = array(null,null);
+                    } else {
+                        ${$value}       = $report3->{"oup_".$value}[0];
                     }
                     continue;
                 }

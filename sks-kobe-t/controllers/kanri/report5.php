@@ -33,34 +33,36 @@
     $kaban_time                             = array("08","00");
     $picketTimes1                           = array(array("08","30"),array("08","30"),array("08","30"));
     $picketTimes2                           = array(array("17","00"),array("16","30"),array("17","00"));
-    $yard_kbn                               = array("三井","日東","三菱");
-    for ($i=1;$i<=4;$i++) {
+    $light_kbn1                             = array("三井","日東","三菱");
+    $light_kbn2                             = array("日東","三菱");
+    for ($i=1;$i<=6;$i++) {
         if ($i < 4) {
             ${"picket_joban_time".$i}       = array($picketTimes1[$i-1][0],$picketTimes1[$i-1][1]);
             ${"picket_kaban_time".$i}       = array($picketTimes2[$i-1][0],$picketTimes2[$i-1][1]);
         }
+        if ($i < 5) {
+            ${"c2_kbn".$i}                 = null;
+            ${"c2_joban_time".$i}          = array(null,null);
+            ${"c2_kaban_time".$i}          = array(null,null);
+            ${"c3_kbn".$i}                 = null;
+            ${"c3_joban_time".$i}          = array(null,null);
+            ${"c3_kaban_time".$i}          = array(null,null);
+            ${"c4_kbn".$i}                 = null;
+            ${"c4_joban_time".$i}          = array(null,null);
+            ${"c4_kaban_time".$i}          = array(null,null);
+            ${"c5_kbn".$i}                 = null;
+            ${"c5_joban_time".$i}          = array(null,null);
+            ${"c5_kaban_time".$i}          = array(null,null);
+            ${"tonbo_light_kbn".$i}        = null;
+            ${"tonbo_light_joban_time".$i} = array(null,null);
+            ${"tonbo_light_kaban_time".$i} = array(null,null);
+            ${"c5_light_kbn".$i}           = null;
+            ${"c5_light_joban_time".$i}    = array(null,null);
+            ${"c5_light_kaban_time".$i}    = array(null,null);
+        }
         ${"ship".$i}                        = null;
         ${"ship_in_port_time".$i}           = array(null,null);
         ${"ship_out_port_time".$i}          = array(null,null);
-
-        ${"c2_kbn".$i}                 = null;
-        ${"c2_joban_time".$i}          = array(null,null);
-        ${"c2_kaban_time".$i}          = array(null,null);
-        ${"c3_kbn".$i}                 = null;
-        ${"c3_joban_time".$i}          = array(null,null);
-        ${"c3_kaban_time".$i}          = array(null,null);
-        ${"c4_kbn".$i}                 = null;
-        ${"c4_joban_time".$i}          = array(null,null);
-        ${"c4_kaban_time".$i}          = array(null,null);
-        ${"c5_kbn".$i}                 = null;
-        ${"c5_joban_time".$i}          = array(null,null);
-        ${"c5_kaban_time".$i}          = array(null,null);
-        ${"tonbo_light_kbn".$i}        = null;
-        ${"tonbo_light_joban_time".$i} = array(null,null);
-        ${"tonbo_light_kaban_time".$i} = array(null,null);
-        ${"c5_light_kbn".$i}           = null;
-        ${"c5_light_joban_time".$i}    = array(null,null);
-        ${"c5_light_kaban_time".$i}    = array(null,null);
     }
     $comment                                = null;
     $times = array(
@@ -71,11 +73,12 @@
         ${"patrol_time".$i}                 = $times[$i-1] ? array($times[$i-1][0],$times[$i-1][1]) : array(null,null);
     }
     $wk_comment                             = "巡回　点検　警備その他服務中異常ありません";
-    $wk_admin_end                           = null;
+    $wk_admin_end                           = "泊り";
     $wk_outsider                            = null;
     // $abc                                    = array("1"=>"A","2"=>"B","3"=>"C","4"=>"D","5"=>"E","6"=>"F","7"=>"G","8"=>"H","9"=>"I");
     for ($i=1;$i<=9;$i++) {
         ${"wk_staff_id".$i}                 = null;
+        ${"wk_staff_id".$i."_kbn"}          = null;
     }
 
     // $week = array("日", "月", "火", "水", "木", "金", "土");
@@ -149,7 +152,7 @@
         // exit;
 
         // チェックボックスにチェックされていたら停泊を登録
-        for ($i=1;$i<=4;$i++) {
+        for ($i=1;$i<=6;$i++) {
             if (!$_POST["ship_in_port_time".$i]) {
                 $_POST["ship_in_port_time".$i]               = "停泊";
             }
@@ -227,6 +230,16 @@
                 if ($value == "table") {
                     continue;
                 }
+                // 管理棟終了
+                if ($value == "wk_admin_end") {
+                    if (strpos($report3->{"oup_".$value}[0],":") !== false) {
+                        $array          = explode(":",$report3->{"oup_".$value}[0]);
+                        ${$value}       = array($array[0],$array[1]);
+                    } else {
+                        ${$value}           = $report3->{"oup_".$value}[0];
+                    }
+                    continue;
+                }
                 // 時刻（checkboxの項目以外）
                 if (strpos($value,"time") !== false && strpos($report3->{"oup_".$value}[0],":") !== false) {
                     $array          = explode(":",$report3->{"oup_".$value}[0]);
@@ -242,7 +255,8 @@
     }
 
     // 勤務区分
-    $kinmu_kbn = array("1"=>"泊","2"=>"日","3"=>"夜");
+    $kinmu_kbn = array("1"=>"泊","2"=>"日","3"=>"夜","4"=>"研修");
+    // $ken = array("1"=>"研修");
 
     // 当日予定のある隊員取得
     $wkdetail->inp_t_wk_genba_id = "1";
@@ -255,13 +269,16 @@
     if ($wkdetail->oup_t_wk_detail_no) {
         $cnt = 0;
         for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
-            // 勤務区分、補足文字
-            $wk_kbn[$wkdetail->oup_t_wk_taiin_id[$i]] = $kinmu_kbn[$wkdetail->oup_t_wk_plan_kbn[$i]];
-            $wk_hosoku[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_hosoku[$i];
+            // // 勤務区分、補足文字
+            // $wk_kbn[$wkdetail->oup_t_wk_taiin_id[$i]] = $kinmu_kbn[$wkdetail->oup_t_wk_plan_kbn[$i]];
+            // $wk_hosoku[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_hosoku[$i];
+            // $wk_ken[$wkdetail->oup_t_wk_taiin_id[$i]] = $ken[$wkdetail->oup_t_wk_plan_kensyu[$i]];
 
             // 勤務員デフォルト表示
             $cnt = $cnt + 1;
-            ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
+            ${"wk_staff_id".$cnt}                = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
+
+            ${"wk_staff_id".$cnt."_kbn"}         = $no ? ${"wk_staff_id".$cnt."_kbn"} : $wkdetail->oup_t_wk_plan_kbn[$i];
         }
 
         // 隊員が一人なら担当警備員にデフォルト表示
