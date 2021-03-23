@@ -24,14 +24,14 @@
         $_SESSION["sday"] = $_REQUEST["startday"];
     } else {
         if (!isset($_SESSION["sday"])) {
-            $_SESSION["sday"] = date('Ymd');
+            $_SESSION["sday"] = date('Ymd', strtotime('-1 day'));
         }
     }
     if (isset($_REQUEST['endday'])) {
         $_SESSION["eday"] = $_REQUEST["endday"];
     } else {
         if (!isset($_SESSION["eday"])) {
-            $_SESSION["eday"] = date('Ymd');
+            $_SESSION["eday"] = date('Ymd', strtotime('-1 day'));
         }
     }
 
