@@ -60,11 +60,11 @@
         );
 
         public static $report8 = array(
-            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time","wk_end_time","result","wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","comment",
+            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time","wk_end_time","result1","wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","comment",
         );
 
         public static $report9 = array(
-            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time1","wk_end_time1","wk_start_time2","wk_end_time2","result","wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9","wk_staff_id10","wk_staff_id11","wk_staff_id12","comment",
+            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time1","wk_end_time1","wk_start_time2","wk_end_time2","result1","wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9","wk_staff_id10","wk_staff_id11","wk_staff_id12","comment",
         );
 
         public static $report10 = array(
@@ -76,9 +76,9 @@
 
         // 日本郵船神戸コンテナターミナル
         public static $report11 = array(
-            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","patrol_time1","bath1","sip1","in_port_time1",
-            "out_port_time1","patrol_time2","bath2","sip2","in_port_time2","out_port_time2","patrol_time3","bath3","sip3","in_port_time3","out_port_time3","patrol_time4",
-            "bath4","sip4","in_port_time4","out_port_time4","patrol_time5","bath5","sip5","in_port_time5","out_port_time5","front_gate_start_time","front_gate_end_time",
+            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","patrol_time1","bath1","sip1","in_port_time1","out_port_time1","patrol_time2",
+            "bath2","sip2","in_port_time2","out_port_time2","patrol_time3","bath3","sip3","in_port_time3","out_port_time3","patrol_time4","bath4","sip4","in_port_time4","out_port_time4",
+            "patrol_time5","bath5","sip5","in_port_time5","out_port_time5","patrol_time6","bath6","sip6","in_port_time6","out_port_time6","front_gate_start_time","front_gate_end_time",
             "east_gate_start_time","east_gate_end_time","west_gate_start_time","west_gate_end_time","over_time_num","over_time_name","over_start_time","over_end_time",
             "yard","yard1_start_time","yard1_end_time","yard2_start_time","yard2_end_time","cam_time","cam_text","fence_time","fence_text","etc_comment1","etc_comment2",
             "wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9","wk_staff_id10",

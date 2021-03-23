@@ -136,7 +136,7 @@
             <td><label>入港</label></td>
             <td><label>出港</label></td>
           </tr>
-          <?php for ($i=1;$i<=5;$i++) { ?>
+          <?php for ($i=1;$i<=6;$i++) { ?>
           <tr>
             <td>
               <div class="time">

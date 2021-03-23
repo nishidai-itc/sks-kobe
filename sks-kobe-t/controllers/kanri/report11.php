@@ -86,7 +86,7 @@
     $weather2                               = null;
     $weathers                               = array("晴","曇","雨","雪");
     $staff_id                               = null;
-    for ($i=1;$i<=5;$i++) {
+    for ($i=1;$i<=6;$i++) {
         ${"patrol_time".$i}                 = array(null,null);
         ${"bath".$i}                        = null;
         ${"sip".$i}                         = null;
@@ -141,7 +141,7 @@
     if ($act) {
         // var_dump($_POST["out_port_time1"]);
         // exit;
-        for ($i=1;$i<=5;$i++) {
+        for ($i=1;$i<=6;$i++) {
             if (!$_POST["in_port_time".$i]) {
                 $_POST["in_port_time".$i]                        = "停泊";
             }
