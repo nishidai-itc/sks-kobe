@@ -59,7 +59,7 @@ $pdf->Text(142, 65, $report->oup_weather2[0]);     // 天候
 $pdf->Text(152, 65, $staffs[$report->oup_staff_id[0]]);     // 担当警備士
 
 $pdf->Text(100, 88, $report->oup_wk_start_time[0]." ～ ".$report->oup_wk_end_time[0]);     // 日本港運
-$pdf->Text(100, 130, $report->oup_picket_start_time[0]." ～ ".$report->oup_picket_start_time[0]);     // 日本港運
+$pdf->Text(100, 130, $report->oup_picket_start_time[0]." ～ ".$report->oup_picket_end_time[0]);     // 日本港運
 
 $pdf->Text(47, 217, $report->oup_patrol_time1[0]);     // 巡回1
 $pdf->Text(47, 226, $report->oup_patrol_time2[0]);     // 巡回2
