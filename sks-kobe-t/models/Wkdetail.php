@@ -417,6 +417,11 @@ set_time_limit(300);
                 $sql .= "(t_wk_joban_kbn != '' or t_wk_kaban_kbn != '') ";
                 $whereflg = true;
             }
+            if ($this->inp_t_wk_jokaban3_kbn != "") {
+                if ($whereflg == true) { $sql .= "AND "; }
+                $sql .= "(t_wk_joban_kbn != '' or t_wk_joban_kbn is not null) AND (t_wk_kaban_kbn != '' or t_wk_kaban_kbn is not null or t_wk_joban_kbn = '4') ";
+                $whereflg = true;
+            }
             if ($this->inp_t_wk_joban_dakoku_time != "") {
                 if ($this->inp_t_wk_joban_dakoku_time == "null") {
                     if ($whereflg == true) { $sql .= "AND "; }
@@ -620,12 +625,16 @@ set_time_limit(300);
                 return;
             }
 
+            if ($this->inp_group) {
+                $sql .= "GROUP BY ".$db->escape_string($this->inp_group)." ";
+            }
+
             if ($this->inp_order == "") {
                 $sql .= "ORDER BY t_wk_plan_date, t_wk_plan_joban_time, t_wk_taiin_id  ";
             } else {
                 $sql .= $db->escape_string($this->inp_order);
             }
- //var_dump($sql);
+//  var_dump($sql);
             // SQL実行
 
             // 文字化け防止
@@ -801,12 +810,14 @@ set_time_limit(300);
             $db->close();
         }
         
+        /*
         public function getcalckintime() {
             // require_once('./common/calc.php');
             // require_once dirname(__FILE__).'/common/calc_old.php';
             require_once dirname(__FILE__).'/common/calc.php';
         }
-        /*
+        */
+        
         //勤務時間の計算
         public function getcalckintime()
         {
@@ -1248,7 +1259,7 @@ set_time_limit(300);
                 $this->tuzan_time       = 0;
             }
         }
-        */
+        
 
         // セレクト
         public function getWkservice()
