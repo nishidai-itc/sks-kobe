@@ -21,13 +21,20 @@
     $common     = new Common;       // 共通クラス
     $reportname = new ReportName;   // 警備報告書マスタクラス
     $report     = new Report;       // 警備報告書クラス
+    $staff      = new Staff;        // 社員マスタクラス
+
+    // 社員マスタ 取得
+    $staff->getStaff();
+    for ($i=0;$i<count($staff->oup_m_staff_id);$i++) {
+        $staffs[$staff->oup_m_staff_id[$i]] = $staff->oup_m_staff_name[$i];
+    }
 
     // 警備報告書取得
     // 検索部分はまだ出来ていないため全件取得
     $report->inp_no = $_GET['no'];
     $report->getReport("11");
-
 //var_dump($report);
+
 
 ?>
 <?php
