@@ -170,6 +170,7 @@
     $wkdetail       = new Wkdetail;       // 作業実施テーブルクラス
     $staff          = new Staff;          // 社員マスタクラス
     $staff2         = new Staff;
+    $staff3         = new Staff;
     $genba          = new Genba;
     $report         = new Report;
     $report2        = new Report;
@@ -227,6 +228,12 @@
                     continue;
                 }
 
+                // 水道メーター
+                if (strpos($key,"meter") !== false) {
+                    $report2->{"inp_".$key}              = $value;
+                    continue;
+                }
+                
                 // 時刻以外
                 $report2->{"inp_".$key}              = $value === "0" ? null : $value ;
             }
@@ -336,6 +343,14 @@
     if ($wkdetail->oup_t_wk_detail_no) {
         $cnt = 0;
         for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
+            // if ($i == 0) {
+            //     $staff3->inp_m_staff_id_in = "'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
+            // } else {
+            //     $staff3->inp_m_staff_id_in = $staff3->inp_m_staff_id_in.",'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
+            // }
+            // $staff3->inp_m_staff_genba_id_or = "6";
+            // $staff3->getStaff();
+
             // 勤務員の項目の隊員デフォルト表示
             if ($cnt != 18) {
                 $cnt = $cnt + 1;
