@@ -68,19 +68,19 @@ $pdf->Text(121, 104, $report->oup_wk_start_time3[0]);    // C-5
 $pdf->Text(161, 104, $report->oup_wk_end_time3[0]);      // C-5
 
 
-$pdf->Text(150, 244, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員1
-$pdf->Text(150, 255, $staffs[$report->oup_wk_staff_id2[0]]);     // 警備員2
-$pdf->Text(150, 266, $staffs[$report->oup_wk_staff_id3[0]]);    // 警備員3
-//$pdf->Text(156, 216, $staffs[$report->oup_wk_staff_id4[0]]);    // 警備員4
+$pdf->Text(150, 227, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員1
+$pdf->Text(150, 239, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員2
+$pdf->Text(150, 250, $staffs[$report->oup_wk_staff_id1[0]]);    // 警備員3
+$pdf->Text(150, 261, $staffs[$report->oup_wk_staff_id1[0]]);    // 警備員4
 //$pdf->Text(31, 227, $staffs[$report->oup_wk_staff_id5[0]]);     // 警備員5
 //$pdf->Text(72, 227, $staffs[$report->oup_wk_staff_id6[0]]);     // 警備員6
 //$pdf->Text(114, 227, $staffs[$report->oup_wk_staff_id7[0]]);    // 警備員7
 //$pdf->Text(156, 227, $staffs[$report->oup_wk_staff_id8[0]]);    // 警備員8
 
-$pdf->Text(100, 244, $report->oup_offwk_count[0]);      // C-5
-$pdf->Text(113, 266, $report->oup_outsider[0]);      // C-5
+$pdf->Text(100, 250, $report->oup_offwk_count[0]);      // C-5
+$pdf->Text(113, 261, $report->oup_outsider[0]);      // C-5
 
-$pdf->MultiCell(64,30,$report->oup_comment[0],0,'',0,1,23,241);     // 備考
+$pdf->MultiCell(64,30,$report->oup_comment[0],0,'',0,1,23,225);     // 備考
 
 
 $pdf->Output(sprintf("report6.pdf", time()), 'I');
