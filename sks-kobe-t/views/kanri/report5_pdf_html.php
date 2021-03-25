@@ -15,6 +15,8 @@
     $kbn[3] = "夜";
     $kbn[4] = "研";
 
+    $ken[1] = "研";
+
 require_once('../../tcpdf/tcpdf.php');
 require_once('../../fpdf/src/autoload.php');
 
@@ -218,32 +220,41 @@ $pdf->SetFont('kozminproregular', '', 10);// 日本語フォント
 $pdf->Text(45, 271, $report->oup_wk_admin_end[0]);   // 巡回8
 $pdf->Text(85, 271, $report->oup_wk_outsider[0]);   // 巡回8
 
-$pdf->Text(102, 245, $kbn[$report->oup_wk_staff_id1_kbn[0]]);   // 巡回8
-$pdf->Text(106, 245, $staffs[$report->oup_wk_staff_id1[0]]);   // 巡回8
+$pdf->Text(102, 244, $kbn[$report->oup_wk_staff_id1_kbn[0]]);   // 巡回8
+$pdf->Text(106, 244, $staffs[$report->oup_wk_staff_id1[0]]);   // 巡回8
+$pdf->Text(120, 249, $ken[$report->oup_wk_staff_id1_ken[0]]);   // 研
 
-$pdf->Text(133, 245, $kbn[$report->oup_wk_staff_id2_kbn[0]]);   // 巡回8
-$pdf->Text(137, 245, $staffs[$report->oup_wk_staff_id2[0]]);   // 巡回8
+$pdf->Text(133, 244, $kbn[$report->oup_wk_staff_id2_kbn[0]]);   // 巡回8
+$pdf->Text(137, 244, $staffs[$report->oup_wk_staff_id2[0]]);   // 巡回8
+$pdf->Text(151, 249, $ken[$report->oup_wk_staff_id2_ken[0]]);   // 研
 
-$pdf->Text(165, 245, $kbn[$report->oup_wk_staff_id3_kbn[0]]);   // 巡回8
-$pdf->Text(169, 245, $staffs[$report->oup_wk_staff_id3[0]]);   // 巡回8
+$pdf->Text(165, 244, $kbn[$report->oup_wk_staff_id3_kbn[0]]);   // 巡回8
+$pdf->Text(169, 244, $staffs[$report->oup_wk_staff_id3[0]]);   // 巡回8
+$pdf->Text(183, 249, $ken[$report->oup_wk_staff_id3_ken[0]]);   // 研
 
-$pdf->Text(102, 258, $kbn[$report->oup_wk_staff_id4_kbn[0]]);   // 巡回8
-$pdf->Text(106, 258, $staffs[$report->oup_wk_staff_id4[0]]);   // 巡回8
+$pdf->Text(102, 257, $kbn[$report->oup_wk_staff_id4_kbn[0]]);   // 巡回8
+$pdf->Text(106, 257, $staffs[$report->oup_wk_staff_id4[0]]);   // 巡回8
+$pdf->Text(120, 262, $ken[$report->oup_wk_staff_id4_ken[0]]);   // 研
 
-$pdf->Text(133, 258, $kbn[$report->oup_wk_staff_id5_kbn[0]]);   // 巡回8
-$pdf->Text(137, 258, $staffs[$report->oup_wk_staff_id5[0]]);   // 巡回8
+$pdf->Text(133, 257, $kbn[$report->oup_wk_staff_id5_kbn[0]]);   // 巡回8
+$pdf->Text(137, 257, $staffs[$report->oup_wk_staff_id5[0]]);   // 巡回8
+$pdf->Text(151, 262, $ken[$report->oup_wk_staff_id5_ken[0]]);   // 研
 
-$pdf->Text(165, 258, $kbn[$report->oup_wk_staff_id6_kbn[0]]);   // 巡回8
-$pdf->Text(169, 258, $staffs[$report->oup_wk_staff_id6[0]]);   // 巡回8
+$pdf->Text(165, 257, $kbn[$report->oup_wk_staff_id6_kbn[0]]);   // 巡回8
+$pdf->Text(169, 257, $staffs[$report->oup_wk_staff_id6[0]]);   // 巡回8
+$pdf->Text(183, 262, $ken[$report->oup_wk_staff_id6_ken[0]]);   // 研
 
-$pdf->Text(102, 271, $kbn[$report->oup_wk_staff_id7_kbn[0]]);   // 巡回8
-$pdf->Text(106, 271, $staffs[$report->oup_wk_staff_id7[0]]);   // 巡回8
+$pdf->Text(102, 269, $kbn[$report->oup_wk_staff_id7_kbn[0]]);   // 巡回8
+$pdf->Text(106, 269, $staffs[$report->oup_wk_staff_id7[0]]);   // 巡回8
+$pdf->Text(120, 274, $ken[$report->oup_wk_staff_id7_ken[0]]);   // 研
 
-$pdf->Text(133, 271, $kbn[$report->oup_wk_staff_id8_kbn[0]]);   // 巡回8
-$pdf->Text(137, 271, $staffs[$report->oup_wk_staff_id8[0]]);   // 巡回8
+$pdf->Text(133, 269, $kbn[$report->oup_wk_staff_id8_kbn[0]]);   // 巡回8
+$pdf->Text(137, 269, $staffs[$report->oup_wk_staff_id8[0]]);   // 巡回8
+$pdf->Text(151, 274, $ken[$report->oup_wk_staff_id8_ken[0]]);   // 研
 
-$pdf->Text(165, 271, $kbn[$report->oup_wk_staff_id9_kbn[0]]);   // 巡回8
-$pdf->Text(169, 271, $staffs[$report->oup_wk_staff_id9[0]]);   // 巡回8
+$pdf->Text(165, 269, $kbn[$report->oup_wk_staff_id9_kbn[0]]);   // 巡回8
+$pdf->Text(169, 269, $staffs[$report->oup_wk_staff_id9[0]]);   // 巡回8
+$pdf->Text(183, 274, $ken[$report->oup_wk_staff_id9_ken[0]]);   // 研
 
 
 $pdf->Output(sprintf("report7.pdf", time()), 'I');
