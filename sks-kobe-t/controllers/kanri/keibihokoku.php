@@ -127,7 +127,9 @@
         $report->inp_table_in = $hokokusyo;
     }
 //print($hokokusyo);
-    $report->inp_order = "order by t_report_plan_date, 	t_report_no ";
+    $report->inp_join = "name";
+    $report->inp_order = "order by t_report_name.t_report_disp, t_report_kanri.t_report_plan_date, t_report_kanri.t_report_no ";
+    // $report->inp_order = "order by t_report_plan_date, 	t_report_no ";
     // 検索部分はまだ出来ていないため全件取得
     $report->getReport("kanri");
 //var_dump($report);
