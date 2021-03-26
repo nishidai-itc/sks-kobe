@@ -22,6 +22,9 @@
 .w-15{
   width: 15% !important;
 }
+.w-45{
+  width: 45% !important;
+}
 </style>
 
 <body>
@@ -122,34 +125,43 @@
           <?php for ($i=1;$i<=10;$i++) { ?>
           <tr>
             <td>
-              <input type="text" class="text w-75" name="wk_ship<?php echo $i; ?>" value="<?php echo ${"wk_ship".$i}; ?>">
+              <!-- <input type="text" class="text w-75" name="wk_ship<?php echo $i; ?>" value="<?php echo ${"wk_ship".$i}; ?>"> -->
+
+              <label><input type="checkbox" class="ship" value=""></label>
+              <!-- <label><span class="inp badge badge-secondary" style="cursor:pointer;">選択</span></label> -->
+              <input type="text" class="shipText w-75 d-none" name="" value="">
+              <select name="" id="" class="shipSelect w-75">
+                <?php for ($j=0;$j<count($shipName);$j++) { ?>
+                <option value="<?php echo $shipName[$j]; ?>" <?php echo $shipName[$j] == ${"wk_ship".$i} ? "selected" : "" ; ?>><?php echo $shipName[$j]; ?></option>
+                <?php } ?>
+              </select>
+
+              <input type="hidden" name="wk_ship<?php echo $i; ?>" value="">
             </td>
             <td>
-              <input type="checkbox" class="check" value="in<?php echo $i; ?>" <?php echo !is_array(${"wk_ship_in_port_time".$i}) ? "checked" : ""; ?>>
-              <!-- <label class="m-0">停泊</label> -->
+              <input type="checkbox" class="port" value="in<?php echo $i; ?>" <?php echo !is_array(${"wk_ship_in_port_time".$i}) ? "checked" : ""; ?>>
               <select name="wk_ship_in_port_time<?php echo $i; ?>" id="">
                 <?php for ($j=0;$j<count($port);$j++) { ?>
                 <option value="<?php echo $port[$j]; ?>"<?php echo $port[$j] == ${"wk_ship_in_port_time".$i} ? "selected" : "" ; ?>><?php echo $port[$j]; ?></option>
                 <?php } ?>
               </select>
               <div class="time">
-                <input type="number" class="text-center" name="wk_ship_in_port_time<?php echo $i; ?>[0]" value="<?php echo ${"wk_ship_in_port_time".$i}[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="wk_ship_in_port_time<?php echo $i; ?>[0]" value="<?php echo is_array(${"wk_ship_in_port_time".$i}) ? ${"wk_ship_in_port_time".$i}[0] : "" ; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="wk_ship_in_port_time<?php echo $i; ?>[1]" value="<?php echo ${"wk_ship_in_port_time".$i}[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="wk_ship_in_port_time<?php echo $i; ?>[1]" value="<?php echo is_array(${"wk_ship_in_port_time".$i}) ? ${"wk_ship_in_port_time".$i}[1] : "" ; ?>" min="0" max="59">
               </div>
             </td>
             <td>
-              <input type="checkbox" class="check" value="out<?php echo $i; ?>" <?php echo !is_array(${"wk_ship_out_port_time".$i}) ? "checked" : ""; ?>>
-              <!-- <label class="m-0">停泊</label> -->
+              <input type="checkbox" class="port" value="out<?php echo $i; ?>" <?php echo !is_array(${"wk_ship_out_port_time".$i}) ? "checked" : ""; ?>>
               <select name="wk_ship_out_port_time<?php echo $i; ?>" id="">
                 <?php for ($j=0;$j<count($port);$j++) { ?>
                 <option value="<?php echo $port[$j]; ?>"<?php echo $port[$j] == ${"wk_ship_out_port_time".$i} ? "selected" : "" ; ?>><?php echo $port[$j]; ?></option>
                 <?php } ?>
               </select>
               <div class="time">
-                <input type="number" class="text-center" name="wk_ship_out_port_time<?php echo $i; ?>[0]" value="<?php echo ${"wk_ship_out_port_time".$i}[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="wk_ship_out_port_time<?php echo $i; ?>[0]" value="<?php echo is_array(${"wk_ship_out_port_time".$i}) ? ${"wk_ship_out_port_time".$i}[0] : "" ; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="wk_ship_out_port_time<?php echo $i; ?>[1]" value="<?php echo ${"wk_ship_out_port_time".$i}[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="wk_ship_out_port_time<?php echo $i; ?>[1]" value="<?php echo is_array(${"wk_ship_out_port_time".$i}) ? ${"wk_ship_out_port_time".$i}[1] : "" ; ?>" min="0" max="59">
               </div>
             </td>
           </tr>
@@ -157,7 +169,7 @@
 
           <tr>
             <td class="pt-1">
-              <div class="d-inline-block w-25"><label>２．搬入出</label></div>
+              <!-- <div class="d-inline-block w-25"><label>２．搬入出</label></div>
               <div class="time">
                 <input type="number" class="text-center" name="wk_in_out_start_time[0]" value="<?php echo $wk_in_out_start_time[0]; ?>" min="0" max="23">
                 <span class="">:</span>
@@ -167,38 +179,78 @@
                 <input type="number" class="text-center" name="wk_in_out_end_time[0]" value="<?php echo $wk_in_out_end_time[0]; ?>" min="0" max="23">
                 <span class="">:</span>
                 <input type="number" class="text-center" name="wk_in_out_end_time[1]" value="<?php echo $wk_in_out_end_time[1]; ?>" min="0" max="59">
+              </div> -->
+
+              <div class="row">
+                <div class="col-3"><label>２．搬入出</label></div>
+                <div class="col-9">
+                  <input type="checkbox" class="wk" value="wk1" <?php echo !is_array($wk_in_out_start_time) ? "checked" : "" ; ?>>
+                  <input type="text" class="text" name="wk_in_out_start_time" value="<?php echo !is_array($wk_in_out_start_time) ? $wk_in_out_start_time : "" ; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="wk_in_out_start_time[0]" value="<?php echo is_array($wk_in_out_start_time) ? $wk_in_out_start_time[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="wk_in_out_start_time[1]" value="<?php echo is_array($wk_in_out_start_time) ? $wk_in_out_start_time[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                  <input type="checkbox" class="wk" value="wk2" <?php echo !is_array($wk_in_out_end_time) ? "checked" : "" ; ?>>
+                  <input type="text" class="text" name="wk_in_out_end_time" value="<?php echo !is_array($wk_in_out_end_time) ? $wk_in_out_end_time : "" ; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="wk_in_out_end_time[0]" value="<?php echo is_array($wk_in_out_end_time) ? $wk_in_out_end_time[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="wk_in_out_end_time[1]" value="<?php echo is_array($wk_in_out_end_time) ? $wk_in_out_end_time[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                </div>
               </div>
             </td>
             <td class="pt-1" colspan="2">
-              <div class="d-inline-block w-25"><label>４．VP終了</label></div>
-              <div class="time">
-                <input type="number" class="text-center" name="wk_vp_end_time[0]" value="<?php echo $wk_vp_end_time[0]; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="wk_vp_end_time[1]" value="<?php echo $wk_vp_end_time[1]; ?>" min="0" max="59">
+              <div class="row">
+                <div class="col-4"><label>４．VP終了</label></div>
+                <div class="col-8">
+                  <input type="checkbox" class="wk" value="wk3" <?php echo !is_array($wk_vp_end_time) ? "checked" : "" ; ?>>
+                  <input type="text" class="text" name="wk_vp_end" value="<?php echo !is_array($wk_vp_end_time) ? $wk_vp_end_time : "" ; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="wk_vp_end_time[0]" value="<?php echo is_array($wk_vp_end_time) ? $wk_vp_end_time[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="wk_vp_end_time[1]" value="<?php echo is_array($wk_vp_end_time) ? $wk_vp_end_time[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                </div>
               </div>
             </td>
           </tr>
 
           <tr>
             <td>
-              <div class="d-inline-block w-25"><label>３．構内作業</label></div>
-              <div class="time">
-                <input type="number" class="text-center" name="wk_joban_time[0]" value="<?php echo $wk_joban_time[0]; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="wk_joban_time[1]" value="<?php echo $wk_joban_time[1]; ?>" min="0" max="59">
-              </div>
-              <div class="time">
-                <input type="number" class="text-center" name="wk_kaban_time[0]" value="<?php echo $wk_kaban_time[0]; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="wk_kaban_time[1]" value="<?php echo $wk_kaban_time[1]; ?>" min="0" max="59">
+              <div class="row">
+                <div class="col-3"><label>３．構内作業</label></div>
+                <div class="col-9">
+                  <input type="checkbox" class="wk" value="wk4" <?php echo !is_array($wk_joban_time) ? "checked" : "" ; ?>>
+                  <input type="text" class="text" name="wk_joban_time" value="<?php echo !is_array($wk_joban_time) ? $wk_joban_time : "" ; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="wk_joban_time[0]" value="<?php echo is_array($wk_joban_time) ? $wk_joban_time[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="wk_joban_time[1]" value="<?php echo is_array($wk_joban_time) ? $wk_joban_time[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                  <input type="checkbox" class="wk" value="wk5" <?php echo !is_array($wk_kaban_time) ? "checked" : "" ; ?>>
+                  <input type="text" class="text" name="wk_kaban_time" value="<?php echo !is_array($wk_kaban_time) ? $wk_kaban_time : "" ; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="wk_kaban_time[0]" value="<?php echo is_array($wk_kaban_time) ? $wk_kaban_time[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="wk_kaban_time[1]" value="<?php echo is_array($wk_kaban_time) ? $wk_kaban_time[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                </div>
               </div>
             </td>
             <td colspan="2">
-              <div class="d-inline-block w-25"><label>５．VP作業終了</label></div>
-              <div class="time">
-                <input type="number" class="text-center" name="wk_vp_kaban_time[0]" value="<?php echo $wk_vp_kaban_time[0]; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="wk_vp_kaban_time[1]" value="<?php echo $wk_vp_kaban_time[1]; ?>" min="0" max="59">
+              <div class="row">
+                <div class="col-4"><label>５．VP作業終了</label></div>
+                <div class="col-8">
+                  <input type="checkbox" class="wk" value="wk6" <?php echo !is_array($wk_vp_kaban_time) ? "checked" : "" ; ?>>
+                  <input type="text" class="text" name="wk_vp_kaban_time" value="<?php echo !is_array($wk_vp_kaban_time) ? $wk_vp_kaban_time : "" ; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="wk_vp_kaban_time[0]" value="<?php echo is_array($wk_vp_kaban_time) ? $wk_vp_kaban_time[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="wk_vp_kaban_time[1]" value="<?php echo is_array($wk_vp_kaban_time) ? $wk_vp_kaban_time[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                </div>
               </div>
             </td>
           </tr>
@@ -249,18 +301,24 @@
           <tr class="con">
             <td class="align-middle" rowspan="17">特<br>記</td>
             <td><label>１．甲陽運輸</label></td>
-            <td class="w-15">
-              <div class="time">
-                <input type="number" class="text-center" name="koyo_joban_time[0]" value="<?php echo $koyo_joban_time[0]; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="koyo_joban_time[1]" value="<?php echo $koyo_joban_time[1]; ?>" min="0" max="59">
-              </div>
-            </td>
-            <td class="w-15">
-              <div class="time">
-                <input type="number" class="text-center" name="koyo_kaban_time[0]" value="<?php echo $koyo_kaban_time[0]; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="koyo_kaban_time[1]" value="<?php echo $koyo_kaban_time[1]; ?>" min="0" max="59">
+            <td colspan="2" class="">
+              <div class="row">
+                <div class="col-12">
+                  <input type="checkbox" class="wk" value="wk7" <?php echo !is_array($koyo_joban_time) ? "checked" : "" ; ?>>
+                  <input type="text" class="text" name="koyo_joban_time" value="<?php echo !is_array($koyo_joban_time) ? $koyo_joban_time : "" ; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="koyo_joban_time[0]" value="<?php echo is_array($koyo_joban_time) ? $koyo_joban_time[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="koyo_joban_time[1]" value="<?php echo is_array($koyo_joban_time) ? $koyo_joban_time[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                  <input type="checkbox" class="wk" value="wk8" <?php echo !is_array($koyo_kaban_time) ? "checked" : "" ; ?>>
+                  <input type="text" class="text" name="koyo_kaban_time" value="<?php echo !is_array($koyo_kaban_time) ? $koyo_kaban_time : "" ; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="koyo_kaban_time[0]" value="<?php echo is_array($koyo_kaban_time) ? $koyo_kaban_time[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="koyo_kaban_time[1]" value="<?php echo is_array($koyo_kaban_time) ? $koyo_kaban_time[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                </div>
               </div>
             </td>
             <td class="align-middle" rowspan="3"><label>ヤード照明</label></td>
@@ -270,18 +328,24 @@
 
           <tr class="con">
             <td><label>２．住井運輸</label></td>
-            <td>
-              <div class="time">
-                <input type="number" class="text-center" name="sumii_joban_time[0]" value="<?php echo $sumii_joban_time[0]; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="sumii_joban_time[1]" value="<?php echo $sumii_joban_time[1]; ?>" min="0" max="59">
-              </div>
-            </td>
-            <td>
-              <div class="time">
-                <input type="number" class="text-center" name="sumii_kaban_time[0]" value="<?php echo $sumii_kaban_time[0]; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="sumii_kaban_time[1]" value="<?php echo $sumii_kaban_time[1]; ?>" min="0" max="59">
+            <td colspan="2" class="">
+              <div class="row">
+                <div class="col-12">
+                  <input type="checkbox" class="wk" value="wk9" <?php echo !is_array($sumii_joban_time) ? "checked" : "" ; ?>>
+                  <input type="text" class="text" name="sumii_joban_time" value="<?php echo !is_array($sumii_joban_time) ? $sumii_joban_time : "" ; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="sumii_joban_time[0]" value="<?php echo is_array($sumii_joban_time) ? $sumii_joban_time[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="sumii_joban_time[1]" value="<?php echo is_array($sumii_joban_time) ? $sumii_joban_time[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                  <input type="checkbox" class="wk" value="wk10" <?php echo !is_array($sumii_kaban_time) ? "checked" : "" ; ?>>
+                  <input type="text" class="text" name="sumii_kaban_time" value="<?php echo !is_array($sumii_kaban_time) ? $sumii_kaban_time : "" ; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="sumii_kaban_time[0]" value="<?php echo is_array($sumii_kaban_time) ? $sumii_kaban_time[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="sumii_kaban_time[1]" value="<?php echo is_array($sumii_kaban_time) ? $sumii_kaban_time[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                </div>
               </div>
             </td>
             <td>
@@ -302,31 +366,26 @@
 
           <tr class="con">
             <td><label>３．最終退出者</label></td>
-            <td>
-              <input type="checkbox" class="check2" <?php echo !is_array($last_exit1) ? "checked" : "" ; ?>>
-              
-              <div class="time">
-                <input type="number" class="text-center" name="last_exit1[0]" value="<?php echo is_array($last_exit1) ? $last_exit1[0] : "" ; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="last_exit1[1]" value="<?php echo is_array($last_exit1) ? $last_exit1[1] : "" ; ?>" min="0" max="59">
+            <td colspan="2">
+              <div class="row">
+                <div class="col-12">
+                  <input type="checkbox" class="exit" <?php echo !is_array($last_exit1) ? "checked" : "" ; ?>>
+                  <div class="time">
+                    <input type="number" class="text-center" name="last_exit1[0]" value="<?php echo is_array($last_exit1) ? $last_exit1[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="last_exit1[1]" value="<?php echo is_array($last_exit1) ? $last_exit1[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                  <input type="text" class="text" name="last_exit1" value="<?php echo !is_array($last_exit1) ? $last_exit1 : "" ; ?>">
+                  <input type="checkbox" class="exit" <?php echo !is_array($last_exit2) ? "checked" : "" ; ?>>
+                  <div class="time">
+                    <input type="number" class="text-center" name="last_exit2[0]" value="<?php echo is_array($last_exit2) ? $last_exit2[0] : "" ; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="last_exit2[1]" value="<?php echo is_array($last_exit2) ? $last_exit2[1] : "" ; ?>" min="0" max="59">
+                  </div>
+                  <input type="text" class="text" name="last_exit2" value="<?php echo !is_array($last_exit2) ? $last_exit2 : "" ; ?>">
+                </div>
               </div>
-              <input type="text" class="text" name="last_exit1" value="<?php echo !is_array($last_exit1) ? $last_exit1 : "" ; ?>">
-              
             </td>
-            <td>
-              <input type="checkbox" class="check2" <?php echo !is_array($last_exit2) ? "checked" : "" ; ?>>
-              
-              <div class="time">
-                <input type="number" class="text-center" name="last_exit2[0]" value="<?php echo is_array($last_exit2) ? $last_exit2[0] : "" ; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="last_exit2[1]" value="<?php echo is_array($last_exit2) ? $last_exit2[1] : "" ; ?>" min="0" max="59">
-              </div>
-              <input type="text" class="text" name="last_exit2" value="<?php echo !is_array($last_exit2) ? $last_exit2 : "" ; ?>">
-              
-            </td>
-            <!-- <td>
-              <input type="text" class="text" name="last_exit" value="<?php echo $last_exit; ?>">
-            </td> -->
             <td>
               <div class="time">
                 <input type="number" class="text-center" name="yard_on_time2[0]" value="<?php echo $yard_on_time2[0]; ?>" min="0" max="23">
@@ -524,10 +583,10 @@
       <div class="col-md-8 col-lg-7">
         <div class="row">
           <?php for ($i=1;$i<=18;$i++) { ?>
-          <div class="col-4">
+          <div class="col-4 <?php echo $i < 16 ? "mb-2" : "" ; ?>">
             <div class="row">
               <div class="col-4 pr-0">
-                <select name="wk_staff<?php echo $i; ?>_zan1" id="wk_staff<?php echo $i; ?>_zan1" class="w-100">
+                <select name="wk_staff<?php echo $i; ?>_zan1" id="" class="w-100">
                   <option value=""></option>
                   <?php for ($j=0;$j<count($wk_kbn);$j++) { ?>
                   <option value="<?php echo $wk_kbn[$j]; ?>" <?php echo $wk_kbn[$j] == ${"wk_staff".$i."_zan1"} ? "selected" : "" ; ?>>
@@ -535,10 +594,18 @@
                   </option>
                   <?php } ?>
                 </select>
-                <select name="wk_staff<?php echo $i; ?>_zan2" id="wk_staff<?php echo $i; ?>_zan2" class="w-100">
+                <select name="wk_staff<?php echo $i; ?>_zan2" id="" class="w-100">
                   <option value=""></option>
                   <?php for ($j=0;$j<count($wk_kbn);$j++) { ?>
                   <option value="<?php echo $wk_kbn[$j]; ?>" <?php echo $wk_kbn[$j] == ${"wk_staff".$i."_zan2"} ? "selected" : "" ; ?>>
+                    <?php echo $wk_kbn[$j]; ?>
+                  </option>
+                  <?php } ?>
+                </select>
+                <select name="wk_staff<?php echo $i; ?>_zan3" id="" class="w-100">
+                  <option value=""></option>
+                  <?php for ($j=0;$j<count($wk_kbn);$j++) { ?>
+                  <option value="<?php echo $wk_kbn[$j]; ?>" <?php echo $wk_kbn[$j] == ${"wk_staff".$i."_zan3"} ? "selected" : "" ; ?>>
                     <?php echo $wk_kbn[$j]; ?>
                   </option>
                   <?php } ?>
@@ -646,29 +713,30 @@
   $('.hour').css('width','55px')
   $('.num, .text, .hour').addClass('pl-1')
   $('.num, .text, .hour').css('border','1px solid #343a40')
-  $('.text').addClass('w-50')
+  // $('.text').addClass('w-50')
+  $('.text').css('width','100px')
 
   // 入港、出港checkbox
-  var checkList = {}
+  var portList = {}
   var no
   // （初期表示）
-  $('.check').each(function(){
+  $('.port').each(function(){
     no = $(this).val()
     if ($(this).prop('checked')) {
-      checkList['div'+no] = $(this).next().next().remove()
+      portList['div'+no] = $(this).next().next().remove()
     } else {
-      checkList['div'+no] = $(this).next().remove()
+      portList['div'+no] = $(this).next().remove()
     }
   })
   // （クリックで切り替え）
-  $('.check').click(function(){
+  $('.port').click(function(){
     no = $(this).val()
-    $(this).parent().append(checkList['div'+no])
-    checkList['div'+no] = $(this).next().remove()
+    $(this).parent().append(portList['div'+no])
+    portList['div'+no] = $(this).next().remove()
   })
 
   // 最終退出者checkbox（初期表示）
-  $('.check2').each(function(){
+  $('.exit').each(function(){
     if ($(this).prop('checked')) {
       $(this).next().removeClass('d-inline-block')
       $(this).next().addClass('d-none')
@@ -677,7 +745,7 @@
     }
   })
   // 最終退出者checkbox（切り替え）
-  $('.check2').click(function(){
+  $('.exit').click(function(){
     if ($(this).prop('checked')) {
       $(this).next().removeClass('d-inline-block')
       $(this).next().addClass('d-none')
@@ -691,11 +759,71 @@
     }
   })
 
+  var wkList = {}
+  $('.wk').each(function(){
+    no = $(this).val()
+    if ($(this).prop('checked')) {
+      wkList[no] = $(this).next().next().remove()
+    } else {
+      wkList[no] = $(this).next().remove()
+    }
+  })
+  $('.wk').click(function(){
+    no = $(this).val()
+    $(this).next().after(wkList[no])
+    wkList[no] = $(this).next().remove()
+  })
+
+  // 入出港船舶
+  $('.ship').click(function(){
+    if ($(this).prop('checked')) {
+      $(this).parent().next().removeClass('d-none')
+      $(this).parent().next().next().addClass('d-none')
+    } else {
+      $(this).parent().next().addClass('d-none')
+      $(this).parent().next().next().removeClass('d-none')
+    }
+    // if ($(this).text() == '入力') {
+    //   $(this).text('選択')
+    //   $(this).parent().next().addClass('d-none')
+    //   $(this).parent().next().next().removeClass('d-none')
+    // } else {
+    //   $(this).text('入力')
+    //   $(this).parent().next().removeClass('d-none')
+    //   $(this).parent().next().next().addClass('d-none')
+    // }
+  })
+
+  $('.wk').parent().next().next().addClass('d-none')
+
   $('.temp, .regist').click(function(){
+    // 入出港船舶
+    $('.ship').each(function(){
+      if ($(this).prop('checked')) {
+        $(this).parent().next().next().next().val($(this).parent().next().val())
+      } else {
+        $(this).parent().next().next().next().val($(this).parent().next().next().val())
+      }
+      // if ($(this).text() == '入力') {
+      //   $(this).parent().next().next().next().val($(this).parent().next().val())
+      // } else {
+      //   $(this).parent().next().next().next().val($(this).parent().next().next().val())
+      // }
+    })
+    // const dataList = {}
+    for (var i=1;i<=10;i++) {
+      // dataList['ship'+i] = $('[name="wk_ship'+i+'"]').val()
+      if ($('[name="wk_ship'+i+'"]').val() == '') {
+        alert('入出港船舶は新規で入力、もしくは選択してください。')
+        $('[name="wk_ship'+i+'"]').prev().prev().focus()
+        return false
+      }
+    }
+
     if (!confirm('この内容で登録します。よろしいですか？')) return false
 
     // 最終退出者POST送信する値判定
-    $('.check2').each(function(){
+    $('.exit').each(function(){
       if ($(this).prop('checked')) {
         $(this).next().children('input[type="number"]').removeAttr('name')
       } else {

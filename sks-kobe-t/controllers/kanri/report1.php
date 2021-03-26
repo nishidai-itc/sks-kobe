@@ -32,7 +32,7 @@
     $kaban_time                             = array("08","00");
     $port                                   = array("停泊","順延");
     for ($i=1;$i<=10;$i++) {
-        ${"wk_ship".$i}                     = null;
+        ${"wk_ship".$i}                     = "本船なし";
         ${"wk_ship_in_port_time".$i}        = array(null,null);
         ${"wk_ship_out_port_time".$i}       = array(null,null);
     }
@@ -46,7 +46,7 @@
     $koyo_kaban_time                        = array(null,null);
     $sumii_joban_time                       = array(null,null);
     $sumii_kaban_time                       = array(null,null);
-    $last_exit                              = null;
+    // $last_exit                              = null;
     $last_exit1                             = array(null,null);
     $last_exit2                             = array(null,null);
     $yard_on_time1                          = array(null,null);
@@ -58,7 +58,7 @@
         array(array("07","00"),array("08","00"),null,null),                 // 共同デポ
         array(array("07","30"),array("08","00"),null,null),                 // PC15.16.17　並び
         array(array("17","00"),array(null,null),null,null),                 // PC15.16.17　CY
-        // array(array("17","00"),array("18","00"),"1","1.25"),             // 専用道白出口
+        array(array("17","00"),array("18","00"),null,null),                 // 専用道白出口
         array(array("17","00"),array("17","30"),null,null),                 // VP作業
         array(array("12","00"),array("13","00"),null,null),                 // 昼作業
         array(array("17","00"),array("18","00"),null,null),                 // ゲート延長
@@ -80,13 +80,15 @@
             "name"=>array("sort_joban_time","sort_kaban_time","sort_num","sort_zan")
         ),
         array(
-            "title"=>"・PC15.16.17　CY",
+            // "title"=>"・PC15.16.17　CY",
+            "title"=>"・CY",
             "name"=>array("cy_joban_time","cy_kaban_time","cy_num","cy_zan")
         ),
-        // array(
-        //     "title"=>"・専用道白出口",
-        //     "name"=>array("exit_joban_time","exit_kaban_time","exit_num","exit_zan")
-        // ),
+        array(
+            // "title"=>"・専用道白出口",
+            "title"=>"・白出口",
+            "name"=>array("exit_joban_time","exit_kaban_time","exit_num","exit_zan")
+        ),
         array(
             "title"=>"・VP作業",
             "name"=>array("vp_joban_time","vp_kaban_time","vp_num","vp_zan")
@@ -140,6 +142,7 @@
     for ($i=1;$i<=18;$i++) {
         ${"wk_staff".$i."_zan1"}      = null;
         ${"wk_staff".$i."_zan2"}      = null;
+        ${"wk_staff".$i."_zan3"}      = null;
         ${"wk_staff_id".$i}           = null;
     }
     $wk_comment                       = null;
@@ -154,6 +157,31 @@
         } else {
             return null;
         }
+    }
+    // 値の整形
+    function valChange($val) {
+        // 配列の場合（時刻等）
+        if (is_array($val)) {
+            // 値が空ならNULLで登録
+            if ($val[0] === "" && $val[1] === "") {
+                $val = null;
+            // 値が空じゃない場合
+            } elseif ($val[0] !== "" && $val[1] !== "") {
+                $val = sprintf("%02d",$val[0]).":".sprintf("%02d",$val[1]);
+            } elseif ($val[0] !== "" && $val[1] === "") {
+                $val = sprintf("%02d",$val[0]).":00";
+            } elseif ($val[0] === "" && $val[1] !== "") {
+                $val = "00:".sprintf("%02d",$val[1]);
+            }
+        // 配列じゃない場合（時刻以外）
+        } else {
+            if ($val === "" || $val === "0") {
+                $val = null;
+            } else {
+                $val = $val;
+            }
+        }
+        return $val;
     }
 
     if (isset($_POST["act"])) {
@@ -170,7 +198,7 @@
     $wkdetail       = new Wkdetail;       // 作業実施テーブルクラス
     $staff          = new Staff;          // 社員マスタクラス
     $staff2         = new Staff;
-    $staff3         = new Staff;
+    // $staff3         = new Staff;
     $genba          = new Genba;
     $report         = new Report;
     $report2        = new Report;
@@ -191,8 +219,8 @@
     // $shipName->getReport($table);
 
     if ($act) {
-        // var_dump($_POST["last_exit1"]);
-        // exit;
+        // var_dump($_POST);
+        // exit();
 
         // // チェックボックスにチェックされていたら停泊を登録
         // for ($i=1;$i<=9;$i++) {
@@ -207,35 +235,16 @@
         foreach ($_POST as $key => $value) {
             // var_dump($key,$value);
             
-            // 値が空ならNULLで登録
-            if ((!is_array($value) && $value === "") || (is_array($value) && $value[0] === "" && $value[1] === "")) {
-                $report2->{"inp_".$key}                 = null;
-                continue;
-            }
-
-            // 値が空じゃない場合
             // 登録フラグ以外の項目登録
             if ($key != "act") {
-                // 時刻の場合（時：分が空ならNULL、片方が空なら00を登録）
-                if (is_array($value) && (strpos($key,"time") !== false || strpos($key,"last_exit") !== false)) {
-                    if ($value[0] !== "" && $value[1] !== "") {
-                        $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":".sprintf("%02d",$value[1]);  // 時刻整形
-                    } elseif ($value[0] !== "" && $value[1] === "") {
-                        $report2->{"inp_".$key}          = sprintf("%02d",$value[0]).":00";
-                    } elseif ($value[0] === "" && $value[1] !== "") {
-                        $report2->{"inp_".$key}          = "00:".sprintf("%02d",$value[1]);
-                    }
-                    continue;
-                }
-
                 // 水道メーター
                 if (strpos($key,"meter") !== false) {
                     $report2->{"inp_".$key}              = $value;
                     continue;
                 }
                 
-                // 時刻以外
-                $report2->{"inp_".$key}              = $value === "0" ? null : $value ;
+                // 水道メーター以外
+                $report2->{"inp_".$key}              = valChange($value);
             }
         }
 
@@ -302,7 +311,8 @@
                     continue;
                 }
                 // 最終退出者
-                if (strpos($value,"last_exit") !== false) {
+                // 時刻（checkboxの項目以外）
+                if (strpos($value,"time") !== false || strpos($value,"last_exit") !== false) {
                     if (strpos($report3->{"oup_".$value}[0],":") !== false) {
                         $array          = explode(":",$report3->{"oup_".$value}[0]);
                         ${$value}       = array($array[0],$array[1]);
@@ -313,21 +323,26 @@
                     }
                     continue;
                 }
-                // 時刻（checkboxの項目以外）
-                if (strpos($value,"time") !== false && strpos($report3->{"oup_".$value}[0],":") !== false) {
-                    $array          = explode(":",$report3->{"oup_".$value}[0]);
-                    ${$value}       = array($array[0],$array[1]);
-                    continue;
-                }
-                if (strpos($value,"time") !== false && is_null($report3->{"oup_".$value}[0])) {
-                    ${$value}       = array(null,null);
-                    continue;
-                }
-
+                
                 // 時刻以外
                 ${$value}           = $report3->{"oup_".$value}[0];
             }
         }
+    }
+
+    // 登録済本船名取得
+    $report3 = new Report;
+    $report3->getReportShip();
+    $shipName = array("本船なし");
+    if ($report3->oup_no) {
+        for ($i=0;$i<count($report3->oup_no);$i++) {
+            for ($j=1;$j<=10;$j++) {
+                if ($report3->{"oup_wk_ship".$j}[$i] && !in_array($report3->{"oup_wk_ship".$j}[$i],$shipName)) {
+                    $shipName[] = $report3->{"oup_wk_ship".$j}[$i];
+                }
+            }
+        }
+        // var_dump($shipName);
     }
 
     // 当日予定のある隊員取得
@@ -337,7 +352,7 @@
     $wkdetail->inp_order = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
     $wkdetail->getWkdetail();
 
-    $kbnMark                          = array("1"=>"◎","2"=>"〇","3"=>"－");
+    $kbnMark                          = array("1"=>"泊","2"=>"日","3"=>"夜");
 
     // 隊員取得
     if ($wkdetail->oup_t_wk_detail_no) {
