@@ -6,22 +6,22 @@
         // 変数の宣言
 
         public static $report1 = array(
-            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_ship1","wk_ship_in_port_time1","wk_ship_out_port_time1",
-            "wk_ship2","wk_ship_in_port_time2","wk_ship_out_port_time2","wk_ship3","wk_ship_in_port_time3","wk_ship_out_port_time3","wk_ship4","wk_ship_in_port_time4",
-            "wk_ship_out_port_time4","wk_ship5","wk_ship_in_port_time5","wk_ship_out_port_time5","wk_ship6","wk_ship_in_port_time6","wk_ship_out_port_time6","wk_ship7",
-            "wk_ship_in_port_time7","wk_ship_out_port_time7","wk_ship8","wk_ship_in_port_time8","wk_ship_out_port_time8","wk_ship9","wk_ship_in_port_time9","wk_ship_out_port_time9",
-            "wk_ship10","wk_ship_in_port_time10","wk_ship_out_port_time10",
-            "wk_in_out_start_time","wk_in_out_end_time","wk_joban_time","wk_kaban_time","wk_vp_end_time","wk_vp_kaban_time","koyo_joban_time","koyo_kaban_time","sumii_joban_time",
-            "sumii_kaban_time","last_exit","last_exit1","last_exit2","yard_on_time1","yard_off_time1","yard_on_time2","yard_off_time2","depo_joban_time","depo_kaban_time","depo_num","depo_zan","sort_joban_time",
-            "sort_kaban_time","sort_num","sort_zan","cy_joban_time","cy_kaban_time","cy_num","cy_zan",/*"exit_joban_time","exit_kaban_time","exit_num","exit_zan",*/"vp_joban_time","vp_kaban_time","vp_num",
-            "vp_zan","midday_joban_time","midday_kaban_time","midday_num","midday_zan","gate_joban_time","gate_kaban_time","gate_num","gate_zan","mbath_joban_time","mbath_kaban_time","mbath_num",
-            "mbath_zan","picket_joban_time1","picket_kaban_time1","picket_num1","picket_zan1","picket_joban_time2","picket_kaban_time2","picket_num2","picket_zan2","picket_joban_time3",
-            "picket_kaban_time3","picket_num3","picket_zan3","picket_joban_time4","picket_kaban_time4","picket_num4","picket_zan4","comment",/*"patrol_time1","patrol_time2","patrol_time3",*/
-            /*"patrol_time4","patrol_time5","patrol_time6","patrol_time7","patrol_time8",*/"meterb1","meterb2","meterc1","meterc2","wk_staff_id1","wk_staff1_zan1","wk_staff1_zan2","wk_staff_id2","wk_staff2_zan1","wk_staff2_zan2",
-            "wk_staff_id3","wk_staff3_zan1","wk_staff3_zan2","wk_staff_id4","wk_staff4_zan1","wk_staff4_zan2","wk_staff_id5","wk_staff5_zan1","wk_staff5_zan2","wk_staff_id6","wk_staff6_zan1","wk_staff6_zan2",
-            "wk_staff_id7","wk_staff7_zan1","wk_staff7_zan2","wk_staff_id8","wk_staff8_zan1","wk_staff8_zan2","wk_staff_id9","wk_staff9_zan1","wk_staff9_zan2","wk_staff_id10","wk_staff10_zan1","wk_staff10_zan2",
-            "wk_staff_id11","wk_staff11_zan1","wk_staff11_zan2","wk_staff_id12","wk_staff12_zan1","wk_staff12_zan2","wk_staff_id13","wk_staff13_zan1","wk_staff13_zan2","wk_staff_id14","wk_staff14_zan1","wk_staff14_zan2",
-            "wk_staff_id15","wk_staff15_zan1","wk_staff15_zan2","wk_staff_id16","wk_staff16_zan1","wk_staff16_zan2","wk_staff_id17","wk_staff17_zan1","wk_staff17_zan2","wk_staff_id18","wk_staff18_zan1","wk_staff18_zan2","wk_comment"
+            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_ship1","wk_ship_in_port_time1","wk_ship_out_port_time1","wk_ship2","wk_ship_in_port_time2","wk_ship_out_port_time2",
+            "wk_ship3","wk_ship_in_port_time3","wk_ship_out_port_time3","wk_ship4","wk_ship_in_port_time4","wk_ship_out_port_time4","wk_ship5","wk_ship_in_port_time5","wk_ship_out_port_time5",
+            "wk_ship6","wk_ship_in_port_time6","wk_ship_out_port_time6","wk_ship7","wk_ship_in_port_time7","wk_ship_out_port_time7","wk_ship8","wk_ship_in_port_time8","wk_ship_out_port_time8",
+            "wk_ship9","wk_ship_in_port_time9","wk_ship_out_port_time9","wk_ship10","wk_ship_in_port_time10","wk_ship_out_port_time10","wk_in_out_start_time","wk_in_out_end_time","wk_joban_time","wk_kaban_time",
+            "wk_vp_end_time","wk_vp_kaban_time","koyo_joban_time","koyo_kaban_time","sumii_joban_time","sumii_kaban_time","last_exit","last_exit1","last_exit2","yard_on_time1","yard_off_time1","yard_on_time2","yard_off_time2",
+            "depo_joban_time","depo_kaban_time","depo_num","depo_zan","sort_joban_time","sort_kaban_time","sort_num","sort_zan","cy_joban_time","cy_kaban_time","cy_num","cy_zan","exit_joban_time","exit_kaban_time","exit_num","exit_zan",
+            "vp_joban_time","vp_kaban_time","vp_num","vp_zan","midday_joban_time","midday_kaban_time","midday_num","midday_zan","gate_joban_time","gate_kaban_time","gate_num","gate_zan",
+            "mbath_joban_time","mbath_kaban_time","mbath_num","mbath_zan","picket_joban_time1","picket_kaban_time1","picket_num1","picket_zan1","picket_joban_time2","picket_kaban_time2","picket_num2",
+            "picket_zan2","picket_joban_time3","picket_kaban_time3","picket_num3","picket_zan3","picket_joban_time4","picket_kaban_time4","picket_num4","picket_zan4","comment",
+            /*"patrol_time1","patrol_time2","patrol_time3","patrol_time4","patrol_time5","patrol_time6","patrol_time7","patrol_time8",*/"meterb1","meterb2","meterc1","meterc2","wk_staff_id1","wk_staff1_zan1","wk_staff1_zan2","wk_staff1_zan3",
+            "wk_staff_id2","wk_staff2_zan1","wk_staff2_zan2","wk_staff2_zan3","wk_staff_id3","wk_staff3_zan1","wk_staff3_zan2","wk_staff3_zan3","wk_staff_id4","wk_staff4_zan1","wk_staff4_zan2","wk_staff4_zan3",
+            "wk_staff_id5","wk_staff5_zan1","wk_staff5_zan2","wk_staff5_zan3","wk_staff_id6","wk_staff6_zan1","wk_staff6_zan2","wk_staff6_zan3","wk_staff_id7","wk_staff7_zan1","wk_staff7_zan2","wk_staff7_zan3",
+            "wk_staff_id8","wk_staff8_zan1","wk_staff8_zan2","wk_staff8_zan3","wk_staff_id9","wk_staff9_zan1","wk_staff9_zan2","wk_staff9_zan3","wk_staff_id10","wk_staff10_zan1","wk_staff10_zan2","wk_staff10_zan3",
+            "wk_staff_id11","wk_staff11_zan1","wk_staff11_zan2","wk_staff11_zan3","wk_staff_id12","wk_staff12_zan1","wk_staff12_zan2","wk_staff12_zan3","wk_staff_id13","wk_staff13_zan1","wk_staff13_zan2","wk_staff13_zan3",
+            "wk_staff_id14","wk_staff14_zan1","wk_staff14_zan2","wk_staff14_zan3","wk_staff_id15","wk_staff15_zan1","wk_staff15_zan2","wk_staff15_zan3","wk_staff_id16","wk_staff16_zan1","wk_staff16_zan2","wk_staff16_zan3",
+            "wk_staff_id17","wk_staff17_zan1","wk_staff17_zan2","wk_staff17_zan3","wk_staff_id18","wk_staff18_zan1","wk_staff18_zan2","wk_staff18_zan3","wk_comment"
         );
 
         public static $report2 = array(
@@ -47,8 +47,8 @@
             "tonbo_light_kbn1","tonbo_light_joban_time1","tonbo_light_kaban_time1","tonbo_light_kbn2","tonbo_light_joban_time2","tonbo_light_kaban_time2","tonbo_light_kbn3","tonbo_light_joban_time3","tonbo_light_kaban_time3","tonbo_light_kbn4","tonbo_light_joban_time4","tonbo_light_kaban_time4","c5_light_kbn1","c5_light_joban_time1","c5_light_kaban_time1",
             "c5_light_kbn2","c5_light_joban_time2","c5_light_kaban_time2","c5_light_kbn3","c5_light_joban_time3","c5_light_kaban_time3","c5_light_kbn4","c5_light_joban_time4","c5_light_kaban_time4","patrol_time1","patrol_time2","patrol_time3","patrol_time4",
             "patrol_time5","patrol_time6","patrol_time7","patrol_time8","patrol_time9","patrol_time10","patrol_time11","patrol_time12","patrol_time13","patrol_time14","patrol_time15","patrol_time16","wk_comment",
-            "wk_admin_end","wk_outsider","wk_staff_id1","wk_staff_id1_kbn","wk_staff_id2","wk_staff_id2_kbn","wk_staff_id3","wk_staff_id3_kbn","wk_staff_id4","wk_staff_id4_kbn","wk_staff_id5","wk_staff_id5_kbn","wk_staff_id6","wk_staff_id6_kbn",
-            "wk_staff_id7","wk_staff_id7_kbn","wk_staff_id8","wk_staff_id8_kbn","wk_staff_id9","wk_staff_id9_kbn"
+            "wk_admin_end","wk_outsider","wk_staff_id1","wk_staff_id1_kbn","wk_staff_id1_ken","wk_staff_id2","wk_staff_id2_kbn","wk_staff_id2_ken","wk_staff_id3","wk_staff_id3_kbn","wk_staff_id3_ken","wk_staff_id4","wk_staff_id4_kbn","wk_staff_id4_ken",
+            "wk_staff_id5","wk_staff_id5_kbn","wk_staff_id5_ken","wk_staff_id6","wk_staff_id6_kbn","wk_staff_id6_ken","wk_staff_id7","wk_staff_id7_kbn","wk_staff_id7_ken","wk_staff_id8","wk_staff_id8_kbn","wk_staff_id8_ken","wk_staff_id9","wk_staff_id9_kbn","wk_staff_id9_ken"
         );
 
         public static $report6 = array(

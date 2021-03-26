@@ -35,68 +35,78 @@
             
             for ($i=0;$i<count($tableColumn);$i++) {
                 if ($i == 0) {
-                    $sql .= "t_report_".$tableColumn[$i]." ";
+                    $sql .= "t_report".$number.".t_report_".$tableColumn[$i]." ";
                 } else {
-                    $sql .= ",t_report_".$tableColumn[$i]." ";
+                    $sql .= ",t_report".$number.".t_report_".$tableColumn[$i]." ";
                 }
             }
             $sql .= "from t_report".$number." ";
-            // if ($this->inp_join) {
-            //     if ($this->inp_join == "kanri") {
-            //         $this->inp_join = "_kanri";
-            //     } elseif ($this->inp_join == "name") {
-            //         $this->inp_join = "_name";
-            //     }
-            //     $sql .= "left join t_report".$this->inp_join." on t_report".$number.".t_report_table = t_report".$this->inp_join.".t_report_table ";
-            // }
+            if ($this->inp_join) {
+                if ($this->inp_join == "kanri") {
+                    $this->inp_join = "_kanri";
+                } elseif ($this->inp_join == "name") {
+                    $this->inp_join = "_name";
+                }
+                $sql .= "left join t_report".$this->inp_join." on t_report".$number.".t_report_table = t_report".$this->inp_join.".t_report_table ";
+            }
             $sql .= "where 0 = 0 ";
 
             foreach ($this as $key => $value) {
-                // if ($key == "inp_join") {
-                //     continue;
-                // }
+                // スキップ
+                if ($key == "inp_join" || $key == "inp_order") {
+                    continue;
+                }
 
-                // orderby
-                if ($key != "inp_order") {
-                    // 日付範囲検索
-                    if ($key == "inp_plan_start_date") {
-                        // 管理テーブル
-                        if ($number == "_kanri") {
-                            $sql .= "and t_report_plan_date >= '".$db->escape_string($value)."' ";
-                        } else {
-                            $sql .= "and t_report_start_date >= '".$db->escape_string($value)."' ";
-                        }
-                    // 日付範囲検索
-                    } elseif ($key == "inp_plan_end_date") {
-                        // 管理テーブル
-                        if ($number == "_kanri") {
-                            $sql .= "and t_report_plan_date <= '".$db->escape_string($value)."' ";
-                        } else {
-                            $sql .= "and t_report_start_date <= '".$db->escape_string($value)."' ";
-                        }
+                // 日付範囲検索
+                if ($key == "inp_plan_start_date") {
+                    // 管理テーブル
+                    if ($number == "_kanri") {
+                        $sql .= "and t_report".$number.".t_report_plan_date >= '".$db->escape_string($value)."' ";
                     } else {
-                        // 文字列削除
-                        $str = str_replace("inp_","",$key);
-                        // where in句
-                        if (strpos($str,"_in") !== false) {
-                            $sql .= "and t_report_".str_replace("_in","",$str)." in (".$value.") ";
-                        // where like句
-                        } elseif (strpos($str,"_like") !== false) {
-                            $sql .= "and t_report_".str_replace("_like","",$str)." like '%".$db->escape_string($value)."%' ";
-                        } elseif (strpos($str,"_findInSet") !== false) {
-                            $sql .= "and find_in_set ('".$db->escape_string($value)."',t_report_".str_replace("_findInSet","",$str).") ";
+                        $sql .= "and t_report".$number.".t_report_start_date >= '".$db->escape_string($value)."' ";
+                    }
+                // 日付範囲検索
+                } elseif ($key == "inp_plan_end_date") {
+                    // 管理テーブル
+                    if ($number == "_kanri") {
+                        $sql .= "and t_report".$number.".t_report_plan_date <= '".$db->escape_string($value)."' ";
+                    } else {
+                        $sql .= "and t_report".$number.".t_report_start_date <= '".$db->escape_string($value)."' ";
+                    }
+                } else {
+                    // 文字列削除
+                    $str = str_replace("inp_","",$key);
+                    // where is not null句
+                    if (strpos($str,"_NOTNULL") !== false) {
+                        $sql .= "and t_report".$number.".t_report_".str_replace("_NOTNULL","",$str)." is not null ";
+                    // where in句
+                    } elseif (strpos($str,"_in") !== false) {
+                        if (strpos($str,"not_in") !== false) {
+                            $sql .= "and t_report".$number.".t_report_".str_replace("_not_in","",$str)." not in (".$value.") ";
                         } else {
-                            $sql .= "and t_report_".$str." = '".$db->escape_string($value)."' ";
+                            $sql .= "and t_report".$number.".t_report_".str_replace("_in","",$str)." in (".$value.") ";
                         }
-                        // $sql .= "and t_report_".str_replace("inp_","",$key)." = '".$db->escape_string($value)."' ";
+                    // where like句
+                    } elseif (strpos($str,"_like") !== false) {
+                        $sql .= "and t_report".$number.".t_report_".str_replace("_like","",$str)." like '%".$db->escape_string($value)."%' ";
+                    } elseif (strpos($str,"_findInSet") !== false) {
+                        $sql .= "and find_in_set ('".$db->escape_string($value)."',t_report".$number.".t_report_".str_replace("_findInSet","",$str).") ";
+                    } else {
+                        $sql .= "and t_report".$number.".t_report_".$str." = '".$db->escape_string($value)."' ";
                     }
                 }
                 // var_dump($key,$value);
             }
+
+            // if ($this->inp_union) {
+            //     $sql .= "union ".$db->escape_string($this->inp_union)." ";
+            // }
+            // $this->oup_union = $sql;
+
             if ($this->inp_order) {
                 $sql .= $db->escape_string($this->inp_order);
             } else {
-                "order by t_report_start_date";
+                "order by t_report".$number.".t_report_start_date";
             }
 
             // SQL実行
@@ -152,9 +162,6 @@
             for ($i=0;$i<2;$i++) {
                 $cnt = 0;
                 foreach ($this as $key2 => $value2) {
-                    // if ($key2 == "inp_no") {
-                    //     continue;
-                    // }
                     if ($i == 0) {
                         if ($cnt == 0) {
                             $sql .= "t_report_".str_replace("inp_","",$key2)." ";
@@ -165,11 +172,9 @@
                     } else {
                         if ($cnt == 0) {
                             $sql .= ") values ( ";
-                            // $sql .= "'".$value2."' ";
                             $sql .= !is_null($value2) ? "'".$value2."' " : "null ";
                             $cnt = 1;
                         } else {
-                            // $sql .= ", '".$value2."' ";
                             $sql .= !is_null($value2) ? ", '".$value2."' " : ", null ";
                         }
                     }
@@ -220,8 +225,6 @@
                     continue;
                 }
                 if ($cnt == 0) {
-                    // $sql .= " ".str_replace("inp_","",$key3)." = '".$db->escape_string($value3)."' ";
-                    // $sql .= "t_report_".str_replace("inp_","",$key3)." = ". !is_null($value3) ? "'".$db->escape_string($value3)."' " : "null ";
                     if (!is_null($value3)) {
                         $sql .= "t_report_".str_replace("inp_","",$key3)." = '".$db->escape_string($value3)."' ";
                     } else {
@@ -229,8 +232,6 @@
                     }
                     $cnt = 1;
                 } else {
-                    // $sql .= ",  ".str_replace("inp_","",$key3)." = '".$db->escape_string($value3)."' ";
-                    // $sql .= ", t_report_".str_replace("inp_","",$key3)." = ". !is_null($value3) ? "'".$db->escape_string($value3)."' " : "null ";
                     if (!is_null($value3)) {
                         $sql .= ", t_report_".str_replace("inp_","",$key3)." = '".$db->escape_string($value3)."' ";
                     } else {
@@ -238,11 +239,7 @@
                     }
                 }
             }
-            // if ($number == "_kanri") {
-            //     $sql .= "WHERE 0 = 0 AND t_report_table_no = ".$db->escape_string($this->inp_table_no);
-            // } else {
-            //     $sql .= "WHERE 0 = 0 AND t_report_no = ".$db->escape_string($this->inp_no);
-            // }
+
             $sql .= "WHERE 0 = 0 AND t_report_no = ".$db->escape_string($this->inp_no);
 
             // var_dump($sql);
@@ -300,6 +297,63 @@
             // MySQLへの接続を閉じる
             $db->close();
 
+        }
+
+        // 本船名取得
+        public function getReportShip() {
+
+            // $tableColumn = parent::${"report".$number};
+
+            // if ($number == "kanri") {
+            //     $number = "_kanri";
+            // } elseif ($number == "name") {
+            //     $number = "_name";
+            // }
+
+            $row = NULL;
+            $db = new Db();
+            $db->connect();
+
+            $sql = "SELECT ";
+            $sql .= "t_report_no ";
+            for ($i=1;$i<=10;$i++) {
+                $sql .= ",t_report_wk_ship".$i." ";
+            }
+            $sql .= "from t_report1 ";
+            $sql .= "where 0 = 0 ";
+
+            // if ($this->inp_union) {
+            //     $sql .= "union ".$db->escape_string($this->inp_union)." ";
+            // }
+            // $this->oup_union = $sql;
+
+            if ($this->inp_order) {
+                $sql .= $db->escape_string($this->inp_order);
+            }
+
+            // SQL実行
+            // 文字化け防止
+            $db->set_charset();
+            // var_dump($sql);
+            // exit;
+
+            // プリペアドクエリを実行する
+            //  mysqli_stmt_execute($stmt);
+            //    $result = $db->query($sql,$row);
+
+            // プリペアドクエリを実行する
+            if ($this->result = $db->query($sql)) {
+                while ($row = mysqli_fetch_row($this->result)) {
+                    $i = 0;
+                    $this->oup_no[]             = $row[$i++];
+                    for ($j=1;$j<=10;$j++) {
+                        $this->{"oup_wk_ship".$j}[]             = $row[$i++];
+                    }
+                }
+                /* 結果セットを開放します */
+                mysqli_free_result($this->result);
+            }
+            return $this->result;
         }
 
     }

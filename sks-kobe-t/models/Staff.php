@@ -199,15 +199,20 @@
             if ($this->inp_m_staff_taisyaday != "") {
                 if ($this->inp_m_staff_taisyaday == 1) {
                         $today = date('Ymd');
-                        $sql .= "AND (m_staff_taisya >= $today or m_staff_taisya is null)";
+                        $sql .= "AND (m_staff_taisya >= $today or m_staff_taisya is null) ";
                 } else {
-                    $sql .= "AND (m_staff_taisya >= '" . $db->escape_string($this->inp_m_staff_taisyaday) . "' or m_staff_taisya is null)";
+                    $sql .= "AND (m_staff_taisya >= '" . $db->escape_string($this->inp_m_staff_taisyaday) . "' or m_staff_taisya is null) ";
                 }
             }
+
+            if ($this->inp_m_staff_genba_id_or) {
+                $sql .= "OR m_staff_genba_id = '" . $db->escape_string($this->inp_m_staff_genba_id_or) . "' ";
+            }
+
             if ($this->inp_order == "") {
                 $sql .= "ORDER BY m_staff_kana ";
             } else {
-                $sql .= $db->escape_string($this->inp_order);
+                $sql .= $db->escape_string($this->inp_order)." ";
             }
                 
 
