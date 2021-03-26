@@ -44,13 +44,14 @@
       <div class="col-12">
         <table class="table table-borderless">
           <tr>
-            <td>（警備場所）</td>
-            <td>（契約先）</td>
+            <td colspan="2" class="text-center"><label><font size="5em">警備報告書</font></label></td>
           </tr>
 
           <tr>
-            <td></td>
-            <td>神菱港運株式会社　殿</td>
+            <td><label><font size="4em">神菱港運株式会社　殿</font></label></td>
+            <td class="text-right">
+              <span class="text-left"><label>株式会社新神戸セキュリティ<br>〒658-0027<br>神戸市東灘区青木１丁目２－１<br>ＴＥＬ(078)436-7255　ＦＡＸ(078)436-7275</label></span>
+            </td>
           </tr>
         </table>
       </div>
@@ -69,28 +70,11 @@
 
           <tr>
             <td>
-              <label><?php echo "自）".substr($start_date,0,4)."年".substr($start_date,5,2)."月".substr($start_date,8,2)."日　(".getWeek($start_date).")"; ?></label>
+              <label><?php echo substr($start_date,0,4)."年".substr($start_date,5,2)."月".substr($start_date,8,2)."日　(".getWeek($start_date).")"; ?></label>
               <input type="hidden" name="start_date" value="<?php echo $start_date; ?>">
-              <div class="time">
-                <input type="number" class="text-center" name="joban_time[0]" value="<?php echo $joban_time[0]; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="joban_time[1]" value="<?php echo $joban_time[1]; ?>" min="0" max="59">
-              </div>
             </td>
-          </tr>
 
-          <tr>
             <td>
-              <label><?php echo "至）".substr($end_date,0,4)."年".substr($end_date,5,2)."月".substr($end_date,8,2)."日　(".getWeek($end_date).")"; ?></label>
-              <input type="hidden" name="end_date" value="<?php echo $end_date; ?>">
-              <div class="time">
-                <input type="number" class="text-center" name="kaban_time[0]" value="<?php echo $kaban_time[0]; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="kaban_time[1]" value="<?php echo $kaban_time[1]; ?>" min="0" max="59">
-              </div>
-            </td>
-
-            <td rowspan="2">
               <select name="weather1" id="weather1" class="">
                 <option value=""></option>
                 <?php for ($i=0;$i<count($weathers);$i++) { ?>
@@ -104,7 +88,7 @@
                 <?php } ?>
               </select>
             </td>
-            <td rowspan="2">
+            <td>
               <select name="staff_id" id="staff_id" class="w-50">
                 <option value=""></option>
                 <?php if ($staff2->oup_m_staff_id) { ?>
@@ -121,27 +105,42 @@
     <hr>
 
     <div class="row">
-    <div class="col-12">
-      <table class="table table-borderless">
-
-      <tr>
-          <td><label>♦作業重点事項<br>1.関係者以外の現場立入の禁止警戒<br/>2.作業関係者及び関係車両出構時の誘導<br/>3.その他</label></td>
-      </tr>
-      <tr>
-         <td></td><td></td><td>以上の通り作業結果を報告いたします。<br>    
-              <select name="staff_id2" id="staff_id2" class="w-50">
-                <option value=""></option>
-                <?php if ($staff2->oup_m_staff_id) { ?>
-                <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$i]; ?>"<?php echo $staff2->oup_m_staff_id[$i] == $staff_id ? "selected" : "" ; ?>><?php echo $staff_name[$staff2->oup_m_staff_id[$i]]; ?></option>
-                <?php } ?>
-                <?php } ?>
-              </select>
+      <div class="col-12">
+        <table class="table table-borderless">
+          <tr>
+            <td>
+              <label>開始時間</label>
+              <div class="time">
+                <input type="number" class="text-center" name="joban_time[0]" value="<?php echo $joban_time[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="joban_time[1]" value="<?php echo $joban_time[1]; ?>" min="0" max="59">
+              </div>
             </td>
-
-      </tr>
-      </table>
+            <td>
+              <label>終了時間</label>
+              <div class="time">
+                <input type="number" class="text-center" name="kaban_time[0]" value="<?php echo $kaban_time[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="kaban_time[1]" value="<?php echo $kaban_time[1]; ?>" min="0" max="59">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-borderless">
+          <tr>
+            <td><label>♦作業重点事項<br>1.関係者以外の現場立入の禁止警戒<br/>2.作業関係者及び関係車両出構時の誘導<br/>3.その他</label></td>
+          </tr>
+          
+          <tr>
+            <td class="text-right"><label>以上の通り作業結果を報告いたします。</label></td>
+          </tr>
+        </table>
+      </div>
     </div>
     <hr>
 
@@ -156,13 +155,17 @@
 
     <div class="row">
       <div class="col-4">
-        <button type="button" class="btn btn-warning btn-block regist" role="button">一時保存</button>
+        <button type="button" class="btn btn-warning btn-block temp" role="button">一時保存</button>
       </div>
       <div class="col-4">
         <button type="button" class="btn btn-success btn-block regist" role="button">完了</button>
       </div>
       <div class="col-4">
+        <?php if ($_SESSION["menu_flg"] == "kanri") { ?>
+        <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='keibihokoku.php'">戻る</button>
+        <?php } else { ?>
         <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='report_menu.php'">戻る</button>
+        <?php } ?>
       </div>
     </div>
 

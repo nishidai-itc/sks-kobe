@@ -24,10 +24,13 @@
   $weathers                       = array("晴","曇","雨","雪");
   $staff_id                       = null;
   $start_date                     = date("Y-m-d");
-  $end_date                       = date("Y-m-d",strtotime($date." +1 day"));
+  if ($_GET["plan_date"] != "") {
+    $start_date                   = $_GET["plan_date"];
+  }
+  // $end_date                       = date("Y-m-d",strtotime($start_date." +1 day"));
   $joban_time                     = array("17","00");
   $kaban_time                     = array("18","00");
-  $staff_id2                       = null;
+  // $staff_id2                       = null;
 
   function getWeek($day) {
     $week = array("日", "月", "火", "水", "木", "金", "土");
@@ -37,6 +40,31 @@
         return null;
     }
   }
+
+  function valChange($val) {
+    // 配列の場合（時刻等）
+    if (is_array($val)) {
+        // 値が空ならNULLで登録
+        if ($val[0] === "" && $val[1] === "") {
+            $val = null;
+        // 値が空じゃない場合
+        } elseif ($val[0] !== "" && $val[1] !== "") {
+            $val = sprintf("%02d",$val[0]).":".sprintf("%02d",$val[1]);
+        } elseif ($val[0] !== "" && $val[1] === "") {
+            $val = sprintf("%02d",$val[0]).":00";
+        } elseif ($val[0] === "" && $val[1] !== "") {
+            $val = "00:".sprintf("%02d",$val[1]);
+        }
+    // 配列じゃない場合（時刻以外）
+    } else {
+        if ($val === "" || $val === "0") {
+            $val = null;
+        } else {
+            $val = $val;
+        }
+    }
+    return $val;
+}
 
   if (isset($_POST["act"])) {
     $act        = $_POST["act"];
@@ -67,22 +95,7 @@
     // exit;
     foreach ($_POST as $key => $value) {
       if ($key != "act") {
-        if (is_array($value)) {
-          if ($value[0] && $value[1]) {
-            // var_dump($key,$value);
-            $report2->{"inp_".$key}               = $value[0].":".$value[1];
-          } elseif (!$value[0] && !$value[1]) {
-            $report2->{"inp_".$key}               = null;
-          }
-        } else {
-          if (!$value) {
-            // var_dump($key,$value);
-            $report2->{"inp_".$key}               = null;
-          } else {
-            $report2->{"inp_".$key}               = $value;
-            // var_dump($key, $value);
-          }
-        }
+        $report2->{"inp_".$key}               = valChange($value);
       }
     }
 
@@ -90,8 +103,6 @@
     $report3                  = new Report;
     $report3->inp_no          = str_replace("-","",$_POST["start_date"]).$table;
     $report3->getReport($table);
-
-
     // 新規
     if (!$report3->oup_no) {
       // 報告書
@@ -99,23 +110,26 @@
       $report2->inp_table                         = $table;
       $report2->inp_created                       = date("Y-m-d H:i:s");
       $report2->inp_created_id                    = $_SESSION["staff_id"];
+      require_once('../../models/common/reportLog.php');
       $report2->insertReport($table);
 
       // 管理
       $report3                                    = new Report;
       $report3->inp_no                            = $report2->oup_last_id;
       $report3->inp_plan_date                     = $_POST["start_date"];
-      $report3->inp_table                  = $table;
+      $report3->inp_table                         = $table;
       $report3->inp_name_no                       = $table;
       $report3->inp_kbn                           = $_POST["act"];
       $report3->inp_created                       = date("Y-m-d H:i:s");
       $report3->inp_created_id                    = $_SESSION["staff_id"];
+      require_once('../../models/common/reportLog.php');
       $report3->insertReport("kanri");
     } else {
       if ($no) {
         $report2->inp_no                          = $no;
         $report2->inp_modified                    = date("Y-m-d H:i:s");
         $report2->inp_modified_id                 = $_SESSION["staff_id"];
+        require_once('../../models/common/reportLog.php');
         $report2->updateReport($table);
 
         // 管理
@@ -127,14 +141,19 @@
         $report3->inp_kbn                         = $_POST["act"];
         $report3->inp_modified                    = date("Y-m-d H:i:s");
         $report3->inp_modified_id                 = $_SESSION["staff_id"];
+        require_once('../../models/common/reportLog.php');
         $report3->updateReport("kanri");
       } else {
       }
     }
 
-    header("Location:report_menu.php");
-    // header("Location:report7.php");
-    // exit;
+    if ($_SESSION["menu_flg"] == "kanri") {
+      header("Location:keibihokoku.php");
+    } else {
+      header("Location:report_menu.php");
+    }
+    exit;
+
   }
 
   if ($no) {
@@ -160,22 +179,14 @@
     }
   }
 
-  // 子現場取得
-  $genba->inp_m_genba_oya_id = "1";
-  $genba->getGenba();
 
-  // 当日予定のあるデータ取得
-  $wkdetail->inp_t_wk_genba_id2 = "'1'";
-  // 子現場があれば子現場のデータも取得
-  if ($genba->oup_m_genba_id) {
-      for ($i=0;$i<count($genba->oup_m_genba_id);$i++) {
-          $wkdetail->inp_t_wk_genba_id2 = $wkdetail->inp_t_wk_genba_id2.",'".$genba->oup_m_genba_id[$i]."'";
-      }
-  }
-  $wkdetail->inp_t_wk_plan_kbn_in = "'1','2','3'";
-  $wkdetail->inp_t_wk_plan_date = str_replace("-","",$start_date);
-  $wkdetail->inp_order = "order by t_wk_plan_joban_time";
+  $wkdetail->inp_t_wk_genba_id      = "1";
+  $wkdetail->inp_t_wk_plan_hosoku   = "神";
+  $wkdetail->inp_t_wk_plan_kbn      = "2";
+  $wkdetail->inp_t_wk_plan_date     = str_replace("-","",$start_date);
+  $wkdetail->inp_order              = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
   $wkdetail->getWkdetail();
+
 
   // 隊員取得
   if ($wkdetail->oup_t_wk_detail_no) {
@@ -197,14 +208,19 @@
     
     $staff2->getStaff();
 
+    // 隊員が一人なら担当警備員にデフォルト表示
+    if (count($staff2->oup_m_staff_id) == 1) {
+      $staff_id = $no ? $staff_id : $staff2->oup_m_staff_id[0];
+    }
+    
     for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) {
       $staff_name[$staff2->oup_m_staff_id[$i]] = $staff2->oup_m_staff_name[$i];
 
-      // 勤務員の項目の隊員デフォルト表示
-      if ($cnt != 4) {
-        $cnt = $cnt + 1;
-        ${"wk_staff_id".$cnt}         = ${"wk_staff_id".$cnt} ? ${"wk_staff_id".$cnt} : $staff2->oup_m_staff_id[$i];
-      }
+      // // 勤務員の項目の隊員デフォルト表示
+      // if ($cnt != 1) {
+      //   $cnt = $cnt + 1;
+      //   $staff_id         = $no ? $staff_id : $staff2->oup_m_staff_id[$i];
+      // }
     }
   }
 ?>
