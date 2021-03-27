@@ -172,7 +172,6 @@ $(function(){
                 <td width="80" bgcolor="FFDCA5">入力状態</td>
                 <td width="50" bgcolor="FFDCA5">日付</td>
                 <td width="30" bgcolor="FFDCA5">曜<br />日</td>
-                <td width="155" bgcolor="FFDCA5">警備報告書</td>
                 <td width="155" bgcolor="FFDCA5">勤務場所</td>
                 <td width="155" bgcolor="FFDCA5">契約先</td>
                 <td width="60" bgcolor="FFDCA5">PDF</td>
@@ -209,7 +208,6 @@ $(function(){
                         <td <?php print($color); ?> align="left"><?php print($kbn[$report->oup_kbn[$i]]); ?></td>
                         <td <?php print($color); ?>><?php print(substr($report->oup_plan_date[$i],5,2)."/".substr($report->oup_plan_date[$i],8,2)); ?></td>
                         <td <?php print($color); ?>><?php print($weekday); ?></td>
-                        <td <?php print($color); ?>></td>
                         <td <?php print($color); ?> align="left"><?php print($report_place[$report->oup_name_no[$i]]); ?></td>
                         <td <?php print($color); ?> align="left"><?php print($report_contract[$report->oup_name_no[$i]]); ?></td>
                         <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>_pdf.php?no=<?php echo $report->oup_no[$i]; ?>" target="_blank"><i class="fas fa-file-pdf fa-2x"></i></a></td>
