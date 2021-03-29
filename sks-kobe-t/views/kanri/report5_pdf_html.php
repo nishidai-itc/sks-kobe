@@ -43,8 +43,8 @@ $pdf->useTemplate($pdf->importPage(1));
 
 // 和暦
 $wnen = substr($report->oup_start_date[0],0,4);
-$wnen = intval($wnen) - 2018;
-$pdf->Text(38, 35, $wnen);     // 年
+//$wnen = intval($wnen) - 2018;
+$pdf->Text(32, 35, $wnen);     // 年
 $pdf->Text(47, 35, substr($report->oup_start_date[0],5,2));     // 月
 $pdf->Text(58, 35, substr($report->oup_start_date[0],8,2));     // 日
 $pdf->Text(71, 35, $weekday1);     // 曜日
@@ -52,8 +52,8 @@ $pdf->Text(87, 35, substr($report->oup_joban_time[0],0,2));     // 開始時間
 $pdf->Text(98, 35, substr($report->oup_joban_time[0],3,2));     // 開始時間
 
 $wnen = substr($report->oup_end_date[0],0,4);
-$wnen = intval($wnen) - 2018;
-$pdf->Text(38, 42, $wnen);     // 年
+//$wnen = intval($wnen) - 2018;
+$pdf->Text(32, 42, $wnen);     // 年
 $pdf->Text(47, 42, substr($report->oup_end_date[0],5,2));     // 月
 $pdf->Text(58, 42, substr($report->oup_end_date[0],8,2));     // 日
 $pdf->Text(71, 42, $weekday2);     // 曜日
@@ -256,6 +256,5 @@ $pdf->Text(165, 269, $kbn[$report->oup_wk_staff_id9_kbn[0]]);   // 巡回8
 $pdf->Text(169, 269, $staffs[$report->oup_wk_staff_id9[0]]);   // 巡回8
 $pdf->Text(183, 274, $ken[$report->oup_wk_staff_id9_ken[0]]);   // 研
 
-
-$pdf->Output(sprintf("report7.pdf", time()), 'I');
+$pdf->Output(sprintf("report5.pdf", time()), 'I');
 ?>
