@@ -50,7 +50,7 @@ $wnen = substr($report->oup_end_date[0],0,4);
 $pdf->Text(41, 75, $wnen);     // 年
 $pdf->Text(62, 75, substr($report->oup_end_date[0],5,2));     // 月
 $pdf->Text(77, 75, substr($report->oup_end_date[0],8,2));     // 日
-$pdf->Text(95, 75, $weekday1);     // 曜日
+$pdf->Text(95, 75, $weekday2);     // 曜日
 
 $pdf->Text(116, 75, substr($report->oup_kaban_time[0],0,2));     // 終了時間
 $pdf->Text(127, 75, substr($report->oup_kaban_time[0],3,2));     // 終了時間
