@@ -45,6 +45,7 @@ $pdf->Text(61, 34, $weekday1);     // 曜日
 $pdf->Text(73, 37, $report->oup_weather1[0]);     // 天候
 $pdf->Text(82, 37, $report->oup_weather2[0]);     // 天候
 
+$pdf->Text(94, 37, $report->oup_chief[0]);                  // 所長
 $pdf->Text(136, 37, $staffs[$report->oup_staff_id[0]]);     // 記録者
 
 $pdf->Text(17, 60, $report->oup_wk_haiti1[0]);              // 配置1
