@@ -617,7 +617,8 @@
                   <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
                   <?php for ($j=0;$j<count($wkdetail->oup_t_wk_detail_no);$j++) { ?>
                   <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
-                    <?php echo $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?>
+                    <?php //echo $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?>
+                    <?php echo $wkdetail->oup_t_wk_plan_hosoku[$j] ? $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]].$wkdetail->oup_t_wk_plan_hosoku[$j] : $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?>
                     <?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$j]]; ?>
                   </option>
                   <?php } ?>
@@ -836,7 +837,27 @@
     } else {
       $('[name="act"]').val('1')
     }
+
+    // Gチェックあればアラート
+    $.ajax({
+      url : "ajaxController.php",
+      type:"post",
+      data: {
+        act: 'gchk',
+        no: $('[name="start_date"]').val().replace(/-/g,'')+'1'
+      },
+      dataType:"json"
+    }).done(function(data){
+      // console.log(data)
+      if (data == '1') {
+        alert('既にGチェック済のため登録できません。')
+      } else {
+        $('form').submit()
+      }
+    }).fail(function(data){
+      alert('通信エラー')
+    })
     
-    $('form').submit()
+    // $('form').submit()
   })
 </script>

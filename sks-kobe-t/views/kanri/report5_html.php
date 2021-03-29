@@ -25,6 +25,9 @@
 .w-45{
   width: 45% !important;
 }
+.w-15{
+  width: 15% !important;
+}
 .w-10{
   width: 10% !important;
 }
@@ -423,44 +426,74 @@
           <tr>
             <?php if ($i == 0) { ?>
             <td class="align-middle" rowspan="3">備<br>考</td>
-            <td rowspan="2" colspan="2">
-              <textarea name="wk_comment" id="" rows="" class="w-100" value="<?php echo $wk_comment; ?>"><?php echo $wk_comment; ?></textarea>
+            <td rowspan="2" colspan="2" class="">
+              <textarea name="wk_comment" id="" rows="5" class="w-100" value="<?php echo $wk_comment; ?>"><?php echo $wk_comment; ?></textarea>
             </td>
             <?php } elseif ($i == 2) { ?>
             <td>
-              <label>管理棟終了</label>
-              <!-- <input type="text" class="text" name="wk_admin_end" value="<?php echo $wk_admin_end; ?>"> -->
-              <span class="inp badge badge-secondary" style="cursor:pointer;"><?php echo is_array($wk_admin_end) ? "時刻" : "入力" ; ?></span>
-              <input type="text" class="text" name="wk_admin_end" value="<?php echo !is_array($wk_admin_end) && $wk_admin_end ? $wk_admin_end : "泊り"; ?>">
-              <div class="time">
-                <input type="number" class="text-center" name="wk_admin_end[0]" value="<?php echo is_array($wk_admin_end) ? $wk_admin_end[0] : ""; ?>" min="0" max="23">
-                <span class="">:</span>
-                <input type="number" class="text-center" name="wk_admin_end[1]" value="<?php echo is_array($wk_admin_end) ? $wk_admin_end[1] : ""; ?>" min="0" max="59">
+              <div class="row">
+                <div class="col-12"><label>管理棟終了</label></div>
+                <div class="col-12">
+                  <!-- <input type="text" class="text" name="wk_admin_end" value="<?php echo $wk_admin_end; ?>"> -->
+                  <span class="inp badge badge-secondary" style="cursor:pointer;"><?php echo is_array($wk_admin_end) ? "時刻" : "入力" ; ?></span>
+                  <input type="text" class="text w-75" name="wk_admin_end" value="<?php echo !is_array($wk_admin_end) && $wk_admin_end ? $wk_admin_end : "泊り"; ?>">
+                  <div class="time">
+                    <input type="number" class="text-center" name="wk_admin_end[0]" value="<?php echo is_array($wk_admin_end) ? $wk_admin_end[0] : ""; ?>" min="0" max="23">
+                    <span class="">:</span>
+                    <input type="number" class="text-center" name="wk_admin_end[1]" value="<?php echo is_array($wk_admin_end) ? $wk_admin_end[1] : ""; ?>" min="0" max="59">
+                  </div>
+                </div>
               </div>
             </td>
             <td>
-              <label>部外者</label>
-              <input type="number" class="text-center num" name="wk_outsider" value="<?php echo $wk_outsider; ?>" min="0" max="99">
-              <label>名</label>
+              <div class="row">
+                <div class="col-12"><label>部外者</label></div>
+                <div class="col-12">
+                  <input type="number" class="text-center num" name="wk_outsider" value="<?php echo $wk_outsider; ?>" min="0" max="99">
+                  <label>名</label>
+                </div>
+              </div>
             </td>
             <?php } ?>
             <?php for ($j=1;$j<=3;$j++) { ?>
             <td>
-              <select name="wk_staff_id<?php echo $j+$i*3 ; ?>_kbn" id="" class="">
-                <option value=""></option>
-                <?php for ($k=1;$k<=count($kinmu_kbn);$k++) { ?>
-                <option value="<?php echo $k; ?>" <?php echo $k == ${"wk_staff_id".($j+($i*3))."_kbn"} ? "selected" : ""; ?>><?php echo $kinmu_kbn[$k]; ?></option>
-                <?php } ?>
-              </select>
-              <!-- <label><?php echo $wk_kbn[${"wk_staff_id".($j+$i*3)}].$wk_ken[${"wk_staff_id".($j+$i*3)}] ; ?></label> -->
-              <select name="wk_staff_id<?php echo $j+$i*3 ; ?>" id="wk_staff_id<?php echo $j+$i*3 ; ?>" class="wk_staff_id">
-                <option value=""></option>
-                <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
-                <?php for ($k=0;$k<count($wkdetail->oup_t_wk_detail_no);$k++) { ?>
-                <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$k]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$k] == ${"wk_staff_id".($j+($i*3))} ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$k]]; ?></option>
-                <?php } ?>
-                <?php } ?>
-              </select>
+              <table class="table table-borderless">
+                <tr>
+                  <td>
+                    <div class="row">
+                      <div class="col-md-4 col-xl-3">
+                        <div class="row">
+                          <div class="col-12 pr-0">
+                            <select name="wk_staff_id<?php echo $j+$i*3 ; ?>_kbn" id="" class="w-100">
+                              <option value=""></option>
+                              <?php for ($k=1;$k<=count($kinmu_kbn);$k++) { ?>
+                              <option value="<?php echo $k; ?>" <?php echo $k == ${"wk_staff_id".($j+($i*3))."_kbn"} ? "selected" : ""; ?>><?php echo $kinmu_kbn[$k]; ?></option>
+                              <?php } ?>
+                            </select>
+                          </div>
+                          <div class="col-12 pr-0">
+                            <select name="wk_staff_id<?php echo $j+$i*3 ; ?>_ken" id="" class="w-100">
+                              <option value=""></option>
+                              <option value="1" <?php echo ${"wk_staff_id".($j+($i*3))."_ken"} == "1" ? "selected" : ""; ?>>研</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8 col-xl-9 pl-0">
+                        <!-- <label><?php echo $wk_kbn[${"wk_staff_id".($j+$i*3)}].$wk_ken[${"wk_staff_id".($j+$i*3)}] ; ?></label> -->
+                        <select name="wk_staff_id<?php echo $j+$i*3 ; ?>" id="wk_staff_id<?php echo $j+$i*3 ; ?>" class="w-75 h-100">
+                          <option value=""></option>
+                          <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+                          <?php for ($k=0;$k<count($wkdetail->oup_t_wk_detail_no);$k++) { ?>
+                          <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$k]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$k] == ${"wk_staff_id".($j+($i*3))} ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$k]]; ?></option>
+                          <?php } ?>
+                          <?php } ?>
+                        </select>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
             </td>
             <?php } ?>
           </tr>
@@ -516,6 +549,8 @@
   var inp
 
   function winload() {
+    $('.time, .time2').addClass('d-inline-block border border-dark')
+    $('.time [type="number"], .time2 [type="number"]').addClass('p-0 border-0')
     width = $(window).width()
     if (width <= 800) {
     // if ('<?php echo $common->device; ?>' != 'pc') {
@@ -560,8 +595,8 @@
 
   $('table td').addClass('p-0')
 
-  $('.time, .time2').addClass('d-inline-block border border-dark')
-  $('.time [type="number"], .time2 [type="number"]').addClass('p-0 border-0')
+  // $('.time, .time2').addClass('d-inline-block border border-dark')
+  // $('.time [type="number"], .time2 [type="number"]').addClass('p-0 border-0')
   // $('.time [type="number"], .num').css('width','45px')
   $('.num').css('width','45px')
   $('.num, .text').addClass('p-0')
@@ -608,7 +643,26 @@
     } else {
       $('[name="act"]').val('1')
     }
+
+    // Gチェックあればアラート
+    $.ajax({
+      url : "ajaxController.php",
+      type:"post",
+      data: {
+        act: 'gchk',
+        no: $('[name="start_date"]').val().replace(/-/g,'')+'5'
+      },
+      dataType:"json"
+    }).done(function(data){
+      if (data == '1') {
+        alert('既にGチェック済のため登録できません。')
+      } else {
+        $('form').submit()
+      }
+    }).fail(function(data){
+      alert('通信エラー')
+    })
     
-    $('form').submit()
+    // $('form').submit()
   })
 </script>

@@ -157,7 +157,7 @@
               <input type="text" name="sip<?php echo $i; ?>" class="w-100" value="<?php echo ${"sip".$i}; ?>">
             </td>
             <td>
-              <input type="checkbox" class="check" <?php echo !is_array(${"in_port_time".$i}) && ${"in_port_time".$i} == "停泊" ? "checked" : ""; ?> value="<?php echo $i; ?>">
+              <input type="checkbox" class="check" <?php echo !is_array(${"in_port_time".$i}) && ${"in_port_time".$i} == "停泊" ? "checked" : ""; ?> value="in<?php echo $i; ?>">
               <div class="d-inline-block">
                 <span class="d-none">停泊</span>
                 <div class="time">
@@ -168,7 +168,7 @@
               </div>
             </td>
             <td>
-              <input type="checkbox" class="check" <?php echo !is_array(${"out_port_time".$i}) && ${"out_port_time".$i} == "停泊" ? "checked" : ""; ?> value="<?php echo $i+5; ?>">
+              <input type="checkbox" class="check" <?php echo !is_array(${"out_port_time".$i}) && ${"out_port_time".$i} == "停泊" ? "checked" : ""; ?> value="out<?php echo $i; ?>">
               <div class="d-inline-block">
                 <span class="d-none">停泊</span>
                 <div class="time">
@@ -430,14 +430,14 @@
 
 <script type="text/javascript">
   var width
-  window.onload = function() {
-    width = $(window).width()
-    if (width < 770) {
-      changeWidth('20px')
-    } else {
-      changeWidth('45px')
-    }
-  }
+  // window.onload = function() {
+  //   width = $(window).width()
+  //   if (width < 770) {
+  //     changeWidth('20px')
+  //   } else {
+  //     changeWidth('45px')
+  //   }
+  // }
   function changeWidth(num) {
     $('.time [type="number"]').css('width',num)
   }
@@ -464,19 +464,27 @@
 
   // 入港、出港チェックボックス
   var div
+  var no
   function winLoad() {
+    width = $(window).width()
+    if (width < 770) {
+      changeWidth('20px')
+    } else {
+      changeWidth('45px')
+    }
+
     div = {}
     $('.check').each(function(key,value){
-      // console.log(this)
+      no = $(this).val()
       if ($(this).prop('checked')) {
         $(this).next().children().eq(0).removeClass('d-none')
-        div['div'+$(this).val()] = $(this).next().children().eq(1).remove()
+        div[no] = $(this).next().children().eq(1).remove()
       }
     })
   }
   winLoad()
   $('.check').change(function(){
-    // console.log($(this).prop('checked'))
+    no = $(this).val()
     if ($(this).prop('checked')) {
       // var div = $(this).parent().children('div').children()
       // $(this).parent().children('div').empty()
@@ -490,7 +498,7 @@
       $(this).next().children().eq(0).removeClass('d-none')
       // $(this).next().children().eq(1).addClass('d-none')
       // $(this).next().children().eq(1).children().addClass('d-none')
-      div['div'+$(this).val()] = $(this).next().children().eq(1).remove()
+      div[no] = $(this).next().children().eq(1).remove()
     } else {
       // $(this).parent().children('div').empty()
       // $(this).parent().children('div').append($('<input/>',{
@@ -519,7 +527,7 @@
       $(this).next().children().eq(0).addClass('d-none')
       // $(this).next().children().eq(1).removeClass('d-none')
       // $(this).next().children().eq(1).children().removeClass('d-none')
-      $(this).next().append(div['div'+$(this).val()])
+      $(this).next().append(div[no])
     }
   })
 
@@ -541,7 +549,26 @@
     } else {
       $('[name="act"]').val('1')
     }
+
+    // Gチェックあればアラート
+    $.ajax({
+      url : "ajaxController.php",
+      type:"post",
+      data: {
+        act: 'gchk',
+        no: $('[name="start_date"]').val().replace(/-/g,'')+'11'
+      },
+      dataType:"json"
+    }).done(function(data){
+      if (data == '1') {
+        alert('既にGチェック済のため登録できません。')
+      } else {
+        $('form').submit()
+      }
+    }).fail(function(data){
+      alert('通信エラー')
+    })
     
-    $('form').submit()
+    // $('form').submit()
   })
 </script>

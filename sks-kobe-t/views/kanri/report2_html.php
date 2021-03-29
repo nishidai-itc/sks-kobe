@@ -91,9 +91,9 @@
             <td rowspan="2">
               <select name="staff_id" id="staff_id" class="w-50">
                 <option value=""></option>
-                <?php if ($staff2->oup_m_staff_id) { ?>
-                <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$i]; ?>"<?php echo $staff2->oup_m_staff_id[$i] == $staff_id ? "selected" : "" ; ?>><?php echo $staff_name[$staff2->oup_m_staff_id[$i]]; ?></option>
+                <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+                <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+                <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $staff_id ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
                 <?php } ?>
                 <?php } ?>
               </select>
@@ -129,9 +129,9 @@
             <td>
             ♦　安全旗掲揚　
             <div class="time">
-                <input type="number" class="text-center" name="fence_time[0]" value="<?php echo $fence_time[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="flag1_time[0]" value="<?php echo $flag1_time[0]; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="fence_time[1]" value="<?php echo $fence_time[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="flag1_time[1]" value="<?php echo $flag1_time[1]; ?>" min="0" max="59">
               </div>
             </td>
          </tr>
@@ -139,9 +139,9 @@
             <td>
             ♦　安全旗降納　
             <div class="time">
-                <input type="number" class="text-center" name="fence_time[0]" value="<?php echo $fence_time[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="flag2_time[0]" value="<?php echo $flag2_time[0]; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="fence_time[1]" value="<?php echo $fence_time[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="flag2_time[1]" value="<?php echo $flag2_time[1]; ?>" min="0" max="59">
               </div>
             </td>
          </tr>
@@ -155,7 +155,7 @@
           </tr>
           <tr>
             <td>
-              <textarea name="" id="" rows="10" class="w-100" value=""></textarea>
+              <textarea name="comment" id="" rows="10" class="w-100" value="<?php echo $comment;?>"><?php echo $comment;?></textarea>
             </td>
           </tr>
         </table>
@@ -182,11 +182,14 @@
         <button type="button" class="btn btn-success btn-block regist" role="button">完了</button>
       </div>
       <div class="col-4">
+        <?php if ($_SESSION["menu_flg"] == "kanri") { ?>
+        <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='keibihokoku.php'">戻る</button>
+        <?php } else { ?>
         <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='report_menu.php'">戻る</button>
+        <?php } ?>
       </div>
     </div>
-
-
+    
   </div>
   <br>
 
@@ -212,7 +215,26 @@
     } else {
       $('[name="act"]').val('1')
     }
+
+    // Gチェックあればアラート
+    $.ajax({
+      url : "ajaxController.php",
+      type:"post",
+      data: {
+        act: 'gchk',
+        no: $('[name="start_date"]').val().replace(/-/g,'')+'2'
+      },
+      dataType:"json"
+    }).done(function(data){
+      if (data == '1') {
+        alert('既にGチェック済のため登録できません。')
+      } else {
+        $('form').submit()
+      }
+    }).fail(function(data){
+      alert('通信エラー')
+    })
     
-    $('form').submit()
+    // $('form').submit()
   })
 </script>

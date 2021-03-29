@@ -22,32 +22,49 @@
 
 <body>
   <div class="container">
+    <!-- ヘッダー -->
+    <!-- <div class="page-header">
+      <br>
+      <h2>TKUシステム</h2>
+      <h4>メニュー</h4>
+    </div> -->
+
+    <!-- ログイン者情報 -->
+    <!-- <div class="row">
+      <div class="col-12">
+        <div class="card" style="padding: 10px;">
+          <div class="card-body"></div>
+        </div>
+      </div>
+    </div>
+    <br> -->
+
     <br>
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
           <tr>
-            <td>（警備場所）</td>
-            <td>（契約先）</td>
+            <td><label>（警備場所）</label></td>
+            <td><label>（契約先）</label></td>
           </tr>
 
           <tr>
-            <td>RIC-4・C-5に係る待機場A</td>
-            <td>三菱倉庫株式会社・川崎汽船株式会社　殿</td>
+            <td><label>RIC-4・C-5に係る待機場A</label></td>
+            <td><label>三菱倉庫株式会社・川崎汽船株式会社 殿</label></td>
           </tr>
         </table>
       </div>
     </div>
     <hr>
 
-    <form action="report13.php" method="post">
+    <form action="report8.php" method="post">
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
           <tr>
-            <td>（勤務時間）</td>
-            <td>天候</td>
-            <td>担当警備士</td>
+            <td><label>（勤務時間）</label></td>
+            <td><label>天候</label></td>
+            <td><label>報告者</label></td>
           </tr>
 
           <tr>
@@ -90,9 +107,9 @@
             <td rowspan="2">
               <select name="staff_id" id="staff_id" class="w-50">
                 <option value=""></option>
-                <?php if ($staff2->oup_m_staff_id) { ?>
-                <?php for ($i=0;$i<count($staff2->oup_m_staff_id);$i++) { ?>
-                <option value="<?php echo $staff2->oup_m_staff_id[$i]; ?>"<?php echo $staff2->oup_m_staff_id[$i] == $staff_id ? "selected" : "" ; ?>><?php echo $staff_name[$staff2->oup_m_staff_id[$i]]; ?></option>
+                <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+                <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+                <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $staff_id ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
                 <?php } ?>
                 <?php } ?>
               </select>
@@ -107,114 +124,167 @@
     <div class="col-12">
       <table class="table table-borderless">
 
-      <tr>
-          <td><label>（１）状況</label></td>
-      </tr>
-      <tr>
-          <td><label>i.　待機場A　稼働時間</label></td>
-          <td>
-            <div class="time">
-              <input type="number" class="text-center" name="wk_start_time[0]" value="<?php echo $wk_start_time[0]; ?>" min="0" max="23">
-              <span class="">:</span>
-              <input type="number" class="text-center" name="wk_start_time[1]" value="<?php echo $wk_start_time[1]; ?>" min="0" max="59">
-            </div>
-            <label for="">～</label>
-            <div class="time">
-              <input type="number" class="text-center" name="wk_end_time[0]" value="<?php echo $wk_end_time[0]; ?>" min="0" max="23">
-              <span class="">:</span>
-              <input type="number" class="text-center" name="wk_end_time[1]" value="<?php echo $wk_end_time[1]; ?>" min="0" max="59">
-            </div>
-          </td>
+        <tr>
+            <td><label>１. 状況</label></td>
         </tr>
+        <tr>
+            <td><label>i.　待機場A　稼働時間</label></td>
+            <td>
+              <div class="time">
+                <input type="number" class="text-center" name="wk_start_time[0]" value="<?php echo $wk_start_time[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="wk_start_time[1]" value="<?php echo $wk_start_time[1]; ?>" min="0" max="59">
+              </div>
+              <label for="">～</label>
+              <div class="time">
+                <input type="number" class="text-center" name="wk_end_time[0]" value="<?php echo $wk_end_time[0]; ?>" min="0" max="23">
+                <span class="">:</span>
+                <input type="number" class="text-center" name="wk_end_time[1]" value="<?php echo $wk_end_time[1]; ?>" min="0" max="59">
+              </div>
+            </td>
+          </tr>
         
         <tr>
-        <td>
-         ii. 作業結果(警備中における異常の有無) 
-              <select name="" id="" class="">
+           <td>
+              ii. 作業結果(警備中における異常の有無) 
+              <select name="result1" id="" class="">
                 <option value=""></option>
-                <?php for ($i=1;$i<=count($gate);$i++) { ?>
-                <option value="<?php echo $i; ?>"<?php echo $i == $gate_flg ? "selected" : "" ; ?>><?php echo $gate[$i]; ?></option>
+                <?php for ($i=1;$i<=count($result);$i++) { ?>
+                <option value="<?php echo $i; ?>"<?php echo $i == $result1 ? "selected" : "" ; ?>><?php echo $result[$i]; ?></option>
                 <?php } ?>
               </select>
-        </td>
+          </td>
        </tr>
 
-      </table>
-      </div>
-    </div>
-    <hr>
 
     <tr>
-          <td><label>（１）状況</label></td>
-          <td><label>i.　待機場A　稼働時間</label></td>
+            <td><label>２.重点</label></td>
+      </tr>
+      <tr><td><label>i. 　待機場Aに進入、待機、出場するコンテナ車両に対する交通誘導</label></td></tr>
+      <tr><td><label>ii.　待機場Aと交差して、C5ゲートを出場する車両全般の安全確保</label></td></tr>
+      <tr><td><label>iii. その他</label></td></tr>
+
+
+
+
+      <tr>
+            <td><label>３.実施</label></td>
+      </tr>
+      <tr><td><label>i. 　交差点「甲南大学前」における、待機場Aへ向かうコンテナ車両に対する交通誘導</label></td></tr>
+      <tr><td><label>ii.　待機場Aに進入するコンテナ車両と交差して、C５ゲートから出場する　車両の交通誘導</label></td></tr>
+      <tr><td><label>iii. 　待機場Aに進入するコンテナ車両の交通誘導</label></td></tr>
+      <tr><td><label>iⅴ. 東サブゲートに進入するコンテナ車両と交差して、待機場A内を通過するコンテナ車両の<br> 交通誘導</label></td></tr>
+      <tr><td><label>ⅴ.  　待機場Aを出場するコンテナ車両の交通誘導</label></td></tr>
+      <tr><td><label>ⅴi. その他</label></td></tr>
+
+
+    </table>
+      </div>
+    </div>
+    <hr>
+
+
+    <div class="row">
+      <div class="col-12">
+      <table class="table table-borderless">
+
+　　  <tr>
+      <td rowspan="5" class="align-middle">勤<br>務<br>員</td>
           <td>
-            <div class="time">
-              <input type="number" class="text-center" name="wk_start_time[0]" value="<?php echo $wk_start_time[0]; ?>" min="0" max="23">
-              <span class="">:</span>
-              <input type="number" class="text-center" name="wk_start_time[1]" value="<?php echo $wk_start_time[1]; ?>" min="0" max="59">
-            </div>
-            <label for="">～</label>
-            <div class="time">
-              <input type="number" class="text-center" name="wk_end_time[0]" value="<?php echo $wk_end_time[0]; ?>" min="0" max="23">
-              <span class="">:</span>
-              <input type="number" class="text-center" name="wk_end_time[1]" value="<?php echo $wk_end_time[1]; ?>" min="0" max="59">
-            </div>
+            <label>A</label>
+            <select name="wk_staff_id1" id="wk_staff_id1" class="w-50">
+              <option value=""></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id1 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
           </td>
-        </tr>
-        <tr>
-        <td>
-        
-        </td>
-        </tr>
+          <td>
+            <label>B</label>
+            <select name="wk_staff_id2" id="wk_staff_id2" class="w-50">
+              <option value=""></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id2 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
+          </td>
+          <td>
+            <label>C</label>
+            <select name="wk_staff_id3" id="wk_staff_id3" class="w-50">
+              <option value=""></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id3 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
+          </td>
+          <td>
+            <label>D</label>
+            <select name="wk_staff_id4" id="wk_staff_id4" class="w-50">
+              <option value=""></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id4 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
+          </td>
+       </tr>
+       <tr>
 
+       <td>
+            <label>E</label>
+            <select name="wk_staff_id5" id="wk_staff_id5" class="w-50">
+              <option value=""></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id5 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
+          </td>
+          <td>
+            <label>F</label>
+            <select name="wk_staff_id6" id="wk_staff_id6" class="w-50">
+              <option value=""></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id6 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
+          </td>
+          <td>
+            <label>G</label>
+            <select name="wk_staff_id7" id="wk_staff_id7" class="w-50">
+              <option value=""></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id7 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
+          </td>
+          <td>
+            <label>H</label>
+            <select name="wk_staff_id8" id="wk_staff_id8" class="w-50">
+              <option value=""></option>
+              <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
+              <?php for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) { ?>
+              <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$i]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$i] == $wk_staff_id8 ? "selected" : "" ; ?>><?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$i]]; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
+          </td>
 
-
-
-    <div class="row">
-    　<div class="col-12">１.状況 </div>
-      <div class="col-12">i.　待機場A　稼働時間　　<input type="time" class="" value="08:00">～<input type="time" class="" value="17:00"></div>
-      <div class="col-12">ii. 作業結果(警備中における異常の有無)  　<input type="text" value="無し"><br>　　　　　　　　　　　　　　　　　　※「有」の場合、別途報告書提出</div>
-    </div>
-    <hr>
-
-    <div class="row">
-      <div class="col-12">２.重点</div>
-      <div class="col-12">i. 　待機場Aに侵入、待機、出場するコンテナ車両に対する交通誘導</div>
-      <div class="col-12">ii.　待機場Aと交差して、C5ゲートを出場する車両全般の安全確保</div>
-      <div class="col-12">iii. その他</div>
-    </div>
-    <hr>
-
-    <div class="row">
-      <div class="col-12">３.実施</div>
-      <div class="col-12">i. 　交差点「甲南大学前」における、待機場Aへ向かうコンテナ車両に対する交通誘導</div>
-      <div class="col-12">ii.　待機場Aに侵入するコンテナ車両と交差して、C５ゲートから出場する　車両の交通誘導</div>
-      <div class="col-12">iii. 　待機場Aに侵入するコンテナ車両の交通誘導</div>
-      <div class="col-12">iⅴ. 東サブゲートに侵入するコンテナ車両と交差して、待機場A内を通過するコンテナ車両の<br> 交通誘導</A></div>
-      <div class="col-12">ⅴ.  　待機場Aを出場するコンテナ車両の交通誘導</div>
-      <div class="col-12">ⅴi. その他</div>
-
-    </div>
-    <hr>
-
-    <div class="row">
-    <div class="col-2">警備員</div>
-       <div class="col-2">
-      A <input type="text" value="崎山"> E <input type="text" value="">
+       </tr>
+       </table>
       </div>
-      <div class="col-2">
-      B <input type="text" value="合田"> F <input type="text" value="">
-      </div>
-      <div class="col-2">
-      C <input type="text" value="松本"> G <input type="text" value="">
-      </div>
-      <div class="col-2">
-      D <input type="text" value="北篠"> H <input type="text" value="">
-      </div>
-      <div class="col-2">
-      </div>
-
-
     </div>
     <hr>
 
@@ -222,10 +292,14 @@
     <div class="row">
       <div class="col-1 m-auto">備<br>考</div>
       <div class="col-11">
-        <textarea name="" id="" rows="5" class="form-control"></textarea>
+        <textarea name="comment" id="" rows="5" class="form-control" value="<?php echo $comment; ?>"><?php echo $comment; ?></textarea>
       </div>
     </div>
     <hr>
+
+    <input type="hidden" name="no" value="<?php echo $no; ?>">
+    <input type="hidden" name="act" value="">
+    </form>
 
     <div class="row">
       <div class="col-12 text-right">（株）新神戸セキュリティ</div>
@@ -234,17 +308,19 @@
 
     <div class="row">
       <div class="col-4">
-        <button type="button" class="btn btn-warning btn-block regist" role="button">一時保存</button>
+        <button type="button" class="btn btn-warning btn-block temp" role="button">一時保存</button>
       </div>
       <div class="col-4">
         <button type="button" class="btn btn-success btn-block regist" role="button">完了</button>
       </div>
       <div class="col-4">
+        <?php if ($_SESSION["menu_flg"] == "kanri") { ?>
+        <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='keibihokoku.php'">戻る</button>
+        <?php } else { ?>
         <button type="button" class="btn btn-secondary btn-block" role="button" onclick="location.href='report_menu.php'">戻る</button>
+        <?php } ?>
       </div>
-    </div>
-
-    <!-- ログアウト -->
+    </div>    <!-- ログアウト -->
     <!-- <div class="row">
       <div class="col-12">
         <form name="frm" method="POST" action="">
@@ -262,9 +338,42 @@
 </html>
 
 <script type="text/javascript">
-  // $('.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12').addClass('border')
-  // $('.row').css({
-  //   'border-bottom':'1px solid #000' 
-  // })
   $('hr').css('border-top','1px solid #000')
+
+  $('table td').addClass('p-0')
+
+  $('.time').addClass('d-inline-block border border-dark')
+  $('.time [type="number"]').addClass('p-0 border-0')
+  $('.time [type="number"]').css('width','45px')
+
+  $('.temp, .regist').click(function(){
+    if (!confirm('この内容で登録します。よろしいですか？')) return false
+
+    if ($(this).hasClass('temp')) {
+      $('[name="act"]').val('2')
+    } else {
+      $('[name="act"]').val('1')
+    }
+
+    // Gチェックあればアラート
+    $.ajax({
+      url : "ajaxController.php",
+      type:"post",
+      data: {
+        act: 'gchk',
+        no: $('[name="start_date"]').val().replace(/-/g,'')+'8'
+      },
+      dataType:"json"
+    }).done(function(data){
+      if (data == '1') {
+        alert('既にGチェック済のため登録できません。')
+      } else {
+        $('form').submit()
+      }
+    }).fail(function(data){
+      alert('通信エラー')
+    })
+    
+    // $('form').submit()
+  })
 </script>

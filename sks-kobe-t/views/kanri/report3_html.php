@@ -201,7 +201,7 @@
                 <option value=""></option>
                 <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
                 <?php for ($k=0;$k<count($wkdetail->oup_t_wk_detail_no);$k++) { ?>
-                <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$k]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$k] == ${"wk_detail_staff_id".$i} ? "selected" : "" ; ?>>
+                <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$k]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$k] == ${"wk_detail_staff_id".$c} ? "selected" : "" ; ?>>
                   <?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$k]]; ?>
                 </option>
                 <?php } ?>
@@ -344,7 +344,26 @@
     } else {
       $('[name="act"]').val('1')
     }
+
+    // Gチェックあればアラート
+    $.ajax({
+      url : "ajaxController.php",
+      type:"post",
+      data: {
+        act: 'gchk',
+        no: $('[name="start_date"]').val().replace(/-/g,'')+'3'
+      },
+      dataType:"json"
+    }).done(function(data){
+      if (data == '1') {
+        alert('既にGチェック済のため登録できません。')
+      } else {
+        $('form').submit()
+      }
+    }).fail(function(data){
+      alert('通信エラー')
+    })
     
-    $('form').submit()
+    // $('form').submit()
   })
 </script>
