@@ -36,8 +36,8 @@ $pdf->useTemplate($pdf->importPage(1));
 
 // 和暦
 $wnen = substr($report->oup_start_date[0],0,4);
-$wnen = intval($wnen) - 2018;
-$pdf->Text(34, 59, $wnen);     // 年
+//$wnen = intval($wnen) - 2018;
+$pdf->Text(28, 59, $wnen);     // 年
 $pdf->Text(45, 59, substr($report->oup_start_date[0],5,2));     // 月
 $pdf->Text(57, 59, substr($report->oup_start_date[0],8,2));     // 日
 $pdf->Text(69, 59, $weekday1);     // 曜日
@@ -45,8 +45,8 @@ $pdf->Text(86, 59, substr($report->oup_joban_time[0],0,2));     // 開始時間
 $pdf->Text(98, 59, substr($report->oup_joban_time[0],3,2));     // 開始時間
 
 $wnen = substr($report->oup_end_date[0],0,4);
-$wnen = intval($wnen) - 2018;
-$pdf->Text(34, 65, $wnen);     // 年
+//$wnen = intval($wnen) - 2018;
+$pdf->Text(28, 65, $wnen);     // 年
 $pdf->Text(45, 65, substr($report->oup_end_date[0],5,2));     // 月
 $pdf->Text(57, 65, substr($report->oup_end_date[0],8,2));     // 日
 $pdf->Text(69, 65, $weekday2);     // 曜日
@@ -69,9 +69,9 @@ $pdf->Text(161, 104, $report->oup_wk_end_time3[0]);      // C-5
 
 
 $pdf->Text(150, 227, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員1
-$pdf->Text(150, 239, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員2
-$pdf->Text(150, 250, $staffs[$report->oup_wk_staff_id1[0]]);    // 警備員3
-$pdf->Text(150, 261, $staffs[$report->oup_wk_staff_id1[0]]);    // 警備員4
+$pdf->Text(150, 239, $staffs[$report->oup_wk_staff_id2[0]]);     // 警備員2
+$pdf->Text(150, 250, $staffs[$report->oup_wk_staff_id3[0]]);     // 警備員3
+$pdf->Text(150, 261, $staffs[$report->oup_wk_staff_id4[0]]);     // 警備員4
 //$pdf->Text(31, 227, $staffs[$report->oup_wk_staff_id5[0]]);     // 警備員5
 //$pdf->Text(72, 227, $staffs[$report->oup_wk_staff_id6[0]]);     // 警備員6
 //$pdf->Text(114, 227, $staffs[$report->oup_wk_staff_id7[0]]);    // 警備員7
