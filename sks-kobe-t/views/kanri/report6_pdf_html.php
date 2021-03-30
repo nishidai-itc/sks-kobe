@@ -68,14 +68,14 @@ $pdf->Text(121, 104, $report->oup_wk_start_time3[0]);    // C-5
 $pdf->Text(161, 104, $report->oup_wk_end_time3[0]);      // C-5
 
 
-$pdf->Text(150, 227, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員1
-$pdf->Text(150, 239, $staffs[$report->oup_wk_staff_id2[0]]);     // 警備員2
-$pdf->Text(150, 250, $staffs[$report->oup_wk_staff_id3[0]]);     // 警備員3
-$pdf->Text(150, 261, $staffs[$report->oup_wk_staff_id4[0]]);     // 警備員4
-//$pdf->Text(31, 227, $staffs[$report->oup_wk_staff_id5[0]]);     // 警備員5
-//$pdf->Text(72, 227, $staffs[$report->oup_wk_staff_id6[0]]);     // 警備員6
-//$pdf->Text(114, 227, $staffs[$report->oup_wk_staff_id7[0]]);    // 警備員7
-//$pdf->Text(156, 227, $staffs[$report->oup_wk_staff_id8[0]]);    // 警備員8
+$pdf->Text(138, 227, $report->oup_wk_staff1_kbn[0]);            // 勤務者1
+$pdf->Text(150, 227, $staffs[$report->oup_wk_staff_id1[0]]);    // 勤務者1
+$pdf->Text(138, 239, $report->oup_wk_staff2_kbn[0]);            // 勤務者2
+$pdf->Text(150, 239, $staffs[$report->oup_wk_staff_id2[0]]);    // 勤務者2
+$pdf->Text(138, 250, $report->oup_wk_staff3_kbn[0]);            // 勤務者3
+$pdf->Text(150, 250, $staffs[$report->oup_wk_staff_id3[0]]);    // 警備員3
+$pdf->Text(138, 261, $report->oup_wk_staff4_kbn[0]);            // 勤務者4
+$pdf->Text(150, 261, $staffs[$report->oup_wk_staff_id4[0]]);    // 警備員4
 
 $pdf->Text(100, 250, $report->oup_offwk_count[0]);      // C-5
 $pdf->Text(113, 261, $report->oup_outsider[0]);      // C-5
