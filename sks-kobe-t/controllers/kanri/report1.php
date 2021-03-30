@@ -144,7 +144,6 @@
         ${"wk_staff".$i."_zan2"}      = null;
         ${"wk_staff".$i."_zan3"}      = null;
         ${"wk_staff_id".$i}           = null;
-        ${"wk_staff".$i."_kbn"}       = null;
     }
     $wk_comment                       = null;
 
@@ -238,6 +237,18 @@
             
             // 登録フラグ以外の項目登録
             if ($key != "act") {
+                // 警備員登録　勤務区分、補足文字と隊員IDに分ける
+                if (strpos($key,"wk_staff_id") !== false) {
+                    if (strpos($value,",") !== false) {
+                        $array = explode(",",$value);
+                        $report2->{"inp_".$key}               = $array[1];
+                        $report2->{"inp_".str_replace("_id","",$key)."_kbn"}        = $array[0];
+                    } else {
+                        $report2->{"inp_".$key}               = null;
+                        $report2->{"inp_".str_replace("_id","",$key)."_kbn"}        = null;
+                    }
+                    continue;
+                }
                 // 水道メーター
                 if (strpos($key,"meter") !== false) {
                     $report2->{"inp_".$key}              = $value;
@@ -372,8 +383,6 @@
                 $cnt = $cnt + 1;
                 // データがある場合は取得したデータを、新規は予定が入っている隊員を表示
                 ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
-
-                ${"wk_staff".$cnt."_kbn"}     = $no ? ${"wk_staff".$cnt."_kbn"} : $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$i]].$wkdetail->oup_t_wk_plan_hosoku[$i];
             }
         }
 
