@@ -15,13 +15,13 @@
             "vp_joban_time","vp_kaban_time","vp_num","vp_zan","midday_joban_time","midday_kaban_time","midday_num","midday_zan","gate_joban_time","gate_kaban_time","gate_num","gate_zan",
             "mbath_joban_time","mbath_kaban_time","mbath_num","mbath_zan","picket_joban_time1","picket_kaban_time1","picket_num1","picket_zan1","picket_joban_time2","picket_kaban_time2","picket_num2",
             "picket_zan2","picket_joban_time3","picket_kaban_time3","picket_num3","picket_zan3","picket_joban_time4","picket_kaban_time4","picket_num4","picket_zan4","comment",
-            /*"patrol_time1","patrol_time2","patrol_time3","patrol_time4","patrol_time5","patrol_time6","patrol_time7","patrol_time8",*/"meterb1","meterb2","meterc1","meterc2","wk_staff_id1","wk_staff1_zan1","wk_staff1_zan2","wk_staff1_zan3",
-            "wk_staff_id2","wk_staff2_zan1","wk_staff2_zan2","wk_staff2_zan3","wk_staff_id3","wk_staff3_zan1","wk_staff3_zan2","wk_staff3_zan3","wk_staff_id4","wk_staff4_zan1","wk_staff4_zan2","wk_staff4_zan3",
-            "wk_staff_id5","wk_staff5_zan1","wk_staff5_zan2","wk_staff5_zan3","wk_staff_id6","wk_staff6_zan1","wk_staff6_zan2","wk_staff6_zan3","wk_staff_id7","wk_staff7_zan1","wk_staff7_zan2","wk_staff7_zan3",
-            "wk_staff_id8","wk_staff8_zan1","wk_staff8_zan2","wk_staff8_zan3","wk_staff_id9","wk_staff9_zan1","wk_staff9_zan2","wk_staff9_zan3","wk_staff_id10","wk_staff10_zan1","wk_staff10_zan2","wk_staff10_zan3",
-            "wk_staff_id11","wk_staff11_zan1","wk_staff11_zan2","wk_staff11_zan3","wk_staff_id12","wk_staff12_zan1","wk_staff12_zan2","wk_staff12_zan3","wk_staff_id13","wk_staff13_zan1","wk_staff13_zan2","wk_staff13_zan3",
-            "wk_staff_id14","wk_staff14_zan1","wk_staff14_zan2","wk_staff14_zan3","wk_staff_id15","wk_staff15_zan1","wk_staff15_zan2","wk_staff15_zan3","wk_staff_id16","wk_staff16_zan1","wk_staff16_zan2","wk_staff16_zan3",
-            "wk_staff_id17","wk_staff17_zan1","wk_staff17_zan2","wk_staff17_zan3","wk_staff_id18","wk_staff18_zan1","wk_staff18_zan2","wk_staff18_zan3","wk_comment"
+            /*"patrol_time1","patrol_time2","patrol_time3","patrol_time4","patrol_time5","patrol_time6","patrol_time7","patrol_time8",*/"meterb1","meterb2","meterc1","meterc2","wk_staff_id1","wk_staff1_kbn","wk_staff1_zan1","wk_staff1_zan2","wk_staff1_zan3",
+            "wk_staff_id2","wk_staff2_kbn","wk_staff2_zan1","wk_staff2_zan2","wk_staff2_zan3","wk_staff_id3","wk_staff3_kbn","wk_staff3_zan1","wk_staff3_zan2","wk_staff3_zan3","wk_staff_id4","wk_staff4_kbn","wk_staff4_zan1","wk_staff4_zan2","wk_staff4_zan3",
+            "wk_staff_id5","wk_staff5_kbn","wk_staff5_zan1","wk_staff5_zan2","wk_staff5_zan3","wk_staff_id6","wk_staff6_kbn","wk_staff6_zan1","wk_staff6_zan2","wk_staff6_zan3","wk_staff_id7","wk_staff7_kbn","wk_staff7_zan1","wk_staff7_zan2","wk_staff7_zan3",
+            "wk_staff_id8","wk_staff8_kbn","wk_staff8_zan1","wk_staff8_zan2","wk_staff8_zan3","wk_staff_id9","wk_staff9_kbn","wk_staff9_zan1","wk_staff9_zan2","wk_staff9_zan3","wk_staff_id10","wk_staff10_kbn","wk_staff10_zan1","wk_staff10_zan2","wk_staff10_zan3",
+            "wk_staff_id11","wk_staff11_kbn","wk_staff11_zan1","wk_staff11_zan2","wk_staff11_zan3","wk_staff_id12","wk_staff12_kbn","wk_staff12_zan1","wk_staff12_zan2","wk_staff12_zan3","wk_staff_id13","wk_staff13_kbn","wk_staff13_zan1","wk_staff13_zan2","wk_staff13_zan3",
+            "wk_staff_id14","wk_staff14_kbn","wk_staff14_zan1","wk_staff14_zan2","wk_staff14_zan3","wk_staff_id15","wk_staff15_kbn","wk_staff15_zan1","wk_staff15_zan2","wk_staff15_zan3","wk_staff_id16","wk_staff16_kbn","wk_staff16_zan1","wk_staff16_zan2","wk_staff16_zan3",
+            "wk_staff_id17","wk_staff17_kbn","wk_staff17_zan1","wk_staff17_zan2","wk_staff17_zan3","wk_staff_id18","wk_staff18_kbn","wk_staff18_zan1","wk_staff18_zan2","wk_staff18_zan3","wk_comment"
         );
 
         public static $report2 = array(
@@ -33,7 +33,7 @@
             "wk_haiti3","wk_staff_id3","wk_joban_time3","wk_kaban_time3","wk_haiti4","wk_staff_id4","wk_joban_time4","wk_kaban_time4","wk_haiti5","wk_staff_id5","wk_joban_time5","wk_kaban_time5","wk_haiti6",
             "wk_staff_id6","wk_joban_time6","wk_kaban_time6","wk_haiti7","wk_staff_id7","wk_joban_time7","wk_kaban_time7","wk_haiti8","wk_staff_id8","wk_joban_time8","wk_kaban_time8","wk_haiti9","wk_staff_id9",
             "wk_joban_time9","wk_kaban_time9","wk_haiti10","wk_staff_id10","wk_joban_time10","wk_kaban_time10","wk_detail_time1","wk_detail_staff_id1","wk_detail_comment1","wk_detail_time2","wk_detail_staff_id2","wk_detail_time3",
-            "wk_detail_staff_id3","wk_detail_time4","wk_detail_staff_id4","wk_detail_comment4","wk_detail_time5","wk_detail_staff_id5","wk_detail_time6","wk_detail_staff_id6","wk_detail_comment6","wk_detail_staff_id7","wk_detail_time8","wk_detail_staff_id8",
+            "wk_detail_staff_id3","wk_detail_time4","wk_detail_staff_id4","wk_detail_comment4","wk_detail_time5","wk_detail_staff_id5","wk_detail_time6","wk_detail_staff_id6","wk_detail_comment6","wk_detail_time7","wk_detail_staff_id7","wk_detail_time8","wk_detail_staff_id8",
             "wk_detail_time9","wk_detail_staff_id9","wk_detail_time10","wk_detail_staff_id10","wk_detail_time11","wk_detail_staff_id11","wk_detail_time12","wk_detail_staff_id12","wk_detail_comment12","wk_detail_time13","wk_detail_staff_id13",
             "wk_detail_time14","wk_detail_staff_id14","wk_detail_time15","wk_detail_staff_id15","wk_detail_time16","wk_detail_staff_id16","wk_detail_title17","wk_detail_time17","wk_detail_staff_id17","wk_detail_title18","wk_detail_time18",
             "wk_detail_staff_id18","wk_detail_time19","wk_detail_staff_id19","wk_detail_comment19","wk_detail_time20","wk_detail_staff_id20","wk_detail_time21","wk_detail_staff_id21","night_company","night_taiin_id","night_exit_time","night_staff_id",
@@ -52,7 +52,8 @@
         );
 
         public static $report6 = array(
-            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time1","wk_end_time1","wk_start_time2","wk_end_time2","wk_start_time3","wk_end_time3","offwk_count","outsider","wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9","comment",
+            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time1","wk_end_time1","wk_start_time2","wk_end_time2","wk_start_time3","wk_end_time3","offwk_count","outsider",
+            "wk_staff_id1","wk_staff1_kbn","wk_staff_id2","wk_staff2_kbn","wk_staff_id3","wk_staff3_kbn","wk_staff_id4","wk_staff4_kbn","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9","comment",
         );
 
 

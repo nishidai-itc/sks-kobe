@@ -206,7 +206,7 @@
                 <div class="col-4"><label>４．VP終了</label></div>
                 <div class="col-8">
                   <input type="checkbox" class="wk" value="wk3" <?php echo !is_array($wk_vp_end_time) ? "checked" : "" ; ?>>
-                  <input type="text" class="text" name="wk_vp_end" value="<?php echo !is_array($wk_vp_end_time) ? $wk_vp_end_time : "" ; ?>">
+                  <input type="text" class="text" name="wk_vp_end_time" value="<?php echo !is_array($wk_vp_end_time) ? $wk_vp_end_time : "" ; ?>">
                   <div class="time">
                     <input type="number" class="text-center" name="wk_vp_end_time[0]" value="<?php echo is_array($wk_vp_end_time) ? $wk_vp_end_time[0] : "" ; ?>" min="0" max="23">
                     <span class="">:</span>
@@ -617,13 +617,14 @@
                   <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
                   <?php for ($j=0;$j<count($wkdetail->oup_t_wk_detail_no);$j++) { ?>
                   <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
-                    <?php //echo $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?>
                     <?php echo $wkdetail->oup_t_wk_plan_hosoku[$j] ? $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]].$wkdetail->oup_t_wk_plan_hosoku[$j] : $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?>
                     <?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$j]]; ?>
                   </option>
                   <?php } ?>
                   <?php } ?>
                 </select>
+
+                <input type="hidden" name="wk_staff<?php echo $i; ?>_kbn" value="<?php echo ${"wk_staff".$i."_kbn"}; ?>">
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@
     // ログインチェック
     if (!isset($_SESSION["staff_id"])){
         // HTML表示
-        header('Location:../controllers/login.php');
+        header('Location:../login.php');
     }
 ?>
 <?php
@@ -138,12 +138,13 @@
     $meterb2                          = null;
     $meterc1                          = null;
     $meterc2                          = null;
-    $wk_kbn                           = array("➀","➁","C","白","V","昼","ゲ","M","T","岸","分");
+    $wk_kbn                           = array("①","②","C","白","V","昼","ゲ","M","T","岸","分");
     for ($i=1;$i<=18;$i++) {
         ${"wk_staff".$i."_zan1"}      = null;
         ${"wk_staff".$i."_zan2"}      = null;
         ${"wk_staff".$i."_zan3"}      = null;
         ${"wk_staff_id".$i}           = null;
+        ${"wk_staff".$i."_kbn"}       = null;
     }
     $wk_comment                       = null;
 
@@ -371,6 +372,8 @@
                 $cnt = $cnt + 1;
                 // データがある場合は取得したデータを、新規は予定が入っている隊員を表示
                 ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
+
+                ${"wk_staff".$cnt."_kbn"}     = $no ? ${"wk_staff".$cnt."_kbn"} : $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$i]].$wkdetail->oup_t_wk_plan_hosoku[$i];
             }
         }
 

@@ -208,7 +208,7 @@
                 <option value=""></option>
                 <?php if ($i <= 2 && $wkdetail->oup_t_wk_detail_no) { ?>
                 <?php for ($j=0;$j<count($wkdetail->oup_t_wk_detail_no);$j++) { ?>
-                <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
+                <option value="<?php echo $wkdetail->oup_t_wk_plan_kensyu[$j] == "1" ? $plan_kbn[$wkdetail->oup_t_wk_plan_kbn[$j]].$plan_ken[$wkdetail->oup_t_wk_plan_kensyu[$j]] : $plan_kbn[$wkdetail->oup_t_wk_plan_kbn[$j]] ; ?>,<?php echo $wkdetail->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
                   <?php echo $plan_kbn[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?>
                   <?php echo $plan_ken[$wkdetail->oup_t_wk_plan_kensyu[$j]]; ?>
                   <?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$j]]; ?>
@@ -216,7 +216,7 @@
                 <?php } ?>
                 <?php } elseif ($i > 2 && $wkdetail2->oup_t_wk_detail_no) { ?>
                 <?php for ($j=0;$j<count($wkdetail2->oup_t_wk_detail_no);$j++) { ?>
-                <option value="<?php echo $wkdetail2->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail2->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
+                <option value="<?php echo $wkdetail2->oup_t_wk_plan_kensyu[$j] == "1" ? $plan_kbn[$wkdetail2->oup_t_wk_plan_kbn[$j]].$plan_ken[$wkdetail2->oup_t_wk_plan_kensyu[$j]] : $plan_kbn[$wkdetail2->oup_t_wk_plan_kbn[$j]] ; ?>,<?php echo $wkdetail2->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail2->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
                   <?php echo $plan_kbn[$wkdetail2->oup_t_wk_plan_kbn[$j]]; ?>
                   <?php echo $plan_ken[$wkdetail2->oup_t_wk_plan_kensyu[$j]]; ?>
                   <?php echo $staff_name[$wkdetail2->oup_t_wk_taiin_id[$j]]; ?>

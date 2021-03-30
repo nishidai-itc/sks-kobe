@@ -47,6 +47,8 @@
   $title                          = array("A","B","C","D");
   for ($i=1;$i<=4;$i++) {
     ${"wk_staff_id".$i}           = null;
+
+    // ${"wk_staff".$i."_kbn"}       = null;
   }
   
   // $week           = array("日", "月", "火", "水", "木", "金", "土");
@@ -122,6 +124,19 @@
     // exit;
     foreach ($_POST as $key => $value) {
       if ($key != "act") {
+        // 警備員登録　勤務区分、補足文字と隊員IDに分ける
+        if (strpos($key,"wk_staff") !== false) {
+          if (strpos($value,",") !== false) {
+            $array = explode(",",$value);
+            $report2->{"inp_".$key}               = $array[1];
+            $report2->{"inp_".str_replace("_id","",$key)."_kbn"}        = $array[0];
+          } else {
+            $report2->{"inp_".$key}               = null;
+            $report2->{"inp_".str_replace("_id","",$key)."_kbn"}        = null;
+          }
+          continue;
+        }
+
         $report2->{"inp_".$key}               = valChange($value);
       }
     }
@@ -190,6 +205,10 @@
 
     if ($report3->oup_no) {
       foreach (ReportTable::$report6 as $k => $key) {
+        // 勤務区分はスルー
+        if (strpos($key,"_kbn") !== false) {
+          continue;
+        }
         if (strpos($key,"time") !== false) {
           // 時刻
           if (strpos($report3->{"oup_".$key}[0],":") !== false) {
@@ -231,6 +250,8 @@
       if ($cnt != 2) {
         $cnt = $cnt + 1;
         ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
+
+        // ${"wk_staff".$cnt."_kbn"}     = $no ? ${"wk_staff".$cnt."_kbn"} : $plan_kbn[$wkdetail->oup_t_wk_plan_kbn[$i]].$plan_ken[$wkdetail->oup_t_wk_plan_kensyu[$i]];
       }
     }
 
