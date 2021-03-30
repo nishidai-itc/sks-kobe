@@ -616,15 +616,13 @@
                   <option value=""></option>
                   <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
                   <?php for ($j=0;$j<count($wkdetail->oup_t_wk_detail_no);$j++) { ?>
-                  <option value="<?php echo $wkdetail->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
+                  <option value="<?php echo $wkdetail->oup_t_wk_plan_hosoku[$j] ? $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]].$wkdetail->oup_t_wk_plan_hosoku[$j] : $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?>,<?php echo $wkdetail->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
                     <?php echo $wkdetail->oup_t_wk_plan_hosoku[$j] ? $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]].$wkdetail->oup_t_wk_plan_hosoku[$j] : $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?>
                     <?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$j]]; ?>
                   </option>
                   <?php } ?>
                   <?php } ?>
                 </select>
-
-                <input type="hidden" name="wk_staff<?php echo $i; ?>_kbn" value="<?php echo ${"wk_staff".$i."_kbn"}; ?>">
               </div>
             </div>
           </div>
