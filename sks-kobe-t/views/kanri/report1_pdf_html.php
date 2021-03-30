@@ -226,91 +226,109 @@ $pdf->Text(122, 229, $staffs[$report->oup_wk_staff_id1[0]]);    // 担当警備�
 $pdf->Text(117, 229, $report->oup_wk_staff1_zan1[0]);           // 
 $pdf->Text(117, 233, $report->oup_wk_staff1_zan2[0]);           // 
 $pdf->Text(138, 233, $report->oup_wk_staff1_zan3[0]);           // 
+$pdf->Text(122, 233, $report->oup_wk_staff1_kbn[0]);            // 
 
 $pdf->Text(151, 229, $staffs[$report->oup_wk_staff_id2[0]]);    // 担当警備員
 $pdf->Text(146, 229, $report->oup_wk_staff2_zan1[0]);           // 
 $pdf->Text(146, 233, $report->oup_wk_staff2_zan2[0]);           // 
 $pdf->Text(167, 233, $report->oup_wk_staff2_zan3[0]);           // 
+$pdf->Text(151, 233, $report->oup_wk_staff2_kbn[0]);            // 
 
 $pdf->Text(180, 229, $staffs[$report->oup_wk_staff_id3[0]]);    // 担当警備員
 $pdf->Text(175, 229, $report->oup_wk_staff3_zan1[0]);           // 
 $pdf->Text(175, 233, $report->oup_wk_staff3_zan2[0]);           // 
 $pdf->Text(196, 233, $report->oup_wk_staff3_zan3[0]);           // 
+$pdf->Text(180, 233, $report->oup_wk_staff3_kbn[0]);            // 
 
 $pdf->Text(122, 238, $staffs[$report->oup_wk_staff_id4[0]]);    // 担当警備員
 $pdf->Text(117, 238, $report->oup_wk_staff4_zan1[0]);           // 
 $pdf->Text(117, 242, $report->oup_wk_staff4_zan2[0]);           // 
 $pdf->Text(138, 242, $report->oup_wk_staff4_zan3[0]);           // 
+$pdf->Text(122, 242, $report->oup_wk_staff4_kbn[0]);            // 
 
 $pdf->Text(151, 238, $staffs[$report->oup_wk_staff_id5[0]]);    // 担当警備員
 $pdf->Text(146, 238, $report->oup_wk_staff5_zan1[0]);           // 
 $pdf->Text(146, 242, $report->oup_wk_staff5_zan2[0]);           // 
 $pdf->Text(167, 242, $report->oup_wk_staff5_zan3[0]);           // 
+$pdf->Text(151, 242, $report->oup_wk_staff5_kbn[0]);            // 
 
 $pdf->Text(180, 238, $staffs[$report->oup_wk_staff_id6[0]]);    // 担当警備員
 $pdf->Text(175, 238, $report->oup_wk_staff6_zan1[0]);           // 
 $pdf->Text(175, 242, $report->oup_wk_staff6_zan2[0]);           // 
 $pdf->Text(196, 242, $report->oup_wk_staff6_zan3[0]);           // 
+$pdf->Text(180, 242, $report->oup_wk_staff6_kbn[0]);            // 
 
 $pdf->Text(122, 247, $staffs[$report->oup_wk_staff_id7[0]]);    // 担当警備員
 $pdf->Text(117, 247, $report->oup_wk_staff7_zan1[0]);           // 
 $pdf->Text(117, 251, $report->oup_wk_staff7_zan2[0]);           // 
 $pdf->Text(138, 251, $report->oup_wk_staff7_zan3[0]);           // 
+$pdf->Text(122, 251, $report->oup_wk_staff7_kbn[0]);            // 
 
 $pdf->Text(151, 247, $staffs[$report->oup_wk_staff_id8[0]]);    // 担当警備員
 $pdf->Text(146, 247, $report->oup_wk_staff8_zan1[0]);           // 
 $pdf->Text(146, 251, $report->oup_wk_staff8_zan2[0]);           // 
 $pdf->Text(167, 251, $report->oup_wk_staff8_zan3[0]);           // 
+$pdf->Text(151, 251, $report->oup_wk_staff8_kbn[0]);            // 
 
 $pdf->Text(180, 247, $staffs[$report->oup_wk_staff_id9[0]]);    // 担当警備員
 $pdf->Text(175, 247, $report->oup_wk_staff9_zan1[0]);           // 
 $pdf->Text(175, 251, $report->oup_wk_staff9_zan2[0]);           // 
 $pdf->Text(196, 251, $report->oup_wk_staff9_zan3[0]);           // 
+$pdf->Text(180, 251, $report->oup_wk_staff9_kbn[0]);            // 
 
 $pdf->Text(122, 255, $staffs[$report->oup_wk_staff_id10[0]]);    // 担当警備員
 $pdf->Text(117, 255, $report->oup_wk_staff10_zan1[0]);           // 
 $pdf->Text(117, 259, $report->oup_wk_staff10_zan2[0]);           // 
 $pdf->Text(138, 259, $report->oup_wk_staff10_zan3[0]);           // 
+$pdf->Text(122, 259, $report->oup_wk_staff10_kbn[0]);            // 
 
 $pdf->Text(151, 255, $staffs[$report->oup_wk_staff_id11[0]]);    // 担当警備員
 $pdf->Text(146, 255, $report->oup_wk_staff11_zan1[0]);           // 
 $pdf->Text(146, 259, $report->oup_wk_staff11_zan2[0]);           // 
 $pdf->Text(167, 259, $report->oup_wk_staff11_zan3[0]);           // 
+$pdf->Text(151, 259, $report->oup_wk_staff11_kbn[0]);            // 
 
 $pdf->Text(180, 255, $staffs[$report->oup_wk_staff_id12[0]]);    // 担当警備員
 $pdf->Text(175, 255, $report->oup_wk_staff12_zan1[0]);           // 
 $pdf->Text(175, 259, $report->oup_wk_staff12_zan2[0]);           // 
 $pdf->Text(196, 259, $report->oup_wk_staff12_zan3[0]);           // 
+$pdf->Text(180, 259, $report->oup_wk_staff12_kbn[0]);            // 
 
 $pdf->Text(122, 263, $staffs[$report->oup_wk_staff_id13[0]]);    // 担当警備員
 $pdf->Text(117, 263, $report->oup_wk_staff13_zan1[0]);           // 
 $pdf->Text(117, 267, $report->oup_wk_staff13_zan2[0]);           // 
 $pdf->Text(138, 267, $report->oup_wk_staff13_zan3[0]);           // 
+$pdf->Text(122, 267, $report->oup_wk_staff13_kbn[0]);            // 
 
 $pdf->Text(151, 263, $staffs[$report->oup_wk_staff_id14[0]]);    // 担当警備員
 $pdf->Text(146, 263, $report->oup_wk_staff14_zan1[0]);           // 
 $pdf->Text(146, 267, $report->oup_wk_staff14_zan2[0]);           // 
 $pdf->Text(167, 267, $report->oup_wk_staff14_zan3[0]);           // 
+$pdf->Text(151, 267, $report->oup_wk_staff14_kbn[0]);            // 
 
 $pdf->Text(180, 263, $staffs[$report->oup_wk_staff_id15[0]]);    // 担当警備員
 $pdf->Text(175, 263, $report->oup_wk_staff15_zan1[0]);           // 
 $pdf->Text(175, 267, $report->oup_wk_staff15_zan2[0]);           // 
 $pdf->Text(196, 267, $report->oup_wk_staff15_zan3[0]);           // 
+$pdf->Text(180, 267, $report->oup_wk_staff15_kbn[0]);            // 
 
 $pdf->Text(122, 271, $staffs[$report->oup_wk_staff_id16[0]]);    // 担当警備員
 $pdf->Text(117, 271, $report->oup_wk_staff16_zan1[0]);           // 
 $pdf->Text(117, 275, $report->oup_wk_staff16_zan2[0]);           // 
 $pdf->Text(138, 275, $report->oup_wk_staff16_zan3[0]);           // 
+$pdf->Text(122, 275, $report->oup_wk_staff16_kbn[0]);            // 
 
 $pdf->Text(151, 271, $staffs[$report->oup_wk_staff_id17[0]]);    // 担当警備員
 $pdf->Text(146, 271, $report->oup_wk_staff17_zan1[0]);           // 
 $pdf->Text(146, 275, $report->oup_wk_staff17_zan2[0]);           // 
 $pdf->Text(167, 275, $report->oup_wk_staff17_zan3[0]);           // 
+$pdf->Text(151, 275, $report->oup_wk_staff17_kbn[0]);            // 
 
 $pdf->Text(180, 271, $staffs[$report->oup_wk_staff_id18[0]]);    // 担当警備員
 $pdf->Text(175, 271, $report->oup_wk_staff18_zan1[0]);           // 
 $pdf->Text(175, 275, $report->oup_wk_staff18_zan2[0]);           // 
 $pdf->Text(196, 275, $report->oup_wk_staff18_zan3[0]);           // 
+$pdf->Text(180, 275, $report->oup_wk_staff18_kbn[0]);            // 
 
 $pdf->Output(sprintf("report2.pdf", time()), 'I');
 ?>
