@@ -72,13 +72,14 @@
     for ($i=1;$i<=16;$i++) {
         ${"patrol_time".$i}                 = $times[$i-1] ? array($times[$i-1][0],$times[$i-1][1]) : array(null,null);
     }
-    $wk_comment                             = "巡回　点検　警備その他服務中異常ありません";
+    $wk_comment                             = "巡回　点検　警備　その他　服務中　異状なし";
     $wk_admin_end                           = "泊り";
     $wk_outsider                            = null;
     // $abc                                    = array("1"=>"A","2"=>"B","3"=>"C","4"=>"D","5"=>"E","6"=>"F","7"=>"G","8"=>"H","9"=>"I");
     for ($i=1;$i<=9;$i++) {
         ${"wk_staff_id".$i}                 = null;
         ${"wk_staff_id".$i."_kbn"}          = null;
+        ${"wk_staff_id".$i."_ken"}          = null;
     }
 
     // $week = array("日", "月", "火", "水", "木", "金", "土");
@@ -109,7 +110,8 @@
             }
         // 配列じゃない場合（時刻以外）
         } else {
-            if ($val === "" || $val === "0") {
+            if ($val === "") {
+            // if ($val === "" || $val === "0") {
                 $val = null;
             } else {
                 $val = $val;
@@ -255,11 +257,12 @@
     }
 
     // 勤務区分
-    $kinmu_kbn = array("1"=>"泊","2"=>"日","3"=>"夜","4"=>"研修");
+    $kinmu_kbn = array("1"=>"泊","2"=>"日","3"=>"夜");
     // $ken = array("1"=>"研修");
 
     // 当日予定のある隊員取得
     $wkdetail->inp_t_wk_genba_id = "1";
+    $wkdetail->inp_t_wk_plan_hosoku = 1;
     $wkdetail->inp_t_wk_plan_kbn_in = "'1','2','3'";
     $wkdetail->inp_t_wk_plan_date = str_replace("-","",$start_date);
     $wkdetail->inp_order = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
@@ -276,9 +279,11 @@
 
             // 勤務員デフォルト表示
             $cnt = $cnt + 1;
-            ${"wk_staff_id".$cnt}                = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
+            if (!$no) {
+                ${"wk_staff_id".$cnt}                = $wkdetail->oup_t_wk_taiin_id[$i];
 
-            ${"wk_staff_id".$cnt."_kbn"}         = $no ? ${"wk_staff_id".$cnt."_kbn"} : $wkdetail->oup_t_wk_plan_kbn[$i];
+                ${"wk_staff_id".$cnt."_kbn"}         = $wkdetail->oup_t_wk_plan_kbn[$i];
+            }
         }
 
         // 隊員が一人なら担当警備員にデフォルト表示

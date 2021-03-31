@@ -131,6 +131,7 @@
               <!-- <label><span class="inp badge badge-secondary" style="cursor:pointer;">選択</span></label> -->
               <input type="text" class="shipText w-75 d-none" name="" value="">
               <select name="" id="" class="shipSelect w-75">
+                <option value=""></option>
                 <?php for ($j=0;$j<count($shipName);$j++) { ?>
                 <option value="<?php echo $shipName[$j]; ?>" <?php echo $shipName[$j] == ${"wk_ship".$i} ? "selected" : "" ; ?>><?php echo $shipName[$j]; ?></option>
                 <?php } ?>
@@ -812,8 +813,8 @@
     })
     // const dataList = {}
     for (var i=1;i<=10;i++) {
-      // dataList['ship'+i] = $('[name="wk_ship'+i+'"]').val()
-      if ($('[name="wk_ship'+i+'"]').val() == '') {
+      var chk = $('[name="wk_ship'+i+'"]').prev().prev().prev().children().prop('checked')
+      if (chk && $('[name="wk_ship'+i+'"]').val() == '') {
         alert('入出港船舶は新規で入力、もしくは選択してください。')
         $('[name="wk_ship'+i+'"]').prev().prev().focus()
         return false

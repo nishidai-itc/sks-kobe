@@ -204,18 +204,31 @@
 
           <?php for ($i=1;$i<=3;$i++) { ?>
           <tr>
-            <td><label><?php if ($i == 1) {echo "ii．C-4ゲート立哨";} elseif ($i == 2) {echo "東サブゲート立哨";} else {echo "iii．搬入出車両";} ?></label></td>
             <td>
+              <label><?php if ($i == 1) {echo "ii．C-4ゲート立哨";} elseif ($i == 2) {echo "東サブゲート立哨";} else {echo "iii．搬入出車両";} ?></label>
+            </td>
+            <td>
+              <?php /*if ($i == 1) { ?>
+                <div>
+                  <span class="badge badge-secondary" style="cursor:pointer;">平日</span>
+                  　<span class="badge badge-secondary" style="cursor:pointer;">土曜</span>　
+                  <span class="badge badge-secondary" style="cursor:pointer;">日祝</span>
+                </div>
+              <?php }*/ ?>
+              <input type="checkbox" class="picket" value="j<?php echo $i; ?>" <?php echo !is_array(${"picket_joban_time".$i}) ? "checked" : ""; ?>>
+              <input type="text" class="text" name="picket_joban_time<?php echo $i; ?>" value="<?php echo !is_array(${"picket_joban_time".$i}) ? ${"picket_joban_time".$i} : ""; ?>" style="width: 100px;">
               <div class="time">
-                <input type="number" class="text-center" name="picket_joban_time<?php echo $i; ?>[0]" value="<?php echo ${"picket_joban_time".$i}[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="picket_joban_time<?php echo $i; ?>[0]" value="<?php echo is_array(${"picket_joban_time".$i}) ? ${"picket_joban_time".$i}[0] : ""; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="picket_joban_time<?php echo $i; ?>[1]" value="<?php echo ${"picket_joban_time".$i}[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="picket_joban_time<?php echo $i; ?>[1]" value="<?php echo is_array(${"picket_joban_time".$i}) ? ${"picket_joban_time".$i}[1] : ""; ?>" min="0" max="59">
               </div>
               <label>～</label>
+              <input type="checkbox" class="picket" value="k<?php echo $i; ?>" <?php echo !is_array(${"picket_kaban_time".$i}) ? "checked" : ""; ?>>
+              <input type="text" class="text" name="picket_kaban_time<?php echo $i; ?>" value="<?php echo !is_array(${"picket_kaban_time".$i}) ? ${"picket_kaban_time".$i} : ""; ?>" style="width: 100px;">
               <div class="time">
-                <input type="number" class="text-center" name="picket_kaban_time<?php echo $i; ?>[0]" value="<?php echo ${"picket_kaban_time".$i}[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="picket_kaban_time<?php echo $i; ?>[0]" value="<?php echo is_array(${"picket_kaban_time".$i}) ? ${"picket_kaban_time".$i}[0] : ""; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="picket_kaban_time<?php echo $i; ?>[1]" value="<?php echo ${"picket_kaban_time".$i}[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="picket_kaban_time<?php echo $i; ?>[1]" value="<?php echo is_array(${"picket_kaban_time".$i}) ? ${"picket_kaban_time".$i}[1] : ""; ?>" min="0" max="59">
               </div>
             </td>
             <td>
@@ -450,6 +463,7 @@
                 <div class="col-12"><label>部外者</label></div>
                 <div class="col-12">
                   <input type="number" class="text-center num" name="wk_outsider" value="<?php echo $wk_outsider; ?>" min="0" max="99">
+                  <!-- <input type="text" class="text-center num" name="wk_outsider" value="<?php echo $wk_outsider; ?>"> -->
                   <label>名</label>
                 </div>
               </div>
@@ -622,6 +636,28 @@
     } else {
       $(this).next().after(checkList[no])
       checkList[no] = $(this).next().remove()
+    }
+  })
+
+  var picketList = {}
+  var no
+  // 立哨ゲート、搬入出車両（初期表示）
+  $('.picket').each(function(){
+    no = $(this).val()
+    if ($(this).prop('checked')) {
+      picketList[no] = $(this).next().next().remove()
+    } else {
+      picketList[no] = $(this).next().remove()
+    }
+  })
+  $('.picket').click(function(){
+    no = $(this).val()
+    if ($(this).prop('checked')) {
+      $(this).next().after(picketList[no])
+      picketList[no] = $(this).next().remove()
+    } else {
+      $(this).next().after(picketList[no])
+      picketList[no] = $(this).next().remove()
     }
   })
 

@@ -32,7 +32,7 @@
     $kaban_time                             = array("08","00");
     $port                                   = array("停泊","順延");
     for ($i=1;$i<=10;$i++) {
-        ${"wk_ship".$i}                     = "本船なし";
+        ${"wk_ship".$i}                     = $i == 1 ? "本船なし" : null;
         ${"wk_ship_in_port_time".$i}        = array(null,null);
         ${"wk_ship_out_port_time".$i}       = array(null,null);
     }
