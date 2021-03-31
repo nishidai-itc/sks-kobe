@@ -24,7 +24,7 @@ $pdf->setPrintFooter(false);
 $pdf->SetFont('kozminproregular', '', 12);// 日本語フォント
 
 // テンプレート読み込み
-$pdf->setSourceFile('/var/www/html/sks-kobe-t/pdf/report7.pdf');
+$pdf->setSourceFile($common->rootpath.'/pdf/report7.pdf');
 
 // 用紙サイズ
 $pdf->AddPage('P', 'A4');
