@@ -183,9 +183,11 @@
     }
   }
 
-  $wkdetail->inp_t_wk_genba_id      = "6";
-  $wkdetail->inp_t_wk_plan_hosoku   = "F";
-  $wkdetail->inp_t_wk_plan_kbn      = "2";
+  // $wkdetail->inp_t_wk_genba_id      = "6";
+  // $wkdetail->inp_t_wk_plan_hosoku   = "F";
+  // $wkdetail->inp_t_wk_plan_kbn      = "2";
+  $wkdetail->inp_t_wk_genba_id      = "7";
+  $wkdetail->inp_t_wk_plan_kbn_in   = "'1','2','3'";
   $wkdetail->inp_t_wk_plan_date     = str_replace("-","",$start_date);
   $wkdetail->inp_order              = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
   $wkdetail->getWkdetail();
@@ -196,10 +198,10 @@
     for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
 
       // 勤務員の項目の隊員デフォルト表示
-      if ($cnt != 4) {
-        $cnt = $cnt + 1;
-        ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
-      }
+      // if ($cnt != 4) {
+      //   $cnt = $cnt + 1;
+      //   ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
+      // }
     }
 
     // 隊員が一人なら担当警備員にデフォルト表示
