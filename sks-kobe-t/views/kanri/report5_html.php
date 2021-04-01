@@ -198,23 +198,23 @@
           <?php } ?>
 
           <tr>
-            <td colspan="2"></td>
-            <td><label>C-3</label></td>
+            <td colspan="3">&nbsp;</td>
           </tr>
 
           <?php for ($i=1;$i<=3;$i++) { ?>
           <tr>
             <td>
+              <?php if ($i == 1) { ?><div>&nbsp;</div><?php } ?>
               <label><?php if ($i == 1) {echo "ii．C-4ゲート立哨";} elseif ($i == 2) {echo "東サブゲート立哨";} else {echo "iii．搬入出車両";} ?></label>
             </td>
             <td>
-              <?php /*if ($i == 1) { ?>
-                <div>
-                  <span class="badge badge-secondary" style="cursor:pointer;">平日</span>
-                  　<span class="badge badge-secondary" style="cursor:pointer;">土曜</span>　
-                  <span class="badge badge-secondary" style="cursor:pointer;">日祝</span>
+              <?php if ($i == 1) { ?>
+                <div class="mb-2">
+                  <span class="weekday badge badge-secondary" style="cursor:pointer;">平日</span>
+                  　<span class="saturday badge badge-secondary" style="cursor:pointer;">土曜</span>　
+                  <span class="holiday badge badge-secondary" style="cursor:pointer;">日祝</span>
                 </div>
-              <?php }*/ ?>
+              <?php } ?>
               <input type="checkbox" class="picket" value="j<?php echo $i; ?>" <?php echo !is_array(${"picket_joban_time".$i}) ? "checked" : ""; ?>>
               <input type="text" class="text" name="picket_joban_time<?php echo $i; ?>" value="<?php echo !is_array(${"picket_joban_time".$i}) ? ${"picket_joban_time".$i} : ""; ?>" style="width: 100px;">
               <div class="time">
@@ -232,6 +232,9 @@
               </div>
             </td>
             <td>
+              <?php if ($i == 1) { ?>
+              <div><label>C-3</label></div>
+              <?php } ?>
               <select name="c3_kbn<?php echo $i;?>" id="" class="">
                 <option value=""></option>
                 <?php for ($j=0;$j<count($light_kbn1);$j++) { ?>
@@ -410,6 +413,13 @@
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
+          <tr>
+            <td colspan="9" class="pb-2">
+              <span class="weekday2 badge badge-secondary" style="cursor:pointer;">平日</span>
+              　<span class="saturday2 badge badge-secondary" style="cursor:pointer;">土曜</span>　
+              <span class="holiday2 badge badge-secondary" style="cursor:pointer;">日祝</span>
+            </td>
+          </tr>
           <?php for ($i=0;$i<2;$i++) { ?>
           <tr>
             <?php if ($i == 0) { ?>
@@ -418,7 +428,7 @@
             <?php for ($j=1;$j<=8;$j++) { ?>
             <td>
               <label class="text-right" style="width: 20px;"><?php echo $j+$i*8 ; ?></label>
-              <div class="time2">
+              <div class="patrol time2 <?php echo $j+$i*8; ?>">
                 <input type="number" class="text-center" name="patrol_time<?php echo $j+$i*8; ?>[0]" value="<?php echo ${"patrol_time".($j+($i*8))}[0]; ?>" min="0" max="23">
                 <span class="">:</span>
                 <input type="number" class="text-center" name="patrol_time<?php echo $j+$i*8; ?>[1]" value="<?php echo ${"patrol_time".($j+($i*8))}[1]; ?>" min="0" max="59">
@@ -650,7 +660,7 @@
       picketList[no] = $(this).next().remove()
     }
   })
-  $('.picket').click(function(){
+  $('.picket').change(function(){
     no = $(this).val()
     if ($(this).prop('checked')) {
       $(this).next().after(picketList[no])
@@ -660,7 +670,7 @@
       picketList[no] = $(this).next().remove()
     }
   })
-
+  
   $('.inp').click(function(){
     if ($(this).text() == '入力') {
       $(this).text('時刻')
@@ -669,6 +679,93 @@
     }
     $(this).parent().append(inp)
     inp = $(this).next().remove()
+  })
+
+  // 曜日ボタン（ゲート立哨、搬入出車両）
+  var daysList = {
+    // 上番、下番時刻（平日）
+    'weekday':{'j1':['08','30'],'j2':['08','30'],'j3':['08','30'],'k1':['18','30'],'k2':['18','30'],'k3':['18','30']},
+    // 上番、下番時刻（土曜）
+    'saturday':{'j1':['08','30'],'j2':'作業なし','j3':['08','30'],'k1':['11','30'],'k2':'作業なし','k3':['11','30']},
+    // 上番、下番時刻（日曜、祝日）
+    'holiday':{'j1':'作業なし','j2':'作業なし','j3':'作業なし','k1':'作業なし','k2':'作業なし','k3':'作業なし'},
+  }
+  $('.weekday, .saturday, .holiday').click(function(){
+    var kbn = $(this).attr('class')
+    kbn = kbn.split(' ')
+    kbn = kbn[0]
+    $('.picket').each(function(){
+      no = $(this).val()
+      for (var i=1;i<=2;i++) {
+        if (kbn == 'weekday') {
+          if ($(this).prop('checked')) {
+            $(this).prop('checked',false).change()
+          }
+        } else if (kbn == 'saturday') {
+          if ($(this).prop('checked')) {
+            $(this).prop('checked',false).change()
+          }
+          if ((no == 'j2' || no == 'k2') && !$(this).prop('checked')) {
+            $(this).prop('checked',true).change()
+          }
+        } else {
+          if (!$(this).prop('checked')) {
+            $(this).prop('checked',true).change()
+          }
+        }
+
+        if (daysList[kbn][no].length == 2) {
+          $(this).next().children().eq(0).val(daysList[kbn][no][0])
+          $(this).next().children().eq(2).val(daysList[kbn][no][1])
+        } else {
+          $(this).next().val(daysList[kbn][no])
+        }
+      }
+    })
+    // for (var i=1;i<=3;i++) {
+    //   $('[name^="picket_joban_time'+i+'"]').each(function(key,value){
+    //     $(this).val(joban[kbn][i][key])
+    //     console.log(key,value)
+    //   })
+    //   $('[name^="picket_kaban_time'+i+'"]').each(function(key,value){
+    //     $(this).val(kaban[kbn][i][key])
+    //   })
+    // }
+  })
+
+  // 曜日ボタン（巡回）
+  var patrolList = {
+    // 巡回時刻（平日）
+    'weekday2':{
+      '1':['17','30'],'2':['19','00'],'3':['21','00'],'4':['22','30'],'5':['24','00'],'6':['01','00'],
+      '7':['02','00'],'8':['03','00'],'9':['04','00'],'10':['05','30'],'11':['06','30'],'12':['',''],
+      '13':['',''],'14':['',''],'15':['',''],'16':['','']
+    },
+    // 巡回時刻（土曜）
+    'saturday2':{
+      '1':['13','00'],'2':['15','00'],'3':['17','00'],'4':['19','00'],'5':['21','00'],'6':['22','30'],
+      '7':['24','00'],'8':['01','00'],'9':['02','00'],'10':['03','00'],'11':['04','00'],'12':['04','30'],
+      '13':['',''],'14':['',''],'15':['',''],'16':['','']
+    },
+    // 巡回時刻（日曜、祝日）
+    'holiday2':{
+      '1':['08','00'],'2':['10','00'],'3':['12','00'],'4':['14','00'],'5':['16','00'],'6':['17','30'],
+      '7':['19','00'],'8':['21','00'],'9':['22','30'],'10':['24','00'],'11':['01','00'],'12':['02','30'],
+      '13':['03','30'],'14':['04','20'],'15':['05','30'],'16':['06','30']
+    },
+  }
+  $('.weekday2, .saturday2, .holiday2').click(function(){
+    var kbn = $(this).attr('class')
+    kbn = kbn.split(' ')
+    kbn = kbn[0]
+    $('.patrol').each(function(key,value){
+      var no = $(this).attr('class')
+      no = no.split(' ')
+      no = no[2]
+      // console.log(patrolList[kbn][key+1])
+      $(this).children().eq(0).val(patrolList[kbn][key+1][0])
+      $(this).children().eq(2).val(patrolList[kbn][key+1][1])
+    })
   })
 
   $('.temp, .regist').click(function(){
