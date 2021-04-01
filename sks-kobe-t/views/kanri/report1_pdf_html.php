@@ -123,90 +123,92 @@ $pdf->Text(184, 175, $report->oup_yard_off_time2[0]);       // ヤード照明2
 $pdf->Text(71, 175, $report->oup_last_exit1[0]);     // 最終退出者
 $pdf->Text(90, 175, $report->oup_last_exit2[0]);     // 最終退出者
 
+$pdf->SetFont('kozminproregular', '', 9);// 日本語フォント
 $pdf->Text(64, 187, $report->oup_depo_joban_time[0]);       // 早出①
 $pdf->Text(81, 187, $report->oup_depo_kaban_time[0]);       // 早出①
-$pdf->SetXY( 97, 187 );
+$pdf->SetXY( 93, 187 );
 $pdf->Cell(6, 6, $report->oup_depo_num[0], 0, 0, "R");      // 早出①
-$pdf->SetXY( 110, 187 );
+$pdf->SetXY( 108, 187 );
 $pdf->Cell(6, 6, $report->oup_depo_zan[0], 0, 0, "R");      // 早出①
 
 $pdf->Text(64, 193, $report->oup_sort_joban_time[0]);       // 早出②
 $pdf->Text(81, 193, $report->oup_sort_kaban_time[0]);       // 早出②
-$pdf->SetXY( 97, 193 );
+$pdf->SetXY( 93, 193 );
 $pdf->Cell(6, 6, $report->oup_sort_num[0], 0, 0, "R");      // 早出②
-$pdf->SetXY( 110, 193 );
+$pdf->SetXY( 108, 193 );
 $pdf->Cell(6, 6, $report->oup_sort_zan[0], 0, 0, "R");      // 早出②
 
 $pdf->Text(64, 199, $report->oup_cy_joban_time[0]);         // CY
 $pdf->Text(81, 199, $report->oup_cy_kaban_time[0]);         // CY
-$pdf->SetXY( 97, 199 );
+$pdf->SetXY( 93, 199 );
 $pdf->Cell(6, 6, $report->oup_cy_num[0], 0, 0, "R");        // CY
-$pdf->SetXY( 110, 199 );
+$pdf->SetXY( 108, 199 );
 $pdf->Cell(6, 6, $report->oup_cy_zan[0], 0, 0, "R");        // CY
 
 $pdf->Text(64, 205, $report->oup_exit_joban_time[0]);       // 白出口
 $pdf->Text(81, 205, $report->oup_exit_kaban_time[0]);       // 白出口
-$pdf->SetXY( 97, 205 );
+$pdf->SetXY( 93, 205 );
 $pdf->Cell(6, 6, $report->oup_exit_num[0], 0, 0, "R");      // 白出口
-$pdf->SetXY( 110, 205 );
+$pdf->SetXY( 108, 205 );
 $pdf->Cell(6, 6, $report->oup_exit_zan[0], 0, 0, "R");      // 白出口
 
 $pdf->Text(144, 187, $report->oup_vp_joban_time[0]);        // VP作業
 $pdf->Text(160, 187, $report->oup_vp_kaban_time[0]);        // VP作業
-$pdf->SetXY( 176, 187 );
+$pdf->SetXY( 172, 187 );
 $pdf->Cell(6, 6, $report->oup_vp_num[0], 0, 0, "R");        // VP作業
-$pdf->SetXY( 189, 187 );
+$pdf->SetXY( 188, 187 );
 $pdf->Cell(6, 6, $report->oup_vp_zan[0], 0, 0, "R");        // VP作業
 
 $pdf->Text(144, 193, $report->oup_midday_joban_time[0]);    // 昼作業
 $pdf->Text(160, 193, $report->oup_midday_kaban_time[0]);    // 昼作業
-$pdf->SetXY( 176, 193 );
+$pdf->SetXY( 172, 193 );
 $pdf->Cell(6, 6, $report->oup_midday_num[0], 0, 0, "R");    // 昼作業
-$pdf->SetXY( 189, 193 );
+$pdf->SetXY( 188, 193 );
 $pdf->Cell(6, 6, $report->oup_midday_zan[0], 0, 0, "R");    // 昼作業
 
 $pdf->Text(144, 199, $report->oup_gate_joban_time[0]);      // ゲート延長
 $pdf->Text(160, 199, $report->oup_gate_kaban_time[0]);      // ゲート延長
-$pdf->SetXY( 176, 199 );
+$pdf->SetXY( 172, 199 );
 $pdf->Cell(6, 6, $report->oup_gate_num[0], 0, 0, "R");      // ゲート延長
-$pdf->SetXY( 189, 199 );
+$pdf->SetXY( 188, 199 );
 $pdf->Cell(6, 6, $report->oup_gate_zan[0], 0, 0, "R");      // ゲート延長
 
 $pdf->Text(144, 205, $report->oup_mbath_joban_time[0]);     // Mバース
 $pdf->Text(160, 205, $report->oup_mbath_kaban_time[0]);     // Mバース
-$pdf->SetXY( 176, 205 );
+$pdf->SetXY( 172, 205 );
 $pdf->Cell(6, 6, $report->oup_mbath_num[0], 0, 0, "R");     // Mバース
-$pdf->SetXY( 189, 205 );
+$pdf->SetXY( 188, 205 );
 $pdf->Cell(6, 6, $report->oup_mbath_zan[0], 0, 0, "R");     // Mバース
 
 $pdf->Text(144, 211, $report->oup_picket_joban_time3[0]);   // 岸壁立哨
 $pdf->Text(160, 211, $report->oup_picket_kaban_time3[0]);   // 岸壁立哨
-$pdf->SetXY( 176, 211 );
+$pdf->SetXY( 172, 211 );
 $pdf->Cell(6, 6, $report->oup_picket_num3[0], 0, 0, "R");   // 岸壁立哨
-$pdf->SetXY( 189, 211 );
+$pdf->SetXY( 188, 211 );
 $pdf->Cell(6, 6, $report->oup_picket_zan3[0], 0, 0, "R");   // 岸壁立哨
 
 $pdf->Text(144, 217, $report->oup_picket_joban_time2[0]);   // 岸壁立哨
 $pdf->Text(160, 217, $report->oup_picket_kaban_time2[0]);   // 岸壁立哨
-$pdf->SetXY( 176, 217 );
+$pdf->SetXY( 172, 217 );
 $pdf->Cell(6, 6, $report->oup_picket_num2[0], 0, 0, "R");   // 岸壁立哨
-$pdf->SetXY( 189, 217 );
+$pdf->SetXY( 188, 217 );
 $pdf->Cell(6, 6, $report->oup_picket_zan2[0], 0, 0, "R");   // 岸壁立哨
 
 $pdf->Text(64, 211, $report->oup_picket_joban_time1[0]);    // T字立哨
 $pdf->Text(81, 211, $report->oup_picket_kaban_time1[0]);    // T字立哨
-$pdf->SetXY( 97, 211 );
+$pdf->SetXY( 93, 211 );
 $pdf->Cell(6, 6, $report->oup_picket_num1[0], 0, 0, "R");   // T字立哨
-$pdf->SetXY( 110, 211 );
+$pdf->SetXY( 108, 211 );
 $pdf->Cell(6, 6, $report->oup_picket_zan1[0], 0, 0, "R");   // T字立哨
 
 $pdf->Text(64, 217, $report->oup_picket_joban_time4[0]);    // 分別立哨
 $pdf->Text(81, 217, $report->oup_picket_kaban_time4[0]);    // 分別立哨
-$pdf->SetXY( 97, 217 );
+$pdf->SetXY( 93, 217 );
 $pdf->Cell(6, 6, $report->oup_picket_num4[0], 0, 0, "R");   // 分別立哨
-$pdf->SetXY( 110, 217 );
+$pdf->SetXY( 108, 217 );
 $pdf->Cell(6, 6, $report->oup_picket_zan4[0], 0, 0, "R");   // 分別立哨
 
+$pdf->SetFont('kozminproregular', '', 11);// 日本語フォント
 $pdf->MultiCell(155,28,$report->oup_comment[0],0,'',0,1,32,223);     // 備考
 
 $pdf->SetXY( 44, 250 );
