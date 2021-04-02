@@ -605,11 +605,7 @@
                 </select>
                 <select name="wk_staff<?php echo $i; ?>_zan3" id="" class="w-100">
                   <option value=""></option>
-                  <?php for ($j=0;$j<count($wk_kbn);$j++) { ?>
-                  <option value="<?php echo $wk_kbn[$j]; ?>" <?php echo $wk_kbn[$j] == ${"wk_staff".$i."_zan3"} ? "selected" : "" ; ?>>
-                    <?php echo $wk_kbn[$j]; ?>
-                  </option>
-                  <?php } ?>
+                  <option value="昼" <?php echo "昼" == ${"wk_staff".$i."_zan3"} ? "selected" : "" ; ?>>昼</option>
                 </select>
               </div>
               <div class="col-8 pl-0">
@@ -617,8 +613,9 @@
                   <option value=""></option>
                   <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
                   <?php for ($j=0;$j<count($wkdetail->oup_t_wk_detail_no);$j++) { ?>
-                  <option value="<?php echo $wkdetail->oup_t_wk_plan_hosoku[$j] ? $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]].$wkdetail->oup_t_wk_plan_hosoku[$j] : $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?>,<?php echo $wkdetail->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
+                  <option value="<?php echo $wkdetail->oup_t_wk_plan_hosoku[$j] ? $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]].$wkdetail->oup_t_wk_plan_hosoku[$j] : $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?><?php echo $wkdetail->oup_t_wk_plan_kensyu[$j] ? "研修" : ""; ?>,<?php echo $wkdetail->oup_t_wk_taiin_id[$j]; ?>"<?php echo $wkdetail->oup_t_wk_taiin_id[$j] == ${"wk_staff_id".$i} ? "selected" : "" ; ?>>
                     <?php echo $wkdetail->oup_t_wk_plan_hosoku[$j] ? $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]].$wkdetail->oup_t_wk_plan_hosoku[$j] : $kbnMark[$wkdetail->oup_t_wk_plan_kbn[$j]]; ?>
+                    <?php echo $wkdetail->oup_t_wk_plan_kensyu[$j] ? "研修" : ""; ?>
                     <?php echo $staff_name[$wkdetail->oup_t_wk_taiin_id[$j]]; ?>
                   </option>
                   <?php } ?>

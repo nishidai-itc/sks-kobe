@@ -631,6 +631,8 @@ set_time_limit(300);
 
             if ($this->inp_order == "") {
                 $sql .= "ORDER BY t_wk_plan_date, t_wk_plan_joban_time, t_wk_taiin_id  ";
+            } elseif (strpos($this->inp_order,"case") !== false) {
+                $sql .= $this->inp_order;
             } else {
                 $sql .= $db->escape_string($this->inp_order);
             }

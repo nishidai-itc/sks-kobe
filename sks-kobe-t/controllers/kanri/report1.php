@@ -138,7 +138,7 @@
     $meterb2                          = null;
     $meterc1                          = null;
     $meterc2                          = null;
-    $wk_kbn                           = array("①","②","C","白","V","昼","ゲ","M","T","岸","分");
+    $wk_kbn                           = array("①","②","C","白","V","ゲ","M","T","岸","分");
     for ($i=1;$i<=18;$i++) {
         ${"wk_staff".$i."_zan1"}      = null;
         ${"wk_staff".$i."_zan2"}      = null;
@@ -243,9 +243,11 @@
                         $array = explode(",",$value);
                         $report2->{"inp_".$key}               = $array[1];
                         $report2->{"inp_".str_replace("_id","",$key)."_kbn"}        = $array[0];
+                        // $report2->{"inp_".str_replace("_id","",$key)."_ken"}        = $array[2];
                     } else {
                         $report2->{"inp_".$key}               = null;
                         $report2->{"inp_".str_replace("_id","",$key)."_kbn"}        = null;
+                        // $report2->{"inp_".str_replace("_id","",$key)."_ken"}        = null;
                     }
                     continue;
                 }
@@ -361,7 +363,15 @@
     $wkdetail->inp_t_wk_genba_id = "6";
     $wkdetail->inp_t_wk_plan_kbn_in = "'1','2','3'";
     $wkdetail->inp_t_wk_plan_date = str_replace("-","",$start_date);
-    $wkdetail->inp_order = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
+    // $wkdetail->inp_order = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
+    $wkdetail->inp_order = "order by case
+    when t_wk_plan_kbn = '1' and t_wk_plan_kensyu = '' then 1
+    when t_wk_plan_kbn = '2' and t_wk_plan_kensyu = '' then 2
+    when t_wk_plan_kbn = '3' and t_wk_plan_hosoku != '巡' and t_wk_plan_kensyu = '' then 3
+    when t_wk_plan_kbn = '3' and t_wk_plan_hosoku = '巡' and t_wk_plan_kensyu = '' then 4
+    when t_wk_plan_kbn = '1' and t_wk_plan_kensyu != '' then 5
+    when t_wk_plan_kbn = '2' and t_wk_plan_kensyu != '' then 6
+    else 7 end";
     $wkdetail->getWkdetail();
 
     $kbnMark                          = array("1"=>"泊","2"=>"日","3"=>"夜");
@@ -370,14 +380,6 @@
     if ($wkdetail->oup_t_wk_detail_no) {
         $cnt = 0;
         for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
-            // if ($i == 0) {
-            //     $staff3->inp_m_staff_id_in = "'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-            // } else {
-            //     $staff3->inp_m_staff_id_in = $staff3->inp_m_staff_id_in.",'".$wkdetail->oup_t_wk_taiin_id[$i]."'";
-            // }
-            // $staff3->inp_m_staff_genba_id_or = "6";
-            // $staff3->getStaff();
-
             // 勤務員の項目の隊員デフォルト表示
             if ($cnt != 18) {
                 $cnt = $cnt + 1;
