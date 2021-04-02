@@ -12,6 +12,8 @@
     <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>　
     <!-- 勤務複数検索 -->
     <script src="./../multiple/multiple-select.min.js"></script>
+    <!--  -->
+    <script src="./../../js/encoding.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multiselect-widget/3.0.0/jquery.multiselect.js"></script>-->
     <title>勤怠管理システム</title>
   </head>
@@ -178,10 +180,18 @@ $(function () {
             const filename = datalist.nengetu+'.csv';
             //CSVデータ
             const csvData = data;
-            //BOMを付与する（Excelでの文字化け対策）
-            const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
-            //Blobでデータを作成する
-            const blob = new Blob([bom, csvData], { type: 'text/csv' });
+
+            // //BOMを付与する（Excelでの文字化け対策）
+            // const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
+            // //Blobでデータを作成する
+            // const blob = new Blob([bom, csvData], { type: 'text/csv' });
+
+            // 文字コードSJIS
+            const strRt = Encoding.stringToCode(data);
+            const arrRt = Encoding.convert(strRt, "SJIS", "UNICODE");
+            const u8a = new Uint8Array(arrRt);
+            const blob = new Blob([u8a], { 'type' : 'text/csv;charset=sjis;' });
+            
             if (window.navigator.msSaveBlob) {
                 window.navigator.msSaveBlob(blob, filename);
             //その他ブラウザ
