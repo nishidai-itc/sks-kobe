@@ -36,8 +36,8 @@ $pdf->useTemplate($pdf->importPage(1));
 
 // 和暦
 $wnen = substr($report->oup_start_date[0],0,4);
-$wnen = intval($wnen) - 2018;
-$pdf->Text(32, 48, $wnen);     // 年
+//$wnen = intval($wnen) - 2018;
+$pdf->Text(24, 48, $wnen);     // 年
 $pdf->Text(41, 48, substr($report->oup_start_date[0],5,2));     // 月
 $pdf->Text(52, 48, substr($report->oup_start_date[0],8,2));     // 日
 $pdf->Text(66, 48, $weekday1);     // 曜日
