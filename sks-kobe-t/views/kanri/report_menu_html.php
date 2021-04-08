@@ -60,11 +60,12 @@ header("Pragma:no-cache");
               <th class="text-center" style="width:100px;">詳細</th>
               <th>勤務場所</th>
               <th>契約先</th>
+              <th>PDF</th>
               <th class="text-center" style="width:100px;">削除</th>
             </tr>
           </thead>
           <?php for ($i=0;$i<count($report->oup_no);$i++) { ?>
-          <?php //if (!$flg[$report->oup_no[$i]]) {continue;} ?>
+          <?php if (!$flg[$report->oup_no[$i]]) {continue;} ?>
           <tr>
             <!-- <td class="text-center"><?php echo substr($plan_date,5,2)."/".substr($plan_date,8,2)."(".getWeek($plan_date).")"; ?></td> -->
             <td><?php echo $report_kbn[$report->oup_table[$i]] ? $report_kbn[$report->oup_table[$i]] : "未入力" ; ?></td>
@@ -75,6 +76,11 @@ header("Pragma:no-cache");
             </td>
             <td><?php echo $report->oup_place[$i]; ?></td>
             <td><?php echo $report->oup_contract[$i]; ?></td>
+            <td>
+            <?php if ($report_no[$report->oup_table[$i]]) { ?>
+              <a href="report<?php echo $report->oup_table[$i] ; ?>_pdf.php?no=<?php echo $report_no[$report->oup_table[$i]]; ?>" target="_blank"><i class="fas fa-file-pdf fa-2x"></i></a>
+            <?php } ?>
+            </td>
             <td class="text-center">
               <?php if ($report_no[$report->oup_table[$i]]) { ?>
               <a href="#" onclick="conf(<?php echo $report_no[$report->oup_table[$i]].','.$report->oup_table[$i] ; ?>);">
