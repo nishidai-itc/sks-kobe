@@ -386,5 +386,14 @@ if ($report->oup_wk_staff18_zan3[0]=="昼") {
 $pdf->Text(196, 271, $report->oup_wk_staff18_zan3[0]);           // 
 $pdf->Text(180, 271, $report->oup_wk_staff18_kbn[0]);            // 
 
-$pdf->Output(sprintf("report2.pdf", time()), 'I');
+if ($_GET["act"] && $_GET["act"] == "mail") {
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,6).".pdf", time()), 'F');
+
+    require_once('../../mailset.php');
+
+    echo json_encode(true);
+    exit;
+} else {
+    $pdf->Output(sprintf("report1.pdf", time()), 'I');
+}
 ?>

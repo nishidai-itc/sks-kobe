@@ -10,6 +10,8 @@
 
   <!-- bootstrap-4.3.1 -->
   <link href="./../bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="../bootstrap-4.3.1/jquery-3.4.1.min.js"></script>
   <!-- 勤務複数検索 -->
   <link rel="stylesheet" href="./../multiple/multiple-select.min.css">
   <script src="./../bootstrap-4.3.1/jquery-3.4.1.min.js"></script>
@@ -175,6 +177,7 @@ $(function(){
                 <td width="155" bgcolor="FFDCA5">勤務場所</td>
                 <td width="155" bgcolor="FFDCA5">契約先</td>
                 <td width="60" bgcolor="FFDCA5">PDF</td>
+                <td class="px-3" bgcolor="FFDCA5">メール</td>
               </tr>
               <?php if (isset($report->oup_no)) { ?>
                   <?php for ($i=0;$i<count($report->oup_no);$i++) { ?>
@@ -211,6 +214,10 @@ $(function(){
                         <td <?php print($color); ?> align="left"><?php print($report_place[$report->oup_name_no[$i]]); ?></td>
                         <td <?php print($color); ?> align="left"><?php print($report_contract[$report->oup_name_no[$i]]); ?></td>
                         <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>_pdf.php?no=<?php echo $report->oup_no[$i]; ?>" target="_blank"><i class="fas fa-file-pdf fa-2x"></i></a></td>
+                        <td <?php print($color); ?>>
+                          <span class="mail badge badge-secondary" style="cursor: pointer;">送信</span>
+                          <input type="hidden" name="" value="<?php echo $report->oup_no[$i].','.$report->oup_table[$i];?>">
+                        </td>
                       </tr>
 
                   <?php } ?>
@@ -305,3 +312,27 @@ $(function(){
   </body>
 
 </html>
+<script type="text/javascript">
+  $('.mail').click(function(){
+    var no = $(this).next().val()
+    no = no.split(',')
+
+    $.ajax({
+      type: 'get',
+      url: 'report'+no[1]+'_pdf.php',
+      data: {
+        act: 'mail',
+        no: no[0],
+      },
+      dataType: 'json'
+    }).done(function(data){
+      console.log(data)
+      if (data) {
+        alert('メール送信完了しました。')
+      }
+    }).fail(function(data){
+      alert('通信エラー')
+    })
+    // console.log(no)
+  })
+</script>
