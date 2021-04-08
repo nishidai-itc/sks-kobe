@@ -61,7 +61,7 @@ if (isset($_POST["detail_no"])) {
     // 送信された値の整形
     // 勤務
     if (isset($_POST["kinmu"])) {
-        $kinmu = explode(' ', $_POST["kinmu"]);
+        $kinmu = explode(',', $_POST["kinmu"]);
         $genba_id = $kinmu[0];
         $kinmu_kbn = $kinmu[1];
         $kinmu_hosoku = $kinmu[2];

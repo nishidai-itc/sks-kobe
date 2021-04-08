@@ -20,26 +20,27 @@
     // 勤務時間の変更時
     $('#kinmu').change(function() {
       // 選択されている表示文字列を取り出す
-      var kinmuOptionSelected = $('#kinmu option:selected').text();
-      if (!kinmuOptionSelected) {
+      var resultval = $('#kinmu').val().trim();
+      if (!resultval) {
         alert('勤務を選んでください。')
         $('#kinmu').focus()
         return
       }
-      var resultText = kinmuOptionSelected.trim();
-      resultval = $('#kinmu option:selected').val();
 
-      // 文字を'/'で分割
-      var resultText = resultText.split('/'); // 例：["L-12", "日", "07:00 ～ 16:00"]
-      var resultval = resultval.split(' ');
-      var value = resultval[0];
+      resultval = resultval.split(',');
+      // // 文字を'/'で分割
+      // var resultText = resultText.split('/'); // 例：["L-12", "日", "07:00 ～ 16:00"]
+      // var resultval = resultval.split(' ');
+      // var value = resultval[0];
       // 現場
-      if (value != 9999) {
-      $('#genbaName').text(resultText[0]);
+      if (resultval[0] != 9999) {
+      $('#genbaName').text(resultval[5]);
       }
 
-      // 所定時間
-      var resultTime = resultText[2].split(' ');
+      var resultTime = resultval[4].split('/');
+
+      // // 所定時間
+      // var resultTime = resultText[2].split(' ');
 
       // 所定時間 開始
       var planJobanTime = resultTime[0].split(':');
@@ -47,7 +48,7 @@
       $('#planJobanTimeMinute').val(planJobanTime[1]);
 
       // 所定時間 終了
-      var planKabanTime = resultTime[2].split(':');
+      var planKabanTime = resultTime[1].split(':');
       $('#planKabanTimeHours').val(planKabanTime[0]);
       $('#planKabanTimeMinute').val(planKabanTime[1]);
     });
@@ -301,11 +302,10 @@
                         $genba->inp_m_genba_id = $shift->oup_m_shift_genba_id[$i];
                         $genba->getGenba(); ?>
 
-                    <option
-                      value="<?php print($genba->oup_m_genba_id[0] . ' ' . $shift->oup_m_shift_plan_kbn[$i] . ' ' . $shift->oup_m_shift_plan_hosoku[$i].' '.$shift->oup_m_shift_no[$i]); ?>" <?php
-                        if (($wkdetail->oup_t_wk_genba_id[0] === $shift->oup_m_shift_genba_id[$i] || $shift->oup_m_shift_genba_id[$i] == 9999) && $wkdetail->oup_t_wk_plan_kbn[0] === $shift->oup_m_shift_plan_kbn[$i] && $wkdetail->oup_t_wk_plan_kaban_time[0] === $shift->oup_m_shift_kaban_time[$i] && $wkdetail->oup_t_wk_plan_hosoku[0] === $shift->oup_m_shift_plan_hosoku[$i]) {
+                    <option value="<?php echo $genba->oup_m_genba_id[0] . ',' . $shift->oup_m_shift_plan_kbn[$i] . ',' . $shift->oup_m_shift_plan_hosoku[$i].','.$shift->oup_m_shift_no[$i].','.$shift->oup_m_shift_joban_time[$i].'/'.$shift->oup_m_shift_kaban_time[$i].','.$genba->oup_m_genba_name[0]; ?>"
+                    <?php if (($wkdetail->oup_t_wk_genba_id[0] === $shift->oup_m_shift_genba_id[$i] || $shift->oup_m_shift_genba_id[$i] == 9999) && $wkdetail->oup_t_wk_plan_kbn[0] === $shift->oup_m_shift_plan_kbn[$i] && $wkdetail->oup_t_wk_plan_kaban_time[0] === $shift->oup_m_shift_kaban_time[$i] && $wkdetail->oup_t_wk_plan_hosoku[0] === $shift->oup_m_shift_plan_hosoku[$i]) {
                       echo 'selected';
-                  } ?>>
+                    } ?>>
                       <?php
                       echo $genba->oup_m_genba_name[0] . '/' . $shift->kbn[$shift->oup_m_shift_plan_kbn[$i]] . $shift->oup_m_shift_plan_hosoku[$i] . "/" . $shift->oup_m_shift_joban_time[$i] . " ～ " . $shift->oup_m_shift_kaban_time[$i];
                       ?>
