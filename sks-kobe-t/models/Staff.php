@@ -209,6 +209,10 @@
                 $sql .= "OR m_staff_genba_id = '" . $db->escape_string($this->inp_m_staff_genba_id_or) . "' ";
             }
 
+            if (!is_null($this->inp_m_staff_company) && $this->inp_m_staff_company != "") {
+                $sql .= "AND m_staff_company = '" . $db->escape_string($this->inp_m_staff_company) . "' ";
+            }
+
             if ($this->inp_order == "") {
                 $sql .= "ORDER BY m_staff_kana ";
             } else {
@@ -450,6 +454,37 @@
             // MySQLへの接続を閉じる
             $db->close();
 
+        }
+
+        // 協力会社のみ削除（協力会社一覧から協力会社を削除する際）
+        public function updateStaffCompany() {
+            $db = new Db();
+            // MySQLへ接続する
+            $db->connect();
+
+            $sql = "UPDATE m_staff SET m_staff_id = '" . $this->inp_m_staff_id . "' ";
+                // if ($this->inp_m_staff_company_id) {
+                //     $sql .= ",   m_staff_company = '' ";
+                // }
+            $sql .= ",   m_staff_company = '' ";
+            $sql .= "WHERE 0 = 0 ";
+            if ($this->inp_m_staff_id != "") {
+                $sql .= "AND m_staff_id = '" . $db->escape_string($this->inp_m_staff_id) . "' ";
+            }
+
+            // var_dump($sql);
+            // exit;
+
+            // 文字化け防止
+            $db->set_charset();
+            // クエリを送信する
+            $db->prepare($sql);
+            // プリペアドクエリを実行する
+            $db->stmt_execute();
+            // 結果保持用メモリを開放する
+            $db->stmt_close();
+            // MySQLへの接続を閉じる
+            $db->close();
         }
 
         // デリート

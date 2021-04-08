@@ -6,16 +6,17 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css" media="screen, projection" />
-    <script src="bootstrapalpa/js/jquery.min.js"></script>
+    <!-- <script src="bootstrapalpa/js/jquery.min.js"></script> -->
+    <script src="../bootstrap-4.3.1/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>　
     <title>勤怠管理システム</title>
   </head>
 
   <script>
-    function confirm1(no,name) {
-      if(!confirm(name +'の項目を削除してもよろしいですか?')) return false;
-      location.href = "company2.php?act=2&company_id="+no+"&company_id2="+no;
-    }
+    // function confirm1(no,name) {
+    //   if(!confirm(name +'の項目を削除してもよろしいですか?')) return false;
+    //   location.href = "company2.php?act=2&company_id="+no+"&company_id2="+no;
+    // }
   </script>
 
   <body>
@@ -94,3 +95,29 @@
 
   </body>
 </html>
+
+<script type="text/javascript">
+  function confirm1(no,name) {
+    if(!confirm(name +'の項目を削除してもよろしいですか?')) return false;
+
+    $.ajax({
+      type: 'post',
+      url: 'ajaxController.php',
+      data: {
+        act: 'companyDel',
+        no: no
+      },
+      dataType:"json"
+    }).done(function(data){
+      console.log(data)
+      if (!data) {
+        alert(name+'に関連する勤務があります、勤務を先に削除してください。')
+        return false
+      }
+
+      location.href = "company2.php?act=2&company_id="+no+"&company_id2="+no;
+    }).fail(function(data){
+      alert('通信エラー')
+    })
+  }
+</script>

@@ -636,13 +636,14 @@ set_time_limit(300);
             } else {
                 $sql .= $db->escape_string($this->inp_order);
             }
-//  var_dump($sql);
+
             // SQL実行
 
             // 文字化け防止
             $db->set_charset();
 
             // var_dump($sql);
+            // exit;
 
             // プリペアドクエリを実行する
             if ($this->result = $db->query($sql)) {
@@ -2108,12 +2109,11 @@ set_time_limit(300);
                  . ",    '".$this->inp_t_wk_syotei_zan."'"
                  . ") ";
 
-//             var_dump($sql);
+            // var_dump($sql);
 
-
-require dirname(__FILE__).'/common/log.php';
-
-// require dirname(__FILE__).'/common/insertlog.php';
+            // $con = $sql;
+            require dirname(__FILE__).'/common/log.php';
+            // require dirname(__FILE__).'/common/insertlog.php';
 
             // 文字化け防止
             $db->set_charset();
@@ -3050,23 +3050,10 @@ require dirname(__FILE__).'/common/log.php';
             }
             $sql .= "WHERE t_wk_detail_no = " . $db->escape_string($this->inp_t_wk_detail_no) . " ";
 
-// var_dump($sql);
+            // var_dump($sql);
 
-//            require_once('Wklog.php');    // ログクラス
-
-//            $wklog    = new Wklog;          // ログクラス
-
-//            $wklog->inp_t_log_content .= $db->escape_string($sql);
-//            $wklog->inp_t_log_created = date('Y-m-d H:i:s');
-            // ログ 書き込み
-//            $wklog->insertWklog();
-
-            // if ($this->inp_not_wright == "") {
-
-
-require dirname(__FILE__).'/common/log.php';
-
-            // }
+            // $con = $sql;
+            require dirname(__FILE__).'/common/log.php';
 
             // 文字化け防止
             $db->set_charset();
@@ -3206,7 +3193,10 @@ require dirname(__FILE__).'/common/log.php';
                 $sql .= "AND t_wk_taiin_id = '" . $db->escape_string($this->inp_t_wk_taiin_id) . "' ";
             }
 
-// var_dump($sql);
+            // var_dump($sql);
+
+            // $con = $sql;
+            require dirname(__FILE__).'/common/log.php';
 
             // 文字化け防止
             $db->set_charset();
@@ -3238,6 +3228,9 @@ require dirname(__FILE__).'/common/log.php';
             $sql .= " t_wk_detail_no        = '" . $db->escape_string($this->inp_t_wk_detail_no) . "' ";
 
             // var_dump($sql);
+
+            // $con = $sql;
+            require dirname(__FILE__).'/common/log.php';
 
             // 文字化け防止
             $db->set_charset();
