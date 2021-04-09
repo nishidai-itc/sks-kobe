@@ -167,7 +167,7 @@
           <td><label>（２）重点</label></td>
         </tr>
         <tr>
-          <td><label>i. 事務所並びに倉庫の火災、盗難等警戒警備、不法侵入者の警戒監視</label></td>
+          <td><label>i. 事務所並びに倉庫の火災、盗難等の警戒警備、不法侵入者の警戒監視</label></td>
         </tr>
         <tr>
           <td><label>ii. 搬入車輛及び、外来者の適正誘導</label></td>
@@ -199,7 +199,7 @@
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
-          <tr><label>警備員</label></tr>
+          <tr><label>勤務者</label></tr>
           <tr>
             <?php for ($i=1;$i<=4;$i++) { ?>
             <td>
@@ -232,26 +232,29 @@
     </div>
     <hr>
 
-      <div class="row">
+    <div class="row">
       <div class="col-12">
-      <table class="table table-borderless">
-      <tr>
-          <td><label>（時間外）</label></td>
-        </tr>
-        <tr>
-          <td><label>人数</label><input type="text" name="offwk_count" id="" value="<?php echo $offwk_count; ?>"><label>&nbsp;部外者入門</label><input type="text" name="outsider" id="" value="<?php echo $outsider; ?>"></td>
-        </tr>
-        <!-- <tr>
-          <td><label>部外者入門</label><input type="text" name="" id="" value=""></td>
-        </tr> -->
+        <table class="table table-borderless">
+          <tr>
+            <td><label>（時間外）</label></td>
+          </tr>
 
-      <tr>
-          <td rowspan="5">
-            <label>（備考）</label>
-            <textarea name="comment" id="" class="w-100" cols="" rows="5" value="<?php echo $comment; ?>"><?php echo $comment; ?></textarea>
-          </td>
-      </tr>
+          <tr>
+            <td>
+              <label>人数</label>
+              <input type="text" name="offwk_count" class="text" value="<?php echo $offwk_count; ?>">
+              <label>部外者入門</label>
+              <input type="number" name="outsider" class="num text-center" value="<?php echo $outsider; ?>" min="0" max="99">
+              <label>名</label>
+            </td>
+          </tr>
 
+          <tr>
+            <td>
+              <label>（備考）</label>
+              <textarea name="comment" id="" class="w-100" cols="" rows="5" value="<?php echo $comment; ?>"><?php echo $comment; ?></textarea>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
@@ -319,6 +322,13 @@
   $('.time').addClass('d-inline-block border border-dark')
   $('.time [type="number"]').addClass('p-0 border-0')
   $('.time [type="number"]').css('width','45px')
+
+  $('.num').css({
+    'width':'45px',
+    'border':'1px solid #343a40'
+  })
+  $('.num, .text').addClass('p-0')
+  $('.text').css('border','1px solid #343a40')
 
   $('.temp, .regist').click(function(){
     if (!confirm('この内容で登録します。よろしいですか？')) return false
