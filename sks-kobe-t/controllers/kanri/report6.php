@@ -36,9 +36,9 @@
   $wk_end_time2                   = array("18","00");
   $wk_start_time3                 = array("07","30");
   $wk_end_time3                   = array("18","00");
+  $offwk_joban_time               = array("07","30");
+  $offwk_kaban_time               = array("08","00");
   $offwk_count                    = null;
-  // $off_start_time                 = array("07","30");
-  // $off_end_time                   = array("08","00");
   $outsider                       = null;
 
 

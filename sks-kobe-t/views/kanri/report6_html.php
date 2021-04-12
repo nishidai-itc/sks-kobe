@@ -236,7 +236,20 @@
       <div class="col-12">
         <table class="table table-borderless">
           <tr>
-            <td><label>（時間外）</label></td>
+            <td>
+              <label>（時間外）</label>
+              <div class="time">
+                <input type="number" class="text-center" name="offwk_joban_time[0]" value="<?php echo $offwk_joban_time[0]; ?>" min="0" max="23" readonly>
+                <span class="">:</span>
+                <input type="number" class="text-center" name="offwk_joban_time[1]" value="<?php echo $offwk_joban_time[1]; ?>" min="0" max="59" readonly>
+              </div>
+              <label>～</label>
+              <div class="time">
+                <input type="number" class="text-center" name="offwk_kaban_time[0]" value="<?php echo $offwk_kaban_time[0]; ?>" min="0" max="23" readonly>
+                <span class="">:</span>
+                <input type="number" class="text-center" name="offwk_kaban_time[1]" value="<?php echo $offwk_kaban_time[1]; ?>" min="0" max="59" readonly>
+              </div>
+            </td>
           </tr>
 
           <tr>

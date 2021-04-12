@@ -13,52 +13,15 @@
 //var_dump($_SESSION["staff_id"]);
 //var_dump(session_id());
 //var_dump($_SESSION);
-    if (isset($_SESSION["sday"])) {
-        unset($_SESSION["sday"]);
+    
+    if ($_SESSION) {
+        foreach ($_SESSION as $key => $val) {
+            if ($key != "staff_id" && $key != "staffpass") {
+                unset($_SESSION[$key]);
+            }
+        }
     }
-    if (isset($_SESSION["eday"])) {
-        unset($_SESSION["eday"]);
-    }
-    if (isset($_SESSION["gid"])) {
-        unset($_SESSION["gid"]);
-    }
-    if (isset($_SESSION["sid"])) {
-        unset($_SESSION["sid"]);
-    }
-    if (isset($_SESSION["user_kana"])) {
-        unset($_SESSION["user_kana"]);
-    }
-    if (isset($_SESSION["kkbn"])) {
-        unset($_SESSION["kkbn"]);
-    }
-    if (isset($_SESSION["plan_kbn"])) {
-        unset($_SESSION["plan_kbn"]);
-        unset($_SESSION["plan_joban_time"]);
-        unset($_SESSION["plan_kaban_time"]);
-        unset($_SESSION["plan_hosoku"]);
-        unset($_SESSION["genba_id2"]);
-    }
-    if (isset($_SESSION["shift_no"])) {
-        unset($_SESSION["shift_no"]);
-    }
-    if (isset($_SESSION["alone"])) {
-        unset($_SESSION["alone"]);
-    }
-    if (isset($_SESSION["gchk_search"])) {
-        unset($_SESSION["gchk_search"]);
-    }
-    if (isset($_SESSION["schk_search"])) {
-        unset($_SESSION["schk_search"]);
-    }
-    if (isset($_SESSION["company_id"])) {
-        unset($_SESSION["company_id"]);
-    }
-    if (isset($_SESSION["flg"])) {
-        unset($_SESSION["flg"]);
-    }
-    if (isset($_SESSION["menu_flg"])) {
-        unset($_SESSION["menu_flg"]);
-    }
+    // var_dump($_SESSION);
     
 ?>
 <?php

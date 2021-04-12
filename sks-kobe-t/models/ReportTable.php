@@ -52,8 +52,8 @@
         );
 
         public static $report6 = array(
-            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time1","wk_end_time1","wk_start_time2","wk_end_time2","wk_start_time3","wk_end_time3","offwk_count","outsider",
-            "wk_staff_id1","wk_staff1_kbn","wk_staff_id2","wk_staff2_kbn","wk_staff_id3","wk_staff3_kbn","wk_staff_id4","wk_staff4_kbn","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9","comment",
+            "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time1","wk_end_time1","wk_start_time2","wk_end_time2","wk_start_time3","wk_end_time3","offwk_joban_time","offwk_kaban_time",
+            "offwk_count","outsider","wk_staff_id1","wk_staff1_kbn","wk_staff_id2","wk_staff2_kbn","wk_staff_id3","wk_staff3_kbn","wk_staff_id4","wk_staff4_kbn","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9","comment",
         );
 
 
