@@ -12,6 +12,7 @@
   <!-- 勤務複数検索 -->
   <link rel="stylesheet" href="./../multiple/multiple-select.min.css">
   <script src="./../bootstrap-4.3.1/jquery-3.4.1.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
   <script src="./../bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
   <!-- 勤務複数検索 -->
   <script src="./../multiple/multiple-select.min.js"></script>
@@ -1020,6 +1021,9 @@ $(function(){
                     <!-- コメント -->
                     <?php
                         if ($wkdetail->oup_t_wk_comment[$i]!="") {
+                            // echo "<td bgcolor=#FFFF80 data-toggle='tooltip' ";
+                            // echo $common->device != "pc" ? "data-trigger='click'" : "";
+                            // echo "title='".$wkdetail->oup_t_wk_comment[$i]."'>";
                             print("<td bgcolor=#FFFF80 data-toggle='tooltip' title='".$wkdetail->oup_t_wk_comment[$i]."'>");
                             print("○");
                             print("</td>");
