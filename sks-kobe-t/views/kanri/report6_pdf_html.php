@@ -77,10 +77,17 @@ $pdf->Text(150, 250, $staffs[$report->oup_wk_staff_id3[0]]);    // 警備員3
 $pdf->Text(138, 261, $report->oup_wk_staff4_kbn[0]);            // 勤務者4
 $pdf->Text(150, 261, $staffs[$report->oup_wk_staff_id4[0]]);    // 警備員4
 
-$pdf->Text(100, 250, $report->oup_offwk_count[0]);      // C-5
+if ($report->oup_offwk_count[0]) {
+    $pdf->SetXY( 23, 255 );
+    $pdf->Cell(107, 0, "時間外（".$report->oup_offwk_joban_time[0]." ～ ".$report->oup_offwk_kaban_time[0]."）".$report->oup_offwk_count[0], 0, 0, "R");
+    // $pdf->Text(23, 255, "時間外（".$report->oup_offwk_joban_time[0]." ～ ".$report->oup_offwk_kaban_time[0]."）".$report->oup_offwk_count[0]);      // 時間外（時刻）
+    // $pdf->Text(100, 239, $report->oup_offwk_kaban_time[0]);      // 時間外（下番時刻）
+}
+// $pdf->Text(92, 250, $report->oup_offwk_count[0]);      // 時間外（コメント）
 $pdf->Text(113, 261, $report->oup_outsider[0]);      // C-5
 
-$pdf->MultiCell(64,30,$report->oup_comment[0],0,'',0,1,23,225);     // 備考
+// $pdf->MultiCell(64,30,$report->oup_comment[0],1,'',0,1,23,225);     // 備考
+$pdf->MultiCell(107,28,$report->oup_comment[0],0,'',0,1,23,225);     // 備考
 
 
 $pdf->Output(sprintf("report6.pdf", time()), 'I');
