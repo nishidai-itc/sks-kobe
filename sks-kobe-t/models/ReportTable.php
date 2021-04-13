@@ -14,7 +14,7 @@
             "depo_joban_time","depo_kaban_time","depo_num","depo_zan","sort_joban_time","sort_kaban_time","sort_num","sort_zan","cy_joban_time","cy_kaban_time","cy_num","cy_zan","exit_joban_time","exit_kaban_time","exit_num","exit_zan",
             "vp_joban_time","vp_kaban_time","vp_num","vp_zan","midday_joban_time","midday_kaban_time","midday_num","midday_zan","gate_joban_time","gate_kaban_time","gate_num","gate_zan",
             "mbath_joban_time","mbath_kaban_time","mbath_num","mbath_zan","picket_joban_time1","picket_kaban_time1","picket_num1","picket_zan1","picket_joban_time2","picket_kaban_time2","picket_num2",
-            "picket_zan2","picket_joban_time3","picket_kaban_time3","picket_num3","picket_zan3","picket_joban_time4","picket_kaban_time4","picket_num4","picket_zan4","comment",
+            "picket_zan2","picket_joban_time3","picket_kaban_time3","picket_num3","picket_zan3","picket_joban_time4","picket_kaban_time4","picket_num4","picket_zan4","comment","etc_comment",
             /*"patrol_time1","patrol_time2","patrol_time3","patrol_time4","patrol_time5","patrol_time6","patrol_time7","patrol_time8",*/"meterb1","meterb2","meterc1","meterc2","wk_staff_id1","wk_staff1_kbn","wk_staff1_zan1","wk_staff1_zan2","wk_staff1_zan3",
             "wk_staff_id2","wk_staff2_kbn","wk_staff2_zan1","wk_staff2_zan2","wk_staff2_zan3","wk_staff_id3","wk_staff3_kbn","wk_staff3_zan1","wk_staff3_zan2","wk_staff3_zan3","wk_staff_id4","wk_staff4_kbn","wk_staff4_zan1","wk_staff4_zan2","wk_staff4_zan3",
             "wk_staff_id5","wk_staff5_kbn","wk_staff5_zan1","wk_staff5_zan2","wk_staff5_zan3","wk_staff_id6","wk_staff6_kbn","wk_staff6_zan1","wk_staff6_zan2","wk_staff6_zan3","wk_staff_id7","wk_staff7_kbn","wk_staff7_zan1","wk_staff7_zan2","wk_staff7_zan3",
