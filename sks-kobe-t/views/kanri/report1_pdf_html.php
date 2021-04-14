@@ -386,6 +386,45 @@ if ($report->oup_wk_staff18_zan3[0]=="昼") {
 $pdf->Text(196, 271, $report->oup_wk_staff18_zan3[0]);           // 
 $pdf->Text(180, 271, $report->oup_wk_staff18_kbn[0]);            // 
 
+
+if ($report->oup_etc_comment[0] != "") {
+    // 2ページ目
+
+    // テンプレート読み込み
+    $pdf->setSourceFile($common->rootpath.'/pdf/report1_1.pdf');
+
+    $pdf->AddPage('P', 'A4');
+    $pdf->useTemplate($pdf->importPage(1));
+    $pdf->SetFont('kozminproregular', '', 11);// 日本語フォント
+
+    // 和暦
+    $wnen = substr($report->oup_start_date[0],0,4);
+    //$wnen = intval($wnen) - 2018;
+    $pdf->Text(27, 35, $wnen);     // 年
+    $pdf->Text(43, 35, substr($report->oup_start_date[0],5,2));     // 月
+    $pdf->Text(52, 35, substr($report->oup_start_date[0],8,2));     // 日
+    $pdf->Text(63, 35, $weekday1);     // 曜日
+    $pdf->Text(76, 35, substr($report->oup_joban_time[0],0,2));     // 開始時間
+    $pdf->Text(87, 35, substr($report->oup_joban_time[0],3,2));     // 開始時間
+
+    $wnen = substr($report->oup_end_date[0],0,4);
+    $pdf->Text(27, 41, $wnen);     // 年
+    $pdf->Text(43, 41, substr($report->oup_end_date[0],5,2));     // 月
+    $pdf->Text(52, 41, substr($report->oup_end_date[0],8,2));     // 日
+    $pdf->Text(63, 41, $weekday2);     // 曜日
+    $pdf->Text(76, 41, substr($report->oup_kaban_time[0],0,2));     // 終了時間
+    $pdf->Text(87, 41, substr($report->oup_kaban_time[0],3,2));     // 終了時間
+
+    // $pdf->Text(106, 38, $report->oup_weather1[0]);     // 天候
+    // $pdf->Text(113, 38, $report->oup_weather2[0]);     // 天候
+
+    $pdf->Text(125, 38, $staffs[$report->oup_staff_id[0]]);     // 担当警備員
+
+    $pdf->SetFontSize(14);
+    $pdf->setCellHeightRatio(2.5);
+    $pdf->MultiCell(180,50,$report->oup_etc_comment[0],0,'',0,1,16,50);     // コメント
+}
+
 if ($_GET["act"] && $_GET["act"] == "mail") {
     $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,6).".pdf", time()), 'F');
 
