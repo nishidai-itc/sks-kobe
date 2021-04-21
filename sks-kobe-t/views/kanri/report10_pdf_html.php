@@ -53,7 +53,7 @@ if ($report->oup_marsk_number4[0]=="") { $report->oup_marsk_number4[0] = 0; }
 $pdf->SetXY( 85, 118 );
 $pdf->Cell(6, 6, $report->oup_marsk_number1[0], 0, 0, "R");     // マースク返バン
 $pdf->SetXY( 85, 135 );
-$pdf->Cell(6, 6, $report->oup_marsk_number2[0], 0, 0, "R");     // マースク返バン
+$pdf->Cell(6, 6, $report->oup_marsk_number2[0], 1, 0, "R");     // マースク返バン
 $pdf->SetXY( 85, 152 );
 $pdf->Cell(6, 6, $report->oup_marsk_number3[0], 0, 0, "R");     // マースク返バン
 $pdf->SetXY( 85, 169 );
@@ -117,6 +117,10 @@ $pdf->Text(143, 214, $report->oup_facter[0]);     // 発生要因
 
 $pdf->MultiCell(130,20,$report->oup_comment[0],0,'',0,1,50,269);    // 備考
 
-
-$pdf->Output(sprintf("report7.pdf", time()), 'I');
+if ($_GET["act"] && $_GET["act"] == "mail") {
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+} else {
+    $pdf->Output(sprintf("report7.pdf", time()), 'I');
+}
+// $pdf->Output(sprintf("report7.pdf", time()), 'I');
 ?>

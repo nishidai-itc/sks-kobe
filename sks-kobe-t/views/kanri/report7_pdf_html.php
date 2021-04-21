@@ -44,7 +44,7 @@ $pdf->Text(175, 54, substr($report->oup_start_date[0],8,2));     // 日
 $pdf->Text(37, 113, $wnen);     // 年
 $pdf->Text(57, 113, substr($report->oup_start_date[0],5,2));     // 月
 $pdf->Text(73, 113, substr($report->oup_start_date[0],8,2));     // 日
-$pdf->Text(98, 113, $weekday2);     // 年
+$pdf->Text(98, 113, $weekday1);     // 年
 
 $pdf->Text(64, 124, substr($report->oup_joban_time[0],0,2));     // 終了時間
 $pdf->Text(85, 124, substr($report->oup_joban_time[0],3,2));     // 終了時間
@@ -59,6 +59,10 @@ $pdf->Text(43, 135, $staffs[$report->oup_staff_id[0]]);     // 作業者
 
 $pdf->Text(110, 255, $staffs[$report->oup_staff_id2[0]]);     // 報告者
 
-
-$pdf->Output(sprintf("report7.pdf", time()), 'I');
+if ($_GET["act"] && $_GET["act"] == "mail") {
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+} else {
+    $pdf->Output(sprintf("report7.pdf", time()), 'I');
+}
+// $pdf->Output(sprintf("report7.pdf", time()), 'I');
 ?>

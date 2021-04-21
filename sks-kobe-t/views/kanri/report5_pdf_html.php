@@ -256,5 +256,10 @@ $pdf->Text(165, 269, $kbn[$report->oup_wk_staff_id9_kbn[0]]);   // 巡回8
 $pdf->Text(169, 269, $staffs[$report->oup_wk_staff_id9[0]]);   // 巡回8
 $pdf->Text(183, 274, $ken[$report->oup_wk_staff_id9_ken[0]]);   // 研
 
-$pdf->Output(sprintf("report5.pdf", time()), 'I');
+if ($_GET["act"] && $_GET["act"] == "mail") {
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+} else {
+    $pdf->Output(sprintf("report5.pdf", time()), 'I');
+}
+// $pdf->Output(sprintf("report5.pdf", time()), 'I');
 ?>

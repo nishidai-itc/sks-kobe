@@ -89,6 +89,10 @@ $pdf->Text(113, 261, $report->oup_outsider[0]);      // C-5
 // $pdf->MultiCell(64,30,$report->oup_comment[0],1,'',0,1,23,225);     // 備考
 $pdf->MultiCell(107,28,$report->oup_comment[0],0,'',0,1,23,225);     // 備考
 
-
-$pdf->Output(sprintf("report6.pdf", time()), 'I');
+if ($_GET["act"] && $_GET["act"] == "mail") {
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+} else {
+    $pdf->Output(sprintf("report6.pdf", time()), 'I');
+}
+// $pdf->Output(sprintf("report6.pdf", time()), 'I');
 ?>

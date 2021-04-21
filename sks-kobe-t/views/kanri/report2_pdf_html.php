@@ -64,6 +64,10 @@ $pdf->Text(85, 141, substr($report->oup_flag2_time[0],3,2));     // 安全旗降
 
 $pdf->MultiCell(158,30,$report->oup_comment[0],0,'',0,1,38,225);     // 備考
 
-
-$pdf->Output(sprintf("report2.pdf", time()), 'I');
+if ($_GET["act"] && $_GET["act"] == "mail") {
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+} else {
+    $pdf->Output(sprintf("report2.pdf", time()), 'I');
+}
+// $pdf->Output(sprintf("report2.pdf", time()), 'I');
 ?>
