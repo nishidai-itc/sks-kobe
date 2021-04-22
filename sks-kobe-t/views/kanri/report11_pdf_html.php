@@ -154,6 +154,10 @@ $pdf->Text(131, 276, $staffs[$report->oup_wk_staff_id16[0]]);   // 警備員16
 $pdf->Text(154, 276, $staffs[$report->oup_wk_staff_id17[0]]);   // 警備員17
 $pdf->Text(177, 276, $staffs[$report->oup_wk_staff_id18[0]]);   // 警備員18
 
-
-$pdf->Output(sprintf("report11.pdf", time()), 'I');
+if ($_GET["act"] && $_GET["act"] == "mail") {
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+} else {
+    $pdf->Output(sprintf("report11.pdf", time()), 'I');
+}
+// $pdf->Output(sprintf("report11.pdf", time()), 'I');
 ?>

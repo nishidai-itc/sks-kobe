@@ -173,6 +173,10 @@ $pdf->Text(65, 265, $staffs[$report->oup_night_taiin_id[0]]);           // 氏�
 $pdf->Text(122, 265, $report->oup_night_exit_time[0]);                  // 退出時間
 $pdf->Text(150, 265, $staffs[$report->oup_night_staff_id[0]]);          // SKS対応者
 
-
-$pdf->Output(sprintf("report13.pdf", time()), 'I');
+if ($_GET["act"] && $_GET["act"] == "mail") {
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+} else {
+    $pdf->Output(sprintf("report13.pdf", time()), 'I');
+}
+// $pdf->Output(sprintf("report13.pdf", time()), 'I');
 ?>

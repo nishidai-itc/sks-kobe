@@ -74,6 +74,10 @@ $pdf->Text(85, 244, $staffs[$report->oup_wk_staff_id4[0]]);     // 警備員4
 $pdf->MultiCell(100,30,$report->oup_comment[0],0,'',0,1,80,158);        // 特記事項
 $pdf->MultiCell(60,30,$report->oup_etc_comment[0],0,'',0,1,120,224);    // 備考
 
-
-$pdf->Output(sprintf("report13.pdf", time()), 'I');
+if ($_GET["act"] && $_GET["act"] == "mail") {
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+} else {
+    $pdf->Output(sprintf("report13.pdf", time()), 'I');
+}
+// $pdf->Output(sprintf("report13.pdf", time()), 'I');
 ?>
