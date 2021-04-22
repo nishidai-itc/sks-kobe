@@ -57,7 +57,7 @@ header("Pragma:no-cache");
     <form action="report_menu.php" method="post">
 
     <div class="row bg-white head">
-      <div class="col-5">
+      <div class="col-xl-5">
         <!-- <div class="pb-2">
           <span class="yestarday badge badge-secondary" style="cursor: pointer;">前日</span>
           <span class="today badge badge-secondary" style="cursor: pointer;">当日</span>
@@ -73,7 +73,7 @@ header("Pragma:no-cache");
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-md-6 col-xl-4">
         <!-- <div class="pb-2">&nbsp;</div> -->
         <select name="place[]" id="place" class="form-control" multiple="multiple">
           <!-- <option value=""></option> -->
@@ -82,11 +82,11 @@ header("Pragma:no-cache");
           <?php } ?>
         </select>
       </div>
-      <div class="col-1">
+      <div class="col-md-2 col-xl-1">
         <!-- <div class="pb-2">&nbsp;</div> -->
         <button type="button" class="search btn btn-success btn-block" role="button">検索</button>
       </div>
-      <div class="col-2">
+      <div class="col-md-4 col-xl-2">
         <!-- <div class="pb-2">&nbsp;</div> -->
         <button type="button" class="btn btn-secondary btn-block" role="button" onclick="menuBack()">メニューに戻る</button>
       </div>
