@@ -94,6 +94,46 @@ $(function(){
 
     <form name="frm" method="POST" action="keibihokoku.php">
 
+      <div class="row border border-secondary" style="background-color: #d5d5d5!important;">
+        <div class="col-md-12 col-lg-6">
+          <label>日付</label>
+          <div class="d-inline-block">
+            <input type="submit" name="prev" value="&lt;" >
+          </div>
+          <div class="d-inline-block">
+            <input type="date" size="8" class="form-control" name="startday" id="startday" value="<?php print(substr($startday,0,4)."-".substr($startday,4,2)."-".substr($startday,6,2)); ?>">
+          </div>
+          <label>～</label>
+          <div class="d-inline-block">
+            <input type="date" size="8" class="form-control" name="endday" id="endday" value="<?php print(substr($endday,0,4)."-".substr($endday,4,2)."-".substr($endday,6,2)); ?>">
+          </div>
+          <div class="d-inline-block">
+            <input type="submit" name="next" value="&gt;" >
+          </div>
+        </div>
+        <div class="col-md-2 col-lg-1 align-self-center p-lg-0"><label>警備報告書</label></div>
+        <div class="col-md-5 col-lg-2 align-self-center">
+          <select id="genba_id" name="genba_id[]" class="form-control" multiple="multiple" size="1">
+            <?php for ($i=0;$i<count($reportname->oup_t_report_no);$i++) { ?>
+            <option value="<?php print($reportname->oup_t_report_no[$i]); ?>" 
+            <?php 
+            if ($genba_id) {
+                for ($j=0;$j<count($genba_id);$j++) {
+                    if ($genba_id[$j]===$reportname->oup_t_report_no[$i]) {
+                        print("selected");
+                    }
+                }
+            }
+            ?>>
+              <?php print($reportname->oup_t_report_place[$i]." ".$reportname->oup_t_report_contract[$i]); ?>
+            </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="col-md-2 col-lg-1 align-self-center"><button type="submit" class="btn btn-info" role="button" name="search">検索</button></div>
+        <div class="col-md-3 col-lg-2 align-self-center"><a href="menu.php" class="btn btn-secondary btn-block" role="button" aria-pressed="true">メニューに戻る</a></div>
+      </div>  
+      <?php /* ?>
       <div class="row">
         <div class="col-xs-12 col-md-12">
           <table class="text-nowrap" border="1" style="font-size: 10pt; width:1100px" bgcolor="#d5d5d5">
@@ -140,10 +180,11 @@ $(function(){
           </table>
         </div>
       </div>
+      <?php */ ?>
       <br />
 
       <div class="row">
-        <div class="col-6">
+        <div class="col-md-9 col-lg-6">
           <label>チェックしたものを　</label>
           <label>Gチェック&nbsp;&#10004;&nbsp;　</label>
           <div class="d-inline-block">
@@ -183,6 +224,65 @@ $(function(){
       <br />
 
       <div class="row">
+        <div class="col-12">
+          <table class="w-100" border="1" style="font-size: 10pt;" cellpadding="3" cellspacing="0">
+            <tr class="text-center">
+              <td bgcolor="FFDCA5">詳細</td>
+              <td bgcolor="FFDCA5"><input type="checkbox" id="all-checked"></td>
+              <td bgcolor="FFDCA5">G<br>&#10004;</td>
+              <td bgcolor="FFDCA5">入力状態</td>
+              <td bgcolor="FFDCA5">日付</td>
+              <td bgcolor="FFDCA5">曜<br />日</td>
+              <td bgcolor="FFDCA5">勤務場所</td>
+              <td bgcolor="FFDCA5">契約先</td>
+              <td bgcolor="FFDCA5">PDF</td>
+              <td class="px-3" bgcolor="FFDCA5">メール送信</td>
+            </tr>
+            <?php if (isset($report->oup_no)) { ?>
+              <?php for ($i=0;$i<count($report->oup_no);$i++) { ?>
+
+                <?php 
+                    if ($i%2==0) {
+                        $color = "bgcolor=\"e1f6fc\"";
+                    } else {
+                        $color = "";
+                    }
+
+                    $time = strtotime(date($report->oup_plan_date[$i]));
+                    $w = date("w", $time);
+                    $weekday = $week[$w];
+
+                    if ($report->oup_gchk[$i]=="1") {
+                        $gchk = "&#10004;";
+                    } else {
+                        $gchk = "";
+                    }
+                ?>
+
+                  <tr class="text-center">
+                    <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>.php?no=<?php echo $report->oup_no[$i]; ?>">
+                        <i class="fas fa-pen"></i></a></td>
+                    <td <?php print($color); ?>>
+                      <input name="check_teate[<?php echo $i; ?>]" type="checkbox" class="teate-checked"
+                        value="<?php echo $report->oup_no[$i]; ?>">
+                    </td>
+                    <td <?php print($color); ?>><?php print($gchk); ?></td>
+                    <td <?php print($color); ?> align="left"><?php print($kbn[$report->oup_kbn[$i]]); ?></td>
+                    <td <?php print($color); ?>><?php print(substr($report->oup_plan_date[$i],5,2)."/".substr($report->oup_plan_date[$i],8,2)); ?></td>
+                    <td <?php print($color); ?>><?php print($weekday); ?></td>
+                    <td <?php print($color); ?> align="left"><?php print($report_place[$report->oup_name_no[$i]]); ?></td>
+                    <td <?php print($color); ?> align="left"><?php print($report_contract[$report->oup_name_no[$i]]); ?></td>
+                    <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>_pdf.php?no=<?php echo $report->oup_no[$i]; ?>" target="_blank"><i class="fas fa-file-pdf fa-2x"></i></a></td>
+                    <td <?php print($color); ?>>
+                      <?php echo $reportMail->oup_t_report_kanri_no && in_array($report->oup_no[$i],$reportMail->oup_t_report_kanri_no) ? "<font color='blue'>済</font>" : "未"; ?>
+                    </td>
+                  </tr>
+
+              <?php } ?>
+            <?php } ?>
+          </table>
+        </div>
+        <?php /* ?>
         <div class="col-12">
           <table class="text-nowrap" border="1" style="font-size: 10pt;" "width=1200" cellpadding="3" cellspacing="0">
               <tr class="text-center">
@@ -233,11 +333,11 @@ $(function(){
                         <td <?php print($color); ?> align="left"><?php print($report_contract[$report->oup_name_no[$i]]); ?></td>
                         <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>_pdf.php?no=<?php echo $report->oup_no[$i]; ?>" target="_blank"><i class="fas fa-file-pdf fa-2x"></i></a></td>
                         <td <?php print($color); ?>>
-                          <?php /* ?>
-                          <span class="mail badge badge-primary p-1" style="cursor: pointer;"><font size="2em;">送信</font></span>
+                          
+                          <!-- <span class="mail badge badge-primary p-1" style="cursor: pointer;"><font size="2em;">送信</font></span>
                           <input type="hidden" name="" value="<?php echo $report->oup_no[$i].','.$report->oup_table[$i];?>">
-                          <input type="hidden" value="<?php echo substr($report->oup_plan_date[$i],5,2).'/'.substr($report->oup_plan_date[$i],8,2).','.$report_place[$report->oup_name_no[$i]];?>">
-                          <?php */ ?>
+                          <input type="hidden" value="<?php echo substr($report->oup_plan_date[$i],5,2).'/'.substr($report->oup_plan_date[$i],8,2).','.$report_place[$report->oup_name_no[$i]];?>"> -->
+                          
                           <?php echo $reportMail->oup_t_report_kanri_no && in_array($report->oup_no[$i],$reportMail->oup_t_report_kanri_no) ? "<font color='blue'>済</font>" : "未"; ?>
                         </td>
                       </tr>
@@ -296,10 +396,24 @@ $(function(){
 -->
           </table>
         </div>
+        <?php */ ?>
       </div>
       <br />
 
       <div class="row">
+        <div class="col-md-9 col-lg-6">
+          <label>チェックしたものを　</label>
+          <label>Gチェック&nbsp;&#10004;&nbsp;　</label>
+          <div class="d-inline-block">
+            <select name="gchk2" class="form-control">
+              <option value="">
+              <option value="2">未
+              <option value="1">済
+            </select>
+          </div>
+          <div class="d-inline-block"><button type="submit" class="btn btn-success btn-block" name="bundle">登録</button></div>
+        </div>
+        <?php /* ?>
         <div class="col-12">
           <table>
             <tr>
@@ -318,6 +432,7 @@ $(function(){
             </tr>
           </table>
         </div>
+        <?php */ ?>
       </div>
       <br />
 
