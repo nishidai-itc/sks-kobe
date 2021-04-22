@@ -300,7 +300,7 @@
       <div class="col-12">
         <table class="table table-borderless">
           <tr class="con">
-            <td class="align-middle" rowspan="18">特<br>記</td>
+            <td class="align-middle" rowspan="17">特<br>記</td>
             <td><label>１．甲陽運輸</label></td>
             <td colspan="2" class="">
               <div class="row">
@@ -439,13 +439,6 @@
             <td><label>・コメント</label></td>
             <td colspan="5">
               <textarea name="comment" id="" class="w-100" cols="" rows="1" value="<?php echo $comment; ?>"><?php echo $comment; ?></textarea>
-            </td>
-          </tr>
-
-          <tr>
-            <td><label>・別紙</label></td>
-            <td colspan="5">
-              <textarea name="etc_comment" id="" class="w-100" cols="" rows="5" value="<?php echo $etc_comment; ?>"><?php echo $etc_comment; ?></textarea>
             </td>
           </tr>
         </table>
@@ -640,6 +633,13 @@
       </div>
     </div>
     <hr>
+
+    <div class="row">
+      <div class="col-1 align-self-center"><label>別<br>紙</label></div>
+      <div class="col-11">
+        <textarea name="etc_comment" id="" class="w-100" cols="" rows="7" value="<?php echo $etc_comment; ?>"><?php echo $etc_comment; ?></textarea>
+      </div>
+    </div>
 
     <input type="hidden" name="no" value="<?php echo $no; ?>">
     <input type="hidden" name="act" value="">
