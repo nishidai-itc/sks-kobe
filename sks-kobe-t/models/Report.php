@@ -76,8 +76,11 @@
                 } else {
                     // 文字列削除
                     $str = str_replace("inp_","",$key);
+                    // where not !=
+                    if (strpos($str,"_ISNOT") !== false) {
+                        $sql .= "and t_report".$number.".t_report_".str_replace("_ISNOT","",$str)." != '".$db->escape_string($value)."' ";
                     // where is not null句
-                    if (strpos($str,"_NOTNULL") !== false) {
+                    } elseif (strpos($str,"_NOTNULL") !== false) {
                         $sql .= "and t_report".$number.".t_report_".str_replace("_NOTNULL","",$str)." is not null ";
                     // where in句
                     } elseif (strpos($str,"_in") !== false) {
@@ -106,7 +109,13 @@
             if ($this->inp_order) {
                 $sql .= $db->escape_string($this->inp_order);
             } else {
-                "order by t_report".$number.".t_report_start_date";
+                if ($number == "_kanri") {
+                    $sql .= "order by t_report_kanri.t_report_plan_date";
+                } elseif ($number == "_name") {
+                    $sql .= "order by t_report_name.t_report_no";
+                } else {
+                    $sql .= "order by t_report".$number.".t_report_start_date";
+                }
             }
 
             // SQL実行

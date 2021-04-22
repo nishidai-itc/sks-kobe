@@ -29,6 +29,7 @@
   }
   for ($i=1;$i<=4;$i++) {
     ${"wk_staff_id".$i}           = null;
+    // ${"wk_staff_id".$i."_ken"}    = null;
     ${"wk_joban_time".$i}         = array(null,null);
     ${"wk_kaban_time".$i}         = array(null,null);
     ${"wk_zan".$i}                = null;
@@ -100,6 +101,13 @@
           } elseif ($value[0] === "" && $value[1] !== "") {
             $report2->{"inp_".$key}          = "00:".$value[1];
           }
+          continue;
+        }
+
+        if (strpos($key,"wk_staff_id") !== false) {
+          $array = explode(",",$value);
+          $report2->{"inp_".$key}               = $array[1] === "0" ? null : $array[1];
+          $report2->{"inp_".$key."_ken"}        = $array[0] == "2" ? null : $array[0];
           continue;
         }
 
@@ -223,10 +231,13 @@
       $joban_time[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_joban_time[$i];
       $kaban_time[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_kaban_time[$i];
 
+      $ken[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_kensyu[$i];
+
       // 勤務員の項目の隊員デフォルト表示
       if ($cnt != 4) {
         $cnt = $cnt + 1;
         ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
+        // ${"wk_staff_id".$cnt."_ken"}  = $no ? ${"wk_staff_id".$cnt."_ken"} : $wkdetail->oup_t_wk_plan_kensyu[$i];
 
         // 上下番時刻デフォルト表示
         $array                      = explode(":",$joban_time[$wkdetail->oup_t_wk_taiin_id[$i]]);

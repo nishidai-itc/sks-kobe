@@ -143,6 +143,23 @@ $(function(){
       <br />
 
       <div class="row">
+        <div class="col-6">
+          <label>チェックしたものを　</label>
+          <label>Gチェック&nbsp;&#10004;&nbsp;　</label>
+          <div class="d-inline-block">
+            <select name="gchk1" class="form-control">
+              <option value="">
+              <option value="2">未
+              <option value="1">済
+            </select>
+          </div>
+          <div class="d-inline-block"><button type="submit" class="btn btn-success btn-block" name="bundle">登録</button></div>
+        </div>
+        <div class="col-3">
+          <div class="d-inline-block"><button type="button" class="mail_send btn btn-success btn-block">全件メール送信</button></div>
+        </div>
+        
+        <?php /* ?>
         <div class="col-12">
           <table>
             <tr>
@@ -161,6 +178,7 @@ $(function(){
             </tr>
           </table>
         </div>
+        <?php */ ?>
       </div>
       <br />
 
@@ -177,7 +195,7 @@ $(function(){
                 <td width="155" bgcolor="FFDCA5">勤務場所</td>
                 <td width="155" bgcolor="FFDCA5">契約先</td>
                 <td width="60" bgcolor="FFDCA5">PDF</td>
-                <td class="px-3" bgcolor="FFDCA5">メール</td>
+                <td class="px-3" bgcolor="FFDCA5">メール送信</td>
               </tr>
               <?php if (isset($report->oup_no)) { ?>
                   <?php for ($i=0;$i<count($report->oup_no);$i++) { ?>
@@ -215,8 +233,12 @@ $(function(){
                         <td <?php print($color); ?> align="left"><?php print($report_contract[$report->oup_name_no[$i]]); ?></td>
                         <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>_pdf.php?no=<?php echo $report->oup_no[$i]; ?>" target="_blank"><i class="fas fa-file-pdf fa-2x"></i></a></td>
                         <td <?php print($color); ?>>
-                          <span class="mail badge badge-secondary" style="cursor: pointer;">送信</span>
+                          <?php /* ?>
+                          <span class="mail badge badge-primary p-1" style="cursor: pointer;"><font size="2em;">送信</font></span>
                           <input type="hidden" name="" value="<?php echo $report->oup_no[$i].','.$report->oup_table[$i];?>">
+                          <input type="hidden" value="<?php echo substr($report->oup_plan_date[$i],5,2).'/'.substr($report->oup_plan_date[$i],8,2).','.$report_place[$report->oup_name_no[$i]];?>">
+                          <?php */ ?>
+                          <?php echo $reportMail->oup_t_report_kanri_no && in_array($report->oup_no[$i],$reportMail->oup_t_report_kanri_no) ? "<font color='blue'>済</font>" : "未"; ?>
                         </td>
                       </tr>
 
@@ -313,9 +335,17 @@ $(function(){
 
 </html>
 <script type="text/javascript">
+  /*
   $('.mail').click(function(){
+    var name = $(this).next().next().val()
+    name = name.split(',')
+
+    if (!confirm(name[1]+'を送信します。よろしいですか？')) return false
+    
     var no = $(this).next().val()
     no = no.split(',')
+
+    if (no[1] != '1') return false
 
     $.ajax({
       type: 'get',
@@ -335,4 +365,156 @@ $(function(){
     })
     // console.log(no)
   })
+  */
+
+  var dataList = {
+    act: 'reportGchk',
+    startdate: $('[name="startday"]').val(),
+    enddate: $('[name="endday"]').val(),
+  }
+
+  $('.mail_send').click(async function(){
+    if (!confirm('警備報告書をメール送信します。よろしいですか？')) return false
+    
+    // 順番に処理
+    reAjax(dataList)
+    .then(async function(data){
+      // console.log(data)
+      if (!data || data == 'mail') {
+        return new Promise(() => {
+          throw data == 'mail' ? '既に送信済です。' : '警備報告書がないかGチェック済のものがありません。'
+        })
+      } else {
+        return data
+      }
+    })
+    .then(async function(data){
+      const reportList = data
+      var datas = []
+      var flg = []
+      for (report in reportList) {
+        for (report2 of reportList[report]) {
+          var report2 = report2.split(',')
+          // if (Number(report2[1]) !== 1) {continue}
+          datas.push(report2[0]+','+report2[1])
+          if (Number(report2[1]) === 8 || Number(report2[1]) === 9 || Number(report2[1]) === 10) {
+            flg.push(report2[0].substr(0,8))
+            continue
+          }
+          await reportSend(report2[1],{act: 'mail',no: report2[0]})
+        }
+      }
+
+      // 警備報告書（A.B.誘導）
+      if (flg.length) {
+        flg = Array.from(new Set(flg))    // 重複削除
+        for (report of flg) {
+          await ajaxController({act: 'reportSend',date: report})
+        }
+      }
+
+      await ajaxController({act: 'addUpReportMail',no: datas})
+      return data
+
+      /*
+      const reportList = data
+      for (report of reportList) {
+        var report = report.split(',')
+        if (Number(report[1]) !== 1) {continue;}    // とりあえずKICTのみ
+        await reportSend(report[1],{act: 'mail',no: report[0]})
+      }
+      await ajaxController({act: 'addUpReportMail',no: data})
+      */
+    })
+    // メール送信
+    .then(async function(data){
+      for (list in data) {
+        await ajaxController({act: 'mailSend',dataList: {id: list ,data: data[list]}})
+      }
+
+      return '送信完了しました。'
+    })
+    // 完了をアラート
+    .then(async function(data){
+      await alertMsg(data)
+    })
+    .then(async function(data){
+      $('form').submit()
+    })
+    // エラーがあればアラート表示
+    .catch(async function(data){
+      await alertMsg(data)
+    })
+    
+    
+    /*await $.ajax({
+      type: 'post',
+      url: './ajaxController.php',
+      data: {
+        act: 'reportGchk',
+        startdate: $('[name="startday"]').val(),
+        enddate: $('[name="endday"]').val(),
+      },
+      dataType: 'json'
+    }).done(async function(data){
+      // console.log(data)
+      if (!data) {
+        alert('警備報告書がないかGチェック済のものがありません。')
+        return
+      }
+
+      const reportList = data
+      for (report of reportList) {
+        var report = report.split(',')
+
+        if (Number(report[1]) !== 1) {continue;}
+
+        await reportSend(report[1],{act: 'mail',no: report[0]})
+      }
+
+      await ajaxController({act: 'addUpReportMail',no: data})
+
+      alert('送信完了しました。')
+
+    }).fail(async function(data){
+      alert('通信エラー')
+    })
+    */
+
+  })
+
+  async function reportSend(urlNo,dataList) {
+    $.ajax({
+      type: 'get',
+      url: 'report'+urlNo+'_pdf.php',
+      data: dataList,
+      dataType: 'json'
+    }).done(function(data){
+    })
+  }
+
+  async function ajaxController(dataList) {
+    $.ajax({
+      type: 'post',
+      url: 'ajaxController.php',
+      data: dataList,
+      dataType: 'json'
+    }).done(function(data){
+      // console.log(data)
+    })
+  }
+
+  async function reAjax(dataList) {
+    return $.ajax({
+      type: 'post',
+      url: 'ajaxController.php',
+      data: dataList,
+      dataType: 'json'
+    }).done(function(data){
+    })
+  }
+
+  async function alertMsg(msg) {
+    alert(msg)
+  }
 </script>

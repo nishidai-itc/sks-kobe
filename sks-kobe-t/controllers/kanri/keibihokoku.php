@@ -14,6 +14,9 @@
     require_once('../../models/ReportTable.php');                 // 警備報告書クラス
     require_once('../../models/Report.php');                 // 警備報告書クラス
     require_once('../../models/Staff.php');                  // 社員クラス
+    // require_once('../../models/Genba.php');                  // 社員クラス
+    require_once('../../models/ReportGroup.php');                  // グループクラス
+    require_once('../../models/ReportMail.php');              //メールクラス
 
     $act       = NULL;
     $hokokusyo = "";
@@ -84,6 +87,9 @@
     $common     = new Common;       // 共通クラス
     $reportname = new ReportName;   // 警備報告書マスタクラス
     $report     = new Report;       // 警備報告書クラス
+    // $genba     = new Genba;
+    // $group     = new Group;
+    $reportMail      = new ReportMail;
 
     // Gチェック登録ボタンが押された
     if (isset($_REQUEST["bundle"])) {
@@ -132,7 +138,10 @@
     // $report->inp_order = "order by t_report_plan_date, 	t_report_no ";
     // 検索部分はまだ出来ていないため全件取得
     $report->getReport("kanri");
-//var_dump($report);
+
+    $reportMail->getReportMail();
+    // var_dump($reportMail);
+
 ?>
 <?php
     // キャリア判定（PC/スマートフォン/タブレット）

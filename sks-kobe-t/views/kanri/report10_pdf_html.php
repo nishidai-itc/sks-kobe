@@ -15,13 +15,15 @@ require_once('../../fpdf/src/autoload.php');
 
 use setasign\Fpdi\TcpdfFpdi;
 
-$pdf = new TcpdfFpdi();
-$pdf->SetMargins(0, 0, 0);
-$pdf->SetCellPadding(0);
-$pdf->SetAutoPageBreak(false);
-$pdf->setPrintHeader(false);    
-$pdf->setPrintFooter(false);
-$pdf->SetFont('kozminproregular', '', 12);// 日本語フォント
+if (($_GET["act2"] && $_GET["act2"] == "first") || !$_GET["act2"]) {
+    $pdf = new TcpdfFpdi();
+    $pdf->SetMargins(0, 0, 0);
+    $pdf->SetCellPadding(0);
+    $pdf->SetAutoPageBreak(false);
+    $pdf->setPrintHeader(false);    
+    $pdf->setPrintFooter(false);
+    $pdf->SetFont('kozminproregular', '', 12);// 日本語フォント
+}
 
 // テンプレート読み込み
 $pdf->setSourceFile($common->rootpath.'/pdf/report10.pdf');
@@ -53,7 +55,7 @@ if ($report->oup_marsk_number4[0]=="") { $report->oup_marsk_number4[0] = 0; }
 $pdf->SetXY( 85, 118 );
 $pdf->Cell(6, 6, $report->oup_marsk_number1[0], 0, 0, "R");     // マースク返バン
 $pdf->SetXY( 85, 135 );
-$pdf->Cell(6, 6, $report->oup_marsk_number2[0], 1, 0, "R");     // マースク返バン
+$pdf->Cell(6, 6, $report->oup_marsk_number2[0], 0, 0, "R");     // マースク返バン
 $pdf->SetXY( 85, 152 );
 $pdf->Cell(6, 6, $report->oup_marsk_number3[0], 0, 0, "R");     // マースク返バン
 $pdf->SetXY( 85, 169 );
@@ -117,10 +119,18 @@ $pdf->Text(143, 214, $report->oup_facter[0]);     // 発生要因
 
 $pdf->MultiCell(130,20,$report->oup_comment[0],0,'',0,1,50,269);    // 備考
 
-if ($_GET["act"] && $_GET["act"] == "mail") {
-    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+// if ($_GET["act"] && $_GET["act"] == "mail") {
+//     // $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+//     $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/誘導_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+// } else {
+//     $pdf->Output(sprintf("report7.pdf", time()), 'I');
+// }
+if ($_GET["act2"]) {
+    if (($_GET["act2"] == "first" && $_GET["cnt"] == "1") || ($_GET["act2"] == "end" && ($_GET["cnt"] == "2" || $_GET["cnt"] == "3"))) {
+        $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/警備報告書（A.B.誘導）_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+    }
 } else {
-    $pdf->Output(sprintf("report7.pdf", time()), 'I');
+    $pdf->Output(sprintf("report2.pdf", time()), 'I');
 }
 // $pdf->Output(sprintf("report7.pdf", time()), 'I');
 ?>

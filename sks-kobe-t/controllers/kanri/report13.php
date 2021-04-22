@@ -30,7 +30,7 @@
     $end_date                           = $_GET["plan_date"];
   }
   $joban_time                     = array("08","00");
-  $kaban_time                     = array("18","00");
+  $kaban_time                     = array("17","00");
   $wk_start_time                  = array("08","30");
   $wk_end_time                    = array("16","30");
   $picket_start_time              = array("08","30");
@@ -40,6 +40,7 @@
   for ($i=1;$i<=4;$i++) {
     ${"patrol_time".$i}           = array($times[$i][0],$times[$i][1]);
     ${"wk_staff_id".$i}           = null;
+    // ${"wk_staff_id".$i."_ken"}    = null;
   }
   $etc_comment                    = null;
   
@@ -104,6 +105,10 @@
         } else {
           if ($value === "") {
             $report2->{"inp_".$key}               = null;
+          } elseif (strpos($key,"wk_staff_id") !== false) {
+            $array = explode(",",$value);
+            $report2->{"inp_".$key}               = $array[1] === "0" ? null : $array[1];
+            $report2->{"inp_".$key."_ken"}        = $array[0] == "2" ? null : $array[0];
           } else {
             $report2->{"inp_".$key}               = $value === "0" ? null : $value ;
           }
@@ -223,10 +228,13 @@
     $cnt = 0;
     for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
 
+      $ken[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_kensyu[$i];
+
       // 勤務員の項目の隊員デフォルト表示
       if ($cnt != 4) {
         $cnt = $cnt + 1;
         ${"wk_staff_id".$cnt}         = $no ? ${"wk_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
+        // ${"wk_staff_id".$cnt."_ken"}  = $no ? ${"wk_staff_id".$cnt."_ken"} : $wkdetail->oup_t_wk_plan_kensyu[$i];
       }
     }
 

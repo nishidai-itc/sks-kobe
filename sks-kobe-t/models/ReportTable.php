@@ -83,8 +83,10 @@
             "patrol_time5","bath5","sip5","in_port_time5","out_port_time5","patrol_time6","bath6","sip6","in_port_time6","out_port_time6","front_gate_start_time","front_gate_end_time",
             "east_gate_start_time","east_gate_end_time","west_gate_start_time","west_gate_end_time","over_time_num","over_time_name","over_start_time","over_end_time",
             "yard","yard1_start_time","yard1_end_time","yard2_start_time","yard2_end_time","cam_time","cam_text","fence_time","fence_text","etc_comment1","etc_comment2",
-            "wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","wk_staff_id5","wk_staff_id6","wk_staff_id7","wk_staff_id8","wk_staff_id9","wk_staff_id10",
-            "wk_staff_id11","wk_staff_id12","wk_staff_id13","wk_staff_id14","wk_staff_id15","wk_staff_id16","wk_staff_id17","wk_staff_id18"
+            "wk_staff_id1","wk_staff_id1_ken","wk_staff_id2","wk_staff_id2_ken","wk_staff_id3","wk_staff_id3_ken","wk_staff_id4","wk_staff_id4_ken","wk_staff_id5","wk_staff_id5_ken",
+            "wk_staff_id6","wk_staff_id6_ken","wk_staff_id7","wk_staff_id7_ken","wk_staff_id8","wk_staff_id8_ken","wk_staff_id9","wk_staff_id9_ken","wk_staff_id10","wk_staff_id10_ken",
+            "wk_staff_id11","wk_staff_id11_ken","wk_staff_id12","wk_staff_id12_ken","wk_staff_id13","wk_staff_id13_ken","wk_staff_id14","wk_staff_id14_ken","wk_staff_id15","wk_staff_id15_ken",
+            "wk_staff_id16","wk_staff_id16_ken","wk_staff_id17","wk_staff_id17_ken","wk_staff_id18","wk_staff_id18_ken"
         );
 
         public static $report12 = array(
@@ -93,12 +95,14 @@
 
         public static $report13 = array(
             "no","table","start_date","end_date","joban_time","kaban_time","weather1","weather2","staff_id","wk_start_time","wk_end_time","picket_start_time","picket_end_time",
-            "comment","patrol_time1","patrol_time2","patrol_time3","patrol_time4","wk_staff_id1","wk_staff_id2","wk_staff_id3","wk_staff_id4","etc_comment",
+            "comment","patrol_time1","patrol_time2","patrol_time3","patrol_time4","wk_staff_id1","wk_staff_id1_ken","wk_staff_id2","wk_staff_id2_ken","wk_staff_id3","wk_staff_id3_ken",
+            "wk_staff_id4","wk_staff_id4_ken","etc_comment",
         );
 
         public static $report14 = array(
-            "no","table","start_date","weather1","weather2","wk_staff_id1","wk_joban_time1","wk_kaban_time1","wk_zan1","wk_staff_id2","wk_joban_time2","wk_kaban_time2","wk_zan2",
-            "wk_staff_id3","wk_joban_time3","wk_kaban_time3","wk_zan3","wk_staff_id4","wk_joban_time4","wk_kaban_time4","wk_zan4","picket_joban_time","picket_kaban_time","comment",
+            "no","table","start_date","weather1","weather2","wk_staff_id1","wk_staff_id1_ken","wk_joban_time1","wk_kaban_time1","wk_zan1","wk_staff_id2","wk_staff_id2_ken","wk_joban_time2",
+            "wk_kaban_time2","wk_zan2","wk_staff_id3","wk_staff_id3_ken","wk_joban_time3","wk_kaban_time3","wk_zan3","wk_staff_id4","wk_staff_id4_ken","wk_joban_time4","wk_kaban_time4","wk_zan4"
+            ,"picket_joban_time","picket_kaban_time","comment",
         );
 
         public static $reportkanri = array("no","plan_date","table"/*,"table_no"*/,"gchk","name_no","kbn");

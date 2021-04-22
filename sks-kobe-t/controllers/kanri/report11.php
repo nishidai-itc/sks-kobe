@@ -101,7 +101,7 @@
     $yard2_end_time                         = array(null,null);
     $front_gate_start_time                  = array("08","30");
     $front_gate_end_time                    = array("17","00");
-    $east_gate_start_time                   = array("08","30");
+    $east_gate_start_time                   = array("08","00");
     $east_gate_end_time                     = array("16","30");
     $west_gate_start_time                   = array("08","30");
     $west_gate_end_time                     = array("16","30");
@@ -118,6 +118,7 @@
     $plan_kbn                               = array("泊","日","夜");
     for ($i=1;$i<=18;$i++) {
         ${"wk_staff_id".$i}                 = null;
+        // ${"wk_staff_id".$i."_ken"}          = null;
     }
 
     if (isset($_POST["act"])) {
@@ -139,7 +140,7 @@
     }
 
     if ($act) {
-        // var_dump($_POST["out_port_time1"]);
+        // var_dump($_POST["in_port_time1"]);
         // exit;
         for ($i=1;$i<=6;$i++) {
             if (!$_POST["in_port_time".$i]) {
@@ -183,6 +184,10 @@
                             $report->{"inp_".$key}          = null;
                         }
                     }
+                } elseif (strpos($key,"wk_staff_id") !== false) {
+                    $array = explode(",",$value);
+                    $report->{"inp_".$key}              = $array[1] === "0" ? null : $array[1];
+                    $report->{"inp_".$key."_ken"}       = $array[0] == "2" ? null : $array[0];
                 } else {
                     $report->{"inp_".$key}              = $value === "0" ? null : $value ;
                 }
@@ -281,9 +286,9 @@
 
         if ($report3->oup_no) {
             foreach (ReportTable::$report11 as $k => $v) {
-                if (strpos($v,"wk_staff") !== false) {
-                    continue;
-                }
+                // if (strpos($v,"wk_staff") !== false) {
+                //     continue;
+                // }
                 if (strpos($v,"date") !== false && !$report3->{"oup_".$v}[0]) {
                     continue;
                 }
@@ -350,29 +355,43 @@
         $y_cnt = 12;
         for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
 
+            $ken[$wkdetail->oup_t_wk_taiin_id[$i]] = $wkdetail->oup_t_wk_plan_kensyu[$i];
+
             // 勤務員の項目の隊員デフォルト表示
             if ($wkdetail->oup_t_wk_plan_kbn[$i] == "1" && $t_cnt != 6) {
                 $t_cnt = $t_cnt+1;
+                // if (!$no) {
+                //     ${"wk_staff_id".$t_cnt} = $wkdetail->oup_t_wk_taiin_id[$i];
+                // } else {
+                //     ${"wk_staff_id".$t_cnt} = $report3->{"oup_wk_staff_id".$t_cnt}[0];
+                // }
                 if (!$no) {
                     ${"wk_staff_id".$t_cnt} = $wkdetail->oup_t_wk_taiin_id[$i];
-                } else {
-                    ${"wk_staff_id".$t_cnt} = $report3->{"oup_wk_staff_id".$t_cnt}[0];
+                    // ${"wk_staff_id".$t_cnt."_ken"} = $wkdetail->oup_t_wk_plan_kensyu[$i];
                 }
             }
             if ($wkdetail->oup_t_wk_plan_kbn[$i] == "2" && $n_cnt != 12) {
                 $n_cnt = $n_cnt+1;
+                // if (!$no) {
+                //     ${"wk_staff_id".$n_cnt} = $wkdetail->oup_t_wk_taiin_id[$i];
+                // } else {
+                //     ${"wk_staff_id".$n_cnt} = $report3->{"oup_wk_staff_id".$n_cnt}[0];
+                // }
                 if (!$no) {
                     ${"wk_staff_id".$n_cnt} = $wkdetail->oup_t_wk_taiin_id[$i];
-                } else {
-                    ${"wk_staff_id".$n_cnt} = $report3->{"oup_wk_staff_id".$n_cnt}[0];
+                    // ${"wk_staff_id".$n_cnt."_ken"} = $wkdetail->oup_t_wk_plan_kensyu[$i];
                 }
             }
             if ($wkdetail->oup_t_wk_plan_kbn[$i] == "3" && $y_cnt != 18) {
                 $y_cnt = $y_cnt+1;
+                // if (!$no) {
+                //     ${"wk_staff_id".$y_cnt} = $wkdetail->oup_t_wk_taiin_id[$i];
+                // } else {
+                //     ${"wk_staff_id".$y_cnt} = $report3->{"oup_wk_staff_id".$y_cnt}[0];
+                // }
                 if (!$no) {
                     ${"wk_staff_id".$y_cnt} = $wkdetail->oup_t_wk_taiin_id[$i];
-                } else {
-                    ${"wk_staff_id".$y_cnt} = $report3->{"oup_wk_staff_id".$y_cnt}[0];
+                    // ${"wk_staff_id".$y_cnt."_ken"} = $wkdetail->oup_t_wk_plan_kensyu[$i];
                 }
             }
         }
