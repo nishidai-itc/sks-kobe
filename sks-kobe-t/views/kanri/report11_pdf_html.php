@@ -10,6 +10,8 @@
     $w = date("w", $time);
     $weekday2 = $week[$w];
 
+    $ken[1] = "研";
+
 require_once('../../tcpdf/tcpdf.php');
 require_once('../../fpdf/src/autoload.php');
 
@@ -136,24 +138,42 @@ $pdf->MultiCell(65,30,$report->oup_etc_comment2[0],0,'',0,1,109,190);     // 備
 
 $pdf->SetFont('kozminproregular', '', 10);// 日本語フォント
 
+$pdf->Text(65, 256, $ken[$report->oup_wk_staff_id1_ken[0]]);    // 警備員1
 $pdf->Text(65, 260, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員1
+$pdf->Text(87, 256, $ken[$report->oup_wk_staff_id2_ken[0]]);    // 警備員2
 $pdf->Text(87, 260, $staffs[$report->oup_wk_staff_id2[0]]);     // 警備員2
+$pdf->Text(109, 256, $ken[$report->oup_wk_staff_id3_ken[0]]);   // 警備員3
 $pdf->Text(109, 260, $staffs[$report->oup_wk_staff_id3[0]]);    // 警備員3
+$pdf->Text(131, 256, $ken[$report->oup_wk_staff_id4_ken[0]]);   // 警備員4
 $pdf->Text(131, 260, $staffs[$report->oup_wk_staff_id4[0]]);    // 警備員4
+$pdf->Text(154, 256, $ken[$report->oup_wk_staff_id5_ken[0]]);   // 警備員5
 $pdf->Text(154, 260, $staffs[$report->oup_wk_staff_id5[0]]);    // 警備員5
+$pdf->Text(177, 256, $ken[$report->oup_wk_staff_id6_ken[0]]);   // 警備員6
 $pdf->Text(177, 260, $staffs[$report->oup_wk_staff_id6[0]]);    // 警備員6
-$pdf->Text(65, 268, $staffs[$report->oup_wk_staff_id7[0]]);     // 警備員7
-$pdf->Text(87, 268, $staffs[$report->oup_wk_staff_id8[0]]);     // 警備員8
-$pdf->Text(109, 268, $staffs[$report->oup_wk_staff_id9[0]]);    // 警備員9
-$pdf->Text(131, 268, $staffs[$report->oup_wk_staff_id10[0]]);   // 警備員10
-$pdf->Text(154, 268, $staffs[$report->oup_wk_staff_id11[0]]);   // 警備員11
-$pdf->Text(177, 268, $staffs[$report->oup_wk_staff_id12[0]]);   // 警備員12
-$pdf->Text(65, 276, $staffs[$report->oup_wk_staff_id13[0]]);    // 警備員13
-$pdf->Text(87, 276, $staffs[$report->oup_wk_staff_id14[0]]);    // 警備員14
-$pdf->Text(109, 276, $staffs[$report->oup_wk_staff_id15[0]]);   // 警備員15
-$pdf->Text(131, 276, $staffs[$report->oup_wk_staff_id16[0]]);   // 警備員16
-$pdf->Text(154, 276, $staffs[$report->oup_wk_staff_id17[0]]);   // 警備員17
-$pdf->Text(177, 276, $staffs[$report->oup_wk_staff_id18[0]]);   // 警備員18
+$pdf->Text(65, 265, $ken[$report->oup_wk_staff_id7_ken[0]]);    // 警備員7
+$pdf->Text(65, 269, $staffs[$report->oup_wk_staff_id7[0]]);     // 警備員7
+$pdf->Text(87, 265, $ken[$report->oup_wk_staff_id8_ken[0]]);    // 警備員8
+$pdf->Text(87, 269, $staffs[$report->oup_wk_staff_id8[0]]);     // 警備員8
+$pdf->Text(109, 265, $ken[$report->oup_wk_staff_id9_ken[0]]);   // 警備員9
+$pdf->Text(109, 269, $staffs[$report->oup_wk_staff_id9[0]]);    // 警備員9
+$pdf->Text(131, 265, $ken[$report->oup_wk_staff_id10_ken[0]]);  // 警備員10
+$pdf->Text(131, 269, $staffs[$report->oup_wk_staff_id10[0]]);   // 警備員10
+$pdf->Text(154, 265, $ken[$report->oup_wk_staff_id11_ken[0]]);  // 警備員11
+$pdf->Text(154, 269, $staffs[$report->oup_wk_staff_id11[0]]);   // 警備員11
+$pdf->Text(177, 265, $ken[$report->oup_wk_staff_id12_ken[0]]);  // 警備員12
+$pdf->Text(177, 269, $staffs[$report->oup_wk_staff_id12[0]]);   // 警備員12
+$pdf->Text(65, 273, $ken[$report->oup_wk_staff_id13_ken[0]]);   // 警備員13
+$pdf->Text(65, 277, $staffs[$report->oup_wk_staff_id13[0]]);    // 警備員13
+$pdf->Text(87, 273, $ken[$report->oup_wk_staff_id14_ken[0]]);   // 警備員14
+$pdf->Text(87, 277, $staffs[$report->oup_wk_staff_id14[0]]);    // 警備員14
+$pdf->Text(109, 273, $ken[$report->oup_wk_staff_id15_ken[0]]);  // 警備員15
+$pdf->Text(109, 277, $staffs[$report->oup_wk_staff_id15[0]]);   // 警備員15
+$pdf->Text(131, 273, $ken[$report->oup_wk_staff_id16_ken[0]]);  // 警備員16
+$pdf->Text(131, 277, $staffs[$report->oup_wk_staff_id16[0]]);   // 警備員16
+$pdf->Text(154, 273, $ken[$report->oup_wk_staff_id17_ken[0]]);  // 警備員17
+$pdf->Text(154, 277, $staffs[$report->oup_wk_staff_id17[0]]);   // 警備員17
+$pdf->Text(177, 273, $ken[$report->oup_wk_staff_id18_ken[0]]);  // 警備員18
+$pdf->Text(177, 277, $staffs[$report->oup_wk_staff_id18[0]]);   // 警備員18
 
 if ($_GET["act"] && $_GET["act"] == "mail") {
     // $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');

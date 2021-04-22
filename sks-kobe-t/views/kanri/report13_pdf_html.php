@@ -10,6 +10,8 @@
     $w = date("w", $time);
     $weekday2 = $week[$w];
 
+    $ken[1] = "研";
+
 require_once('../../tcpdf/tcpdf.php');
 require_once('../../fpdf/src/autoload.php');
 
@@ -66,10 +68,16 @@ $pdf->Text(47, 226, $report->oup_patrol_time2[0]);     // 巡回2
 $pdf->Text(47, 235, $report->oup_patrol_time3[0]);     // 巡回3
 $pdf->Text(47, 244, $report->oup_patrol_time4[0]);     // 巡回4
 
-$pdf->Text(85, 217, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員1
-$pdf->Text(85, 226, $staffs[$report->oup_wk_staff_id2[0]]);     // 警備員2
-$pdf->Text(85, 235, $staffs[$report->oup_wk_staff_id3[0]]);     // 警備員3
-$pdf->Text(85, 244, $staffs[$report->oup_wk_staff_id4[0]]);     // 警備員4
+$pdf->SetFont('kozminproregular', '', 10);// 日本語フォント
+
+$pdf->Text(85, 218, $ken[$report->oup_wk_staff_id1_ken[0]]);    // 警備員1
+$pdf->Text(90, 218, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員1
+$pdf->Text(85, 227, $ken[$report->oup_wk_staff_id2_ken[0]]);    // 警備員2
+$pdf->Text(90, 227, $staffs[$report->oup_wk_staff_id2[0]]);     // 警備員2
+$pdf->Text(85, 235, $ken[$report->oup_wk_staff_id3_ken[0]]);    // 警備員3
+$pdf->Text(90, 235, $staffs[$report->oup_wk_staff_id3[0]]);     // 警備員3
+$pdf->Text(85, 244, $ken[$report->oup_wk_staff_id4_ken[0]]);    // 警備員4
+$pdf->Text(90, 244, $staffs[$report->oup_wk_staff_id4[0]]);     // 警備員4
 
 $pdf->MultiCell(100,30,$report->oup_comment[0],0,'',0,1,80,158);        // 特記事項
 $pdf->MultiCell(60,30,$report->oup_etc_comment[0],0,'',0,1,120,224);    // 備考

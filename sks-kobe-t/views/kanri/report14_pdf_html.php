@@ -10,6 +10,8 @@
     $w = date("w", $time);
     $weekday2 = $week[$w];
 
+    $ken[1] = "研";
+
 require_once('../../tcpdf/tcpdf.php');
 require_once('../../fpdf/src/autoload.php');
 
@@ -47,9 +49,13 @@ $pdf->Text(182, 99, $report->oup_weather2[0]);     // 天候
 
 $pdf->Text(152, 65, $staffs[$report->oup_staff_id1[0]]);     // 担当警備士
 
+$pdf->Text(30, 127, $ken[$report->oup_wk_staff_id1_ken[0]]);    // 警備員1
 $pdf->Text(36, 127, $staffs[$report->oup_wk_staff_id1[0]]);     // 警備員1
+$pdf->Text(30, 139, $ken[$report->oup_wk_staff_id2_ken[0]]);    // 警備員2
 $pdf->Text(36, 139, $staffs[$report->oup_wk_staff_id2[0]]);     // 警備員2
+$pdf->Text(30, 151, $ken[$report->oup_wk_staff_id3_ken[0]]);    // 警備員3
 $pdf->Text(36, 151, $staffs[$report->oup_wk_staff_id3[0]]);     // 警備員3
+$pdf->Text(30, 163, $ken[$report->oup_wk_staff_id4_ken[0]]);    // 警備員4
 $pdf->Text(36, 163, $staffs[$report->oup_wk_staff_id4[0]]);     // 警備員4
 
 $pdf->Text(88, 127, $report->oup_wk_joban_time1[0]);     // 巡回1
