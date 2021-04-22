@@ -420,18 +420,19 @@ if ($report->oup_etc_comment[0] != "") {
 
     $pdf->Text(125, 38, $staffs[$report->oup_staff_id[0]]);     // 担当警備員
 
-    $pdf->SetFontSize(14);
+    $pdf->SetFontSize(9);
     $pdf->setCellHeightRatio(2.5);
     $pdf->MultiCell(180,50,$report->oup_etc_comment[0],0,'',0,1,16,50);     // コメント
 }
 
 if ($_GET["act"] && $_GET["act"] == "mail") {
-    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,6).".pdf", time()), 'F');
+    // $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/KICT_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
 
-    require_once('../../mailset.php');
+    // require_once('../../mailset.php');
 
-    echo json_encode(true);
-    exit;
+    // echo json_encode(true);
+    // exit;
 } else {
     $pdf->Output(sprintf("report1.pdf", time()), 'I');
 }
