@@ -105,6 +105,7 @@ $pdf->Text(91, 147, $report->oup_west_gate_end_time[0]);        // 西ゲート
 $pdf->Text(50, 166, $report->oup_over_time_num[0]);         // 残業者
 $pdf->Text(71, 166, $report->oup_over_start_time[0]);       // 残業者
 $pdf->Text(91, 166, $report->oup_over_end_time[0]);         // 残業者
+$pdf->MultiCell(58,30,$report->oup_over_time_name[0],0,'',0,1,42,172);     // 残業者
 
 
 if(strpos($report->oup_yard[0],'作業') !== false){
