@@ -350,17 +350,21 @@
               </div>
             </td>
             <td>
+              <input type="checkbox" class="wk" value="wk11" <?php echo !is_array($yard_on_time1) ? "checked" : "" ; ?>>
+              <input type="text" class="text" name="yard_on_time1" value="<?php echo !is_array($yard_on_time1) ? $yard_on_time1 : "" ; ?>">
               <div class="time">
-                <input type="number" class="text-center" name="yard_on_time1[0]" value="<?php echo $yard_on_time1[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="yard_on_time1[0]" value="<?php echo is_array($yard_on_time1) ? $yard_on_time1[0] : ""; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="yard_on_time1[1]" value="<?php echo $yard_on_time1[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="yard_on_time1[1]" value="<?php echo is_array($yard_on_time1) ? $yard_on_time1[1] : ""; ?>" min="0" max="59">
               </div>
             </td>
             <td>
+              <input type="checkbox" class="wk" value="wk12" <?php echo !is_array($yard_off_time1) ? "checked" : "" ; ?>>
+              <input type="text" class="text" name="yard_off_time1" value="<?php echo !is_array($yard_off_time1) ? $yard_off_time1 : "" ; ?>">
               <div class="time">
-                <input type="number" class="text-center" name="yard_off_time1[0]" value="<?php echo $yard_off_time1[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="yard_off_time1[0]" value="<?php echo is_array($yard_off_time1) ? $yard_off_time1[0] : ""; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="yard_off_time1[1]" value="<?php echo $yard_off_time1[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="yard_off_time1[1]" value="<?php echo is_array($yard_off_time1) ? $yard_off_time1[1] : ""; ?>" min="0" max="59">
               </div>
             </td>
           </tr>
@@ -388,17 +392,21 @@
               </div>
             </td>
             <td>
+              <input type="checkbox" class="wk" value="wk13" <?php echo !is_array($yard_on_time2) ? "checked" : "" ; ?>>
+              <input type="text" class="text" name="yard_on_time2" value="<?php echo !is_array($yard_on_time2) ? $yard_on_time2 : "" ; ?>">
               <div class="time">
-                <input type="number" class="text-center" name="yard_on_time2[0]" value="<?php echo $yard_on_time2[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="yard_on_time2[0]" value="<?php echo is_array($yard_on_time2) ? $yard_on_time2[0] : ""; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="yard_on_time2[1]" value="<?php echo $yard_on_time2[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="yard_on_time2[1]" value="<?php echo is_array($yard_on_time2) ? $yard_on_time2[1] : ""; ?>" min="0" max="59">
               </div>
             </td>
             <td>
+              <input type="checkbox" class="wk" value="wk14" <?php echo !is_array($yard_off_time2) ? "checked" : "" ; ?>>
+              <input type="text" class="text" name="yard_off_time2" value="<?php echo !is_array($yard_off_time2) ? $yard_off_time2 : "" ; ?>">
               <div class="time">
-                <input type="number" class="text-center" name="yard_off_time2[0]" value="<?php echo $yard_off_time2[0]; ?>" min="0" max="23">
+                <input type="number" class="text-center" name="yard_off_time2[0]" value="<?php echo is_array($yard_off_time2) ? $yard_off_time2[0] : ""; ?>" min="0" max="23">
                 <span class="">:</span>
-                <input type="number" class="text-center" name="yard_off_time2[1]" value="<?php echo $yard_off_time2[1]; ?>" min="0" max="59">
+                <input type="number" class="text-center" name="yard_off_time2[1]" value="<?php echo is_array($yard_off_time2) ? $yard_off_time2[1] : ""; ?>" min="0" max="59">
               </div>
             </td>
           </tr>
@@ -637,7 +645,7 @@
     <div class="row">
       <div class="col-1 align-self-center"><label>別<br>紙</label></div>
       <div class="col-11">
-        <textarea name="etc_comment" id="" class="w-100" cols="" rows="7" value="<?php echo $etc_comment; ?>"><?php echo $etc_comment; ?></textarea>
+        <textarea name="etc_comment" id="" class="w-100" cols="" rows="20" value="<?php echo $etc_comment; ?>"><?php echo $etc_comment; ?></textarea>
       </div>
     </div>
 
