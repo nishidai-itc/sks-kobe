@@ -36,8 +36,8 @@ $pdf->useTemplate($pdf->importPage(1));
 
 // 和暦
 $wnen = substr($report->oup_start_date[0],0,4);
-//$wnen = intval($wnen) - 2018;
-$pdf->Text(41, 68, $wnen);     // 年
+$wnen = intval($wnen) - 2018;
+$pdf->Text(39, 68, "令和".$wnen);     // 年
 $pdf->Text(62, 68, substr($report->oup_start_date[0],5,2));     // 月
 $pdf->Text(77, 68, substr($report->oup_start_date[0],8,2));     // 日
 $pdf->Text(95, 68, $weekday1);     // 曜日
@@ -46,8 +46,8 @@ $pdf->Text(116, 68, substr($report->oup_joban_time[0],0,2));     // 開始時間
 $pdf->Text(127, 68, substr($report->oup_joban_time[0],3,2));     // 開始時間
 
 $wnen = substr($report->oup_end_date[0],0,4);
-//$wnen = intval($wnen) - 2018;
-$pdf->Text(41, 75, $wnen);     // 年
+$wnen = intval($wnen) - 2018;
+$pdf->Text(39, 75, "令和".$wnen);     // 年
 $pdf->Text(62, 75, substr($report->oup_end_date[0],5,2));     // 月
 $pdf->Text(77, 75, substr($report->oup_end_date[0],8,2));     // 日
 $pdf->Text(95, 75, $weekday2);     // 曜日

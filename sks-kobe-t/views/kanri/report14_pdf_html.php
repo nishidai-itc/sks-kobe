@@ -38,8 +38,8 @@ $pdf->useTemplate($pdf->importPage(1));
 
 // 和暦
 $wnen = substr($report->oup_start_date[0],0,4);
-//$wnen = intval($wnen) - 2018;
-$pdf->Text(87, 99, $wnen);     // 年
+$wnen = intval($wnen) - 2018;
+$pdf->Text(84, 99, "令和".$wnen);     // 年
 $pdf->Text(109, 99, substr($report->oup_start_date[0],5,2));     // 月
 $pdf->Text(125, 99, substr($report->oup_start_date[0],8,2));     // 日
 $pdf->Text(143, 99, $weekday1);     // 曜日

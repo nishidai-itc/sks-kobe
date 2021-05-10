@@ -38,8 +38,10 @@ $pdf->useTemplate($pdf->importPage(1));
 
 // 和暦
 $wnen = substr($report->oup_start_date[0],0,4);
-//$wnen = intval($wnen) - 2018;
-$pdf->Text(26, 46, $wnen);     // 年
+$wnen = intval($wnen) - 2018;
+$pdf->SetFont('kozminproregular', '', 9);// 日本語フォント
+$pdf->Text(26, 47, "令和".$wnen);     // 年
+$pdf->SetFont('kozminproregular', '', 12);// 日本語フォント
 $pdf->Text(44, 46, substr($report->oup_start_date[0],5,2));     // 月
 $pdf->Text(58, 46, substr($report->oup_start_date[0],8,2));     // 日
 $pdf->Text(73, 46, $weekday1);     // 曜日
@@ -47,7 +49,10 @@ $pdf->Text(86, 46, substr($report->oup_joban_time[0],0,2));     // 開始時間
 $pdf->Text(97, 46, substr($report->oup_joban_time[0],3,2));     // 開始時間
 
 $wnen = substr($report->oup_end_date[0],0,4);
-$pdf->Text(26, 55, $wnen);     // 年
+$wnen = intval($wnen) - 2018;
+$pdf->SetFont('kozminproregular', '', 9);// 日本語フォント
+$pdf->Text(26, 56, "令和".$wnen);     // 年
+$pdf->SetFont('kozminproregular', '', 12);// 日本語フォント
 $pdf->Text(44, 55, substr($report->oup_end_date[0],5,2));     // 月
 $pdf->Text(58, 55, substr($report->oup_end_date[0],8,2));     // 日
 $pdf->Text(73, 55, $weekday2);     // 曜日
