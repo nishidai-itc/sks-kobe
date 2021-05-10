@@ -174,7 +174,11 @@ $pdf->Text(122, 265, $report->oup_night_exit_time[0]);                  // 退�
 $pdf->Text(150, 265, $staffs[$report->oup_night_staff_id[0]]);          // SKS対応者
 
 if ($_GET["act"] && $_GET["act"] == "mail") {
-    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+    // $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/L-6_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+
+    echo json_encode("L-6_".substr($report->oup_no[0],0,8)." ".date("H:i:s"));
+    exit;
 } else {
     $pdf->Output(sprintf("report13.pdf", time()), 'I');
 }

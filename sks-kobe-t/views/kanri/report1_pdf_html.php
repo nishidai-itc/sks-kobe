@@ -433,6 +433,8 @@ if ($_GET["act"] && $_GET["act"] == "mail") {
 
     // echo json_encode(true);
     // exit;
+    echo json_encode("KICT_".substr($report->oup_no[0],0,8)." ".date("H:i:s"));
+    exit;
 } else {
     $pdf->Output(sprintf("report1.pdf", time()), 'I');
 }

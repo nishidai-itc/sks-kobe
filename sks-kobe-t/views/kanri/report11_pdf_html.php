@@ -178,6 +178,9 @@ $pdf->Text(177, 277, $staffs[$report->oup_wk_staff_id18[0]]);   // 警備員18
 if ($_GET["act"] && $_GET["act"] == "mail") {
     // $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
     $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/郵船（警備）_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+
+    echo json_encode("郵船（警備）_".substr($report->oup_no[0],0,8)." ".date("H:i:s"));
+    exit;
 } else {
     $pdf->Output(sprintf("report11.pdf", time()), 'I');
 }

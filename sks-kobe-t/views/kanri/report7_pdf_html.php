@@ -60,7 +60,11 @@ $pdf->Text(43, 135, $staffs[$report->oup_staff_id[0]]);     // 作業者
 $pdf->Text(110, 255, $staffs[$report->oup_staff_id2[0]]);     // 報告者
 
 if ($_GET["act"] && $_GET["act"] == "mail") {
-    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+    // $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/新菱港運_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+
+    echo json_encode("新菱港運_".substr($report->oup_no[0],0,8)." ".date("H:i:s"));
+    exit;
 } else {
     $pdf->Output(sprintf("report7.pdf", time()), 'I');
 }

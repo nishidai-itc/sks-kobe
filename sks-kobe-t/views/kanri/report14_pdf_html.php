@@ -81,6 +81,9 @@ $pdf->MultiCell(100,30,$report->oup_comment[0],0,'',0,1,77,194);        // 特�
 if ($_GET["act"] && $_GET["act"] == "mail") {
     // $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
     $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/郵船SBC_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+
+    echo json_encode("郵船SBC_".substr($report->oup_no[0],0,8)." ".date("H:i:s"));
+    exit;
 } else {
     $pdf->Output(sprintf("report2.pdf", time()), 'I');
 }
