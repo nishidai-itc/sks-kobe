@@ -209,7 +209,7 @@ $pdf->SetXY( 108, 217 );
 $pdf->Cell(6, 6, $report->oup_picket_zan4[0], 0, 0, "R");   // 分別立哨
 
 $pdf->SetFont('kozminproregular', '', 11);// 日本語フォント
-$pdf->MultiCell(155,28,$report->oup_comment[0],0,'',0,1,32,223);     // 備考
+$pdf->MultiCell(167,28,$report->oup_comment[0],0,'',0,1,31,223);     // 備考（43文字）
 
 $pdf->SetXY( 44, 250 );
 $pdf->Cell(6, 6, $report->oup_meterb1[0], 0, 0, "R");       // 水道メーター
@@ -220,7 +220,7 @@ $pdf->Cell(6, 6, $report->oup_meterc1[0], 0, 0, "R");       // 水道メータ�
 $pdf->SetXY( 77, 260 );
 $pdf->Cell(6, 6, $report->oup_meterc2[0], 0, 0, "R");       // 水道メーター
 
-$pdf->MultiCell(155,28,$report->oup_wk_comment[0],0,'',0,1,32,270);     // コメント
+$pdf->MultiCell(61,28,$report->oup_wk_comment[0],0,'',0,1,32,270);     // コメント（30文字）
 
 $pdf->SetFont('kozminproregular', '', 9);// 日本語フォント
 
@@ -422,7 +422,7 @@ if ($report->oup_etc_comment[0] != "") {
 
     $pdf->SetFontSize(9);
     $pdf->setCellHeightRatio(2.5);
-    $pdf->MultiCell(180,50,$report->oup_etc_comment[0],0,'',0,1,16,50);     // コメント
+    $pdf->MultiCell(180,50,$report->oup_etc_comment[0],0,'',0,1,16,50);     // コメント（263文字）
 }
 
 if ($_GET["act"] && $_GET["act"] == "mail") {
