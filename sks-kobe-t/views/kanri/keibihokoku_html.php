@@ -53,6 +53,25 @@ $(function(){
 </script>
 
 <style>
+#loading {
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  opacity: 0.8;
+}
+
+#loading .loadingMsg {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 140px;
+  background: url("../../load.gif") center center no-repeat;
+}
+
 .ms-parent {
     padding:0;
 }
@@ -130,7 +149,7 @@ $(function(){
             <?php } ?>
           </select>
         </div>
-        <div class="col-md-2 col-lg-1 align-self-center"><button type="submit" class="btn btn-info" role="button" name="search">検索</button></div>
+        <div class="col-md-2 col-lg-1 align-self-center"><button type="submit" class="search btn btn-info" role="button" name="search">検索</button></div>
         <div class="col-md-3 col-lg-2 align-self-center"><a href="menu.php" class="btn btn-secondary btn-block" role="button" aria-pressed="true">メニューに戻る</a></div>
       </div>  
       <?php /* ?>
@@ -236,7 +255,7 @@ $(function(){
               <td bgcolor="FFDCA5">勤務場所</td>
               <td bgcolor="FFDCA5">契約先</td>
               <td bgcolor="FFDCA5">PDF</td>
-              <td class="px-3" bgcolor="FFDCA5">メール送信</td>
+              <td class="px-3" bgcolor="FFDCA5">メール送信日</td>
             </tr>
             <?php if (isset($report->oup_no)) { ?>
               <?php for ($i=0;$i<count($report->oup_no);$i++) { ?>
@@ -274,7 +293,8 @@ $(function(){
                     <td <?php print($color); ?> align="left"><?php print($report_contract[$report->oup_name_no[$i]]); ?></td>
                     <td <?php print($color); ?>><a href="report<?php print($report->oup_table[$i]); ?>_pdf.php?no=<?php echo $report->oup_no[$i]; ?>" target="_blank"><i class="fas fa-file-pdf fa-2x"></i></a></td>
                     <td <?php print($color); ?>>
-                      <?php echo $reportMail->oup_t_report_kanri_no && in_array($report->oup_no[$i],$reportMail->oup_t_report_kanri_no) ? "<font color='blue'>済</font>" : "未"; ?>
+                      <?php //echo $reportMail->oup_t_report_kanri_no && in_array($report->oup_no[$i],$reportMail->oup_t_report_kanri_no) ? "<font color='blue'>済</font>" : "未"; ?>
+                      <?php echo $sendDate[$report->oup_no[$i]] ? $sendDate[$report->oup_no[$i]] : "未"; ?>
                     </td>
                   </tr>
 
@@ -450,42 +470,27 @@ $(function(){
 
 </html>
 <script type="text/javascript">
-  /*
-  $('.mail').click(function(){
-    var name = $(this).next().next().val()
-    name = name.split(',')
-
-    if (!confirm(name[1]+'を送信します。よろしいですか？')) return false
-    
-    var no = $(this).next().val()
-    no = no.split(',')
-
-    if (no[1] != '1') return false
-
-    $.ajax({
-      type: 'get',
-      url: 'report'+no[1]+'_pdf.php',
-      data: {
-        act: 'mail',
-        no: no[0],
-      },
-      dataType: 'json'
-    }).done(function(data){
-      console.log(data)
-      if (data) {
-        alert('メール送信完了しました。')
-      }
-    }).fail(function(data){
-      alert('通信エラー')
-    })
-    // console.log(no)
-  })
-  */
+  function dispLoading(msg){
+    // 引数なし（メッセージなし）を許容
+    if( msg == undefined ){
+      msg = ""
+    }
+    // 画面表示メッセージ
+    var dispMsg = "<div class='loadingMsg'>" + msg + "</div>"
+    // ローディング画像が表示されていない場合のみ出力
+    if($("#loading").length == 0){
+      $("body").append("<div id='loading'>" + dispMsg + "</div>")
+    }
+  }
+  function removeLoading(){
+    $("#loading").remove()
+  }
 
   var dataList = {
     act: 'reportGchk',
     startdate: $('[name="startday"]').val(),
     enddate: $('[name="endday"]').val(),
+    genba: $('#genba_id').val()
   }
 
   $('.mail_send').click(async function(){
@@ -494,8 +499,9 @@ $(function(){
     // 順番に処理
     reAjax(dataList)
     .then(async function(data){
-      // console.log(data)
+      // console.log('OK')
       if (!data || data == 'mail') {
+        removeLoading()
         return new Promise(() => {
           throw data == 'mail' ? '既に送信済です。' : '警備報告書がないかGチェック済のものがありません。'
         })
@@ -505,13 +511,13 @@ $(function(){
     })
     .then(async function(data){
       const reportList = data
-      var datas = []
+      // var datas = []
       var flg = []
+      // PDF保存
       for (report in reportList) {
         for (report2 of reportList[report]) {
           var report2 = report2.split(',')
-          // if (Number(report2[1]) !== 1) {continue}
-          datas.push(report2[0]+','+report2[1])
+          // datas.push(report2[0]+','+report2[1])
           if (Number(report2[1]) === 8 || Number(report2[1]) === 9 || Number(report2[1]) === 10) {
             flg.push(report2[0].substr(0,8))
             continue
@@ -520,116 +526,89 @@ $(function(){
         }
       }
 
-      // 警備報告書（A.B.誘導）
+      // 警備報告書（A.B.誘導）PDF保存
       if (flg.length) {
         flg = Array.from(new Set(flg))    // 重複削除
         for (report of flg) {
-          await ajaxController({act: 'reportSend',date: report})
+          await ajaxController({act: 'reportSend',date: report,genba: $('#genba_id').val()})
         }
       }
 
-      await ajaxController({act: 'addUpReportMail',no: datas})
-      return data
-
-      /*
-      const reportList = data
-      for (report of reportList) {
-        var report = report.split(',')
-        if (Number(report[1]) !== 1) {continue;}    // とりあえずKICTのみ
-        await reportSend(report[1],{act: 'mail',no: report[0]})
-      }
-      await ajaxController({act: 'addUpReportMail',no: data})
-      */
-    })
-    // メール送信
-    .then(async function(data){
+      // メール送信
       for (list in data) {
         await ajaxController({act: 'mailSend',dataList: {id: list ,data: data[list]}})
       }
 
-      return '送信完了しました。'
+      // // 送信情報登録
+      // await ajaxController({act: 'addUpReportMail',no: datas})
+      // return data
+
+      return '完了しました。'
+      
     })
     // 完了をアラート
     .then(async function(data){
+      removeLoading()
       await alertMsg(data)
-    })
-    .then(async function(data){
-      $('form').submit()
+      // await conLog(4)
+      await formSubmit()
     })
     // エラーがあればアラート表示
     .catch(async function(data){
+      removeLoading()
       await alertMsg(data)
     })
-    
-    
-    /*await $.ajax({
-      type: 'post',
-      url: './ajaxController.php',
-      data: {
-        act: 'reportGchk',
-        startdate: $('[name="startday"]').val(),
-        enddate: $('[name="endday"]').val(),
-      },
-      dataType: 'json'
-    }).done(async function(data){
-      // console.log(data)
-      if (!data) {
-        alert('警備報告書がないかGチェック済のものがありません。')
-        return
-      }
-
-      const reportList = data
-      for (report of reportList) {
-        var report = report.split(',')
-
-        if (Number(report[1]) !== 1) {continue;}
-
-        await reportSend(report[1],{act: 'mail',no: report[0]})
-      }
-
-      await ajaxController({act: 'addUpReportMail',no: data})
-
-      alert('送信完了しました。')
-
-    }).fail(async function(data){
-      alert('通信エラー')
-    })
-    */
-
   })
 
   async function reportSend(urlNo,dataList) {
-    $.ajax({
+    await $.ajax({
       type: 'get',
       url: 'report'+urlNo+'_pdf.php',
       data: dataList,
       dataType: 'json'
     }).done(function(data){
+      console.log(dataList.act,data)
+    }).fail(function(data){
+      console.log(data)
     })
   }
 
   async function ajaxController(dataList) {
-    $.ajax({
+    await $.ajax({
       type: 'post',
       url: 'ajaxController.php',
       data: dataList,
       dataType: 'json'
     }).done(function(data){
-      // console.log(data)
+      console.log(dataList.act,data)
+    }).fail(function(data){
+      console.log(data)
     })
   }
 
   async function reAjax(dataList) {
-    return $.ajax({
+    dispLoading('処理中...')
+    return await $.ajax({
       type: 'post',
       url: 'ajaxController.php',
       data: dataList,
       dataType: 'json'
     }).done(function(data){
+      console.log(dataList.act,data)
+    }).fail(function(data){
+      console.log(data)
     })
   }
 
   async function alertMsg(msg) {
     alert(msg)
+  }
+
+  async function formSubmit() {
+    $('form').submit()
+  }
+
+  async function conLog(num) {
+    console.log(num)
   }
 </script>
