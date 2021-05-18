@@ -27,7 +27,7 @@
                  . ",   t_report_genba_id "
                  . "FROM "
                  .     "t_report_name "
-                 . "ORDER BY t_report_table ";
+                 . "ORDER BY t_report_disp ";
 
             // 文字化け防止
             $db->set_charset();
