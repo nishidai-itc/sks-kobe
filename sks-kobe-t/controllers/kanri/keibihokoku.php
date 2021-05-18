@@ -145,7 +145,7 @@
     // var_dump($reportMail->oup_t_report_kanri_no);
     if ($reportMail->oup_t_report_no) {
         for ($i=0;$i<count($reportMail->oup_t_report_no);$i++) {
-            $sendDate[$reportMail->oup_t_report_kanri_no[$i]] = substr($reportMail->oup_t_report_send_date[$i],5,2)."/".substr($reportMail->oup_t_report_send_date[$i],8,2);
+            $sendDate[$reportMail->oup_t_report_kanri_no[$i]] = substr($reportMail->oup_t_report_send_date[$i],5,2)."/".substr($reportMail->oup_t_report_send_date[$i],8,2)."　".$reportMail->oup_t_report_send_name[$i]." 様<br>".$reportMail->oup_t_report_send_mail[$i];
         }
     }
 

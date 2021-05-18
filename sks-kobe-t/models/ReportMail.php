@@ -26,7 +26,11 @@
             $sql = "SELECT "
                 .     "t_report_no "
                 . ",   t_report_kanri_no "
+                . ",   t_report_plan_date "
                 . ",   t_report_send_date "
+                . ",   t_report_send_time "
+                . ",   t_report_send_mail "
+                . ",   t_report_send_name "
                 . ",   t_report_id "
                 . "FROM "
                 .     "t_report_mail "
@@ -34,6 +38,29 @@
 
                 if ($this->inp_t_report_kanri_no) {
                     $sql .= "AND t_report_kanri_no = '" . $db->escape_string($this->inp_t_report_kanri_no) . "' ";
+                }
+                if ($this->inp_t_report_plan_date) {
+                    /*
+                    $sql .= "AND t_report_kanri_no = '" . $db->escape_string($this->inp_t_report_plan_date) . "%' ";
+                    */
+                    $sql .= "AND t_report_plan_date = '" . $db->escape_string($this->inp_t_report_plan_date) . "' ";
+                }
+                /*
+                if ($this->inp_t_report_start_plan_date || $this->inp_t_report_end_plan_date) {
+                    if ($this->inp_t_report_start_plan_date && $this->inp_t_report_end_plan_date) {
+                        $sql .= "AND t_report_kanri_no LIKE '" . $db->escape_string($this->inp_t_report_start_plan_date) . "%' or t_report_kanri_no LIKE '" . $db->escape_string($this->inp_t_report_end_plan_date) . "%'";
+                    } elseif ($this->inp_t_report_start_plan_date) {
+                        $sql .= "AND t_report_kanri_no LIKE '" . $db->escape_string($this->inp_t_report_start_plan_date) . "%' ";
+                    } else {
+                        $sql .= "AND t_report_kanri_no LIKE '" . $db->escape_string($this->inp_t_report_end_plan_date) . "%' ";
+                    }
+                }
+                */
+                if ($this->inp_t_report_start_send_date) {
+                    $sql .= "AND t_report_send_date >= '" . $db->escape_string($this->inp_t_report_start_send_date) . "' ";
+                }
+                if ($this->inp_t_report_end_send_date) {
+                    $sql .= "AND t_report_send_date <= '" . $db->escape_string($this->inp_t_report_end_send_date) . "' ";
                 }
                 if ($this->inp_t_report_id) {
                 $sql .= "AND t_report_id = '" . $db->escape_string($this->inp_t_report_id) . "' ";
@@ -50,15 +77,19 @@
             // 文字化け防止
             $db->set_charset();
 
-            //var_dump($sql);
+            // var_dump($sql);
 
             // プリペアドクエリを実行する
             if ($this->result = $db->query($sql)) {
                 while ($row = mysqli_fetch_row($this->result)) {
                     $i = 0;
                     $this->oup_t_report_no[]             = $row[$i++];
-                    $this->oup_t_report_kanri_no[]             = $row[$i++];
+                    $this->oup_t_report_kanri_no[]       = $row[$i++];
+                    $this->oup_t_report_plan_date[]      = $row[$i++];
                     $this->oup_t_report_send_date[]      = $row[$i++];
+                    $this->oup_t_report_send_time[]      = $row[$i++];
+                    $this->oup_t_report_send_mail[]      = $row[$i++];
+                    $this->oup_t_report_send_name[]      = $row[$i++];
                     $this->oup_t_report_id[]             = $row[$i++];
                 }
 
@@ -83,15 +114,39 @@
                 . "( "
                 // .     "t_report_no "
                 .     "t_report_kanri_no "
+                . ",   t_report_plan_date "
                 . ",   t_report_send_date "
+                . ",   t_report_send_time "
+                . ",   t_report_send_mail "
+                . ",   t_report_send_name "
                 . ",   t_report_id "
                 . ") "
                 . "VALUES "
                 . "( ";
                 // $sql .= "    '".$this->inp_t_report_no."'";
                 $sql .= "    '".$this->inp_t_report_kanri_no."'";
+                if ($this->inp_t_report_plan_date) {
+                    $sql .= ",    '".$this->inp_t_report_plan_date."'";
+                } else {
+                    $sql .= ",    null ";
+                }
                 if ($this->inp_t_report_send_date) {
                     $sql .= ",    '".$this->inp_t_report_send_date."'";
+                } else {
+                    $sql .= ",    null ";
+                }
+                if ($this->inp_t_report_send_time) {
+                    $sql .= ",    '".$this->inp_t_report_send_time."'";
+                } else {
+                    $sql .= ",    null ";
+                }
+                if ($this->inp_t_report_send_mail) {
+                    $sql .= ",    '".$this->inp_t_report_send_mail."'";
+                } else {
+                    $sql .= ",    null ";
+                }
+                if ($this->inp_t_report_send_name) {
+                    $sql .= ",    '".$this->inp_t_report_send_name."'";
                 } else {
                     $sql .= ",    null ";
                 }
@@ -134,6 +189,9 @@
                 . "    t_report_no = '" . $this->inp_t_report_no . "' ";
                 if ($this->inp_t_report_id) {
                     $sql .= ",   t_report_id = '" . $db->escape_string($this->inp_t_report_id) . "' ";
+                }
+                if ($this->inp_t_report_plan_date) {
+                    $sql .= ",   t_report_plan_date = '" . $db->escape_string($this->inp_t_report_plan_date) . "' ";
                 }
                 if ($this->inp_t_report_send_date) {
                     $sql .= ",   t_report_send_date = '" . $db->escape_string($this->inp_t_report_send_date) . "' ";
