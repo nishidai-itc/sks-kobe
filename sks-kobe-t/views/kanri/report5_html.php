@@ -488,7 +488,7 @@
                       <div class="col-md-4 col-xl-3">
                         <div class="row">
                           <div class="col-12 pr-0">
-                            <select name="wk_staff_id<?php echo $j+$i*3 ; ?>_kbn" id="" class="w-100">
+                            <select name="wk_staff_id<?php echo $j+$i*3 ; ?>_kbn" id="" class="w-100" onchange="kinmu('<?= $j+$i*3 ?>','kbn',$(this));">
                               <option value=""></option>
                               <?php for ($k=1;$k<=count($kinmu_kbn);$k++) { ?>
                               <option value="<?php echo $k; ?>" <?php echo $k == ${"wk_staff_id".($j+($i*3))."_kbn"} ? "selected" : ""; ?>><?php echo $kinmu_kbn[$k]; ?></option>
@@ -496,7 +496,7 @@
                             </select>
                           </div>
                           <div class="col-12 pr-0">
-                            <select name="wk_staff_id<?php echo $j+$i*3 ; ?>_ken" id="" class="w-100">
+                            <select name="wk_staff_id<?php echo $j+$i*3 ; ?>_ken" id="" class="w-100" onchange="kinmu('<?= $j+$i*3 ?>','ken',$(this));">
                               <option value=""></option>
                               <option value="1" <?php echo ${"wk_staff_id".($j+($i*3))."_ken"} == "1" ? "selected" : ""; ?>>研</option>
                             </select>
@@ -505,7 +505,7 @@
                       </div>
                       <div class="col-md-8 col-xl-9 pl-0">
                         <!-- <label><?php echo $wk_kbn[${"wk_staff_id".($j+$i*3)}].$wk_ken[${"wk_staff_id".($j+$i*3)}] ; ?></label> -->
-                        <select name="wk_staff_id<?php echo $j+$i*3 ; ?>" id="wk_staff_id<?php echo $j+$i*3 ; ?>" class="w-75 h-100">
+                        <select name="wk_staff_id<?php echo $j+$i*3 ; ?>" id="wk_staff_id<?php echo $j+$i*3 ; ?>" class="w-75 h-100" onchange="kinmu('<?= $j+$i*3 ?>','staff',$(this));">
                           <option value=""></option>
                           <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
                           <?php for ($k=0;$k<count($wkdetail->oup_t_wk_detail_no);$k++) { ?>
@@ -767,6 +767,58 @@
       $(this).children().eq(2).val(patrolList[kbn][key+1][1])
     })
   })
+
+  // onchangeイベント強制発動（ページ読み込み時）
+  for (var i=1;i<=9;i++) {
+    kinmu(i,'staff','')
+  }
+  // 勤務員、勤務区分、研修変更時勤務予定とチェック
+  async function kinmu(no,key,val) {
+    var name = val ? val.attr('name') : 'wk_staff_id'+no
+    name = name.split(no)
+    
+    var kinmuList = {
+      act: 'kinmuCheck',
+      date: $('[name="start_date"]').val(),
+      kbn: $('[name="'+name[0]+no+'_kbn"]').val(),
+      ken: $('[name="'+name[0]+no+'_ken"]').val(),
+      id: $('[name="'+name[0]+no+'"]').val(),
+    }
+
+    if (key == 'staff' && !kinmuList.id) {
+      $('[name="'+name[0]+no+'_kbn"]').removeClass('bg-warning')
+      $('[name="'+name[0]+no+'_ken"]').removeClass('bg-warning')
+      return false
+    }
+    if (!kinmuList.id) return false
+    
+    ajaxPost(kinmuList)
+    .then(function(data){
+      if (kinmuList.kbn != data.kbn) {
+        $('[name="'+name[0]+no+'_kbn"]').addClass('bg-warning')
+      } else {
+        $('[name="'+name[0]+no+'_kbn"]').removeClass('bg-warning')
+      }
+      if (kinmuList.ken != data.ken) {
+        $('[name="'+name[0]+no+'_ken"]').addClass('bg-warning')
+      } else {
+        $('[name="'+name[0]+no+'_ken"]').removeClass('bg-warning')
+      }
+    })
+  }
+
+  async function ajaxPost(list) {
+    return await $.ajax({
+      url: 'ajaxController.php',
+      type: 'post',
+      data: list,
+      dataType: 'json'
+    }).done(function(data){
+      console.log(data)
+    }).fail(function(data){
+      alert('通信エラー')
+    })
+  }
 
   $('.temp, .regist').click(function(){
     if (!confirm('この内容で登録します。よろしいですか？')) return false
