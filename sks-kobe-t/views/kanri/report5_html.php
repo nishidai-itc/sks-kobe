@@ -445,6 +445,11 @@
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless">
+          <tr>
+            <td colspan="3"></td>
+            <td colspan="3"><div class="message text-danger"></div></td>
+          </tr>
+
           <?php for ($i=0;$i<3;$i++) { ?>
           <tr>
             <?php if ($i == 0) { ?>
@@ -774,6 +779,8 @@
   }
   // 勤務員、勤務区分、研修変更時勤務予定とチェック
   async function kinmu(no,key,val) {
+    var message = $('.message').val()
+
     var name = val ? val.attr('name') : 'wk_staff_id'+no
     name = name.split(no)
     
@@ -788,11 +795,13 @@
     if (key == 'staff' && !kinmuList.id) {
       $('[name="'+name[0]+no+'_kbn"]').removeClass('bg-warning')
       $('[name="'+name[0]+no+'_ken"]').removeClass('bg-warning')
+
+      // await messageControl()
       return false
     }
     if (!kinmuList.id) return false
     
-    ajaxPost(kinmuList)
+    await ajaxPost(kinmuList)
     .then(function(data){
       if (kinmuList.kbn != data.kbn) {
         $('[name="'+name[0]+no+'_kbn"]').addClass('bg-warning')
@@ -805,6 +814,8 @@
         $('[name="'+name[0]+no+'_ken"]').removeClass('bg-warning')
       }
     })
+
+    // await messageControl()
   }
 
   async function ajaxPost(list) {
@@ -818,6 +829,27 @@
     }).fail(function(data){
       alert('通信エラー')
     })
+  }
+
+  async function messageControl() {
+    textFlg = false
+
+    for (var i=1;i<=9;i++) {
+      var kbn = $('[name="wk_staff_id'+i+'_kbn"]')
+      var ken = $('[name="wk_staff_id'+i+'_ken"]')
+      
+      // if (!$('[name="wk_staff_id'+i+'"]').val()) continue
+
+      if (kbn.hasClass('bg-warning') || ken.hasClass('bg-warning')) {
+        textFlg = true
+      }
+    }
+
+    if (textFlg) {
+      $('.message').text('勤務予定と合致しない隊員があります。')
+    } else {
+      $('.message').text('')
+    }
   }
 
   $('.temp, .regist').click(function(){
