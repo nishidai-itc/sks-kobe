@@ -60,7 +60,9 @@ $pdf->Text(62, 80, substr($report->oup_wk_start_time1[0],3,2));     // 待機場
 $pdf->Text(83, 80, substr($report->oup_wk_end_time1[0],0,2));       // 待機場B　早出
 $pdf->Text(93, 80, substr($report->oup_wk_end_time1[0],3,2));       // 待機場B　早出
 
-$pdf->Text(115, 80, $report->oup_wk_start_time2[0]." ～ ".$report->oup_wk_end_time2[0]);     // 日本港運
+if ($report->oup_wk_start_time2[0] || $report->oup_wk_end_time2[0]) {
+    $pdf->Text(115, 80, $report->oup_wk_start_time2[0]." ～ ".$report->oup_wk_end_time2[0]);     // 日本港運
+}
 
 if ($report->oup_result1[0]=="1") {
     $pdf->Circle( 154, 90, 5, 0, 360, "D");     // 作業結果(有)
