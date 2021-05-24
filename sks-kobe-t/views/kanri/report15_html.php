@@ -216,7 +216,7 @@
                     <td class="w-100 py-2 pl-3">
                       <div class="row">
                         <div class="col-12"><label>発見内容</label></div>
-                        <div class="col-12"><textarea name="" id="" class="w-100" cols="" rows="4" name="dis_contents" value="<?= $dis_contents ?>"><?= $dis_contents ?></textarea></div>
+                        <div class="col-12"><textarea class="w-100" cols="" rows="4" name="dis_contents" value="<?= $dis_contents ?>"><?= $dis_contents ?></textarea></div>
                       </div>
                     </td>
                   </tr>
@@ -225,7 +225,7 @@
                     <td class="w-100 py-2 pl-3">
                       <div class="row">
                         <div class="col-12"><label>その他何かあれば記載してください</label></div>
-                        <div class="col-12"><textarea name="" id="" class="w-100" cols="" rows="6" name="etc_contents" value="<?= $etc_contents ?>"><?= $etc_contents ?></textarea></div>
+                        <div class="col-12"><textarea class="w-100" cols="" rows="6" name="etc_contents" value="<?= $etc_contents ?>"><?= $etc_contents ?></textarea></div>
                       </div>
                     </td>
                   </tr>
@@ -242,7 +242,7 @@
                     <td class="w-100 pl-3">
                       <div class="row">
                         <div class="col-12"><label><?= $checkCon3[$key] ?></label></div>
-                        <div class="col-12"><textarea name="" id="" class="w-100" cols="" rows="3" name="wharf_contents<?= intval($key)-1 ?>" value="<?= ${"wharf_contents".(intval($key)-1)} ?>"><?= ${"wharf_contents".(intval($key)-1)} ?></textarea></div>
+                        <div class="col-12"><textarea class="w-100" cols="" rows="3" name="wharf_contents<?= intval($key)-1 ?>" value="<?= ${"wharf_contents".(intval($key)-1)} ?>"><?= ${"wharf_contents".(intval($key)-1)} ?></textarea></div>
                       </div>
                     </td>
                   </tr>
