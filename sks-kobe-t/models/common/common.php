@@ -171,5 +171,13 @@
 			$d = $m[1]; $f = $m[2]; $b = "$m[3].$m[4]";
 			return($d + ($f * 60 + $b) / 3600);
 		}
+
+        function dateSeparate($val) {
+            if (!$val) {
+                return $val;
+            } else {
+                return substr($val,0,4).".".substr($val,4,2).".".substr($val,6,2);
+            }
+        }
     }
 ?>

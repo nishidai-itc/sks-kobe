@@ -91,7 +91,7 @@ $pdf->MultiCell(107,28,$report->oup_comment[0],0,'',0,1,23,225);     // 備考
 
 if ($_GET["act"] && $_GET["act"] == "mail") {
     // $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
-    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/三菱倉庫C5_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/三菱倉庫C5 ".$common->dateSeparate(substr($report->oup_no[0],0,8)).".pdf", time()), 'F');
 
     echo json_encode("三菱倉庫C5_".substr($report->oup_no[0],0,8)." ".date("H:i:s"));
     exit;

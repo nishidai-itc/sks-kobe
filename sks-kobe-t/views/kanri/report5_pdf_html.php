@@ -258,7 +258,7 @@ $pdf->Text(183, 274, $ken[$report->oup_wk_staff_id9_ken[0]]);   // 研
 
 if ($_GET["act"] && $_GET["act"] == "mail") {
     // $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/report".$report->oup_table[0]."_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
-    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/三菱倉庫C4_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+    $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/三菱倉庫C4 ".$common->dateSeparate(substr($report->oup_no[0],0,8)).".pdf", time()), 'F');
 
     echo json_encode("三菱倉庫C4_".substr($report->oup_no[0],0,8)." ".date("H:i:s"));
     exit;

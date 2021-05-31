@@ -93,7 +93,7 @@ $pdf->MultiCell(165,30,$report->oup_comment[0],0,'',0,1,23,245);     // 備考
 // }
 if ($_GET["act2"]) {
     if (($_GET["act2"] == "first" && $_GET["cnt"] == "1") || ($_GET["act2"] == "end" && ($_GET["cnt"] == "2" || $_GET["cnt"] == "3"))) {
-        $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/警備報告書（A.B.誘導）_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
+        $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/警備報告書（A.B.誘導） ".$common->dateSeparate(substr($report->oup_no[0],0,8)).".pdf", time()), 'F');
     }
 } else {
     $pdf->Output(sprintf("report2.pdf", time()), 'I');
