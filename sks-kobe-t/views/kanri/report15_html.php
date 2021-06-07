@@ -385,7 +385,7 @@
       type:"post",
       data: {
         act: 'gchk',
-        no: $('[name="start_date"]').val().replace(/-/g,'')+'1'
+        no: $('[name="start_date"]').val().replace(/-/g,'')+'15'
       },
       dataType:"json"
     }).done(function(data){
