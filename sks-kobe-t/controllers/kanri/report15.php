@@ -277,18 +277,18 @@
 
     $kbnMark                          = array("1"=>"泊","2"=>"日","3"=>"夜");
 
-    // 隊員取得
-    if ($wkdetail->oup_t_wk_detail_no) {
-        $cnt = 0;
-        for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
-            // 勤務員の項目の隊員デフォルト表示
-            if ($cnt != 10) {
-                $cnt = $cnt + 1;
-                // データがある場合は取得したデータを、新規は予定が入っている隊員を表示
-                ${"patrol_staff_id".$cnt}         = $no ? ${"patrol_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
-            }
-        }
-    }
+    // // 隊員取得
+    // if ($wkdetail->oup_t_wk_detail_no) {
+    //     $cnt = 0;
+    //     for ($i=0;$i<count($wkdetail->oup_t_wk_detail_no);$i++) {
+    //         // 勤務員の項目の隊員デフォルト表示
+    //         if ($cnt != 10) {
+    //             $cnt = $cnt + 1;
+    //             // データがある場合は取得したデータを、新規は予定が入っている隊員を表示
+    //             ${"patrol_staff_id".$cnt}         = $no ? ${"patrol_staff_id".$cnt} : $wkdetail->oup_t_wk_taiin_id[$i];
+    //         }
+    //     }
+    // }
 
 ?>
 <?php
