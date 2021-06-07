@@ -47,16 +47,16 @@ $pdf->Text(67, 29, "(".$weekday1.")");     // 曜日
 
 $pdf->SetFont('kozminproregular', '', 8);// 日本語フォント
 
-$pdf->Text(92, 34, $staffs[$report->oup_patrol_staff_id1[0]]);     // 巡回者氏名
-$pdf->Text(112, 34, $staffs[$report->oup_patrol_staff_id2[0]]);    // 巡回者氏名1
-$pdf->Text(132, 34, $staffs[$report->oup_patrol_staff_id3[0]]);     // 巡回者氏名1
-$pdf->Text(152, 34, $staffs[$report->oup_patrol_staff_id4[0]]);    // 警備員2
-$pdf->Text(171, 34, $staffs[$report->oup_patrol_staff_id5[0]]);     // 警備員2
-$pdf->Text(190, 34, $staffs[$report->oup_patrol_staff_id6[0]]);    // 警備員3
-$pdf->Text(207, 34, $staffs[$report->oup_patrol_staff_id7[0]]);     // 警備員3
-$pdf->Text(226, 34, $staffs[$report->oup_patrol_staff_id8[0]]);    // 警備員4
-$pdf->Text(244, 34, $staffs[$report->oup_patrol_staff_id9[0]]);     // 警備員4
-$pdf->Text(263, 34, $staffs[$report->oup_patrol_staff_id10[0]]);     // 警備員4
+$pdf->Text(89, 34, $staffs[$report->oup_patrol_staff_id1[0]]);     // 巡回者氏名
+$pdf->Text(109, 34, $staffs[$report->oup_patrol_staff_id2[0]]);    // 巡回者氏名1
+$pdf->Text(129, 34, $staffs[$report->oup_patrol_staff_id3[0]]);     // 巡回者氏名1
+$pdf->Text(149, 34, $staffs[$report->oup_patrol_staff_id4[0]]);    // 警備員2
+$pdf->Text(169, 34, $staffs[$report->oup_patrol_staff_id5[0]]);     // 警備員2
+$pdf->Text(187, 34, $staffs[$report->oup_patrol_staff_id6[0]]);    // 警備員3
+$pdf->Text(205, 34, $staffs[$report->oup_patrol_staff_id7[0]]);     // 警備員3
+$pdf->Text(223, 34, $staffs[$report->oup_patrol_staff_id8[0]]);    // 警備員4
+$pdf->Text(242, 34, $staffs[$report->oup_patrol_staff_id9[0]]);     // 警備員4
+$pdf->Text(260, 34, $staffs[$report->oup_patrol_staff_id10[0]]);     // 警備員4
 
 $pdf->SetFont('kozminproregular', '', 9);// 日本語フォント
 
