@@ -106,6 +106,7 @@ $pdf->MultiCell(70,10,$report->oup_wharf_contents4[0],0,'',0,1,205,104);        
 $pdf->MultiCell(70,10,$report->oup_wharf_contents5[0],0,'',0,1,205,115);        // 発見内容
 $pdf->MultiCell(70,10,$report->oup_wharf_contents6[0],0,'',0,1,205,127);        // 発見内容
 $pdf->MultiCell(70,10,$report->oup_wharf_contents7[0],0,'',0,1,205,138);        // 発見内容
+$pdf->MultiCell(70,10,$report->oup_comment[0],0,'',0,1,205,150);                // コメント
 
 if ($_GET["act"] && $_GET["act"] == "mail") {
     $pdf->Output(sprintf($common->rootpath."/pdf/pdf_file/KICTチェックシート_".substr($report->oup_no[0],0,8).".pdf", time()), 'F');
