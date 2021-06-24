@@ -33,6 +33,7 @@
         ${"sensor_select".$i}               = null;
         ${"camera_select".$i}               = null;
     }
+    $comment                                = null;
     $select = array("1"=>"有","2"=>"無");
     $dis_staff_id                           = null;
     $dis_place                              = null;

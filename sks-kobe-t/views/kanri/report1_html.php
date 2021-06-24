@@ -25,6 +25,15 @@
 .w-45{
   width: 45% !important;
 }
+
+#etc_comment {
+  word-break: break-all;        /* 元記事と同じ */
+  overflow-wrap: break-word;    /* 〃 */
+  word-wrap: break-word;        /* 〃 */
+  line-break: anywhere;         /* 見慣れない。 */
+  white-space: pre-wrap;        /* 任意。詳細は後述 */
+  white-space: break-spaces;    /* 見慣れない。但し、これも任意 */
+}
 </style>
 
 <body>
@@ -643,10 +652,24 @@
     <hr>
 
     <div class="row">
+      <table class="col-12 table table-borderless table-responsive">
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-lg-1 align-self-center">別紙</div>
+              <div class="col-lg-11">
+                <textarea name="etc_comment" id="etc_comment" class="p-0" style="width: 910px;" cols="56" rows="20" value="<?php echo $etc_comment; ?>"><?php echo $etc_comment; ?></textarea>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <?php /* ?>
       <div class="col-1 align-self-center"><label>別<br>紙</label></div>
       <div class="col-11">
-        <textarea name="etc_comment" id="" class="w-100" cols="" rows="20" value="<?php echo $etc_comment; ?>"><?php echo $etc_comment; ?></textarea>
+        <textarea name="etc_comment" id="" class="" style="width: 910px;" cols="" rows="20" value="<?php echo $etc_comment; ?>"><?php echo $etc_comment; ?></textarea>
       </div>
+      <?php */ ?>
     </div>
 
     <input type="hidden" name="no" value="<?php echo $no; ?>">

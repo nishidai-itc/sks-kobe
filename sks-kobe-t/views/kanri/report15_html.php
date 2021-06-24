@@ -247,6 +247,14 @@
                     </td>
                   </tr>
                   <?php } ?>
+                  <tr>
+                    <td class="w-100 pl-3">
+                      <div class="row">
+                        <div class="col-12"><label>コメント</label></div>
+                        <div class="col-12"><textarea class="w-100" cols="" rows="3" name="comment" value="<?= $comment ?>"><?= $comment ?></textarea></div>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </td>

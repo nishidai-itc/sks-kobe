@@ -110,7 +110,7 @@
             "patrol_staff_id4","patrol_time4","sensor_select4","camera_select4","patrol_staff_id5","patrol_time5","sensor_select5","camera_select5","patrol_staff_id6","patrol_time6","sensor_select6","camera_select6",
             "patrol_staff_id7","patrol_time7","sensor_select7","camera_select7","patrol_staff_id8","patrol_time8","sensor_select8","camera_select8","patrol_staff_id9","patrol_time9","sensor_select9","camera_select9",
             "patrol_staff_id10","patrol_time10","sensor_select10","camera_select10","dis_staff_id","dis_date","dis_place","dis_contents","etc_contents","wharf_contents1","wharf_contents2","wharf_contents3","wharf_contents4",
-            "wharf_contents5","wharf_contents7","wharf_contents7",
+            "wharf_contents5","wharf_contents6","wharf_contents7","comment",
         );
 
         public static $reportkanri = array("no","plan_date","table"/*,"table_no"*/,"gchk","name_no","kbn");
