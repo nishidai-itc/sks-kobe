@@ -151,6 +151,19 @@
                 }
             }
 
+            if ($report->oup_genba_id2[$i] && $report->oup_plan_kbn2[$i]) {
+                if (strpos($report->oup_plan_kbn2[$i],",")) {
+                    $plan_kbn                               = "";
+                    $plan_kbns                              = explode(",",$report->oup_plan_kbn2[$i]);
+                    foreach ($plan_kbns as $key => $val) {
+                        $plan_kbn                           .= $key == 0 ? "'".$val."'" : ",'".$val."'";
+                    }
+                } else {
+                    $plan_kbn                               = "'".$report->oup_plan_kbn2[$i]."'";
+                }
+                $wkdetail2->inp_t_wk_or    = "t_wk_genba_id = '".$report->oup_genba_id2[$i]."' AND t_wk_plan_kbn in (".$plan_kbn.") AND t_wk_plan_date = '".$k."' ";
+            }
+
             $wkdetail2->inp_order = "order by t_wk_detail_no limit 1";
             $wkdetail2->getWkdetail();
             // $flg[$report->oup_no[$i]] = false;

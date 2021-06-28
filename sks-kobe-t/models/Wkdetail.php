@@ -619,6 +619,11 @@ set_time_limit(300);
             //if ($this->inp_t_wk_joban_time_flg == "1") {
             //    $sql .= "AND t_wk_joban_time != 'null' ";
             //}
+            if ($this->inp_t_wk_or) {
+                if ($whereflg == true) { $sql .= "OR "; }
+                $sql .= "(".$this->inp_t_wk_or.") ";
+                $whereflg = true;
+            }
 
             // 条件がなかったらSQLを実効しない
             if (substr($sql, -12, 12) == "WHERE 0 = 0 ") {
@@ -948,8 +953,6 @@ set_time_limit(300);
                                         }
                                         
                                         $syotei_otime = 0;
-                                        //var_dump($calc_kinmu_time,$kinmu_time);
-                                        //exit;
                                 } else {
                                     //早出+
                                     if ($calc_joban_time != "" && $calc_plan_joban_time != $calc_joban_time && $calc_kaban_time != "") {
@@ -1128,13 +1131,16 @@ set_time_limit(300);
                             $hayazan_time = 0;
                             $tuzan_time = $ktime - $plan_ktime;
                             $kinmu_time = $calc_kinmu_time - $tuzan_time;
-                            if ($wk00_o != 0 && $kinmu_time > $syotei) {
-                                $kinmu_time = $kinmu_time - $tuzan_time;
-                                $tuzan_time = $tuzan_time + $wk00_o - $tuzan_time;
-                            }
-                            if (($calc_plan_kbn == 1 && $kinmu_time > $syotei) || ($calc_plan_kbn == 3 && $kinmu_time > $syotei)) {
-                                $kinmu_time = $syotei;
-                                $tuzan_time = $calc_kinmu_time - $syotei;
+                            if ($kinmu_time > $syotei) {
+                                if ($wk00_o != 0) {
+                                    $kinmu_time = $kinmu_time - $tuzan_time;
+                                    $tuzan_time = $tuzan_time + $wk00_o - $tuzan_time;
+                                } else {
+                                    if ($calc_plan_kbn == 1 || $calc_plan_kbn == 3) {
+                                        $kinmu_time = $syotei;
+                                        $tuzan_time = $calc_kinmu_time - $syotei;
+                                    }
+                                }
                             }
                             $tuzan_time = sprintf('%02d',($tuzan_time/60)).":".sprintf('%02d',($tuzan_time%60));
                             $kinmu_time = sprintf('%02d',($kinmu_time/60)).":".sprintf('%02d',($kinmu_time%60));

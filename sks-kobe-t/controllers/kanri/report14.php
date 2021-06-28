@@ -216,10 +216,21 @@
   //         $wkdetail->inp_t_wk_genba_id2 = $wkdetail->inp_t_wk_genba_id2.",'".$genba->oup_m_genba_id[$i]."'";
   //     }
   // }
-  $wkdetail->inp_t_wk_genba_id      = "4";
-  $wkdetail->inp_t_wk_plan_hosoku   = "S";
-  $wkdetail->inp_t_wk_plan_kbn      = "2";
+  $report->inp_table                = $table;
+  $report->getReport("name");
+  $wkdetail->inp_t_wk_genba_id      = $report->oup_genba_id[0];
+  $wkdetail->inp_t_wk_plan_hosoku   = $report->oup_plan_hosoku[0];
+  $wkdetail->inp_t_wk_plan_kbn      = $report->oup_plan_kbn[0];
   $wkdetail->inp_t_wk_plan_date = str_replace("-","",$start_date);
+  // $wkdetail->inp_t_wk_genba_id      = "4";
+  // $wkdetail->inp_t_wk_plan_hosoku   = "S";
+  // $wkdetail->inp_t_wk_plan_kbn      = "2";
+  $plan_kbn                         = "";
+  $plan_kbns                        = explode(",",$report->oup_plan_kbn2[0]);
+  foreach ($plan_kbns as $key => $val) {
+    $plan_kbn                       .= $key == 0 ? "'".$val."'" : ",'".$val."'";
+  }
+  $wkdetail->inp_t_wk_or            = "t_wk_genba_id = '".$report->oup_genba_id2[0]."' AND t_wk_plan_kbn in (".$plan_kbn.") AND t_wk_plan_date = '".$start_date."' ";
   $wkdetail->inp_order = "order by t_wk_plan_kbn,t_wk_plan_joban_time";
   $wkdetail->getWkdetail();
 
