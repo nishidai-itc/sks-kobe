@@ -24,15 +24,17 @@
         $start_date                         = $_GET["plan_date"];
     }
     $dis_date                               = $start_date;
-    for ($i=1;$i<=10;$i++) {
+    for ($i=1;$i<=20;$i++) {
         if ($i < 8) {
             ${"wharf_contents".$i}          = null;
         }
         ${"patrol_staff_id".$i}             = null;
+        ${"patrol_staff_id_ken".$i}             = null;
         ${"patrol_time".$i}                 = array(null,null);
         ${"sensor_select".$i}               = null;
         ${"camera_select".$i}               = null;
     }
+    $patrolStaff                            = array("1"=>"","2"=>"_ken");
     $comment                                = null;
     $select = array("1"=>"有","2"=>"無");
     $dis_staff_id                           = null;

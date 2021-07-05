@@ -68,45 +68,51 @@
     <div class="row">
       <div class="col-12">
         <table class="table table-borderless table-responsive">
+          <?php for ($i=1;$i<=2;$i++) { ?>
           <tr>
             <td class="" style="min-width: 200px;">
+              <?php if ($i == 1) { ?>
               <?php echo substr($start_date,0,4)."年".substr($start_date,5,2)."月".substr($start_date,8,2)."日　(".getWeek($start_date).")"; ?>
               <input type="hidden" name="start_date" value="<?php echo $start_date; ?>">
+              <?php } ?>
             </td>
 
-            <?php for ($i=1;$i<=10;$i++) { ?>
-            <td style="min-width: 100px;"><?= $i ?>回目</td>
+            <?php for ($j=1;$j<=10;$j++) { ?>
+            <td style="min-width: 100px;"><?= $j + ($i - 1) * 10 ?>回目</td>
             <?php } ?>
           </tr>
 
           <tr>
-            <td>巡回者氏名</td>
-            <?php for ($i=1;$i<=10;$i++) { ?>
+            <td class="align-middle">巡回者氏名</td>
+            <?php for ($j=1;$j<=10;$j++) { ?>
             <td>
-              <select name="patrol_staff_id<?= $i ?>" id="patrol_staff_id<?= $i ?>" class="w-100">
+              <?php for ($k=1;$k<=2;$k++) { ?>
+              <select name="patrol_staff_id<?= $patrolStaff[$k].($j + ($i - 1) * 10) ?>" class="w-100">
                 <option value=""></option>
                 <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
-                <?php for ($j=0;$j<count($wkdetail->oup_t_wk_detail_no);$j++) { ?>
-                <option value="<?= $wkdetail->oup_t_wk_taiin_id[$j]; ?>"<?= $wkdetail->oup_t_wk_taiin_id[$j] == ${"patrol_staff_id".$i} ? "selected" : "" ; ?>><?= $staff_name[$wkdetail->oup_t_wk_taiin_id[$j]]; ?></option>
+                <?php for ($l=0;$l<count($wkdetail->oup_t_wk_detail_no);$l++) { ?>
+                <option value="<?= $wkdetail->oup_t_wk_taiin_id[$l]; ?>"<?= $wkdetail->oup_t_wk_taiin_id[$l] == ${"patrol_staff_id".$patrolStaff[$k].($j + ($i - 1) * 10)} ? "selected" : "" ; ?>><?= $staff_name[$wkdetail->oup_t_wk_taiin_id[$l]]; ?></option>
                 <?php } ?>
                 <?php } ?>
               </select>
+              <?php } ?>
             </td>
             <?php } ?>
           </tr>
 
           <tr>
             <td>巡回時間</td>
-            <?php for ($i=1;$i<=10;$i++) { ?>
+            <?php for ($j=1;$j<=10;$j++) { ?>
             <td>
               <div class="input-group">
-                <input type="number" class="form-control1" name="patrol_time<?= $i ?>[0]" value="<?= ${"patrol_time".$i}[0]; ?>" min="0" max="23">
+                <input type="number" class="form-control1" name="patrol_time<?= $j + ($i - 1) * 10 ?>[0]" value="<?= ${"patrol_time".($j + ($i - 1) * 10)}[0]; ?>" min="0" max="23">
                 <div class="input-group-append"><div class="input-group-text">:</div></div>
-                <input type="number" class="form-control2" name="patrol_time<?= $i ?>[1]" value="<?= ${"patrol_time".$i}[1]; ?>" min="0" max="59">
+                <input type="number" class="form-control2" name="patrol_time<?= $j + ($i - 1) * 10 ?>[1]" value="<?= ${"patrol_time".($j + ($i - 1) * 10)}[1]; ?>" min="0" max="59">
               </div>
             </td>
             <?php } ?>
           </tr>
+          <?php } ?>
 
           <tr>
             <td colspan="11" style="height: 30px;"></td>

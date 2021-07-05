@@ -106,16 +106,23 @@
         );
 
         public static $report15 = array(
-            "no","table","start_date","patrol_staff_id1","patrol_time1","sensor_select1","camera_select1","patrol_staff_id2","patrol_time2","sensor_select2","camera_select2","patrol_staff_id3","patrol_time3","sensor_select3","camera_select3",
-            "patrol_staff_id4","patrol_time4","sensor_select4","camera_select4","patrol_staff_id5","patrol_time5","sensor_select5","camera_select5","patrol_staff_id6","patrol_time6","sensor_select6","camera_select6",
-            "patrol_staff_id7","patrol_time7","sensor_select7","camera_select7","patrol_staff_id8","patrol_time8","sensor_select8","camera_select8","patrol_staff_id9","patrol_time9","sensor_select9","camera_select9",
-            "patrol_staff_id10","patrol_time10","sensor_select10","camera_select10","dis_staff_id","dis_date","dis_place","dis_contents","etc_contents","wharf_contents1","wharf_contents2","wharf_contents3","wharf_contents4",
-            "wharf_contents5","wharf_contents6","wharf_contents7","comment",
+            "no","table","start_date",
+            "sensor_select1","camera_select1","sensor_select2","camera_select2","sensor_select3","camera_select3","sensor_select4","camera_select4","sensor_select5","camera_select5",
+            "sensor_select6","camera_select6","sensor_select7","camera_select7","sensor_select8","camera_select8","sensor_select9","camera_select9","sensor_select10","camera_select10",
+            "patrol_staff_id1","patrol_staff_id_ken1","patrol_time1","patrol_staff_id2","patrol_staff_id_ken2","patrol_time2","patrol_staff_id3","patrol_staff_id_ken3","patrol_time3",
+            "patrol_staff_id4","patrol_staff_id_ken4","patrol_time4","patrol_staff_id5","patrol_staff_id_ken5","patrol_time5","patrol_staff_id6","patrol_staff_id_ken6","patrol_time6",
+            "patrol_staff_id7","patrol_staff_id_ken7","patrol_time7","patrol_staff_id8","patrol_staff_id_ken8","patrol_time8","patrol_staff_id9","patrol_staff_id_ken9","patrol_time9",
+            "patrol_staff_id10","patrol_staff_id_ken10","patrol_time10","patrol_staff_id11","patrol_staff_id_ken11","patrol_time11","patrol_staff_id12","patrol_staff_id_ken12","patrol_time12",
+            "patrol_staff_id13","patrol_staff_id_ken13","patrol_time13","patrol_staff_id14","patrol_staff_id_ken14","patrol_time14","patrol_staff_id15","patrol_staff_id_ken15","patrol_time15",
+            "patrol_staff_id16","patrol_staff_id_ken16","patrol_time16","patrol_staff_id17","patrol_staff_id_ken17","patrol_time17","patrol_staff_id18","patrol_staff_id_ken18","patrol_time18",
+            "patrol_staff_id19","patrol_staff_id_ken19","patrol_time19","patrol_staff_id20","patrol_staff_id_ken20","patrol_time20",
+            "dis_staff_id","dis_date","dis_place","dis_contents","etc_contents",
+            "wharf_contents1","wharf_contents2","wharf_contents3","wharf_contents4","wharf_contents5","wharf_contents6","wharf_contents7","comment",
         );
 
         public static $reportkanri = array("no","plan_date","table"/*,"table_no"*/,"gchk","name_no","kbn");
 
-        public static $reportname = array("no","table","place","contract","genba_id","plan_kbn","plan_hosoku","disp","genba_id2","plan_kbn2");
+        public static $reportname = array("no","table","place","contract","genba_id","plan_kbn","plan_hosoku","disp"/*,"genba_id2","plan_kbn2"*/);
 
         // public function __construct() {
         // }
