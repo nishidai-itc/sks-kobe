@@ -778,7 +778,7 @@ print("<br />");
         if ($staff_id != "") {
             $detail->inp_t_wk_taiin_id = $staff_id;
         }
-        $detail->inp_t_wk_jokaban_kbn = true;
+        $detail->inp_t_wk_jokaban3_kbn = true;
         $detail->inp_t_wk_plan_start_date = $nengetu."01";
         $detail->inp_t_wk_plan_end_date = date('Ymd', strtotime('last day of ' . substr($nengetu, 0, 4)."-".substr($nengetu, 4, 2)));
         $detail->getWkdetail();
@@ -792,7 +792,7 @@ print("<br />");
             
             $detail2 = new Wkdetail;
             $detail2->inp_t_wk_taiin_id = $wk->oup_t_wk_taiin_id[$i];
-            $detail2->inp_t_wk_jokaban_kbn = true;
+            $detail2->inp_t_wk_jokaban3_kbn = true;
             $detail2->inp_t_wk_plan_start_date = $nengetu."01";
             $detail2->inp_t_wk_plan_end_date = date('Ymd', strtotime('last day of ' . substr($nengetu, 0, 4)."-".substr($nengetu, 4, 2)));
             $detail2->getWkdetail();
