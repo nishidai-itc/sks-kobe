@@ -619,11 +619,11 @@ set_time_limit(300);
             //if ($this->inp_t_wk_joban_time_flg == "1") {
             //    $sql .= "AND t_wk_joban_time != 'null' ";
             //}
-            if ($this->inp_t_wk_or) {
-                if ($whereflg == true) { $sql .= "OR "; }
-                $sql .= "(".$this->inp_t_wk_or.") ";
-                $whereflg = true;
-            }
+            // if ($this->inp_t_wk_or) {
+            //     if ($whereflg == true) { $sql .= "OR "; }
+            //     $sql .= "(".$this->inp_t_wk_or.") ";
+            //     $whereflg = true;
+            // }
 
             // 条件がなかったらSQLを実効しない
             if (substr($sql, -12, 12) == "WHERE 0 = 0 ") {
