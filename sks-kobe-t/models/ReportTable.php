@@ -109,6 +109,8 @@
             "no","table","start_date",
             "sensor_select1","camera_select1","sensor_select2","camera_select2","sensor_select3","camera_select3","sensor_select4","camera_select4","sensor_select5","camera_select5",
             "sensor_select6","camera_select6","sensor_select7","camera_select7","sensor_select8","camera_select8","sensor_select9","camera_select9","sensor_select10","camera_select10",
+            "sensor_select11","camera_select11","sensor_select12","camera_select12","sensor_select13","camera_select13","sensor_select14","camera_select14","sensor_select15","camera_select15",
+            "sensor_select16","camera_select16","sensor_select17","camera_select17","sensor_select18","camera_select18","sensor_select19","camera_select19","sensor_select20","camera_select20",
             "patrol_staff_id1","patrol_staff_id_ken1","patrol_time1","patrol_staff_id2","patrol_staff_id_ken2","patrol_time2","patrol_staff_id3","patrol_staff_id_ken3","patrol_time3",
             "patrol_staff_id4","patrol_staff_id_ken4","patrol_time4","patrol_staff_id5","patrol_staff_id_ken5","patrol_time5","patrol_staff_id6","patrol_staff_id_ken6","patrol_time6",
             "patrol_staff_id7","patrol_staff_id_ken7","patrol_time7","patrol_staff_id8","patrol_staff_id_ken8","patrol_time8","patrol_staff_id9","patrol_staff_id_ken9","patrol_time9",

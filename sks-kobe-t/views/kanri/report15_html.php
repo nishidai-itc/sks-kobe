@@ -70,7 +70,7 @@
         <table class="table table-borderless table-responsive">
           <?php for ($i=1;$i<=2;$i++) { ?>
           <tr>
-            <td class="" style="min-width: 200px;">
+            <td class="text-nowrap w-auto">
               <?php if ($i == 1) { ?>
               <?php echo substr($start_date,0,4)."年".substr($start_date,5,2)."月".substr($start_date,8,2)."日　(".getWeek($start_date).")"; ?>
               <input type="hidden" name="start_date" value="<?php echo $start_date; ?>">
@@ -83,7 +83,7 @@
           </tr>
 
           <tr>
-            <td class="align-middle">巡回者氏名</td>
+            <td class="align-middle text-nowrap w-auto">巡回者氏名</td>
             <?php for ($j=1;$j<=10;$j++) { ?>
             <td>
               <?php for ($k=1;$k<=2;$k++) { ?>
@@ -101,9 +101,9 @@
           </tr>
 
           <tr>
-            <td>巡回時間</td>
+            <td class="text-nowrap w-auto pt-2">巡回時間</td>
             <?php for ($j=1;$j<=10;$j++) { ?>
-            <td>
+            <td class="pt-2">
               <div class="input-group">
                 <input type="number" class="form-control1" name="patrol_time<?= $j + ($i - 1) * 10 ?>[0]" value="<?= ${"patrol_time".($j + ($i - 1) * 10)}[0]; ?>" min="0" max="23">
                 <div class="input-group-append"><div class="input-group-text">:</div></div>
@@ -112,12 +112,48 @@
             </td>
             <?php } ?>
           </tr>
+
+          <tr>
+            <td class="text-nowrap w-auto pt-3">赤外線検知センサー発報の有無</td>
+            <?php for ($j=1;$j<=10;$j++) { ?>
+            <td class="align-middle pt-3">
+              <select name="sensor_select<?= $j + ($i - 1) * 10 ?>" id="sensor_select<?= $j + ($i - 1) * 10 ?>" class="w-100">
+                <option value=""></option>
+                <?php foreach ($select as $key => $val) { ?>
+                <option value="<?= $key ?>"<?= $key == ${"sensor_select".($j + ($i - 1) * 10)} ? "selected" : "" ; ?>><?= $val ?></option>
+                <?php } ?>
+              </select>
+            </td>
+            <?php } ?>
+          </tr>
+
+          <tr>
+            <td class="text-nowrap w-auto pt-2">監視カメラによる異常の有無</td>
+            <?php for ($j=1;$j<=10;$j++) { ?>
+            <td class="align-middle pt-2">
+              <select name="camera_select<?= $j + ($i - 1) * 10 ?>" id="camera_select<?= $j + ($i - 1) * 10 ?>" class="w-100">
+                <option value=""></option>
+                <?php foreach ($select as $key => $val) { ?>
+                <option value="<?= $key ?>"<?= $key == ${"camera_select".($j + ($i - 1) * 10)} ? "selected" : "" ; ?>><?= $val ?></option>
+                <?php } ?>
+              </select>
+            </td>
+            <?php } ?>
+          </tr>
+
+          <?php if ($i == 1) { ?>
+          <tr>
+            <td colspan="11" style="height: 30px;"></td>
+          </tr>
+          <?php } ?>
+
           <?php } ?>
 
           <tr>
             <td colspan="11" style="height: 30px;"></td>
           </tr>
 
+          <?php /* ?>
           <tr>
             <td>赤外線検知センサー発報の有無</td>
             <?php for ($i=1;$i<=10;$i++) { ?>
@@ -145,6 +181,7 @@
             </td>
             <?php } ?>
           </tr>
+          <?php */ ?>
 
           <tr>
             <td colspan="11">チェックポイント</td>
