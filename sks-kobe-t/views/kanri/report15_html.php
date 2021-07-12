@@ -77,21 +77,21 @@
               <?php } ?>
             </td>
 
-            <?php for ($j=1;$j<=10;$j++) { ?>
-            <td style="min-width: 100px;"><?= $j + ($i - 1) * 10 ?>回目</td>
+            <?php for ($j=1;$j<=8;$j++) { ?>
+            <td style="min-width: 100px;"><?= $j + ($i - 1) * 8 ?>回目</td>
             <?php } ?>
           </tr>
 
           <tr>
             <td class="align-middle text-nowrap w-auto">巡回者氏名</td>
-            <?php for ($j=1;$j<=10;$j++) { ?>
+            <?php for ($j=1;$j<=8;$j++) { ?>
             <td>
               <?php for ($k=1;$k<=2;$k++) { ?>
-              <select name="patrol_staff_id<?= $patrolStaff[$k].($j + ($i - 1) * 10) ?>" class="w-100">
+              <select name="patrol_staff_id<?= $patrolStaff[$k].($j + ($i - 1) * 8) ?>" class="w-100">
                 <option value=""></option>
                 <?php if ($wkdetail->oup_t_wk_detail_no) { ?>
                 <?php for ($l=0;$l<count($wkdetail->oup_t_wk_detail_no);$l++) { ?>
-                <option value="<?= $wkdetail->oup_t_wk_taiin_id[$l]; ?>"<?= $wkdetail->oup_t_wk_taiin_id[$l] == ${"patrol_staff_id".$patrolStaff[$k].($j + ($i - 1) * 10)} ? "selected" : "" ; ?>><?= $staff_name[$wkdetail->oup_t_wk_taiin_id[$l]]; ?></option>
+                <option value="<?= $wkdetail->oup_t_wk_taiin_id[$l]; ?>"<?= $wkdetail->oup_t_wk_taiin_id[$l] == ${"patrol_staff_id".$patrolStaff[$k].($j + ($i - 1) * 8)} ? "selected" : "" ; ?>><?= $staff_name[$wkdetail->oup_t_wk_taiin_id[$l]]; ?></option>
                 <?php } ?>
                 <?php } ?>
               </select>
@@ -102,12 +102,12 @@
 
           <tr>
             <td class="text-nowrap w-auto pt-2">巡回時間</td>
-            <?php for ($j=1;$j<=10;$j++) { ?>
+            <?php for ($j=1;$j<=8;$j++) { ?>
             <td class="pt-2">
               <div class="input-group">
-                <input type="number" class="form-control1" name="patrol_time<?= $j + ($i - 1) * 10 ?>[0]" value="<?= ${"patrol_time".($j + ($i - 1) * 10)}[0]; ?>" min="0" max="23">
+                <input type="number" class="form-control1" name="patrol_time<?= $j + ($i - 1) * 8 ?>[0]" value="<?= ${"patrol_time".($j + ($i - 1) * 8)}[0]; ?>" min="0" max="23">
                 <div class="input-group-append"><div class="input-group-text">:</div></div>
-                <input type="number" class="form-control2" name="patrol_time<?= $j + ($i - 1) * 10 ?>[1]" value="<?= ${"patrol_time".($j + ($i - 1) * 10)}[1]; ?>" min="0" max="59">
+                <input type="number" class="form-control2" name="patrol_time<?= $j + ($i - 1) * 8 ?>[1]" value="<?= ${"patrol_time".($j + ($i - 1) * 8)}[1]; ?>" min="0" max="59">
               </div>
             </td>
             <?php } ?>
@@ -115,12 +115,12 @@
 
           <tr>
             <td class="text-nowrap w-auto pt-3">赤外線検知センサー発報の有無</td>
-            <?php for ($j=1;$j<=10;$j++) { ?>
+            <?php for ($j=1;$j<=8;$j++) { ?>
             <td class="align-middle pt-3">
-              <select name="sensor_select<?= $j + ($i - 1) * 10 ?>" id="sensor_select<?= $j + ($i - 1) * 10 ?>" class="w-100">
+              <select name="sensor_select<?= $j + ($i - 1) * 8 ?>" id="sensor_select<?= $j + ($i - 1) * 8 ?>" class="w-100">
                 <option value=""></option>
                 <?php foreach ($select as $key => $val) { ?>
-                <option value="<?= $key ?>"<?= $key == ${"sensor_select".($j + ($i - 1) * 10)} ? "selected" : "" ; ?>><?= $val ?></option>
+                <option value="<?= $key ?>"<?= $key == ${"sensor_select".($j + ($i - 1) * 8)} ? "selected" : "" ; ?>><?= $val ?></option>
                 <?php } ?>
               </select>
             </td>
@@ -129,12 +129,12 @@
 
           <tr>
             <td class="text-nowrap w-auto pt-2">監視カメラによる異常の有無</td>
-            <?php for ($j=1;$j<=10;$j++) { ?>
+            <?php for ($j=1;$j<=8;$j++) { ?>
             <td class="align-middle pt-2">
-              <select name="camera_select<?= $j + ($i - 1) * 10 ?>" id="camera_select<?= $j + ($i - 1) * 10 ?>" class="w-100">
+              <select name="camera_select<?= $j + ($i - 1) * 8 ?>" id="camera_select<?= $j + ($i - 1) * 8 ?>" class="w-100">
                 <option value=""></option>
                 <?php foreach ($select as $key => $val) { ?>
-                <option value="<?= $key ?>"<?= $key == ${"camera_select".($j + ($i - 1) * 10)} ? "selected" : "" ; ?>><?= $val ?></option>
+                <option value="<?= $key ?>"<?= $key == ${"camera_select".($j + ($i - 1) * 8)} ? "selected" : "" ; ?>><?= $val ?></option>
                 <?php } ?>
               </select>
             </td>

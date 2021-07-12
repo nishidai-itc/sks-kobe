@@ -116,8 +116,7 @@
             "patrol_staff_id7","patrol_staff_id_ken7","patrol_time7","patrol_staff_id8","patrol_staff_id_ken8","patrol_time8","patrol_staff_id9","patrol_staff_id_ken9","patrol_time9",
             "patrol_staff_id10","patrol_staff_id_ken10","patrol_time10","patrol_staff_id11","patrol_staff_id_ken11","patrol_time11","patrol_staff_id12","patrol_staff_id_ken12","patrol_time12",
             "patrol_staff_id13","patrol_staff_id_ken13","patrol_time13","patrol_staff_id14","patrol_staff_id_ken14","patrol_time14","patrol_staff_id15","patrol_staff_id_ken15","patrol_time15",
-            "patrol_staff_id16","patrol_staff_id_ken16","patrol_time16","patrol_staff_id17","patrol_staff_id_ken17","patrol_time17","patrol_staff_id18","patrol_staff_id_ken18","patrol_time18",
-            "patrol_staff_id19","patrol_staff_id_ken19","patrol_time19","patrol_staff_id20","patrol_staff_id_ken20","patrol_time20",
+            "patrol_staff_id16","patrol_staff_id_ken16","patrol_time16",
             "dis_staff_id","dis_date","dis_place","dis_contents","etc_contents",
             "wharf_contents1","wharf_contents2","wharf_contents3","wharf_contents4","wharf_contents5","wharf_contents6","wharf_contents7","comment",
         );

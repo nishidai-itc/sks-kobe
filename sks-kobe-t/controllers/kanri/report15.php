@@ -24,7 +24,7 @@
         $start_date                         = $_GET["plan_date"];
     }
     $dis_date                               = $start_date;
-    for ($i=1;$i<=20;$i++) {
+    for ($i=1;$i<=16;$i++) {
         if ($i < 8) {
             ${"wharf_contents".$i}          = null;
         }
